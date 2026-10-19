@@ -24,19 +24,19 @@ def shake(a, decay, f=41):   # decaying camera shake, pixels
 # Per-clip camera: zoom Z(t), pan dx/dy (fraction of free margin, -1..1), rotation (rad)
 # Punch-in on start = zoom from big to normal with ease-out (impact hit).
 CLIPS = [
-  # 1 hook: impact punch + slow push-in on the pointing stickman
+  # 1 hook -> chest -> DO / PARK / DROP: impact punch + slow push-in
   dict(z=f"1.32-0.24*{out3(0,0.45)}+0.10*{inout(0.45,6)}", dx="0", dy=f"-0.25*{inout(0,6)}",
        rot=f"0.02*exp(-t*5)*sin(t*30)", sx=shake(14,6), sy=shake(10,6,37)),
-  # 2 chest -> DO / PARK / DROP: gentle drift and push toward icons, pull back for final pose
+  # 2 juggling buckets -> thought clouds: gentle drift and push, pull back for final pose
   dict(z=f"1.02+0.07*{inout(0,4.4)}-0.07*{inout(4.6,5.4)}", dx=f"0.15*sin(t*0.8)", dy=f"0.2*{inout(0,4.4)}",
        rot="0", sx="0", sy="0"),
-  # 3 buckets & question: hard cut punch, zoom out reveal, push into the big "?"
+  # 3 big "?" -> 24h clock -> DO bucket: hard cut punch, zoom out reveal, push in at the end
   dict(z=f"1.30-0.30*{out3(0,0.5)}+0.22*{inout(4.4,5.3)}", dx="0", dy=f"-0.4*{inout(4.4,5.3)}",
        rot=f"0.015*sin(t*1.3)", sx=shake(12,7), sy=shake(8,7,33)),
-  # 4 24h clock / thinking: slow push in with slight tilt sway
+  # 4 buckets / road fork: slow push in with slight tilt sway
   dict(z=f"1.06+0.16*{inout(0,2.2)}-0.10*{inout(3.8,4.5)}+0.06*{inout(4.5,6)}", dx=f"0.35*sin(t*0.9)", dy="0",
        rot=f"0.012*sin(t*1.7)", sx="0", sy="0"),
-  # 5 forks / waving: punch in, then lateral pan following the road split
+  # 5 waving -> DO check -> messy basket: punch in, then lateral pan
   dict(z=f"1.28-0.18*{out3(0,0.45)}+0.05*{inout(0.45,6)}", dx=f"-0.8+1.6*{inout(0.4,5.6)}", dy="0",
        rot="0", sx=shake(12,7), sy=shake(9,7,29)),
   # 6 stressed character: tension push-in + nervous micro-shake
