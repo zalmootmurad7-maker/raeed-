@@ -128,14 +128,14 @@ function scene1(t){
   const MX=600,MY=520,BXc=600,BYc=1230;
   figure(170,1110,lerpPose(POSES.rest,POSES.point,eOut(P(t,0.25,0.5))),{s:0.95});
   moon(MX,MY,225,{s:pop(t,0.1)});
-  txt('THE MOON',MX,800,64,{k:writeK(t,0.3,'THE MOON')});
+  txt('THE MOON',MX,815,96,{k:writeK(t,0.3,'THE MOON')});
   arrow(MX,850,MX,975,{k:eOut(P(t,1.56,1.9)),seed:12,head:22});
-  txt('REBUILD',MX+40,912,42,{k:writeK(t,1.6,'REBUILD'),col:RED,align:'left'});
+  txt('REBUILD',MX+40,912,60,{k:writeK(t,1.6,'REBUILD'),col:RED,align:'left'});
   circ(BXc,BYc,225,{dash:[14,12],k:eOut(P(t,1.75,2.4)),seed:44,w:3});
   const n=S1P.length;S1P.forEach(([x,y],i)=>{const s=pop(t,2.3+1.85*(i/n),0.16);if(s>0)ctx.drawImage(PSPR,BXc+x-16*s,BYc+y-16*s,32*s,32*s);});
-  txt('PURE PROTONS',BXc,1515,68,{k:writeK(t,3.34,'PURE PROTONS',30)});
-  const uk=P(t,3.85,4.15);if(uk>0)line(BXc-190,1560,lerp(BXc-190,BXc+190,uk),1558,301,1,4,RED);
-  proton(150,1320,26,{s:pop(t,3.4),plusCol:RED});txt('= PROTON',190,1320,38,{k:writeK(t,3.5,'= PROTON'),align:'left'});
+  txt('PURE PROTONS',BXc,1515,100,{k:writeK(t,3.34,'PURE PROTONS',30)});
+  const uk=P(t,3.85,4.15);if(uk>0)line(BXc-270,1575,lerp(BXc-270,BXc+270,uk),1573,301,1,5,RED);
+  proton(110,285,32,{s:pop(t,3.4),plusCol:RED});txt('= PROTON',160,285,58,{k:writeK(t,3.5,'= PROTON'),align:'left'});
 }
 // 2: 4.4-6.8 rock, made of atoms (whiteboard on top, narrator below)
 function smallAtom(x,y,s,seed,t){circ(x,y,30*s,{seed:seed,ry:11*s,w:2});ctx.fillStyle=INK;ctx.beginPath();ctx.arc(x,y,5*s,0,TAU);ctx.fill();const a=t*3+seed;ctx.beginPath();ctx.arc(x+Math.cos(a)*30*s,y+Math.sin(a)*11*s,3.5*s,0,TAU);ctx.fill();}
@@ -143,13 +143,13 @@ function scene2(t){
   figure(540,1520,POSES.paper,{s:1.0});
   board(BX,BY,BW,BH,1);
   const MX=330,MY=500;moon(MX,MY,180,{s:pop(t,4.42)});
-  txt('RIGHT NOW:',MX,290,40,{k:writeK(t,4.49,'RIGHT NOW:',30),col:RED});
-  arrow(690,380,525,450,{k:eOut(P(t,4.5,4.75)),seed:22});txt('ROCK',770,370,66,{k:writeK(t,4.5,'ROCK',20)});
+  txt('RIGHT NOW:',MX,288,56,{k:writeK(t,4.49,'RIGHT NOW:',30),col:RED});
+  arrow(690,380,525,450,{k:eOut(P(t,4.5,4.75)),seed:22});txt('ROCK',790,370,96,{k:writeK(t,4.5,'ROCK',20)});
   const mk=P(t,5.66,5.9);if(mk>0){const sx=380,sy=560;circ(sx,sy,30,{k:eOut(mk),seed:60,w:3});
     const bx=700,by=800,br=190;const lk=eOut(P(t,5.75,5.95));line(sx+22,sy+20,bx-150,by-118,61,lk,2.4);line(sx+28,sy-8,bx+20,by-br+2,62,lk,2.4);
     const bs=pop(t,5.85);if(bs>0){ctx.save();ctx.beginPath();ctx.arc(bx,by,br*bs,0,TAU);ctx.fillStyle='#fdfcff';ctx.fill();ctx.clip();
       for(let r=-4;r<=4;r++)for(let c=-4;c<=4;c++)smallAtom(bx+c*86+(r&1)*43,by+r*62,bs,r*9+c,t);ctx.restore();circ(bx,by,br*bs,{seed:63,w:LW+0.4});}
-    txt('ATOMS',300,880,72,{k:writeK(t,5.95,'ATOMS',20)});}
+    txt('ATOMS',290,880,104,{k:writeK(t,5.95,'ATOMS',20)});}
 }
 // 3: 6.8-10.4 atom
 const NUC=(()=>{const R=rng(5),a=[];const pts=[[0,0],[34,-10],[-30,-18],[8,32],[-26,26],[28,28],[-6,-38],[40,18],[-42,4],[14,-30],[-14,8],[22,0]];
@@ -170,30 +170,30 @@ function scene3(t){
   pushIn(t,6.8,10.4,0.04);
   const AX=CX,AY=900;
   atom(AX,AY,1.12,t,{nucS:pop(t,6.88),orbK:eOut(P(t,9.04,9.55)),eS:pop(t,9.2),red:t>7.81});
-  txt('EACH ATOM:',CX,290,66,{k:writeK(t,6.84,'EACH ATOM:')});
-  txt('PROTONS',250,520,66,{k:writeK(t,7.81,'PROTONS',24),col:RED});
-  txt('(IN THE MIDDLE)',250,578,38,{k:writeK(t,8.3,'(IN THE MIDDLE)',30)});
-  arrow(330,615,AX-50,AY-70,{k:eOut(P(t,7.85,8.1)),seed:31,col:RED});
-  txt('ELECTRONS',800,1430,66,{k:writeK(t,9.04,'ELECTRONS',24)});
-  txt('(AROUND THEM)',800,1488,38,{k:writeK(t,9.5,'(AROUND THEM)',30)});
+  txt('EACH ATOM:',CX,290,96,{k:writeK(t,6.84,'EACH ATOM:')});
+  txt('PROTONS',250,515,92,{k:writeK(t,7.81,'PROTONS',24),col:RED});
+  txt('(IN THE MIDDLE)',250,590,54,{k:writeK(t,8.3,'(IN THE MIDDLE)',30)});
+  arrow(330,635,AX-50,AY-70,{k:eOut(P(t,7.85,8.1)),seed:31,col:RED});
+  txt('ELECTRONS',790,1430,92,{k:writeK(t,9.04,'ELECTRONS',24)});
+  txt('(AROUND THEM)',790,1505,54,{k:writeK(t,9.5,'(AROUND THEM)',30)});
   arrow(780,1380,700,1250,{k:eOut(P(t,9.3,9.55)),seed:32});
 }
 // 4: 10.4-14.3 positive / negative / cancel (stacked)
 function scene4(t){
   const m=eIn(P(t,13.0,13.32));const hit=t>=13.32;
-  const ty=lerp(470,CX-0+0,0),py=lerp(470,700-118+118-118,m),ey=lerp(1020,700+118,m);
+  const py=lerp(450,700-118,m),ey=lerp(960,700+118,m);
   const rec=hit?Math.sin(eOut(P(t,13.32,13.6))*Math.PI)*12:0;
   proton(CX,py-rec,110,{s:pop(t,10.52),seed:701});
   electron(CX,ey+rec,110,{s:pop(t,11.82),seed:702});
   if(t>13.0&&t<13.32){motionLines(CX,py-110,Math.PI/2,120,3,710,1);motionLines(CX,ey+110,-Math.PI/2,120,3,720,1);}
   if(hit&&t<13.75){const k=P(t,13.32,13.75);for(let i=0;i<10;i++){const a=i/10*TAU+0.3;const r0=150+k*60,r1=r0+40*(1-k);line(CX+Math.cos(a)*r0,700+Math.sin(a)*r0,CX+Math.cos(a)*r1,700+Math.sin(a)*r1,800+i,1,3);}}
   const fade=1-P(t,12.95,13.1);ctx.save();ctx.globalAlpha=fade;
-  txt('PROTONS ARE',CX+150,410,44,{k:writeK(t,10.52,'PROTONS ARE'),align:'left'});txt('POSITIVE (+)',CX+150,475,62,{k:writeK(t,10.9,'POSITIVE (+)',22),col:RED,align:'left'});
-  txt('ELECTRONS ARE',CX-150,960,44,{k:writeK(t,11.82,'ELECTRONS ARE'),align:'right'});txt('NEGATIVE (-)',CX-150,1025,62,{k:writeK(t,12.2,'NEGATIVE (-)',22),align:'right'});
+  txt('PROTONS ARE',CX,610,62,{k:writeK(t,10.52,'PROTONS ARE')});txt('POSITIVE (+)',CX,690,88,{k:writeK(t,10.9,'POSITIVE (+)',22),col:RED});
+  txt('ELECTRONS ARE',CX,1120,62,{k:writeK(t,11.82,'ELECTRONS ARE')});txt('NEGATIVE (-)',CX,1200,88,{k:writeK(t,12.2,'NEGATIVE (-)',22)});
   ctx.restore();
-  if(hit){txt('+1  -1  =  0',CX,1140,100,{k:writeK(t,13.38,'+1  -1  =  0',22)});
-    if(t>13.88)circ(CX+158,1142,60,{k:eOut(P(t,13.9,14.2)),seed:830,col:RED,w:4,ry:54});
-    txt('THEY CANCEL OUT',CX,1290,64,{k:writeK(t,13.6,'THEY CANCEL OUT',30)});}
+  if(hit){ctx.save();ctx.font='124px "PH"';const EW=ctx.measureText('+1  -1  =  0').width,ZW=ctx.measureText('0').width;ctx.restore();const ZX=CX+EW/2-ZW/2;txt('+1  -1  =  0',CX,1140,124,{k:writeK(t,13.38,'+1  -1  =  0',22)});
+    if(t>13.88)circ(ZX,1142,74,{k:eOut(P(t,13.9,14.2)),seed:830,col:RED,w:5,ry:66});
+    txt('THEY CANCEL OUT',CX,1300,92,{k:writeK(t,13.6,'THEY CANCEL OUT',30)});}
 }
 // 5: 14.3-18.55 take away everything but the protons
 function scene5(t){
@@ -202,13 +202,13 @@ function scene5(t){
   const ef=eIn(P(t,15.17,15.75)),nf=eIn(P(t,15.97,16.5));
   atom(X,Y,S,t,{nucS:pop(t,14.32),orbK:1-P(t,15.17,15.3),eS:t<15.85?1:0,eFly:ef,nFly:nf,nS:t<16.5?1:0,red:t>17.13,pJit:P(t,17.6,18.55)*4,spread:1+P(t,17.7,18.55)*0.18});
   const out=P(t,16.9,17.1);ctx.save();ctx.globalAlpha=1-out;
-  txt('NOW...',120,290,66,{k:writeK(t,14.34,'NOW...',14),align:'left'});
-  const LX=260;txt('TAKE AWAY:',LX,1090,54,{k:writeK(t,15.17,'TAKE AWAY:',30),align:'left',col:RED});
-  [['ELECTRONS',15.2],['NEUTRONS',15.97],['EVERYTHING ELSE',16.3]].forEach(([s,t0],i)=>{const y=1190+i*100;const w=txt(s,LX,y,64,{k:writeK(t,t0-0.1,s,34),align:'left'});
-    scribble(LX-8,y,(w||200)+16,28,900+i,eOut(P(t,t0+0.15,t0+0.45)));});
+  txt('NOW...',90,295,96,{k:writeK(t,14.34,'NOW...',14),align:'left'});
+  const LX=170;txt('TAKE AWAY:',LX,1090,74,{k:writeK(t,15.17,'TAKE AWAY:',30),align:'left',col:RED});
+  [['ELECTRONS',15.2],['NEUTRONS',15.97],['EVERYTHING ELSE',16.3]].forEach(([s,t0],i)=>{const y=1200+i*112;const w=txt(s,LX,y,88,{k:writeK(t,t0-0.1,s,34),align:'left'});
+    scribble(LX-8,y,(w||200)+16,36,900+i,eOut(P(t,t0+0.15,t0+0.45)));});
   ctx.restore();
-  if(t>17.13){txt('JUST THE',CX,1170,62,{k:writeK(t,17.13,'JUST THE',30),col:RED});txt('PROTONS',CX,1260,96,{k:writeK(t,17.35,'PROTONS',24),col:RED});
-    const uk=eOut(P(t,17.75,18.05));if(uk>0)line(CX-170,1320,CX-170+340*uk,1318,940,1,4,RED);}
+  if(t>17.13){txt('JUST THE',CX,1160,86,{k:writeK(t,17.13,'JUST THE',30),col:RED});txt('PROTONS',CX,1285,136,{k:writeK(t,17.35,'PROTONS',24),col:RED});
+    const uk=eOut(P(t,17.75,18.05));if(uk>0)line(CX-240,1365,CX-240+480*uk,1363,940,1,5,RED);}
 }
 // 6: 18.55-23.2 nothing cancels, every proton pushes on every other one
 const F6=[[-60,-300],[-150,-150],[-110,20],[-170,190],[-40,330],[90,-220],[40,-40],[70,150],[140,300],[180,-80]].map(([x,y])=>[x*1.55,y*1.05]);
@@ -220,10 +220,10 @@ function scene6(t){
     ctx.save();ctx.globalAlpha=0.75;arrow(a[0]+ux*44,a[1]+uy*44,b[0]-ux*44,b[1]-uy*44,{k,seed:1000+n,w:2,head:12,both:true,col:n%4===0?RED:INK});ctx.restore();});
   pos.forEach(([x,y],i)=>proton(x,y,36,{s:pop(t,18.6+i*0.04),seed:1100+i}));
   if(t>20.6)pos.forEach(([x,y],i)=>{if(i%3===0)shakeMarks(x,y,36,1200+i,P(t,20.6,21));});
-  txt('NOTHING CANCELS',CX,290,80,{k:writeK(t,18.65,'NOTHING CANCELS',28)});
-  const nk=1-P(t,20.2,20.37);ctx.save();ctx.globalAlpha=nk;txt('NET CHARGE:',CX-60,1330,56,{k:writeK(t,18.9,'NET CHARGE:')});
-  const cnt=Math.round(10*P(t,19.3,19.9));if(t>19.3)txt('+'+cnt,CX+150,1330,76,{col:RED});ctx.restore();
-  if(t>20.37){txt('EVERY PROTON PUSHES',CX,1330,70,{k:writeK(t,20.37,'EVERY PROTON PUSHES',28)});txt('ON EVERY OTHER ONE',CX,1420,70,{k:writeK(t,21.97,'ON EVERY OTHER ONE',28),col:RED});}
+  txt('NOTHING CANCELS',CX,290,104,{k:writeK(t,18.65,'NOTHING CANCELS',28)});
+  const nk=1-P(t,20.2,20.37);ctx.save();ctx.globalAlpha=nk;txt('NET CHARGE:',CX-90,1330,78,{k:writeK(t,18.9,'NET CHARGE:')});
+  const cnt=Math.round(10*P(t,19.3,19.9));if(t>19.3)txt('+'+cnt,CX+200,1330,104,{col:RED});ctx.restore();
+  if(t>20.37){txt('EVERY PROTON PUSHES',CX,1320,92,{k:writeK(t,20.37,'EVERY PROTON PUSHES',28)});txt('ON EVERY OTHER ONE',CX,1425,92,{k:writeK(t,21.97,'ON EVERY OTHER ONE',28),col:RED});}
 }
 // 7: 23.2-29.5 push beats gravity by 10^36
 const ZT=Array.from({length:36},(_,i)=>27.0+i*(1.7/35));
@@ -231,20 +231,20 @@ function scene7(t){
   const up=eInOut(P(t,26.3,26.6));const Y=lerp(640,380,up),SC=lerp(0.82,0.55,up);
   const L=CX-130*SC,Rr=CX+130*SC;
   proton(L,Y,62*SC,{s:pop(t,23.32),seed:1301});proton(Rr,Y,62*SC,{s:pop(t,23.45),seed:1302});
-  txt('TWO PROTONS',CX,Y-150*SC,70*SC+10,{k:writeK(t,23.32,'TWO PROTONS'),a:1-up});
+  txt('TWO PROTONS',CX,Y-160*SC,96*SC+14,{k:writeK(t,23.32,'TWO PROTONS'),a:1-up});
   const pk=eOut(P(t,24.78,25.15));if(pk>0){bigArrow(L-80*SC,Y,L-80*SC-lerp(0,300,pk)*SC,Y,46*SC,1,1310);bigArrow(Rr+80*SC,Y,Rr+80*SC+lerp(0,300,pk)*SC,Y,46*SC,1,1311);
-    txt('ELECTRIC PUSH',CX,Y+140*SC,64*SC+10,{k:writeK(t,24.85,'ELECTRIC PUSH'),a:1-up});}
+    txt('ELECTRIC PUSH',CX,Y+150*SC,92*SC+14,{k:writeK(t,24.85,'ELECTRIC PUSH'),a:1-up});}
   const gk=P(t,25.5,25.7);if(gk>0&&up<1){ctx.save();ctx.globalAlpha=1-up;arrow(L+66*SC,Y,L+84*SC,Y,{seed:1320,w:2,head:7});arrow(Rr-66*SC,Y,Rr-84*SC,Y,{seed:1321,w:2,head:7});
-    line(CX,Y+12,CX+40,Y+290,1322,eOut(gk),2.2);txt('GRAVITY',CX+60,Y+320,52,{k:writeK(t,25.55,'GRAVITY'),align:'left',col:RED});txt('(TINY!)',CX+60,Y+372,40,{k:writeK(t,25.85,'(TINY!)'),align:'left'});ctx.restore();}
+    line(CX,Y+12,CX+40,Y+290,1322,eOut(gk),2.2);txt('GRAVITY',CX+60,Y+320,76,{k:writeK(t,25.55,'GRAVITY'),align:'left',col:RED});txt('(TINY!)',CX+60,Y+392,58,{k:writeK(t,25.85,'(TINY!)'),align:'left'});ctx.restore();}
   if(t>26.45){const nzc=ZT.filter(z=>t>=z).length;const groups=['1'];for(let i=0;i<nzc;i++){if(i%3===0)groups.push('');groups[groups.length-1]+='0';}
     const lines=[];for(let i=0;i<groups.length;i+=4)lines.push(groups.slice(i,i+4).join(',')+(i+4<groups.length?',':''));
     const fin=P(t,28.85,29.05);
-    txt('STRONGER BY:',CX,580,56,{k:writeK(t,26.45,'STRONGER BY:'),a:1-fin});
-    if(fin<1)lines.forEach((l,i)=>txt(l,CX,700+i*120,112,{a:1-fin}));
-    if(t>26.95&&fin<1)txt(nzc+' ZEROS',CX,1200,54,{col:RED,a:1-fin});
-    if(t>28.9){const k=pop(t,28.9,0.25);ctx.save();ctx.translate(CX,830);ctx.scale(k,k);sup('10','36',0,0,230);ctx.restore();
-      circ(CX,820,220,{k:eOut(P(t,29.05,29.4)),seed:1350,col:RED,w:4,ry:140});
-      txt('TIMES STRONGER',CX,1080,62,{k:writeK(t,29.0,'TIMES STRONGER',40)});txt('THAN GRAVITY',CX,1160,62,{k:writeK(t,29.2,'THAN GRAVITY',40)});}
+    txt('STRONGER BY:',CX,575,80,{k:writeK(t,26.45,'STRONGER BY:'),a:1-fin});
+    if(fin<1)lines.forEach((l,i)=>txt(l,CX,700+i*150,140,{a:1-fin}));
+    if(t>26.95&&fin<1)txt(nzc+' ZEROS',CX,1330,80,{col:RED,a:1-fin});
+    if(t>28.9){const k=pop(t,28.9,0.25);ctx.save();ctx.translate(CX,830);ctx.scale(k,k);sup('10','36',0,0,300);ctx.restore();
+      circ(CX,815,280,{k:eOut(P(t,29.05,29.4)),seed:1350,col:RED,w:5,ry:175});
+      txt('TIMES STRONGER',CX,1110,90,{k:writeK(t,29.0,'TIMES STRONGER',40)});txt('THAN GRAVITY',CX,1215,90,{k:writeK(t,29.2,'THAN GRAVITY',40)});}
   }
 }
 // 8: 29.5-32.11 proton moon couldn't hold together
@@ -253,14 +253,14 @@ function scene8(t){
   const fp=t<31.0?POSES.chin:lerpPose(POSES.chin,POSES.up,eOut(P(t,31.25,31.45)));
   const back=eOut(P(t,31.25,31.5))*30;
   figure(540,1520+back*0,fp,{s:1.0});
-  if(t>30.9)speech(700,1190,'HMM...',writeK(t,30.95,'HMM...',14),48);
+  if(t>30.9)speech(720,1180,'HMM...',writeK(t,30.95,'HMM...',14),74);
   board(BX,BY,BW,BH,1);
   const MX=CX,MY=650;const jit=Math.pow(P(t,30.4,32.1),1.4)*7;
   protonBall(MX,MY,250,{s:pop(t,29.55),jit,t,pr:15});
-  txt('PROTON MOON',MX,325,56,{k:writeK(t,29.73,'PROTON MOON')});
+  txt('PROTON MOON',MX,325,82,{k:writeK(t,29.73,'PROTON MOON')});
   for(const c of CRK){const k=eOut(P(t,c.t0,c.t0+0.3));if(k>0)strokePts(wob(c.pts.map(([x,y])=>[MX+x,MY+y]),c.t0*10,1),k,4.2,RED);}
   if(t>30.4)shakeMarks(MX,MY,250,1400,P(t,30.4,30.7));
-  txt("COULDN'T HOLD TOGETHER",MX,975,52,{k:writeK(t,30.55,"COULDN'T HOLD TOGETHER",30)});
+  txt("COULDN'T HOLD TOGETHER",MX,990,72,{k:writeK(t,30.55,"COULDN'T HOLD TOGETHER",30)});
 }
 // 9: 32.11-36.5 blow itself apart
 const BURST=(()=>{const R=rng(77),a=[];for(let i=0;i<46;i++){const ang=i/46*TAU+R()*0.08;a.push({ang,sp:0.6+R()*0.5});}return a;})();
@@ -276,15 +276,15 @@ function scene9(t){
   const fall=eOut(clamp(tl/0.5));figure(540-fall*520,1520+fall*60,POSES.up,{rot:-fall*1.35,s:1});
   if(tl<1.4){const px=600+tl*500,py=1250-tl*700+tl*tl*700;ctx.save();ctx.translate(px,py);ctx.rotate(tl*9);ctx.fillStyle=PAPER;ctx.fillRect(-25,-34,50,68);rect(-25,-34,50,68,1900,1,2.6);ctx.restore();}
   const txtA=1-P(t,34.3,34.55);
-  txt('IT WOULD',CX,1230,60,{k:writeK(t,32.15,'IT WOULD',30),a:txtA});
-  txt('BLOW ITSELF',CX,1340,104,{k:writeK(t,32.3,'BLOW ITSELF',22),col:RED,a:txtA});
-  txt('APART',CX,1460,128,{k:writeK(t,32.75,'APART',12),col:RED,a:txtA});
+  txt('IT WOULD',CX,1180,86,{k:writeK(t,32.15,'IT WOULD',30),a:txtA});
+  txt('BLOW ITSELF',CX,1305,140,{k:writeK(t,32.3,'BLOW ITSELF',22),col:RED,a:txtA});
+  txt('APART',CX,1445,170,{k:writeK(t,32.75,'APART',12),col:RED,a:txtA});
   if(t>34.5){const a=P(t,34.5,34.75);ctx.save();ctx.globalAlpha=a;ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);ctx.restore();
-    txt('WHAT IF',CX,640,100,{k:writeK(t,34.7,'WHAT IF',24)});
-    txt('THE MOON',CX,760,100,{k:writeK(t,34.95,'THE MOON',26)});
-    txt('WERE MADE OF',CX,900,100,{k:writeK(t,35.2,'WERE MADE OF',30),col:RED});
-    txt('PROTONS?',CX,1020,110,{k:writeK(t,35.5,'PROTONS?',26),col:RED});
-    for(let i=0;i<5;i++)proton(CX-200+i*100,1190,28,{s:pop(t,35.8+i*0.07),seed:1950+i});}
+    txt('WHAT IF',CX,600,130,{k:writeK(t,34.7,'WHAT IF',24)});
+    txt('THE MOON',CX,750,130,{k:writeK(t,34.95,'THE MOON',26)});
+    txt('WERE MADE OF',CX,920,130,{k:writeK(t,35.2,'WERE MADE OF',30),col:RED});
+    txt('PROTONS?',CX,1085,156,{k:writeK(t,35.5,'PROTONS?',26),col:RED});
+    for(let i=0;i<5;i++)proton(CX-240+i*120,1270,36,{s:pop(t,35.8+i*0.07),seed:1950+i});}
 }
 const SCENES=[[0,4.4,scene1],[4.4,6.8,scene2],[6.8,10.4,scene3],[10.4,14.3,scene4],[14.3,18.55,scene5],[18.55,23.2,scene6],[23.2,29.5,scene7],[29.5,32.11,scene8],[32.11,99,scene9]];
 function shake(t){let x=0,y=0;const add=(t0,a,d)=>{if(t>=t0){const k=a*Math.exp(-(t-t0)*d);x+=nz(t*50,t0)*k;y+=nz(t*47,t0+3)*k;}};
