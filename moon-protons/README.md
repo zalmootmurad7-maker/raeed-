@@ -4,6 +4,7 @@
 - `captions.srt` — sentence-level captions timed to the voiceover
 - `audio_mix.wav` — final stereo mix (voice + SFX + ambient bed)
 - `moon_made_of_protons_handdrawn_16x9.mp4` — hand-drawn stick-figure version (whiteboard explainer style), 1920×1080, 30 fps
+- `moon_made_of_protons_reel_9x16.mp4` — vertical reel of the hand-drawn version, 1080×1920, 30 fps
 - `audio_mix_handdrawn.wav` — its mix (voice + pencil/pop SFX + light plucked music bed)
 
 ## Source
@@ -19,3 +20,4 @@ Setup: `npm install` in `source/` (fonts: Anton, Inter, Space Grotesk via @fonts
 ### Hand-drawn version
 - `source/sketch.html` — the animation; render with `PAGE=sketch.html node render.js <start> <end> 30 part.mp4`
 - `source/sfx2.py` — its sound design (uses `gen.py`): `python3 sfx2.py voice_44k_mono.wav mix.wav`
+- `source/sketchv.html` — vertical (9:16) layout; render with `PAGE=sketchv.html VW=1080 VH=1920 node render.js <start> <end> 30 part.mp4`
