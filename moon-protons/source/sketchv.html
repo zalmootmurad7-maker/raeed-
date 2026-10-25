@@ -1,0 +1,300 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PHL";src:url(node_modules/@fontsource/patrick-hand/files/patrick-hand-latin-400-normal.woff2)}
+@font-face{font-family:"PH";src:url(node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+const W=1080,H=1920,CX=540,CY=960,DURATION=36.5;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const BG='#f6f4f8',INK='#161616',RED='#d2382c',GREY='#a3a1a8',PAPER='#fbfafd',LW=3.4;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const P=(t,a,b)=>clamp((t-a)/(b-a));
+const lerp=(a,b,k)=>a+(b-a)*k;
+const eOut=k=>1-Math.pow(1-k,3);
+const eIn=k=>k*k*k;
+const eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+const eBack=k=>{const c1=2.0,c3=c1+1;return 1+c3*Math.pow(k-1,3)+c1*Math.pow(k-1,2)};
+const TAU=Math.PI*2;
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const nz=(x,s)=>Math.sin(x*1.7+s)*0.5+Math.sin(x*3.1+s*2.3)*0.3+Math.sin(x*7.3+s*5.1)*0.2;
+// pop-in scale: 0 before t0, overshoot then settle
+const pop=(t,t0,d=0.22)=>t<t0?0:eBack(clamp((t-t0)/d));
+
+// ---------------- pen ----------------
+function wob(pts,seed,amp=1.4){ // subdivide + smooth perpendicular wobble
+  const out=[];let s=0;
+  for(let i=0;i<pts.length-1;i++){const[a,b]=[pts[i],pts[i+1]];const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;const n=Math.max(1,Math.ceil(L/14));const px=-dy/L,py=dx/L;
+    for(let j=0;j<n;j++){const k=j/n,o=nz((s+L*k)*0.025,seed)*amp;out.push([a[0]+dx*k+px*o,a[1]+dy*k+py*o]);}s+=L;}
+  const l=pts[pts.length-1];out.push([l[0],l[1]]);return out;}
+function strokePts(pts,k=1,w=LW,col=INK){
+  if(k<=0||pts.length<2)return;ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineCap='round';ctx.lineJoin='round';
+  let tot=0;const L=[0];for(let i=1;i<pts.length;i++){tot+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);L.push(tot);}
+  const lim=tot*clamp(k);ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+  for(let i=1;i<pts.length;i++){if(L[i]<=lim)ctx.lineTo(pts[i][0],pts[i][1]);else{const f=(lim-L[i-1])/(L[i]-L[i-1]||1);ctx.lineTo(lerp(pts[i-1][0],pts[i][0],f),lerp(pts[i-1][1],pts[i][1],f));break;}}
+  ctx.stroke();}
+function line(x1,y1,x2,y2,seed=1,k=1,w=LW,col=INK){strokePts(wob([[x1,y1],[x2,y2]],seed,1.2),k,w,col);}
+function circlePts(x,y,r,seed,ry){const R=rng(seed);const a0=R()*TAU,n=Math.max(28,Math.floor(r*0.6)),pts=[];ry=ry??r;
+  for(let i=0;i<=n;i++){const a=a0+(TAU+0.18)*i/n;const rr=1+0.018*nz(a*2,seed)+(i/n)*0.012;pts.push([x+Math.cos(a)*r*rr,y+Math.sin(a)*ry*rr]);}return pts;}
+function circ(x,y,r,o={}){const pts=circlePts(x,y,r,o.seed??7,o.ry);
+  if(o.fill){ctx.fillStyle=o.fill;ctx.beginPath();ctx.ellipse(x,y,r,o.ry??r,0,0,TAU);ctx.fill();}
+  if(o.dash)ctx.setLineDash(o.dash);strokePts(pts,o.k??1,o.w??LW,o.col??INK);ctx.setLineDash([]);}
+function rect(x,y,w,h,seed=3,k=1,lw=LW,col=INK){const o=5;const R=rng(seed);const sides=[[[x-o*R(),y],[x+w+o*R(),y]],[[x+w,y-o*R()],[x+w,y+h+o*R()]],[[x+w+o*R(),y+h],[x-o*R(),y+h]],[[x,y+h+o*R()],[x,y-o*R()]]];
+  sides.forEach((s,i)=>strokePts(wob(s,seed+i,1.1),clamp(k*4-i),lw,col));}
+function arrow(x1,y1,x2,y2,o={}){const seed=o.seed??5,k=o.k??1,col=o.col??INK,w=o.w??LW,hs=o.head??18;
+  line(x1,y1,x2,y2,seed,k,w,col);if(k<1)return;const a=Math.atan2(y2-y1,x2-x1);
+  for(const s of[-1,1]){const b=a+Math.PI-s*0.5;line(x2,y2,x2+Math.cos(b)*hs,y2+Math.sin(b)*hs,seed+s+3,1,w,col);}
+  if(o.both){for(const s of[-1,1]){const b=a-s*0.5;line(x1,y1,x1+Math.cos(b)*hs,y1+Math.sin(b)*hs,seed+s+9,1,w,col);}}}
+function bigArrow(x1,y1,x2,y2,th,k=1,seed=11){ // hollow block arrow
+  const a=Math.atan2(y2-y1,x2-x1),L=Math.hypot(x2-x1,y2-y1)*k;if(L<5)return;const hl=Math.min(th*2.2,L*0.6),c=Math.cos(a),s=Math.sin(a);
+  const loc=(u,v)=>[x1+c*u-s*v,y1+s*u+c*v];
+  const pts=[loc(0,-th/2),loc(L-hl,-th/2),loc(L-hl,-th*1.15),loc(L,0),loc(L-hl,th*1.15),loc(L-hl,th/2),loc(0,th/2),loc(0,-th/2)];
+  ctx.fillStyle=PAPER;ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.fill();
+  strokePts(wob(pts,seed,1.1));}
+function txt(s,x,y,size,o={}){ // handwriting, revealed letter by letter when o.k<1
+  const k=o.k??1;if(k<=0)return;ctx.save();ctx.font=`${size}px "PH"`;ctx.textBaseline='middle';ctx.fillStyle=o.col??INK;
+  const full=ctx.measureText(s).width;const n=Math.ceil(s.length*clamp(k));const sub=s.slice(0,n);
+  let x0=o.align==='left'?x:o.align==='right'?x-full:x-full/2;
+  if(o.rot){ctx.translate(x,y);ctx.rotate(o.rot);ctx.translate(-x,-y);}
+  ctx.globalAlpha*=(o.a??1);ctx.fillText(sub,x0,y);ctx.restore();return full;}
+const writeK=(t,t0,s,cps=26)=>t<t0?0:clamp((t-t0)*cps/Math.max(1,s.length));
+function sup(base,exp,x,y,size,o={}){ctx.save();ctx.font=`${size}px "PH"`;ctx.textBaseline='middle';ctx.fillStyle=o.col??INK;const wb=ctx.measureText(base).width;ctx.font=`${size*0.55}px "PH"`;const we=ctx.measureText(exp).width;
+  const x0=x-(wb+we)/2;ctx.font=`${size}px "PH"`;ctx.fillText(base,x0,y);ctx.font=`${size*0.55}px "PH"`;ctx.fillText(exp,x0+wb+2,y-size*0.38);ctx.restore();}
+function scribble(x,y,w,h,seed,k,col=RED){const R=rng(seed);const pts=[];const n=9;for(let i=0;i<=n;i++){pts.push([x+w*i/n+(R()-.5)*8,y+(i%2?-h/2:h/2)+(R()-.5)*6]);}strokePts(wob(pts,seed,1),k,4,col);}
+function motionLines(x,y,ang,len,n,seed,k=1){const c=Math.cos(ang),s=Math.sin(ang),R=rng(seed);for(let i=0;i<n;i++){const off=(i-(n-1)/2)*14;const l=len*(0.6+R()*0.4);
+  const sx=x-c*20-s*off,sy=y-s*20+c*off;line(sx,sy,sx-c*l,sy-s*l,seed+i,k,2.6);}}
+function shakeMarks(x,y,r,seed,a=1){if(a<=0)return;ctx.save();ctx.globalAlpha=a;for(const side of[-1,1]){for(let i=0;i<2;i++){const rr=r+16+i*14;const pts=[];for(let j=0;j<=8;j++){const an=(side<0?Math.PI:0)+(-0.35+0.7*j/8);pts.push([x+Math.cos(an)*rr,y+Math.sin(an)*rr]);}strokePts(wob(pts,seed+i+side*5,0.8),1,2.6);}}ctx.restore();}
+
+// ---------------- glyphs ----------------
+function proton(x,y,r,o={}){const s=o.s??1;if(s<=0)return;r*=s;circ(x,y,r,{fill:PAPER,seed:o.seed??Math.floor(x*7+y*3),w:o.w??LW});
+  const c=o.plusCol??INK,q=r*0.5;line(x-q,y,x+q,y,(o.seed??1)+1,1,o.w??LW,c);line(x,y-q,x,y+q,(o.seed??1)+2,1,o.w??LW,c);}
+function electron(x,y,r,o={}){const s=o.s??1;if(s<=0)return;r*=s;circ(x,y,r,{fill:PAPER,seed:o.seed??Math.floor(x*5+y*11),w:o.w??LW});
+  ctx.save();ctx.font=`${r*1.5}px "PHL"`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=INK;ctx.fillText('e',x-r*0.1,y-r*0.08);ctx.font=`${r*0.9}px "PHL"`;ctx.fillText('-',x+r*0.45,y-r*0.45);ctx.restore();}
+function neutron(x,y,r,o={}){const s=o.s??1;if(s<=0)return;r*=s;circ(x,y,r,{fill:'#d9d7de',seed:o.seed??Math.floor(x*3+y*13),w:o.w??LW});}
+// sprite for dense proton fills
+const PSPR=(()=>{const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');g.fillStyle=PAPER;g.strokeStyle=INK;g.lineWidth=3;g.lineCap='round';
+  g.beginPath();g.arc(32,32,24,0,TAU);g.fill();g.stroke();g.beginPath();g.moveTo(20,32);g.lineTo(44,32);g.moveTo(32,20);g.lineTo(32,44);g.stroke();return c;})();
+// moon texture (grey with ink craters), drawn in clip
+const MOONTEX=(()=>{const s=600,c=document.createElement('canvas');c.width=c.height=s;const g=c.getContext('2d');const R=rng(31);
+  g.fillStyle='#9e9ca4';g.fillRect(0,0,s,s);
+  for(let i=0;i<40;i++){g.fillStyle=R()<.5?'rgba(60,58,66,0.18)':'rgba(255,255,255,0.12)';g.beginPath();g.arc(R()*s,R()*s,20+R()*70,0,TAU);g.fill();}
+  g.strokeStyle='#2a2a2e';g.lineCap='round';
+  for(let i=0;i<220;i++){const r=3+Math.pow(R(),2.5)*30,x=R()*s,y=R()*s;g.lineWidth=r>12?2.2:1.6;g.beginPath();g.arc(x,y,r,R()*TAU,R()*TAU+TAU*(0.6+R()*0.4));g.stroke();}
+  for(let i=0;i<500;i++){g.fillStyle='rgba(30,30,34,0.5)';g.fillRect(R()*s,R()*s,2,2);}
+  return c;})();
+function moon(x,y,r,o={}){const s=o.s??1;if(s<=0)return;r*=s;ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();ctx.drawImage(MOONTEX,x-r,y-r,r*2,r*2);ctx.restore();circ(x,y,r,{seed:o.seed??41,w:LW+0.6});}
+function protonBall(x,y,r,o={}){ // moon made of protons
+  const s=o.s??1;if(s<=0)return;r*=s;const pr=o.pr??15,jit=o.jit??0,t=o.t??0;ctx.save();ctx.beginPath();ctx.arc(x,y,r+pr,0,TAU);ctx.clip();
+  const st=pr*1.95;let i=0;for(let yy=-r;yy<=r;yy+=st*0.87){const off=(Math.round(yy/(st*0.87))&1)*st/2;for(let xx=-r-off;xx<=r;xx+=st){i++;if(xx*xx+yy*yy>(r-pr*0.6)**2)continue;
+    const jx=nz(t*18+i,i)*jit,jy=nz(t*21+i*1.3,i+4)*jit;ctx.drawImage(PSPR,x+xx+jx-pr,y+yy+jy-pr,pr*2,pr*2);}}
+  ctx.restore();circ(x,y,r,{seed:o.seed??43,w:LW+0.4});}
+
+// ---------------- stick figure ----------------
+const POSES={
+  rest:{la:[-0.22,-0.12],ra:[0.22,0.12],ll:[-0.28,-0.22],rl:[0.28,0.22],paper:0},
+  paper:{la:[-0.22,-0.12],ra:[0.45,2.45],ll:[-0.26,-0.2],rl:[0.26,0.2],paper:1},
+  point:{la:[-0.22,-0.12],ra:[2.1,2.05],ll:[-0.26,-0.2],rl:[0.26,0.2],paper:0},
+  chin:{la:[-0.3,0.9],ra:[0.35,2.75],ll:[-0.24,-0.18],rl:[0.24,0.18],paper:0},
+  shrug:{la:[-0.9,-2.2],ra:[0.9,2.2],ll:[-0.26,-0.2],rl:[0.26,0.2],paper:0},
+  up:{la:[-2.55,-2.85],ra:[2.55,2.85],ll:[-0.32,-0.25],rl:[0.32,0.25],paper:0},
+};
+function lerpPose(a,b,k){const o={};for(const key of['la','ra','ll','rl'])o[key]=[lerp(a[key][0],b[key][0],k),lerp(a[key][1],b[key][1],k)];o.paper=lerp(a.paper,b.paper,k);return o;}
+function figure(x,y,pose,o={}){ // y = ground at feet
+  const sc=o.s??1;ctx.save();ctx.translate(x,y);if(o.rot)ctx.rotate(o.rot);ctx.scale(sc,sc);const seed=o.seed??100;
+  const hip=[0,-112],neck=[0,-226],sh=[0,-212],head=[0,-264];
+  const seg=(p,a,L)=>[p[0]+Math.sin(a)*L,p[1]+Math.cos(a)*L];
+  const limb=(p,ang,L1,L2,sd)=>{const m=seg(p,ang[0],L1),e=seg(m,ang[1],L2);strokePts(wob([p,m,e],sd,0.8),1,LW/sc*1.05);return e;};
+  circ(head[0],head[1],38,{seed:seed,fill:BG,w:LW/sc*1.05});
+  line(neck[0],neck[1],hip[0],hip[1],seed+1,1,LW/sc*1.05);
+  limb(hip,pose.ll,58,56,seed+2);limb(hip,pose.rl,58,56,seed+3);
+  limb(sh,pose.la,52,50,seed+4);const hand=limb(sh,pose.ra,52,50,seed+5);
+  if(pose.paper>0.5){ctx.save();ctx.translate(hand[0]+6,hand[1]-6);ctx.rotate(0.12);ctx.fillStyle=PAPER;ctx.fillRect(-10,-38,50,68);rect(-10,-38,50,68,seed+6,1,LW*0.8/sc);for(let i=0;i<4;i++)line(-2,-24+i*13,30,-24+i*13,seed+10+i,1,1.4,'#777');ctx.restore();}
+  ctx.restore();}
+function speech(x,y,s,k,size=40){if(k<=0)return;txt(s,x,y,size,{k});const w=txt(s,-9999,-9999,size);line(x-10,y+size*0.55,x-26,y+size*1.25,77,clamp(k*2),2.6);}
+function board(x,y,w,h,k=1,seed=200){ctx.save();ctx.fillStyle='#fdfcff';ctx.globalAlpha=clamp(k*3);ctx.fillRect(x,y,w,h);ctx.restore();rect(x,y,w,h,seed,k,LW+0.4);rect(x+9,y+9,w-18,h-18,seed+4,k,2.2);
+  if(k>=1){rect(x-22,y+h,w+44,16,seed+8,1,LW);rect(x+40,y+h-12,60,12,seed+9,1,2.4);rect(x+w-150,y+h-14,46,14,seed+10,1,2.4);rect(x+w-96,y+h-12,58,12,seed+11,1,2.4);}}
+
+// ================= SCENES (vertical 1080x1920) =================
+// content kept roughly inside y 230..1520 so it clears the reel UI at top and bottom
+const BX=50,BY=240,BW=980,BH=820; // whiteboard
+function pushIn(t,a,b,amt=0.03){const z=1+P(t,a,b)*amt;ctx.translate(CX,CY);ctx.scale(z,z);ctx.translate(-CX,-CY);}
+
+// 1: 0-4.4 Moon -> rebuild from pure protons
+const S1P=(()=>{const a=[],r=16,st=r*2.05,R0=222;for(let yy=R0;yy>=-R0;yy-=st*0.87){const off=(Math.round(yy/(st*0.87))&1)*st/2;for(let xx=-R0-off;xx<=R0;xx+=st){if(xx*xx+yy*yy<=(R0-r*0.9)**2)a.push([xx,yy]);}}return a;})();
+function scene1(t){
+  pushIn(t,0,4.4);
+  const MX=600,MY=520,BXc=600,BYc=1230;
+  figure(170,1110,lerpPose(POSES.rest,POSES.point,eOut(P(t,0.25,0.5))),{s:0.95});
+  moon(MX,MY,225,{s:pop(t,0.1)});
+  txt('THE MOON',MX,815,96,{k:writeK(t,0.3,'THE MOON')});
+  arrow(MX,850,MX,975,{k:eOut(P(t,1.56,1.9)),seed:12,head:22});
+  txt('REBUILD',MX+40,912,60,{k:writeK(t,1.6,'REBUILD'),col:RED,align:'left'});
+  circ(BXc,BYc,225,{dash:[14,12],k:eOut(P(t,1.75,2.4)),seed:44,w:3});
+  const n=S1P.length;S1P.forEach(([x,y],i)=>{const s=pop(t,2.3+1.85*(i/n),0.16);if(s>0)ctx.drawImage(PSPR,BXc+x-16*s,BYc+y-16*s,32*s,32*s);});
+  txt('PURE PROTONS',BXc,1515,100,{k:writeK(t,3.34,'PURE PROTONS',30)});
+  const uk=P(t,3.85,4.15);if(uk>0)line(BXc-270,1575,lerp(BXc-270,BXc+270,uk),1573,301,1,5,RED);
+  proton(110,285,32,{s:pop(t,3.4),plusCol:RED});txt('= PROTON',160,285,58,{k:writeK(t,3.5,'= PROTON'),align:'left'});
+}
+// 2: 4.4-6.8 rock, made of atoms (whiteboard on top, narrator below)
+function smallAtom(x,y,s,seed,t){circ(x,y,30*s,{seed:seed,ry:11*s,w:2});ctx.fillStyle=INK;ctx.beginPath();ctx.arc(x,y,5*s,0,TAU);ctx.fill();const a=t*3+seed;ctx.beginPath();ctx.arc(x+Math.cos(a)*30*s,y+Math.sin(a)*11*s,3.5*s,0,TAU);ctx.fill();}
+function scene2(t){
+  figure(540,1520,POSES.paper,{s:1.0});
+  board(BX,BY,BW,BH,1);
+  const MX=330,MY=500;moon(MX,MY,180,{s:pop(t,4.42)});
+  txt('RIGHT NOW:',MX,288,56,{k:writeK(t,4.49,'RIGHT NOW:',30),col:RED});
+  arrow(690,380,525,450,{k:eOut(P(t,4.5,4.75)),seed:22});txt('ROCK',790,370,96,{k:writeK(t,4.5,'ROCK',20)});
+  const mk=P(t,5.66,5.9);if(mk>0){const sx=380,sy=560;circ(sx,sy,30,{k:eOut(mk),seed:60,w:3});
+    const bx=700,by=800,br=190;const lk=eOut(P(t,5.75,5.95));line(sx+22,sy+20,bx-150,by-118,61,lk,2.4);line(sx+28,sy-8,bx+20,by-br+2,62,lk,2.4);
+    const bs=pop(t,5.85);if(bs>0){ctx.save();ctx.beginPath();ctx.arc(bx,by,br*bs,0,TAU);ctx.fillStyle='#fdfcff';ctx.fill();ctx.clip();
+      for(let r=-4;r<=4;r++)for(let c=-4;c<=4;c++)smallAtom(bx+c*86+(r&1)*43,by+r*62,bs,r*9+c,t);ctx.restore();circ(bx,by,br*bs,{seed:63,w:LW+0.4});}
+    txt('ATOMS',290,880,104,{k:writeK(t,5.95,'ATOMS',20)});}
+}
+// 3: 6.8-10.4 atom
+const NUC=(()=>{const R=rng(5),a=[];const pts=[[0,0],[34,-10],[-30,-18],[8,32],[-26,26],[28,28],[-6,-38],[40,18],[-42,4],[14,-30],[-14,8],[22,0]];
+  pts.forEach((p,i)=>a.push({x:p[0]*1.05,y:p[1]*1.05,p:i%2===0,z:R()}));a.sort((u,v)=>u.z-v.z);return a;})();
+const ORB=[{rot:Math.PI/2,sp:1.7,ph:0.3},{rot:Math.PI/2+Math.PI/3,sp:-1.4,ph:2.2},{rot:Math.PI/2-Math.PI/3,sp:1.25,ph:4.1}];
+function orbPt(rx,ry,rot,th){const x=Math.cos(th)*rx,y=Math.sin(th)*ry;return[x*Math.cos(rot)-y*Math.sin(rot),x*Math.sin(rot)+y*Math.cos(rot)];}
+function atom(x,y,S,t,o={}){
+  const ok=o.orbK??1,ea=o.eS??1,eFly=o.eFly??0,nFly=o.nFly??0,nS=o.nS??1,spread=o.spread??1,red=o.red??false,pj=o.pJit??0;
+  if(ok>0)ORB.forEach((ob,i)=>{ctx.save();ctx.translate(x,y);ctx.rotate(ob.rot);circ(0,0,380*S,{ry:118*S,dash:[12,12],k:ok,seed:90+i,w:2.6});ctx.restore();});
+  NUC.forEach((n,i)=>{let nx=x+n.x*S*spread,ny=y+n.y*S*spread;
+    if(n.p){nx+=nz(t*14+i,i)*pj;ny+=nz(t*15+i,i+3)*pj;proton(nx,ny,30*S,{s:o.nucS??1,seed:300+i,plusCol:red?RED:INK});}
+    else{if(nFly>0){const a=Math.atan2(n.y,n.x)+(i*0.7);nx+=Math.cos(a)*nFly*1800;ny+=Math.sin(a)*nFly*1800;}neutron(nx,ny,30*S,{s:(o.nucS??1)*nS,seed:400+i});}});
+  if(ea>0)ORB.forEach((ob,i)=>{const th=ob.ph+t*ob.sp;const[px,py]=orbPt(380*S,118*S,ob.rot,th);let ex=x+px,ey=y+py;
+    if(eFly>0){const a=Math.atan2(py,px);ex+=Math.cos(a)*eFly*2000;ey+=Math.sin(a)*eFly*2000;motionLines(ex,ey,a,90,3,500+i,1);}
+    electron(ex,ey,24*S,{s:ea,seed:500+i});});
+}
+function scene3(t){
+  pushIn(t,6.8,10.4,0.04);
+  const AX=CX,AY=900;
+  atom(AX,AY,1.12,t,{nucS:pop(t,6.88),orbK:eOut(P(t,9.04,9.55)),eS:pop(t,9.2),red:t>7.81});
+  txt('EACH ATOM:',CX,290,96,{k:writeK(t,6.84,'EACH ATOM:')});
+  txt('PROTONS',250,515,92,{k:writeK(t,7.81,'PROTONS',24),col:RED});
+  txt('(IN THE MIDDLE)',250,590,54,{k:writeK(t,8.3,'(IN THE MIDDLE)',30)});
+  arrow(330,635,AX-50,AY-70,{k:eOut(P(t,7.85,8.1)),seed:31,col:RED});
+  txt('ELECTRONS',790,1430,92,{k:writeK(t,9.04,'ELECTRONS',24)});
+  txt('(AROUND THEM)',790,1505,54,{k:writeK(t,9.5,'(AROUND THEM)',30)});
+  arrow(780,1380,700,1250,{k:eOut(P(t,9.3,9.55)),seed:32});
+}
+// 4: 10.4-14.3 positive / negative / cancel (stacked)
+function scene4(t){
+  const m=eIn(P(t,13.0,13.32));const hit=t>=13.32;
+  const py=lerp(450,700-118,m),ey=lerp(960,700+118,m);
+  const rec=hit?Math.sin(eOut(P(t,13.32,13.6))*Math.PI)*12:0;
+  proton(CX,py-rec,110,{s:pop(t,10.52),seed:701});
+  electron(CX,ey+rec,110,{s:pop(t,11.82),seed:702});
+  if(t>13.0&&t<13.32){motionLines(CX,py-110,Math.PI/2,120,3,710,1);motionLines(CX,ey+110,-Math.PI/2,120,3,720,1);}
+  if(hit&&t<13.75){const k=P(t,13.32,13.75);for(let i=0;i<10;i++){const a=i/10*TAU+0.3;const r0=150+k*60,r1=r0+40*(1-k);line(CX+Math.cos(a)*r0,700+Math.sin(a)*r0,CX+Math.cos(a)*r1,700+Math.sin(a)*r1,800+i,1,3);}}
+  const fade=1-P(t,12.95,13.1);ctx.save();ctx.globalAlpha=fade;
+  txt('PROTONS ARE',CX,610,62,{k:writeK(t,10.52,'PROTONS ARE')});txt('POSITIVE (+)',CX,690,88,{k:writeK(t,10.9,'POSITIVE (+)',22),col:RED});
+  txt('ELECTRONS ARE',CX,1120,62,{k:writeK(t,11.82,'ELECTRONS ARE')});txt('NEGATIVE (-)',CX,1200,88,{k:writeK(t,12.2,'NEGATIVE (-)',22)});
+  ctx.restore();
+  if(hit){ctx.save();ctx.font='124px "PH"';const EW=ctx.measureText('+1  -1  =  0').width,ZW=ctx.measureText('0').width;ctx.restore();const ZX=CX+EW/2-ZW/2;txt('+1  -1  =  0',CX,1140,124,{k:writeK(t,13.38,'+1  -1  =  0',22)});
+    if(t>13.88)circ(ZX,1142,74,{k:eOut(P(t,13.9,14.2)),seed:830,col:RED,w:5,ry:66});
+    txt('THEY CANCEL OUT',CX,1300,92,{k:writeK(t,13.6,'THEY CANCEL OUT',30)});}
+}
+// 5: 14.3-18.55 take away everything but the protons
+function scene5(t){
+  const fin=eInOut(P(t,17.05,17.5));
+  const X=CX,Y=lerp(660,800,fin),S=lerp(0.85,1.5,fin);
+  const ef=eIn(P(t,15.17,15.75)),nf=eIn(P(t,15.97,16.5));
+  atom(X,Y,S,t,{nucS:pop(t,14.32),orbK:1-P(t,15.17,15.3),eS:t<15.85?1:0,eFly:ef,nFly:nf,nS:t<16.5?1:0,red:t>17.13,pJit:P(t,17.6,18.55)*4,spread:1+P(t,17.7,18.55)*0.18});
+  const out=P(t,16.9,17.1);ctx.save();ctx.globalAlpha=1-out;
+  txt('NOW...',90,295,96,{k:writeK(t,14.34,'NOW...',14),align:'left'});
+  const LX=170;txt('TAKE AWAY:',LX,1090,74,{k:writeK(t,15.17,'TAKE AWAY:',30),align:'left',col:RED});
+  [['ELECTRONS',15.2],['NEUTRONS',15.97],['EVERYTHING ELSE',16.3]].forEach(([s,t0],i)=>{const y=1200+i*112;const w=txt(s,LX,y,88,{k:writeK(t,t0-0.1,s,34),align:'left'});
+    scribble(LX-8,y,(w||200)+16,36,900+i,eOut(P(t,t0+0.15,t0+0.45)));});
+  ctx.restore();
+  if(t>17.13){txt('JUST THE',CX,1160,86,{k:writeK(t,17.13,'JUST THE',30),col:RED});txt('PROTONS',CX,1285,136,{k:writeK(t,17.35,'PROTONS',24),col:RED});
+    const uk=eOut(P(t,17.75,18.05));if(uk>0)line(CX-240,1365,CX-240+480*uk,1363,940,1,5,RED);}
+}
+// 6: 18.55-23.2 nothing cancels, every proton pushes on every other one
+const F6=[[-60,-300],[-150,-150],[-110,20],[-170,190],[-40,330],[90,-220],[40,-40],[70,150],[140,300],[180,-80]].map(([x,y])=>[x*1.55,y*1.05]);
+function scene6(t){
+  const ex=1+eInOut(P(t,20.4,23.2))*0.15;const ox=CX,oy=780;
+  const pos=F6.map(([x,y],i)=>{const j=P(t,20.3,23.2)*6;return[ox+x*ex+nz(t*16+i,i)*j,oy+y*ex+nz(t*17+i,i+4)*j];});
+  const pairs=[];for(let i=0;i<pos.length;i++)for(let j=i+1;j<pos.length;j++)pairs.push([i,j]);
+  pairs.forEach(([i,j],n)=>{const t0=20.37+1.6*(n/pairs.length);const k=eOut(P(t,t0,t0+0.25));if(k<=0)return;const[a,b]=[pos[i],pos[j]];const d=Math.hypot(b[0]-a[0],b[1]-a[1]),ux=(b[0]-a[0])/d,uy=(b[1]-a[1])/d;
+    ctx.save();ctx.globalAlpha=0.75;arrow(a[0]+ux*44,a[1]+uy*44,b[0]-ux*44,b[1]-uy*44,{k,seed:1000+n,w:2,head:12,both:true,col:n%4===0?RED:INK});ctx.restore();});
+  pos.forEach(([x,y],i)=>proton(x,y,36,{s:pop(t,18.6+i*0.04),seed:1100+i}));
+  if(t>20.6)pos.forEach(([x,y],i)=>{if(i%3===0)shakeMarks(x,y,36,1200+i,P(t,20.6,21));});
+  txt('NOTHING CANCELS',CX,290,104,{k:writeK(t,18.65,'NOTHING CANCELS',28)});
+  const nk=1-P(t,20.2,20.37);ctx.save();ctx.globalAlpha=nk;txt('NET CHARGE:',CX-90,1330,78,{k:writeK(t,18.9,'NET CHARGE:')});
+  const cnt=Math.round(10*P(t,19.3,19.9));if(t>19.3)txt('+'+cnt,CX+200,1330,104,{col:RED});ctx.restore();
+  if(t>20.37){txt('EVERY PROTON PUSHES',CX,1320,92,{k:writeK(t,20.37,'EVERY PROTON PUSHES',28)});txt('ON EVERY OTHER ONE',CX,1425,92,{k:writeK(t,21.97,'ON EVERY OTHER ONE',28),col:RED});}
+}
+// 7: 23.2-29.5 push beats gravity by 10^36
+const ZT=Array.from({length:36},(_,i)=>27.0+i*(1.7/35));
+function scene7(t){
+  const up=eInOut(P(t,26.3,26.6));const Y=lerp(640,380,up),SC=lerp(0.82,0.55,up);
+  const L=CX-130*SC,Rr=CX+130*SC;
+  proton(L,Y,62*SC,{s:pop(t,23.32),seed:1301});proton(Rr,Y,62*SC,{s:pop(t,23.45),seed:1302});
+  txt('TWO PROTONS',CX,Y-160*SC,96*SC+14,{k:writeK(t,23.32,'TWO PROTONS'),a:1-up});
+  const pk=eOut(P(t,24.78,25.15));if(pk>0){bigArrow(L-80*SC,Y,L-80*SC-lerp(0,300,pk)*SC,Y,46*SC,1,1310);bigArrow(Rr+80*SC,Y,Rr+80*SC+lerp(0,300,pk)*SC,Y,46*SC,1,1311);
+    txt('ELECTRIC PUSH',CX,Y+150*SC,92*SC+14,{k:writeK(t,24.85,'ELECTRIC PUSH'),a:1-up});}
+  const gk=P(t,25.5,25.7);if(gk>0&&up<1){ctx.save();ctx.globalAlpha=1-up;arrow(L+66*SC,Y,L+84*SC,Y,{seed:1320,w:2,head:7});arrow(Rr-66*SC,Y,Rr-84*SC,Y,{seed:1321,w:2,head:7});
+    line(CX,Y+12,CX+40,Y+290,1322,eOut(gk),2.2);txt('GRAVITY',CX+60,Y+320,76,{k:writeK(t,25.55,'GRAVITY'),align:'left',col:RED});txt('(TINY!)',CX+60,Y+392,58,{k:writeK(t,25.85,'(TINY!)'),align:'left'});ctx.restore();}
+  if(t>26.45){const nzc=ZT.filter(z=>t>=z).length;const groups=['1'];for(let i=0;i<nzc;i++){if(i%3===0)groups.push('');groups[groups.length-1]+='0';}
+    const lines=[];for(let i=0;i<groups.length;i+=4)lines.push(groups.slice(i,i+4).join(',')+(i+4<groups.length?',':''));
+    const fin=P(t,28.85,29.05);
+    txt('STRONGER BY:',CX,575,80,{k:writeK(t,26.45,'STRONGER BY:'),a:1-fin});
+    if(fin<1)lines.forEach((l,i)=>txt(l,CX,700+i*150,140,{a:1-fin}));
+    if(t>26.95&&fin<1)txt(nzc+' ZEROS',CX,1330,80,{col:RED,a:1-fin});
+    if(t>28.9){const k=pop(t,28.9,0.25);ctx.save();ctx.translate(CX,830);ctx.scale(k,k);sup('10','36',0,0,300);ctx.restore();
+      circ(CX,815,280,{k:eOut(P(t,29.05,29.4)),seed:1350,col:RED,w:5,ry:175});
+      txt('TIMES STRONGER',CX,1110,90,{k:writeK(t,29.0,'TIMES STRONGER',40)});txt('THAN GRAVITY',CX,1215,90,{k:writeK(t,29.2,'THAN GRAVITY',40)});}
+  }
+}
+// 8: 29.5-32.11 proton moon couldn't hold together
+const CRK=(()=>{const R=rng(8),a=[];for(let c=0;c<7;c++){let ang=R()*TAU,x=Math.cos(ang)*40,y=Math.sin(ang)*40;const pts=[[x,y]];for(let s=0;s<6;s++){ang+=(R()-.5)*1.1;x+=Math.cos(ang)*36;y+=Math.sin(ang)*36;pts.push([x,y]);}a.push({pts,t0:30.6+R()*1.2});}return a;})();
+function scene8(t){
+  const fp=t<31.0?POSES.chin:lerpPose(POSES.chin,POSES.up,eOut(P(t,31.25,31.45)));
+  const back=eOut(P(t,31.25,31.5))*30;
+  figure(540,1520+back*0,fp,{s:1.0});
+  if(t>30.9)speech(720,1180,'HMM...',writeK(t,30.95,'HMM...',14),74);
+  board(BX,BY,BW,BH,1);
+  const MX=CX,MY=650;const jit=Math.pow(P(t,30.4,32.1),1.4)*7;
+  protonBall(MX,MY,250,{s:pop(t,29.55),jit,t,pr:15});
+  txt('PROTON MOON',MX,325,82,{k:writeK(t,29.73,'PROTON MOON')});
+  for(const c of CRK){const k=eOut(P(t,c.t0,c.t0+0.3));if(k>0)strokePts(wob(c.pts.map(([x,y])=>[MX+x,MY+y]),c.t0*10,1),k,4.2,RED);}
+  if(t>30.4)shakeMarks(MX,MY,250,1400,P(t,30.4,30.7));
+  txt("COULDN'T HOLD TOGETHER",MX,990,72,{k:writeK(t,30.55,"COULDN'T HOLD TOGETHER",30)});
+}
+// 9: 32.11-36.5 blow itself apart
+const BURST=(()=>{const R=rng(77),a=[];for(let i=0;i<46;i++){const ang=i/46*TAU+R()*0.08;a.push({ang,sp:0.6+R()*0.5});}return a;})();
+const SHARDS=(()=>{const R=rng(12),a=[];for(let i=0;i<9;i++)a.push({x:BX+R()*BW,y:BY+R()*BH,w:110+R()*200,h:18+R()*30,vx:(R()-.5)*1300,vy:-400-R()*700,vr:(R()-.5)*8});return a;})();
+function scene9(t){
+  const tl=t-32.11,MX=CX,MY=650;
+  const fk=clamp(tl/0.9);if(fk<1){const g=ctx.createRadialGradient(MX,MY,0,MX,MY,1700);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(0.25,`rgba(200,198,206,${0.9*(1-fk)})`);g.addColorStop(1,`rgba(120,118,128,${0.8*(1-fk)})`);ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+  for(const s of SHARDS){const x=s.x+s.vx*tl,y=s.y+s.vy*tl+900*tl*tl;if(y>H+200)continue;ctx.save();ctx.translate(x,y);ctx.rotate(s.vr*tl);ctx.fillStyle='#fdfcff';ctx.fillRect(-s.w/2,-s.h/2,s.w,s.h);rect(-s.w/2,-s.h/2,s.w,s.h,1500+Math.floor(s.x),1,3);ctx.restore();}
+  const d=(tl+0.7*tl*tl);
+  for(let i=0;i<BURST.length;i++){const b=BURST[i];const r1=60+d*900*b.sp,r0=Math.max(40,r1-260-d*120);const c=Math.cos(b.ang),s=Math.sin(b.ang);
+    if(r0>2400)continue;line(MX+c*r0,MY+s*r0,MX+c*r1,MY+s*r1,1600+i,1,2.6);proton(MX+c*(r1+26),MY+s*(r1+26),20,{seed:1700+i});}
+  if(tl<1.0){ctx.save();ctx.globalAlpha=1-tl;for(let i=0;i<14;i++){const a=i/14*TAU;line(MX+Math.cos(a)*30,MY+Math.sin(a)*30,MX+Math.cos(a)*(60+tl*300),MY+Math.sin(a)*(60+tl*300),1800+i,1,4);}ctx.restore();}
+  const fall=eOut(clamp(tl/0.5));figure(540-fall*520,1520+fall*60,POSES.up,{rot:-fall*1.35,s:1});
+  if(tl<1.4){const px=600+tl*500,py=1250-tl*700+tl*tl*700;ctx.save();ctx.translate(px,py);ctx.rotate(tl*9);ctx.fillStyle=PAPER;ctx.fillRect(-25,-34,50,68);rect(-25,-34,50,68,1900,1,2.6);ctx.restore();}
+  const txtA=1-P(t,34.3,34.55);
+  txt('IT WOULD',CX,1180,86,{k:writeK(t,32.15,'IT WOULD',30),a:txtA});
+  txt('BLOW ITSELF',CX,1305,140,{k:writeK(t,32.3,'BLOW ITSELF',22),col:RED,a:txtA});
+  txt('APART',CX,1445,170,{k:writeK(t,32.75,'APART',12),col:RED,a:txtA});
+  if(t>34.5){const a=P(t,34.5,34.75);ctx.save();ctx.globalAlpha=a;ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);ctx.restore();
+    txt('WHAT IF',CX,600,130,{k:writeK(t,34.7,'WHAT IF',24)});
+    txt('THE MOON',CX,750,130,{k:writeK(t,34.95,'THE MOON',26)});
+    txt('WERE MADE OF',CX,920,130,{k:writeK(t,35.2,'WERE MADE OF',30),col:RED});
+    txt('PROTONS?',CX,1085,156,{k:writeK(t,35.5,'PROTONS?',26),col:RED});
+    for(let i=0;i<5;i++)proton(CX-240+i*120,1270,36,{s:pop(t,35.8+i*0.07),seed:1950+i});}
+}
+const SCENES=[[0,4.4,scene1],[4.4,6.8,scene2],[6.8,10.4,scene3],[10.4,14.3,scene4],[14.3,18.55,scene5],[18.55,23.2,scene6],[23.2,29.5,scene7],[29.5,32.11,scene8],[32.11,99,scene9]];
+function shake(t){let x=0,y=0;const add=(t0,a,d)=>{if(t>=t0){const k=a*Math.exp(-(t-t0)*d);x+=nz(t*50,t0)*k;y+=nz(t*47,t0+3)*k;}};
+  add(13.32,10,9);add(32.11,40,3);if(t>30.4&&t<32.11){const k=P(t,30.4,32.1)*6;x+=nz(t*60,1)*k;y+=nz(t*55,2)*k;}return[x,y];}
+function render(t){
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.setLineDash([]);ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);
+  let idx=SCENES.findIndex(s=>t>=s[0]&&t<s[1]);if(idx<0)idx=SCENES.length-1;
+  const[sx,sy]=shake(t);ctx.save();ctx.translate(sx,sy);SCENES[idx][2](t);ctx.restore();
+  const fo=P(t,DURATION-0.5,DURATION);if(fo>0){ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle=`rgba(246,244,248,${fo})`;ctx.fillRect(0,0,W,H);}
+}
+window.render=render;window.DURATION=DURATION;
+window.ready=Promise.all([document.fonts.load('40px "PH"'),document.fonts.load('40px "PHL"')]).then(()=>document.fonts.ready);
+</script></body></html>
