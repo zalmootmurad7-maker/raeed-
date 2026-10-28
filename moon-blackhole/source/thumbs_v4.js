@@ -1,4 +1,5 @@
 // thumbnails D/E for Test & Compare (C got 1.6% CTR): light channel style, one big picture, <=4 words
+// R3 = cover for the 'nothing changes' short (vertical page)
 // page = ../moon-antimatter/source/head.html + glyph part of scenes.js + glyph part of scenes3.js + this file; window.KIND = 'D' | 'E'
 function hl(x,y,w,h,seed){ctx.save();ctx.globalAlpha=0.92;ctx.fillStyle='#ffe066';const R=rng(seed);ctx.beginPath();ctx.moveTo(x,y+R()*6);ctx.lineTo(x+w,y+R()*6);ctx.lineTo(x+w-4,y+h+R()*6);ctx.lineTo(x+4,y+h+R()*6);ctx.closePath();ctx.fill();ctx.restore();}
 function scaredFace(x,y,r){for(const sd of[-1,1]){ctx.fillStyle=PAPER;ctx.beginPath();ctx.arc(x+sd*r*0.36,y-r*0.15,r*0.24,0,TAU);ctx.fill();circ(x+sd*r*0.36,y-r*0.15,r*0.24,{seed:8000+sd,w:2});ctx.fillStyle=INK;ctx.beginPath();ctx.arc(x+sd*r*0.36,y-r*0.12,r*0.1,0,TAU);ctx.fill();
@@ -14,6 +15,15 @@ function drawT(kind){ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle=BG;ctx.fillRect
     for(let i=0;i<5;i++){const x=70+i*130;arrow(x,450,x+30,350,{seed:7510+i,col:RED,w:5,head:20});}
     figure(1020,562,HANDS_ON_HEAD,{s:0.62,seed:8130});scaredFace(1020,562-264*0.62,38*0.62);txt('?!',1110,330,80,{col:RED,rot:0.1});
     txt('THE MOON IS NOW',330,90,84,{});hl(30,140,600,120,21);txt('A BLACK HOLE',330,200,108,{col:RED});}
+  else if(kind==='R3'){ // short cover 675x1200 (page 1080x1920): one picture + a question, content kept in y~150-970
+    txt("WHO'S PULLING",337,190,92,{});hl(55,240,565,120,31);txt('THE TIDES?!',337,302,110,{col:RED});
+    circ(337,520,135,{dash:[14,12],seed:7701,w:3,col:GREY});hole(337,520,40,t,{});
+    txt('THE MOON',140,410,46,{col:RED,rot:-0.08});arrow(235,480,290,505,{seed:7702,col:RED,w:4,head:16});txt('(NOW A BLACK HOLE)',150,455,26,{rot:-0.08});
+    ctx.save();ctx.fillStyle='#e9e2cf';ctx.fillRect(0,920,675,280);ctx.restore();line(0,920,675,920,7703,1,LW);
+    const fwl=x=>790+Math.sin(x/50)*8+(x>400?(x-400)*1.1:0);ctx.save();ctx.fillStyle='#d7e3f3';ctx.beginPath();ctx.moveTo(0,fwl(0));for(let x=0;x<=525;x+=15)ctx.lineTo(x,fwl(x));ctx.lineTo(525,1200);ctx.lineTo(0,1200);ctx.closePath();ctx.fill();ctx.restore();
+    const wp=[];for(let x=0;x<=525;x+=15)wp.push([x,fwl(x)]);strokePts(wp,1,LW+1,'#2f5d9a');
+    for(let i=0;i<4;i++){const x=50+i*95;arrow(x,770,x+22,680,{seed:7710+i,col:RED,w:5,head:18});}
+    figure(590,922,HANDS_ON_HEAD,{s:0.62,seed:8130});scaredFace(590,922-264*0.62,38*0.62);txt('?!',520,690,70,{col:RED,rot:0.1});}
   else { // the whole Moon -> a speck under a magnifier
     moon(240,380,190,{seed:7601});txt('THE MOON',240,630,64,{});
     bigArrow(460,380,640,380,46,1,7602);
