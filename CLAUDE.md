@@ -12,6 +12,8 @@ The user writes in Arabic — reply in Arabic; on-screen text and scripts are in
 ## Shorts / Reels rules (from analytics: 59% stayed, 41% swiped in the first second)
 - **Full, striking first frame:** frame 0 must already show the headline text in full (no letter-by-letter
   writing in the first second) plus the strongest visual. Start with a sound hit at 0.0 s.
+- **The first frame is a picture, not a number:** the black-hole short that opened on "73,000,000,… TONS" (text only)
+  kept 32% vs 55–59% for shorts that opened on a drawing. Lead with the payoff image (stick figure in danger, explosion) + ≤5-word headline.
 - **Length 20–25 s** (hard max 30 s). Cut setup lines; keep one complete idea per short.
 - **Loop:** end on a line that flows back into the first line; no silence or outro card at the end.
 - **Like CTA in shorts is visual only:** a like-button banner over the last ~2 s (no extra voice line), so the loop stays intact.

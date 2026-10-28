@@ -19,7 +19,9 @@ g3=open('../v3/scenes3.js').read().split('// ---------- scenes ----------')[0]
 new=open('shorts_new.js').read()
 SHORTS={
  'bh1_nothing_changes':dict(src='v3',segs=[[0,10.45],[32.15,41.85],[51.85,56.45]],card=None),
- 'bh2_spaghettification':dict(src='v3',segs=[[7.25,10.45],[100.45,102.05],[103.25,120.25]],card=None),
+ 'bh2_spaghettification':dict(src='v3',segs=[[7.25,10.45],[100.45,102.05],[103.25,120.25]],card='spaghetti'),
+ # re-cut of bh1 (32% stayed): picture cold open, no 73-quintillion wall of digits
+ 'bh1b_tides':dict(src='v3',segs=[[7.25,10.45],[32.15,41.85],[48.5,56.45]],card='tides'),
  'am_landing':dict(src='v2',segs=[[8.45,11.95],[98.15,111.4]],card='lander'),
  'am_evil_twin':dict(src='v2',segs=[[12.4,23.95],[45.85,55.3]],card='twin'),
  'bh_no_eclipses':dict(src='v3',segs=[[60.85,82.75]],card='eclipse'),

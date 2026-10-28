@@ -1,4 +1,7 @@
-render_one(){ n=$1; d=$(python3 -c "import json;c=json.load(open('/tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/shorts.json'))['$n'];print(int(round(sum(e-s for s,e in c['segs'])*30)))"); cd /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/work && PAGE=../v4/$n.html VW=1080 VH=1920 node render.js 0 $d 30 /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/$n.v.mp4 > /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/$n.log 2>&1; ffmpeg -v error -y -i /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/$n.v.mp4 -i /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/$n.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -shortest -movflags +faststart /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/$n.mp4; echo "$n $(ffprobe -v error -show_entries format=duration -of csv=p=0 /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/$n.mp4)"; }
-export -f render_one
-printf "%s\n" bh1_nothing_changes bh_no_eclipses am_evil_twin bh2_spaghettification bh_colder_than_space am_landing | xargs -P 4 -I{} bash -c 'render_one {}'
-touch /tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/v4/SHORTS_DONE
+# usage: SCRATCH=<dir with v2/ v3/ v4/ work/> bash render_all.sh [short names...]  (default: all)
+# v4 = this folder's build output; work = render.js + node_modules (fonts)
+: "${SCRATCH:?set SCRATCH}"
+render_one(){ n=$1; V=$SCRATCH/v4; d=$(python3 -c "import json;c=json.load(open('$V/shorts.json'))['$n'];print(int(round(sum(e-s for s,e in c['segs'])*30)))"); cd $SCRATCH/work && PAGE=../v4/$n.html VW=1080 VH=1920 node render.js 0 $d 30 $V/$n.v.mp4 > $V/$n.log 2>&1; ffmpeg -v error -y -i $V/$n.v.mp4 -i $V/$n.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -shortest -movflags +faststart $V/$n.mp4; echo "$n $(ffprobe -v error -show_entries format=duration -of csv=p=0 $V/$n.mp4)"; }
+export -f render_one; export SCRATCH
+if [ $# -eq 0 ]; then set -- $(python3 -c "import json;print(' '.join(json.load(open('$SCRATCH/v4/shorts.json'))))"); fi
+printf "%s\n" "$@" | xargs -P 4 -I{} bash -c 'render_one {}'

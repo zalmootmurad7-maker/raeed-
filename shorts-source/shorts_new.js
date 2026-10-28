@@ -79,7 +79,26 @@ const CARDS={
   eclipse:(tr)=>{eclipse(CX,850,230,1);cross(CX,850,300,1);hlBar(100,250,880,150,7);txt('NO MORE ECLIPSES',CX,325,100,{col:RED});txt('EVER.',CX,1330,160,{col:RED});hole(CX,1520,12,1,{});},
   colder:(tr)=>{hole(CX,720,34,1,{});thermo(250,1380,280,0.3,'#5b8fd6',6501);txt('1.7 K',250,1500,70,{col:'#2f5d9a'});thermo(830,1380,280,0.48,'#f08a7a',6510);txt('2.7 K',830,1500,70,{col:RED});
     hlBar(70,240,940,150,9);txt('COLDER THAN SPACE',CX,315,100,{col:RED});txt('THIS BLACK HOLE IS',CX,470,74,{});},
+  // a picture, not a number: the hole hangs where the Moon was, the sea still rises under it
+  tides:(tr)=>{circ(CX,720,230,{dash:[16,14],seed:5221,w:3,col:GREY});hole(CX,720,40,tr*3,{});
+    const tide=Math.sin(tr*3);ctx.save();ctx.fillStyle='#e9e2cf';ctx.fillRect(0,1320,W,600);ctx.restore();line(0,1320,W,1320,5720,1,LW);
+    const wl=1170-tide*30;const fwl=x=>wl+Math.sin(x/60+tr*4)*10+(x>640?(x-640)*0.55:0);ctx.save();ctx.fillStyle='#d7e3f3';ctx.beginPath();ctx.moveTo(0,wl);for(let x=0;x<=900;x+=20)ctx.lineTo(x,fwl(x));ctx.lineTo(900,1920);ctx.lineTo(0,1920);ctx.closePath();ctx.fill();ctx.restore();
+    const wp=[];for(let x=0;x<=900;x+=20)wp.push([x,fwl(x)]);strokePts(wp,1,LW,'#2f5d9a');
+    for(let i=0;i<4;i++){const x=90+i*150;arrow(x,wl-10,x+40,wl-140,{seed:5730+i,col:RED,w:4});}
+    figure(900,1330,HANDS_ON_HEAD,{s:0.95,seed:8130});scaredFace(900,1330-264*0.95,38*0.95);txt('?!',980,960,110,{col:RED,rot:0.08});
+    txt('THE MOON IS NOW',CX,270,92,{});hlBar(150,330,780,150,11);txt('A BLACK HOLE',CX,405,124,{col:RED});},
+  // short 3 opens on the payoff: the stretched astronaut, not the Moon
+  spaghetti:(tr)=>{const HX=CX,HY=620;hole(HX,HY,22,tr*3,{});
+    const sy=1.3+0.15*eOut(clamp(tr/1.2)),sx=0.85;const AX=CX,AY=1000;const j=4;ctx.save();ctx.translate(AX+nz(tr*50,1)*j,AY+nz(tr*47,2)*j);ctx.scale(sx,sy);ctx.rotate(Math.PI);helmetFig(0,190,{la:[-1.75,-2.5],ra:[1.75,2.5],ll:[-0.3,-0.15],rl:[0.3,0.15],paper:0},{s:1.45});ctx.restore();
+    motionLines(AX-150,AY-200,-Math.PI/2,120,3,6330,1);arrow(AX+170,AY-200,AX+170,AY-370,{seed:6320,col:RED,w:9,head:28});txt('10 G',AX+230,AY-290,64,{col:RED,align:'left'});
+    txt('AAAAAA!',230,1150,96,{col:RED,rot:-0.12});
+    txt('6 KM FROM A BLACK HOLE',CX,270,80,{});hlBar(120,330,840,150,13);txt('SPAGHETTI',CX,405,130,{col:RED});
+    ctx.save();ctx.fillStyle=PAPER;ctx.fillRect(240,1480,600,110);ctx.restore();rect(240,1480,600,110,6301,1,LW);txt('DISTANCE: 6 KM',CX,1535,70,{col:RED});},
 };
+const HANDS_ON_HEAD={la:[-2.0,2.79],ra:[2.0,-2.79],ll:[-0.3,-0.24],rl:[0.3,0.24],paper:0};
+function scaredFace(x,y,r){for(const sd of[-1,1]){ctx.fillStyle=PAPER;ctx.beginPath();ctx.arc(x+sd*r*0.36,y-r*0.15,r*0.24,0,TAU);ctx.fill();circ(x+sd*r*0.36,y-r*0.15,r*0.24,{seed:8000+sd,w:2});ctx.fillStyle=INK;ctx.beginPath();ctx.arc(x+sd*r*0.36,y-r*0.12,r*0.1,0,TAU);ctx.fill();
+    line(x+sd*r*0.12,y-r*0.66,x+sd*r*0.56,y-r*0.5,8010+sd,1,2.4);}
+  ctx.fillStyle='#3a1414';ctx.beginPath();ctx.ellipse(x,y+r*0.42,r*0.22,r*0.28,0,0,TAU);ctx.fill();circ(x,y+r*0.42,r*0.22,{ry:r*0.28,seed:8020,w:2.2});}
 // ===== visual like banner (last ~2 s) =====
 function likeBanner(u){ // u = seconds into the banner; sits over the top heading so the payoff below stays visible
   const k=eOut(clamp(u/0.25));ctx.save();ctx.translate(0,-(1-k)*320);
