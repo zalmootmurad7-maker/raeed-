@@ -18,6 +18,19 @@ The user writes in Arabic — reply in Arabic; on-screen text and scripts are in
 - Make 3–4 shorts per long episode; each short gets "Related video" → its long video.
 - Short audio = cut from the long video's final mix (short fades at the joins) + an impact at 0.
 
+## Thumbnails & covers — phone first (~90% of viewers watch on phones)
+1. **Thick strokes:** draw on a small virtual canvas and scale up (covers: 360×640 ×3; 16:9: 640×360 ×3) so every
+   ink line is ≥ ~10 px at full size (≥ 4–6 px at display size). Thin detail disappears on a phone.
+2. **Main subject fills 60–70% of the frame:** zoom in on the key moment; cut empty white space.
+3. **One saturated focal point:** only the core of the event gets strong colour (pure red, fiery orange/gold glow,
+   coal-black with a yellow or icy-blue glow) to break the white background.
+4. **Text = 2–3 huge words in the top third only:** bold, on a yellow bar if needed. No small sub-lines, nothing in
+   the bottom quarter or along the right edge (covered by the app's buttons, title and view count).
+5. **Big stick figure with a clear reaction:** close to the disaster, wide eyes/open mouth (shock) or an evil grin —
+   faces pull the eye even in simple drawings.
+- Always check a 180×320 (Shorts) or 320×180 (long) downscale before publishing.
+- Builder: `shorts-source/mobile_covers.js`.
+
 ## Style (see `moon-protons/source/sketch*.html`, `moon-antimatter/source/`)
 - Black ink on #f6f4f8, red #d2382c for emphasis only, light yellow highlight on thumbnails.
 - Font: Patrick Hand SC (labels), Patrick Hand for the lowercase "e" in e⁻/e⁺.
