@@ -54,6 +54,9 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 4. **Text = 2–3 huge words in the top third only.** Nothing in the bottom quarter or the bottom-right corner
    (duration badge / app buttons / title).
 5. **Big stick figure with a clear reaction** (shock, or an evil grin) close to the event.
+6. **Show the twist, not just the claim:** the image must raise a "why?" (e.g. a giant Sun with a tiny circled
+   black dot = the Moon can't cover it). A crossed-out object alone reads as a "no entry" sign.
+7. **Faces big, legs cropped:** feet may leave the frame; the faces are what the eye locks onto.
 - Always check a 180×320 (Shorts) / 320×180 (long) downscale before publishing.
 - Make 3 different concepts per long video for Test & Compare.
 - Note: in the Shorts feed viewers see the **first frame**, not the cover — the cover matters for the channel page
