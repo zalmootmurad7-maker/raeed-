@@ -31,6 +31,16 @@ The user writes in Arabic — reply in Arabic; on-screen text and scripts are in
 - Always check a 180×320 (Shorts) or 320×180 (long) downscale before publishing.
 - Builder: `shorts-source/mobile_covers.js`.
 
+### Identity guardrails (Ink & Atoms) — never break these
+- **Fixed template:** yellow bar with 2–3 big words at the top → ONE huge event in a saturated colour → a big
+  shocked stick figure. Same layout on every thumbnail/cover so the channel is recognisable before the name is read.
+- **No photos, no 3D renders, no full-colour backgrounds:** background stays light paper (#f6f4f8 / near-white);
+  a black panel only when the scene is space/night.
+- **Exactly one glowing element per image** (the event itself). Everything else is plain hand-drawn ink.
+- **Palette:** black ink + red #d2382c + yellow highlight + at most ONE extra colour tied to the event
+  (gold for the Sun/eclipse, icy blue for cold, etc.).
+- **Always the same font (Patrick Hand SC) and the same stick-figure character**, hand-drawn wobbly lines.
+
 ## Style (see `moon-protons/source/sketch*.html`, `moon-antimatter/source/`)
 - Black ink on #f6f4f8, red #d2382c for emphasis only, light yellow highlight on thumbnails.
 - Font: Patrick Hand SC (labels), Patrick Hand for the lowercase "e" in e⁻/e⁺.
