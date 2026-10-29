@@ -23,7 +23,7 @@ function cover(kind){ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle=BG;ctx.fillRect
     glow('rgba(255,170,0,1)',90);for(let i=0;i<28;i++){const a=i/28*TAU;const l=R*(1.28+0.22*Math.sin(i*3.7));line(X+Math.cos(a)*R*1.04,Y+Math.sin(a)*R*1.04,X+Math.cos(a)*l,Y+Math.sin(a)*l,9200+i,1,3.4,'#ffb300');}
     ctx.fillStyle='#ffd34d';ctx.beginPath();ctx.arc(X,Y,R*1.1,0,TAU);ctx.fill();noGlow();
     ctx.fillStyle='#0b0b0f';ctx.beginPath();ctx.arc(X,Y,R,0,TAU);ctx.fill();
-    glow('rgba(255,0,0,0.8)',24);line(X-R*1.15,Y-R*1.15,X+R*1.15,Y+R*1.15,9230,1,9,RED);line(X+R*1.15,Y-R*1.15,X-R*1.15,Y+R*1.15,9231,1,9,RED);noGlow();
+    line(X-R*1.15,Y-R*1.15,X+R*1.15,Y+R*1.15,9230,1,10,RED);line(X+R*1.15,Y-R*1.15,X-R*1.15,Y+R*1.15,9231,1,10,RED);
     figure(70,655,PANIC,{s:0.95,seed:9240});shockFace(70,655-264*0.95,38*0.95);
   }else{ // colder than space
     txt('COLDER',180,76,104,{col:'#1764c4'});bar(14,118,332,90,15);txt('THAN SPACE',180,162,68,{});
