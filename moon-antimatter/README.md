@@ -16,3 +16,6 @@
 
 ## Thumbnails
 - `thumbnails/thumbnail_youtube_1280x720.png`, `thumbnails/cover_reel1_1080x1920.png`, `thumbnails/cover_reel2_1080x1920.png` (`source/thumbs2.js`)
+
+## Extra shorts
+- `shorts/short_dont_land_here_9x16.mp4` — 16.7 s; `shorts/short_your_evil_twin_9x16.mp4` — 21 s (see `../shorts-source/`)
