@@ -1,17 +1,18 @@
 # Day 6
 
-**Title**
+**Title** (searchable word first)
 ```
-This black hole is colder than space itself 🥶🕳️
+Hawking radiation: why this black hole would never die 🥶🕳️
 ```
 
 **Description**
 ```
-Black holes are supposed to slowly shrink by leaking Hawking radiation. But a Moon-mass black hole is only 1.7 K, colder than space (2.7 K)… so instead of shrinking, it GROWS.
+Black holes should slowly shrink by leaking Hawking radiation. But a Moon-mass black hole is only 1.7 K, colder than space (2.7 K)… so instead of shrinking, it GROWS.
 
+Did you know black holes can have a temperature? 👇
 Full video on the channel 👆
 
-#blackhole #hawkingradiation #physics #space #science #shorts
+#hawkingradiation #blackhole #physics #space #science #shorts
 ```
 
 **Related video:** I Turned the Moon Into a Black Hole. Nothing Happened… Almost.

@@ -1,14 +1,15 @@
 # Day 4
 
-**Title**
+**Title** (searchable word first)
 ```
-Every particle has an evil twin 😈⚛️
+Antimatter: what if you met your evil twin? 😈⚛️
 ```
 
 **Description**
 ```
-Antimatter is the mirror version of normal matter: same particles, opposite charge. And when twins meet, they don't bounce… they annihilate in a flash of pure energy 💥
+Every particle has an evil twin with the opposite charge. And when twins meet, they don't bounce… they annihilate in a flash of pure energy 💥
 
+Would you shake hands with yours? 👇
 Full video on the channel 👆
 
 #antimatter #physics #science #particles #whatif #shorts

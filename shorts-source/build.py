@@ -21,20 +21,21 @@ SHORTS={
  'bh1_nothing_changes':dict(src='v3',segs=[[0,10.45],[32.15,41.85],[51.85,56.45]],card=None),
  'bh2_spaghettification':dict(src='v3',segs=[[7.25,10.45],[100.45,102.05],[103.25,120.25]],card=None),
  'am_landing':dict(src='v2',segs=[[8.45,11.95],[98.15,111.4]],card='lander'),
- 'am_evil_twin':dict(src='v2',segs=[[12.4,23.95],[45.85,55.3]],card='twin'),
- 'bh_no_eclipses':dict(src='v3',segs=[[60.85,82.75]],card='eclipse'),
- 'bh_colder_than_space':dict(src='v3',segs=[[7.25,10.45],[120.3,135.85]],card='colder'),
+ 'am_evil_twin':dict(src='v2',segs=[[15.4,18.7],[19.0,23.95],[45.85,55.3]],card='twinQ'),
+ 'bh_no_eclipses':dict(src='v3',segs=[[75.95,79.5],[64.1,75.9],[79.5,82.8]],card='eclipseQ'),
+ 'bh_colder_than_space':dict(src='v3',segs=[[120.3,135.85]],card='colderQ'),
 }
 tail=r'''
 function sceneFor(t){if(CFG.src==='v2'){if(t<12.4)return vB;if(t<19.0)return sCv;if(t<23.9)return sDv;if(t<55.3)return vI;return sNv;}
   if(t<7.2)return r1;if(t<16.4)return r2;if(t<40.0)return r5;if(t<41.8)return r6;if(t<56.8)return r7;if(t<66.4)return s9v1;if(t<75.9)return s9v2;if(t<82.8)return s10v;if(t<116.4)return r13;if(t<120.3)return r14;return s15v;}
 const SH={v2:[[50.99,14,6],[53.27,22,4],[105.93,40,3]],v3:[[0.16,12,6],[3.35,18,5],[10.05,10,6],[40.33,8,6],[111.3,8,3]]};
 function shakeS(t){let x=0,y=0;for(const[t0,a,d]of SH[CFG.src]){if(t>=t0&&t-t0<3){const k=a*Math.exp(-(t-t0)*d);x+=nz(t*50,t0)*k;y+=nz(t*47,t0+3)*k;}}if(CFG.src==='v3'&&t>111.3&&t<116.3){const k=P(t,111.3,116)*7;x+=nz(t*60,1)*k;y+=nz(t*55,2)*k;}return[x,y];}
-const REEL_LEN=CFG.segs.reduce((a,[s,e])=>a+(e-s),0),CARD_T=1.2,LIKE_T=2.0;
+const REEL_LEN=CFG.segs.reduce((a,[s,e])=>a+(e-s),0),CARD_T=({twinQ:1.4,eclipseQ:1.0,colderQ:1.25})[CFG.card]||1.2,LIKE_T=2.0;
 function render(tr){
   ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.setLineDash([]);ctx.fillStyle=BG;ctx.fillRect(0,0,W,H);
   let acc=0,t=CFG.segs[CFG.segs.length-1][1]-0.001,segStart=0;for(const[s,e]of CFG.segs){if(tr<acc+(e-s)){t=s+(tr-acc);segStart=acc;break;}acc+=e-s;}
   const[sx,sy]=shakeS(t);ctx.save();ctx.translate(sx,sy);
+  if(CFG.intro&&tr<0.45){const k=eBack(clamp(tr/0.45));ctx.translate(nz(tr*60,1)*14*(1-k),nz(tr*55,2)*14*(1-k));cam(lerp(0.78,1,k));}
   if(CFG.card&&tr<CARD_T){cam(1+0.04*tr);CARDS[CFG.card](tr);}else{cam(1+0.03*clamp((tr-segStart)/6));sceneFor(t)(t);}
   ctx.restore();
   if(tr>REEL_LEN-LIKE_T){ctx.setTransform(1,0,0,1,0,0);likeBanner(tr-(REEL_LEN-LIKE_T));}
@@ -43,6 +44,7 @@ window.render=render;window.REEL_LEN=REEL_LEN;
 window.ready=Promise.all([document.fonts.load('40px "PH"'),document.fonts.load('40px "PHL"')]).then(()=>document.fonts.ready);
 </script></body></html>
 '''
+for n in ('am_evil_twin','bh_no_eclipses','bh_colder_than_space'): SHORTS[n]['intro']=True
 for name,cfg in SHORTS.items():
     open(f'{name}.html','w').write(head+"\n"+g3+"\n"+f"const CFG={json.dumps(cfg)};\n"+funcs+new+tail)
     print(name, round(sum(e-s for s,e in cfg['segs']),2),'s')
