@@ -1,17 +1,18 @@
 # Day 5
 
-**Title**
+**Title** (searchable word first)
 ```
-If the Moon became a black hole, we'd never see an eclipse again 🌑☀️
+Solar eclipses would end FOREVER if the Moon became a black hole 🌑☀️
 ```
 
 **Description**
 ```
-The Moon doesn't make its own light, it reflects the Sun. A black hole reflects nothing. No full Moon, no crescent… and a speck smaller than a grain of sand can't block the Sun.
+A black hole reflects nothing: no full Moon, no crescent… and a speck smaller than a grain of sand can't block the Sun.
 
+Which would you miss more: moonlight or eclipses? 👇
 Full video on the channel 👆
 
-#eclipse #blackhole #moon #space #astronomy #shorts
+#solareclipse #blackhole #moon #space #astronomy #shorts
 ```
 
 **Related video:** I Turned the Moon Into a Black Hole. Nothing Happened… Almost.

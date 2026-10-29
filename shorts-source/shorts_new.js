@@ -72,6 +72,12 @@ function s15v(t){ // 120.3-135.9 colder than space, grows
 // ===== cold-open cards (first ~1.2 s): full headline + strongest visual =====
 function hlBar(x,y,w,h,seed){ctx.save();ctx.globalAlpha=0.92;ctx.fillStyle='#ffe066';const R=rng(seed);ctx.beginPath();ctx.moveTo(x,y+R()*6);ctx.lineTo(x+w,y+R()*6);ctx.lineTo(x+w-4,y+h+R()*6);ctx.lineTo(x+4,y+h+R()*6);ctx.closePath();ctx.fill();ctx.restore();}
 const CARDS={
+  twinQ:(tr)=>{mirrorFrame(CX,560,1420,clamp(tr/0.35));
+    figure(290,1400,POSES.point,{s:pop(tr,-0.2)*1.05||0.0001});
+    figure(790,1400,mirrorPose(POSES.point),{s:pop(tr,0.25)*1.05||0.0001,seed:140});horns(790,1400,1.05,pop(tr,0.5));
+    txt('WHAT IF YOU MET',CX,280,92,{k:clamp(0.25+tr/0.3)});txt('YOUR EVIL TWIN?',CX,405,116,{k:clamp((tr-0.15)/0.35),col:RED});},
+  eclipseQ:(tr)=>{eclipse(CX,830,230,1);txt('TOTAL SOLAR',CX,270,100,{k:clamp(0.3+tr/0.35)});txt('ECLIPSES',CX,385,120,{k:clamp((tr-0.2)/0.3)});},
+  colderQ:(tr)=>{hole(CX,720,32,1,{s:pop(tr,-0.1)});txt('WOULD IT EVER',CX,270,96,{k:clamp(0.3+tr/0.35)});txt('GO AWAY?',CX,385,110,{k:clamp((tr-0.2)/0.3)});},
   lander:(tr)=>{const GY=1300;ctx.save();ctx.fillStyle='#d9d6de';ctx.beginPath();ctx.ellipse(CX,GY+1000,1500,1000,0,0,TAU);ctx.fill();ctx.restore();circ(CX,GY+980,1500,{ry:1000,seed:2802,w:2.4,col:RED,dash:[12,10]});
     lander(CX,GY-170,1.5);boom(CX,GY,0.5,170,2841,{hold:5});hlBar(70,330,940,140,3);txt("DON'T LAND HERE",CX,400,104,{col:RED});txt('IT\'S ANTIMATTER',CX,560,84,{});},
   twin:(tr)=>{mirrorFrame(CX,560,1420,1);figure(290,1400,POSES.point,{s:1.05});figure(790,1400,mirrorPose(POSES.point),{s:1.05,seed:140});horns(790,1400,1.05,1);
