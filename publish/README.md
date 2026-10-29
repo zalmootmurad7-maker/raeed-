@@ -7,7 +7,7 @@
 | 3 | What a black hole does to you from 6 km away 🍝😱 | I Turned the Moon Into a Black Hole. Nothing Happened… Almost. |
 | 4 | Antimatter: what if you met your evil twin? 😈⚛️ | I Replaced the Moon With Its Evil Twin |
 | 5 | Solar eclipses would end FOREVER if the Moon became a black hole 🌑☀️ | I Turned the Moon Into a Black Hole. Nothing Happened… Almost. |
-| 6 | Hawking radiation: why this black hole would never die 🥶🕳️ | I Turned the Moon Into a Black Hole. Nothing Happened… Almost. |
+| 6 | Hawking radiation: why this black hole GROWS instead of shrinking 🥶🕳️ | I Turned the Moon Into a Black Hole. Nothing Happened… Almost. |
 
 Each folder: `short.mp4`, `cover.png` (1080×1920), `post.md` (title, description, hashtags).
 

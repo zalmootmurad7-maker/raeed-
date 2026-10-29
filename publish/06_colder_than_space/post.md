@@ -2,7 +2,7 @@
 
 **Title** (searchable word first)
 ```
-Hawking radiation: why this black hole would never die 🥶🕳️
+Hawking radiation: why this black hole GROWS instead of shrinking 🥶🕳️
 ```
 
 **Description**

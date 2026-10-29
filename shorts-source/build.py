@@ -14,6 +14,8 @@ assert "writeK(t,0.16" not in r[0]
 r[1]=r[1].replace("{s:pop(t,7.3),seed:5301}","{seed:5301}").replace("txt('TONIGHT:',CX,330,100,{k:writeK(t,7.35,'TONIGHT:',20),col:RED});","txt('TONIGHT:',CX,330,100,{col:RED});").replace("txt('THE MOON BECOMES',CX,1300,96,{k:writeK(t,8.6,'THE MOON BECOMES',34)});txt('A BLACK HOLE',CX,1420,120,{k:writeK(t,9.5,'A BLACK HOLE',24),col:RED});","txt('THE MOON BECOMES',CX,1300,96,{});txt('A BLACK HOLE',CX,1420,120,{col:RED});")
 assert "writeK" not in r[1]
 funcs+="".join(r)
+# shorts: no empty beat at the evil-twin join (start 'BUT...' and the particles immediately)
+funcs=funcs.replace("writeK(t,45.9,'BUT...',12)","writeK(t,45.55,'BUT...',12)").replace('pop(t,47.7)','pop(t,46.0)').replace('pop(t,47.85)','pop(t,46.15)')
 head=open('../v2/reel_head.html').read()
 g3=open('../v3/scenes3.js').read().split('// ---------- scenes ----------')[0]
 new=open('shorts_new.js').read()
@@ -21,7 +23,7 @@ SHORTS={
  'bh1_nothing_changes':dict(src='v3',segs=[[0,10.45],[32.15,41.85],[51.85,56.45]],card=None),
  'bh2_spaghettification':dict(src='v3',segs=[[7.25,10.45],[100.45,102.05],[103.25,120.25]],card=None),
  'am_landing':dict(src='v2',segs=[[8.45,11.95],[98.15,111.4]],card='lander'),
- 'am_evil_twin':dict(src='v2',segs=[[15.4,18.7],[19.0,23.95],[45.85,55.3]],card='twinQ'),
+ 'am_evil_twin':dict(src='v2',segs=[[15.4,18.7],[19.0,23.88],[45.85,55.3]],card='twinQ'),
  'bh_no_eclipses':dict(src='v3',segs=[[75.95,79.5],[64.1,75.9],[79.5,82.8]],card='eclipseQ'),
  'bh_colder_than_space':dict(src='v3',segs=[[120.3,135.85]],card='colderQ'),
 }

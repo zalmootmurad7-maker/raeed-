@@ -1,3 +1,4 @@
+function softGlow(x,y,r,c,a){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,c);g.addColorStop(1,'rgba(0,0,0,0)');ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
 // ===== new vertical scenes for the shorts (source time t) =====
 // --- episode 2 (antimatter) ---
 function sCv(t){ // 12.4-19.0 mirror / evil twin
@@ -56,18 +57,23 @@ function s10v(t){ // 75.9-82.8 eclipses
   sunGlyph(CX,850,300,t,{seed:6001});hole(CX-60,820,9,t,{s:pop(t,79.62)});magnifier(CX-60,820,80,P(t,79.8,80.1));
   txt('A SPECK THIS SMALL',CX,300,90,{k:writeK(t,79.6,'A SPECK THIS SMALL',30)});txt("CAN'T BLOCK",CX,1360,110,{k:writeK(t,81.37,"CAN'T BLOCK",24),col:RED});txt('THE SUN',CX,1480,110,{k:writeK(t,81.8,'THE SUN',18),col:RED});}
 function s15v(t){ // 120.3-135.9 colder than space, grows
-  const HX=CX,HY=720;const grow=P(t,130.9,133.3);hole(HX,HY,32*(1+grow*0.35),t,{});
+  const HX=CX,HY=760;const grow=P(t,130.9,133.3);
+  softGlow(HX,HY,170*(1+grow*0.4),'rgba(120,200,255,0.55)',0.8);
+  hole(HX,HY,56*(1+grow*0.45),t,{});
   txt('WOULD IT EVER',CX,270,96,{k:writeK(t,120.4,'WOULD IT EVER',30)});txt('GO AWAY?',CX,385,110,{k:writeK(t,121.1,'GO AWAY?',20)});
-  if(t>122.37&&t<130.2){for(let i=0;i<8;i++){const a=i/8*TAU+0.2;const ph=((t*0.8+i*0.13)%1);wave(HX+Math.cos(a)*(90+ph*70),HY+Math.sin(a)*(90+ph*70),HX+Math.cos(a)*(90+ph*70+90),HY+Math.sin(a)*(90+ph*70+90),1,i,'#8a6dc7',6,18,2.6);}
-    const ha=1-P(t,127.1,127.3);txt('HAWKING RADIATION',CX,1060,86,{k:writeK(t,124.4,'HAWKING RADIATION',26),col:'#6a4fb0',a:ha});if(t>125.83)txt('IT SHOULD SHRINK...',CX,1170,70,{k:writeK(t,125.9,'IT SHOULD SHRINK...',30),a:ha});}
+  if(t>122.37&&t<130.2){for(let i=0;i<10;i++){const a=i/10*TAU+0.2;const ph=((t*0.8+i*0.13)%1);wave(HX+Math.cos(a)*(140+ph*80),HY+Math.sin(a)*(140+ph*80),HX+Math.cos(a)*(140+ph*80+110),HY+Math.sin(a)*(140+ph*80+110),1,i,'#8a6dc7',7,20,3.2);}
+    const ha=1-P(t,127.1,127.3);
+    txt('BLACK HOLES LEAK ENERGY',CX,1090,72,{k:writeK(t,122.4,'BLACK HOLES LEAK ENERGY',30),a:ha});
+    txt('HAWKING RADIATION',CX,1200,92,{k:writeK(t,124.4,'HAWKING RADIATION',26),col:'#6a4fb0',a:ha});
+    if(t>125.83)txt('IT SHOULD SHRINK...',CX,1310,76,{k:writeK(t,125.9,'IT SHOULD SHRINK...',30),a:ha});}
   if(t>127.3&&t<130.3){const k=pop(t,127.3);ctx.save();ctx.globalAlpha=clamp(k*2)*(1-P(t,130.0,130.3));
-    thermo(250,1380,280,0.3,'#5b8fd6',6501);txt('BLACK HOLE',250,1450,52,{});txt('1.7 K',250,1520,64,{col:'#2f5d9a'});
-    thermo(830,1380,280,0.48,'#f08a7a',6510);txt('SPACE',830,1450,52,{});txt('2.7 K',830,1520,64,{col:RED});
-    txt('COLDER THAN',CX,1010,92,{k:writeK(t,128.2,'COLDER THAN',30),col:RED});txt('SPACE ITSELF',CX,1110,92,{k:writeK(t,128.75,'SPACE ITSELF',30),col:RED});ctx.restore();}
-  if(t>130.24){for(let i=0;i<8;i++){const a=i/8*TAU+0.2;const ph=1-((t*0.8+i*0.13)%1);wave(HX+Math.cos(a)*(110+ph*100),HY+Math.sin(a)*(110+ph*100),HX+Math.cos(a)*(85+ph*70),HY+Math.sin(a)*(85+ph*70),1,i,'#5b8fd6',6,18,2.6);}
-    txt('INSTEAD OF SHRINKING...',CX,1100,72,{k:writeK(t,130.4,'INSTEAD OF SHRINKING...',30)});
-    if(t<133.55)txt('IT GROWS',CX,1250,140,{k:writeK(t,132.6,'IT GROWS',16),col:RED});
-    else{txt('FOR AN UNIMAGINABLY',CX,1250,80,{k:writeK(t,133.6,'FOR AN UNIMAGINABLY',30)});txt('LONG TIME',CX,1360,110,{k:writeK(t,134.92,'LONG TIME',16),col:RED});}}}
+    txt('COLDER THAN',CX,1060,96,{k:writeK(t,128.2,'COLDER THAN',30),col:RED});txt('SPACE ITSELF',CX,1160,96,{k:writeK(t,128.75,'SPACE ITSELF',30),col:RED});
+    thermo(140,1450,210,0.3,'#5b8fd6',6501);txt('BLACK HOLE',340,1330,56,{});txt('1.7 K',340,1410,84,{col:'#2f5d9a'});
+    thermo(940,1450,210,0.48,'#f08a7a',6510);txt('SPACE',740,1330,56,{});txt('2.7 K',740,1410,84,{col:RED});ctx.restore();}
+  if(t>130.24){for(let i=0;i<10;i++){const a=i/10*TAU+0.2;const ph=1-((t*0.8+i*0.13)%1);wave(HX+Math.cos(a)*(170+ph*120),HY+Math.sin(a)*(170+ph*120),HX+Math.cos(a)*(130+ph*80),HY+Math.sin(a)*(130+ph*80),1,i,'#5b8fd6',7,20,3.2);}
+    txt('INSTEAD OF SHRINKING...',CX,1150,76,{k:writeK(t,130.4,'INSTEAD OF SHRINKING...',30)});
+    if(t<133.55)txt('IT GROWS',CX,1300,150,{k:writeK(t,132.6,'IT GROWS',16),col:RED});
+    else{txt('FOR AN UNIMAGINABLY',CX,1300,80,{k:writeK(t,133.6,'FOR AN UNIMAGINABLY',30)});txt('LONG TIME',CX,1410,116,{k:writeK(t,134.92,'LONG TIME',16),col:RED});}}}
 
 // ===== cold-open cards (first ~1.2 s): full headline + strongest visual =====
 function hlBar(x,y,w,h,seed){ctx.save();ctx.globalAlpha=0.92;ctx.fillStyle='#ffe066';const R=rng(seed);ctx.beginPath();ctx.moveTo(x,y+R()*6);ctx.lineTo(x+w,y+R()*6);ctx.lineTo(x+w-4,y+h+R()*6);ctx.lineTo(x+4,y+h+R()*6);ctx.closePath();ctx.fill();ctx.restore();}
@@ -77,7 +83,7 @@ const CARDS={
     figure(790,1400,mirrorPose(POSES.point),{s:pop(tr,0.25)*1.05||0.0001,seed:140});horns(790,1400,1.05,pop(tr,0.5));
     txt('WHAT IF YOU MET',CX,280,92,{k:clamp(0.25+tr/0.3)});txt('YOUR EVIL TWIN?',CX,405,116,{k:clamp((tr-0.15)/0.35),col:RED});},
   eclipseQ:(tr)=>{eclipse(CX,830,230,1);txt('TOTAL SOLAR',CX,270,100,{k:clamp(0.3+tr/0.35)});txt('ECLIPSES',CX,385,120,{k:clamp((tr-0.2)/0.3)});},
-  colderQ:(tr)=>{hole(CX,720,32,1,{s:pop(tr,-0.1)});txt('WOULD IT EVER',CX,270,96,{k:clamp(0.3+tr/0.35)});txt('GO AWAY?',CX,385,110,{k:clamp((tr-0.2)/0.3)});},
+  colderQ:(tr)=>{softGlow(CX,760,170,'rgba(120,200,255,0.55)',0.8);hole(CX,760,56,1,{s:pop(tr,-0.1)});txt('WOULD IT EVER',CX,270,96,{k:clamp(0.3+tr/0.35)});txt('GO AWAY?',CX,385,110,{k:clamp((tr-0.2)/0.3)});},
   lander:(tr)=>{const GY=1300;ctx.save();ctx.fillStyle='#d9d6de';ctx.beginPath();ctx.ellipse(CX,GY+1000,1500,1000,0,0,TAU);ctx.fill();ctx.restore();circ(CX,GY+980,1500,{ry:1000,seed:2802,w:2.4,col:RED,dash:[12,10]});
     lander(CX,GY-170,1.5);boom(CX,GY,0.5,170,2841,{hold:5});hlBar(70,330,940,140,3);txt("DON'T LAND HERE",CX,400,104,{col:RED});txt('IT\'S ANTIMATTER',CX,560,84,{});},
   twin:(tr)=>{mirrorFrame(CX,560,1420,1);figure(290,1400,POSES.point,{s:1.05});figure(790,1400,mirrorPose(POSES.point),{s:1.05,seed:140});horns(790,1400,1.05,1);
