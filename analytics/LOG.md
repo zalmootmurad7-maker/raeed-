@@ -43,6 +43,9 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 8. **Owner rewatches distort small numbers** (black-hole video: 14 views from 3 people). Check numbers in Studio only.
 
 ## Open experiments
+- **Thumbnail style test:** each long video gets a 4th "minimal" concept (one absurd situation, 1–2 words,
+  thick ink, a single red accent, no yellow bar): `phone_4_minimal_*`. Run it in Test & Compare against 2 of our
+  standard concepts. If minimal wins on 2+ videos, add it as an allowed template in CLAUDE.md.
 - Shorts 4–6 (evil twin, eclipses, colder than space) re-cut with the corrected rule: motion in the first second,
   strongest voice line first, 15–19 s, searchable word first in the title. Compare "stayed" with the table above.
 - Phone-first thumbnails (A/B/C via Test & Compare) on both long videos. Compare CTR with 3.0% / 1.0%.
