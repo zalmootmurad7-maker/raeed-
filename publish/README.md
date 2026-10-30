@@ -12,3 +12,5 @@
 Each folder: `short.mp4`, `cover.png` (1080×1920), `post.md` (title, description, hashtags).
 
 Shorts 4–6 were re-cut on 2026-10-30 with the corrected rule (motion + question in the first second, 15–19 s). See `analytics/LOG.md`.
+
+**Cover style test:** use `cover_minimal.png` for days 4 and 6, `cover.png` for day 5 (see `analytics/LOG.md`).
