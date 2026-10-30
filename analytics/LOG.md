@@ -13,6 +13,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | The Moon became a black hole… (Nothing changes) | 10-28 | 0:25 | full static wall of digits | **46.0%** | 0:18 | 72% | 1.2k | +2 | 0 | 6.5% |
 | Never try to land on an antimatter Moon | 10-28 | 0:17 | full static card | **53.5%** | 0:16 | **94%** | 1.3k | +1 | 2 | 4% |
 | What a black hole does to you from 6 km away | 10-29 | 0:22 | full static card ("TONIGHT…") | **49.8%** | 0:18 | **82%** | 1.5k | +1 | **5** | **22.6%** |
+| **Antimatter: what if you met your evil twin?** (corrected rule) | 10-30 | 0:18 | fast-written question + figures pop in, voice opens on the promise | **61.9%** (5 h) | 0:15 | 83% | 1.4k in ~2 h | – | – | – |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -43,6 +44,7 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 8. **Owner rewatches distort small numbers** (black-hole video: 14 views from 3 people). Check numbers in Studio only.
 
 ## Open experiments
+- **First result (short 4, 5 h):** 61.9% stayed — best of all 7 shorts (previous 46–59%), 1.4k views in ~2 h. Confirm with shorts 5–6 before treating as proven.
 - **Thumbnail style test:** each long video gets a 4th "minimal" concept (one absurd situation, 1–2 words,
   thick ink, a single red accent, no yellow bar): `phone_4_minimal_*`. Run it in Test & Compare against 2 of our
   standard concepts. If minimal wins on 2+ videos, add it as an allowed template in CLAUDE.md.
