@@ -25,6 +25,8 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 - **Pinned comment:** a question that invites replies, e.g. "What should we turn the Moon into next? 🌕".
   Turn good viewer ideas into episodes and credit the commenter.
 - Voice: no long whispers at the start (inaudible on phones); boost any quiet phrase in the mix (`voice_fix.py`).
+- **Hook delivery = [excited] / [mischievously], never [serious]** (episode 4: the [serious] hook sounded slow and
+  heavy; re-recorded with [excited], Speed 1.1, then spliced onto the body). Serious tone comes later for contrast.
 - **Kill dead air (ElevenLabs adds ~1 s pauses):** before alignment, run `episode4-last-light/tighten.py`:
   no lead-in silence, gaps in the hook ≤ 0.2 s (one dramatic pause ≤ 0.45 s), elsewhere ≤ 0.3 s, intentional
   [long pause] → 0.5 s. Episode 4 voice went 2:37 → 1:59 with every word kept. Fewer [pause] tags in scripts.
