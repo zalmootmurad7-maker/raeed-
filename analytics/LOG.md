@@ -44,6 +44,8 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 8. **Owner rewatches distort small numbers** (black-hole video: 14 views from 3 people). Check numbers in Studio only.
 
 ## Open experiments
+- **Episode 4 (last light):** hook re-recorded with [excited] + dead air removed (2:37 → 1:59 voice). Compare its
+  retention curve's first 10 s and avg % watched with episode 3 (~99%) and episode 2 (42%).
 - **First result (short 4, 5 h):** 61.9% stayed — best of all 7 shorts (previous 46–59%), 1.4k views in ~2 h. Confirm with shorts 5–6 before treating as proven.
 - **Thumbnail style test:** each long video gets a 4th "minimal" concept (one absurd situation, 1–2 words,
   thick ink, a single red accent, no yellow bar): `phone_4_minimal_*`. Run it in Test & Compare against 2 of our
