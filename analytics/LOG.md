@@ -13,7 +13,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | The Moon became a black hole… (Nothing changes) | 10-28 | 0:25 | full static wall of digits | **46.0%** | 0:18 | 72% | 1.2k | +2 | 0 | 6.5% |
 | Never try to land on an antimatter Moon | 10-28 | 0:17 | full static card | **53.5%** | 0:16 | **94%** | 1.3k | +1 | 2 | 4% |
 | What a black hole does to you from 6 km away | 10-29 | 0:22 | full static card ("TONIGHT…") | **49.8%** | 0:18 | **82%** | 1.5k | +1 | **5** | **22.6%** |
-| **Antimatter: what if you met your evil twin?** (corrected rule) | 10-30 | 0:18 | fast-written question + figures pop in, voice opens on the promise | **63.3%** (1.3 d) | 0:16 | **89%** | 1.7k (flat after ~8 h) | +1 | – | 8.7% |
+| **Antimatter: what if you met your evil twin?** (corrected rule) | 10-30 | 0:18 | fast-written question + figures pop in, voice opens on the promise | **63.7%** (2 d) | 0:16 | **89%** | 1.8k (+422 in 48 h, slow tail) | +1 | – | **28.9%** ↑ |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -44,6 +44,10 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 8. **Owner rewatches distort small numbers** (black-hole video: 14 views from 3 people). Check numbers in Studio only.
 
 ## Open experiments
+- **Short 4 retention curve (2 d):** starts at ~150% (people rewatch the loop) and decays to ~60% at the end; steepest drop in
+  the first ~5 s. Search share grew 8.7% → 28.9% in a day ("Antimatter:" first in the title works as SEO).
+  Its frame 0 is almost empty (only "WHAT" + a small figure, due to the 0.8→1 zoom-in) → next hypothesis:
+  frame 0 shows the full drawing, only the question writes fast. Test on the next 3 shorts.
 - **Episode 4 (last light):** hook re-recorded with [excited] + dead air removed (2:37 → 1:59 voice). Compare its
   retention curve's first 10 s and avg % watched with episode 3 (~99%) and episode 2 (42%).
 - **Short 4 after 1.3 days:** 63.3% stayed (best of 7; previous 46–59%), 89% watched, but views still flattened at ~1.7k after
