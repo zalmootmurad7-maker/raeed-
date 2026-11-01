@@ -14,6 +14,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | Never try to land on an antimatter Moon | 10-28 | 0:17 | full static card | **53.5%** | 0:16 | **94%** | 1.3k | +1 | 2 | 4% |
 | What a black hole does to you from 6 km away | 10-29 | 0:22 | full static card ("TONIGHT…") | **49.8%** | 0:18 | **82%** | 1.5k | +1 | **5** | **22.6%** |
 | **Antimatter: what if you met your evil twin?** (corrected rule) | 10-30 | 0:18 | fast-written question + figures pop in, voice opens on the promise | **63.7%** (2 d) | 0:16 | **89%** | 1.8k (+422 in 48 h, slow tail) | +1 | – | **28.9%** ↑ |
+| Solar eclipses would end FOREVER if the Moon became a black hole (corrected rule, standard cover) | 10-31 | 0:19 | "TOTAL SOLAR ECLIPSES" written fast (small text) + eclipse zooms in; no figure, no question; voice opens "and total solar eclipses… gone forever" | **56.7%** (1 d) | 0:15 | ~80% | 1.3k (flat after ~3 h) | +1 | – | 4% (1 d) |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -45,6 +46,10 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 8. **Owner rewatches distort small numbers** (black-hole video: 14 views from 3 people). Check numbers in Studio only.
 
 ## Open experiments
+- **Short 5 vs short 4 (both "motion" rule):** short 4 opened on a **"you" question** with big text and two figures → 63.7%;
+  short 5 opened on a **label** ("TOTAL SOLAR ECLIPSES", small, half the frame empty, no figure) and a voice line that
+  starts with "and…" → 56.7%. Hypothesis: motion is necessary but not enough; frame 0–1 s also needs a **question with
+  "you"**, **huge text** and **the stick figure**. Confirm with short 6 and the next 2 shorts before changing CLAUDE.md.
 - **Short 4 retention curve (2 d):** starts at ~150% (people rewatch the loop) and decays to ~60% at the end; steepest drop in
   the first ~5 s. Search share grew 8.7% → 28.9% in a day ("Antimatter:" first in the title works as SEO).
   Its frame 0 is almost empty (only "WHAT" + a small figure, due to the 0.8→1 zoom-in) → next hypothesis:
