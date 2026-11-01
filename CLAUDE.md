@@ -71,6 +71,9 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
    black dot = the Moon can't cover it). A crossed-out object alone reads as a "no entry" sign.
 7. **Faces big, legs cropped:** feet may leave the frame; the faces are what the eye locks onto.
 - Always check a 180×320 (Shorts) / 320×180 (long) downscale before publishing.
+- **Shorts covers are shown cropped to ~2:3** on the channel page and in Studio (≈8% cut off top and bottom):
+  keep ALL text, faces and the event inside y ≈ 200–1720 of 1920 (covers 4–6 lost the top of their text).
+  Check the centre 2:3 crop of every cover before publishing.
 - Make 3 different concepts per long video for Test & Compare.
 - Note: in the Shorts feed viewers see the **first frame**, not the cover — the cover matters for the channel page
   and search; the first second matters for the feed.
