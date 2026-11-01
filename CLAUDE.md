@@ -31,10 +31,18 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
   no lead-in silence, gaps in the hook ≤ 0.2 s (one dramatic pause ≤ 0.45 s), elsewhere ≤ 0.3 s, intentional
   [long pause] → 0.5 s. Episode 4 voice went 2:37 → 1:59 with every word kept. Fewer [pause] tags in scripts.
 
-## Shorts / Reels rules (from 6 shorts — see LOG)
+## Shorts / Reels rules (from 9 shorts — see LOG)
 - **Motion in the first second — NOT a static poster.** Something is being written fast, pops in, zooms or shakes
   from frame 0 (shorts that did this kept 55–59%; static full-frame openings kept only 46–53%).
   The headline/question must be readable by ~0.5–0.8 s (fast handwriting), plus a sound hit at 0.0 s.
+- **First-second checklist (shorts 4/5/6: 63.7% → 56.7% → 35.5% as elements went missing):**
+  1. Frame 0 is FULL: the event already drawn + a BIG shocked stick figure (face big, legs cropped); no zoom-out
+     from 0.8 that leaves empty borders, no tiny object in an empty frame. Motion = punch-in 1.06→1 + shake.
+  2. HUGE text (≥140 px on 1080 wide), 2–3 lines, top third, fully written by ~0.6 s.
+  3. Text is a question/twist aimed at the viewer ("YOUR VACUUM DIDN'T.", "WHO LEFT THIS ON?!"), not a label.
+  4. First voice words are a complete, self-explanatory sentence: never start with "And / But / So", never an
+     undefined "it". Prepend the episode's premise line if needed ("Every human on Earth just vanished.").
+  Reference implementation: `episode4-last-light/source/shorts7_hookcards.js`.
 - **Open on the strongest voice line of the clip** (a question or the title's promise), even if it comes from later
   in the long video — reorder segments. The first words must match the title.
 - **Length 15–22 s** (17–22 s shorts are watched 82–94% through; 30–37 s only 49–71%). One idea per short.
