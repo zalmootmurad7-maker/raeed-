@@ -15,6 +15,6 @@ Full video on the channel 👆
 #robotvacuum #whatif #science #funny #technology #shorts
 ```
 
-**Related video:** Every Human Vanished. This Is the Last Light on Earth.
+**Related video:** Every Human Vanished. One Light Will Never Go Out.
 
-**Pinned comment:** What should vanish next? 🌍 Best idea = next episode!
+**Pinned comment:** What would YOUR robot vacuum do without you? 🤖 Wrong answers only 👇

@@ -15,6 +15,6 @@ Full video on the channel 👆
 #tritium #radioactive #science #physics #whatif #shorts
 ```
 
-**Related video:** Every Human Vanished. This Is the Last Light on Earth.
+**Related video:** Every Human Vanished. One Light Will Never Go Out.
 
-**Pinned comment:** What should vanish next? 🌍 Best idea = next episode!
+**Pinned comment:** Would you keep a radioactive light in your house? 🟢 Yes or no 👇

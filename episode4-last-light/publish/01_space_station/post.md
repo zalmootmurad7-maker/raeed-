@@ -15,6 +15,6 @@ Full video on the channel 👆
 #iss #spacestation #space #whatif #science #shorts
 ```
 
-**Related video:** Every Human Vanished. This Is the Last Light on Earth.
+**Related video:** Every Human Vanished. One Light Will Never Go Out.
 
-**Pinned comment:** What should vanish next? 🌍 Best idea = next episode!
+**Pinned comment:** Would you rather be the last person on Earth… or alone on the Space Station? 🛰️🌍
