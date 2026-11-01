@@ -30,8 +30,9 @@ function vExitPre(t){vNight(t,7111);exitSign(CX,950,1.5,1,t);
   txt('ONE LIGHT',CX,330,120,{k:writeK(t,4.14,'ONE LIGHT',30),col:'#ffffff'});txt('STILL GLOWING',CX,470,120,{k:writeK(t,4.81,'STILL GLOWING',34),col:EXITG});
   if(t>5.6)txt('IN 50 YEARS',CX,1400,130,{k:writeK(t,5.66,'IN 50 YEARS',24),col:'#ffffff'});}
 function vHook7(t){if(t<2.1)return vHook(t);vNight(t,7101);
-  ctx.save();cam(0.62,CX,1500);city(t,(bi,k)=>2.1+bi*0.13+(k%5)*0.05,1500,{street:true});ctx.restore();
-  txt('WITHIN HOURS',CX,330,120,{k:writeK(t,2.1,'WITHIN HOURS',30),col:'#ffffff'});txt('CITIES GO DARK',CX,470,120,{k:writeK(t,3.0,'CITIES GO DARK',30),col:RED});}
+  ctx.save();ctx.beginPath();ctx.rect(30,180,1020,1560);ctx.clip();ctx.translate(CX,1740);ctx.scale(1.65,1.65);ctx.translate(-975,-1740);
+  city(t,(bi,k,b)=>2.2+clamp((b.x-640)/640)*1.3+(k%5)*0.05,1740,{street:false});ctx.restore();
+  txt('WITHIN HOURS',CX,330,130,{k:writeK(t,2.1,'WITHIN HOURS',34),col:'#ffffff'});txt('CITIES GO DARK',CX,480,140,{k:writeK(t,3.0,'CITIES GO DARK',34),col:RED});}
 function vExit7(t){vExit(t);if(t>=72.9&&t<74.8)txt('EXIT SIGNS',CX,360,150,{k:writeK(t,73.05,'EXIT SIGNS',24),col:EXITG});}
 function sceneFor(t){if(t<4.1)return vHook7;if(t<7.0)return vExitPre;if(t<26.85)return vPhone;if(t<41.25)return vVac;if(t<57.9)return vISS;if(t<86.9)return vExit7;return vLight;}
 function shakeS(t){let x=0,y=0;for(const[t0,a,d]of SHAKES){if(t>=t0&&t-t0<2.5){const k=a*Math.exp(-(t-t0)*d);x+=nz(t*50,t0)*k;y+=nz(t*47,t0+3)*k;}}return[x,y];}
