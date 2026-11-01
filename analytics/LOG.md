@@ -50,6 +50,11 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short 5 opened on a **label** ("TOTAL SOLAR ECLIPSES", small, half the frame empty, no figure) and a voice line that
   starts with "and…" → 56.7%. Hypothesis: motion is necessary but not enough; frame 0–1 s also needs a **question with
   "you"**, **huge text** and **the stick figure**. Confirm with short 6 and the next 2 shorts before changing CLAUDE.md.
+- **Episode 4 shorts = the test of that hypothesis (v7 hook cards, `episode4-last-light/source/shorts7_hookcards.js`):**
+  frame 0 already shows the event + a BIG shocked stick figure (face, legs cropped), a 1.06→1 punch-in + shake, a huge
+  2–3 line question written by ~0.6 s ("Everyone's gone. Who left this on?!", "Your vacuum didn't."), and the voice
+  never starts with "But/So/And" (cuts moved; "Every human on Earth just vanished." prepended). Lengths 16.5–20.2 s.
+  Publish order: robot vacuum → space station → exit signs → maybe never. Target: stayed ≥ 63%.
 - **Short 4 retention curve (2 d):** starts at ~150% (people rewatch the loop) and decays to ~60% at the end; steepest drop in
   the first ~5 s. Search share grew 8.7% → 28.9% in a day ("Antimatter:" first in the title works as SEO).
   Its frame 0 is almost empty (only "WHAT" + a small figure, due to the 0.8→1 zoom-in) → next hypothesis:

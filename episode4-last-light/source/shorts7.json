@@ -1,0 +1,4 @@
+{"s1_space_station": {"segs": [[0.0, 2.1], [41.44, 57.9]], "card": "issQ", "cardT": 2.1},
+ "s2_exit_signs": {"segs": [[0.0, 2.1], [4.12, 6.9], [72.98, 86.9]], "card": "exitQ", "cardT": 2.1},
+ "s3_robot_vacuum": {"segs": [[0.0, 4.1], [22.75, 26.85], [33.0, 41.25]], "card": "vacQ", "cardT": 2.1},
+ "s4_maybe_never": {"segs": [[104.29, 106.25], [91.4, 104.0], [106.3, 111.9]], "card": "lightQ", "cardT": 1.96}}
