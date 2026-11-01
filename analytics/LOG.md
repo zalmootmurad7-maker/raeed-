@@ -21,6 +21,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 |---|---|---|---|---|---|---|---|---|---|
 | I Replaced the Moon With Its Evil Twin | 10-24 | 2:28 | old (thin lines) | 710 (flat after day 2) | **3.0%** | 49 / 26 | 1:02 | **42%** | suggested 47%, browse 33% |
 | I Turned the Moon Into a Black Hole. Nothing Happened… Almost. | 10-27 | 2:36 | old (thin lines) | 201 | **1.0%** | 14 / **3** | 2:35 | **~99%** | browse 71% |
+| Every Human Vanished. One Light Will Never Go Out. | 10-31 | 2:01 | C "NEVER GOES OUT?" (phone-first) | 169 (~1 day) | **~2.4%** (4 views) | 4 / – | – | – | – |
 
 Likes on long videos: ~0. "Hype": 0 everywhere.
 
