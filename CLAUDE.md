@@ -52,6 +52,16 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 - Audio = cut from the long video's final mix (short fades at joins) + an impact at 0.
 - Builder: `shorts-source/` (`shorts.json` segments, `build.py`, `audio.py`, `render_all.sh`).
 
+## Before delivering ANY short (QA — mistakes we already made)
+Do every step and show the user the evidence; never hand over a short on "it looks fine".
+1. Send the user frame 0.0 s and frame 0.6 s + the first voice sentence in writing (first-second checklist above).
+2. Contact sheet of the whole short (a frame every ~1.5 s), checked at phone size: no scene copied from the 16:9
+   video without a vertical re-layout (episode 4: tiny city cut off at the edge), no small text, no big empty areas.
+3. Nothing important below y≈1560 (YouTube title/buttons cover it) and nothing hidden under the like banner.
+4. Measure hook text size (≥140 px) — don't eyeball it.
+5. Cover: 180×320 downscale AND the centre 2:3 crop (channel page / Studio).
+6. Post text: "Related video" = the exact published title; a short-specific pinned question.
+
 ## Titles, descriptions, SEO
 - Shorts: **the searchable science word first** ("Spaghettification: …", "Antimatter: …", "Hawking radiation: …").
   Search brings 6–57% of short views and keeps them alive for weeks.
