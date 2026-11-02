@@ -18,3 +18,5 @@ Full video on the channel 👆
 **Related video:** Every Human Vanished. One Light Will Never Go Out.
 
 **Pinned comment:** Would you keep a radioactive light in your house? 🟢 Yes or no 👇
+
+**Cover:** cover.png (10/10 checklist; see cover_check.png). Video QA: first_second_check.png + contact_sheet.png

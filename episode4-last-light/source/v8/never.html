@@ -1,0 +1,55 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PH";src:url(../work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Ink & Atoms — Robot Vacuum Part 2 (19 s, 1080x1920). Palette: paper #F5E6D3, ink #1A1A1A, red #FF0000.
+const W=1080,H=1920,CX=540,TAU=Math.PI*2;
+const PAPER='#F6F4F8',INK='#161616',RED='#D2382C',LW=12;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=k=>1-Math.pow(1-k,3),eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,eBack=k=>{const c=1.70158;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let BOIL=0; // line boil: hand-drawn lines re-wobble every 0.15 s like old animation
+const nz=(i,s)=>{const r=rng(Math.floor(i)*977+s*131+BOIL*7919)();return r*2-1;};
+function wobPts(pts,seed,amp=2.2){return pts.map((p,i)=>[p[0]+nz(i,seed)*amp,p[1]+nz(i+50,seed)*amp]);}
+function poly(pts,{w=LW,col=INK,fill=null,close=false,seed=1,amp=2.2}={}){const q=wobPts(pts,seed,amp);ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);
+  for(let i=1;i<q.length;i++)ctx.lineTo(q[i][0],q[i][1]);if(close)ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(w>0){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function line(x1,y1,x2,y2,o={}){const n=6,p=[];for(let i=0;i<=n;i++)p.push([lerp(x1,x2,i/n),lerp(y1,y2,i/n)]);poly(p,o);}
+function ell(x,y,rx,ry,o={}){const n=40,p=[];for(let i=0;i<=n;i++){const a=i/n*TAU;p.push([x+Math.cos(a)*rx,y+Math.sin(a)*ry]);}poly(p,{...o,close:true});}
+function rrect(x,y,w,h,r,o={}){const p=[],seg=(cx,cy,a0)=>{for(let i=0;i<=6;i++){const a=a0+i/6*Math.PI/2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}};
+  seg(x+w-r,y+r,-Math.PI/2);seg(x+w-r,y+h-r,0);seg(x+r,y+h-r,Math.PI/2);seg(x+r,y+r,Math.PI);poly(p,{...o,close:true});}
+function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',rot=0}={}){if(k<=0||a<=0)return;ctx.save();ctx.globalAlpha*=a;
+  ctx.font=`${size}px "PH"`;ctx.textBaseline='middle';const full=ctx.measureText(s).width,sub=s.slice(0,Math.ceil(s.length*clamp(k)));
+  const x0=align==='center'?x-full/2:align==='right'?x-full:x;if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
+  if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);if(!stroke){ctx.lineWidth=2.2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);} // faux-bold
+  ctx.restore();return full;}
+function fit(s,size,maxW){ctx.save();ctx.font=`${size}px "PH"`;const w=ctx.measureText(s).width;ctx.restore();return Math.min(size,size*maxW/w);}
+function glow(x,y,r,rgba,a=1){if(a<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
+
+// ===== Cover: Space Station — "STILL ON?!" (identity template, phone-first, thick strokes) =====
+const SPACE='#0A0A1F',WINY='#FFD84A',FIRE='#FF8A1F';
+
+function bg(){ctx.fillStyle=SPACE;ctx.fillRect(0,0,W,H);const R=rng(11);for(let k=0;k<200;k++){ctx.fillStyle=`rgba(255,255,255,${0.3+R()*0.5})`;ctx.beginPath();ctx.arc(R()*W,R()*H,1.5+R()*3,0,TAU);ctx.fill();}}
+function figureBig(fx,hy,hr){ctx.save();ctx.strokeStyle='#FFFFFF';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=17;
+  ctx.beginPath();ctx.moveTo(fx,hy+hr);ctx.lineTo(fx,hy+hr+380);ctx.moveTo(fx-215,hy-150);ctx.lineTo(fx-120,hy+40);ctx.lineTo(fx,hy+hr+70);ctx.lineTo(fx+120,hy+40);ctx.lineTo(fx+215,hy-150);ctx.stroke();
+  for(const sd of[-1,1]){ctx.beginPath();ctx.arc(fx+sd*215,hy-150,15,0,TAU);ctx.fillStyle='#FFFFFF';ctx.fill();}ctx.restore();
+  ell(fx,hy,hr,hr,{w:14,col:'#FFFFFF',fill:'#F6F4F8',seed:90,amp:2.5});ctx.fillStyle=INK;for(const ex of[-36,36]){ctx.beginPath();ctx.arc(fx+ex,hy-22,17,0,TAU);ctx.fill();}
+  ell(fx,hy+42,24,32,{w:11,col:INK,fill:'#3a1414',seed:91,amp:1});
+  for(const sd of[-1,1])for(let k=0;k<2;k++){const r=hr+26+k*22;ctx.strokeStyle='#FFFFFF';ctx.lineWidth=9;ctx.beginPath();ctx.arc(fx,hy,r,sd<0?Math.PI*0.82:-Math.PI*0.18,sd<0?Math.PI*1.18:Math.PI*0.18);ctx.stroke();}}
+function bar(word,size=270){ctx.save();ctx.translate(CX,380);ctx.rotate(-0.025);ctx.fillStyle='#FFE14A';ctx.fillRect(-470,-150,940,300);
+  poly([[-470,-150],[470,-150],[470,150],[-470,150]],{w:LW,col:INK,close:true,seed:60,amp:2.5});ctx.restore();txt(word,CX,372,fit(word,size,860),{col:RED,rot:-0.025});}
+function draw(){BOIL=3;ctx.setTransform(1,0,0,1,0,0);bg();
+  // the ONE event: Earth's light spreading forever (golden rings)
+  const X=640,Y=1000,ER=210;glow(X,Y,820,'rgba(255,216,74,0.45)',1);
+  for(let k=0;k<6;k++){ctx.save();ctx.globalAlpha=0.95-k*0.13;ctx.strokeStyle=WINY;ctx.lineWidth=22-k*2;ctx.beginPath();ctx.arc(X,Y,ER+60+k*120,0,TAU);ctx.stroke();ctx.restore();}
+  ctx.fillStyle='#1b2033';ctx.beginPath();ctx.arc(X,Y,ER,0,TAU);ctx.fill();ell(X,Y,ER,ER,{w:LW+2,col:'#E9EEF8',seed:80,amp:2});
+  const R=rng(5);for(let k=0;k<120;k++){const a=R()*TAU,d=Math.sqrt(R())*ER*0.88;ctx.fillStyle=WINY;ctx.fillRect(X+Math.cos(a)*d-5,Y+Math.sin(a)*d-5,10,10);}
+  figureBig(220,1330,98);bar('NEVER OUT?!');}
+window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready).then(draw);
+</script></body></html>

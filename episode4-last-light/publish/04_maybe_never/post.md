@@ -17,4 +17,6 @@ Full video on the channel 👆
 
 **Related video:** Every Human Vanished. One Light Will Never Go Out.
 
-**Pinned comment:** Aliens in Andromeda looking at Earth right now would see NO modern humans. Why? 👀👇
+**Pinned comment:** Will our light ever stop traveling? YES or NO? 👇 (Hint: aliens in Andromeda would see Earth with NO modern humans yet 👀)
+
+**Cover:** cover.png (10/10 checklist; see cover_check.png). Video QA: first_second_check.png + contact_sheet.png
