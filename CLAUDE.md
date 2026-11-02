@@ -53,6 +53,12 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 - Audio = cut from the long video's final mix (short fades at joins) + an impact at 0.
 - Builder: `shorts-source/` (`shorts.json` segments, `build.py`, `audio.py`, `render_all.sh`).
 
+## Delivery standard: 10/10 or don't deliver
+Before handing over ANY video, cover or thumbnail, score it against every rule in this file (first-second checklist,
+QA list, thumbnail rules 1–7, identity guardrails, 180×320 + 2:3 checks). If any rule fails, fix it and re-check —
+deliver only when all pass, and show the user the scorecard (rule → pass + the evidence image).
+"10/10" means 10/10 against our checklist; never promise view or retention numbers.
+
 ## Before delivering ANY short (QA — mistakes we already made)
 Do every step and show the user the evidence; never hand over a short on "it looks fine".
 1. Send the user frame 0.0 s and frame 0.6 s + the first voice sentence in writing (first-second checklist above).
