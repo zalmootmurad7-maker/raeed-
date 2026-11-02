@@ -1,0 +1,75 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PH";src:url(../work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Ink & Atoms — Robot Vacuum Part 2 (19 s, 1080x1920). Palette: paper #F5E6D3, ink #1A1A1A, red #FF0000.
+const W=1080,H=1920,CX=540,TAU=Math.PI*2;
+const PAPER='#F6F4F8',INK='#161616',RED='#D2382C',LW=12;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=k=>1-Math.pow(1-k,3),eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,eBack=k=>{const c=1.70158;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let BOIL=0; // line boil: hand-drawn lines re-wobble every 0.15 s like old animation
+const nz=(i,s)=>{const r=rng(Math.floor(i)*977+s*131+BOIL*7919)();return r*2-1;};
+function wobPts(pts,seed,amp=2.2){return pts.map((p,i)=>[p[0]+nz(i,seed)*amp,p[1]+nz(i+50,seed)*amp]);}
+function poly(pts,{w=LW,col=INK,fill=null,close=false,seed=1,amp=2.2}={}){const q=wobPts(pts,seed,amp);ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);
+  for(let i=1;i<q.length;i++)ctx.lineTo(q[i][0],q[i][1]);if(close)ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(w>0){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function line(x1,y1,x2,y2,o={}){const n=6,p=[];for(let i=0;i<=n;i++)p.push([lerp(x1,x2,i/n),lerp(y1,y2,i/n)]);poly(p,o);}
+function ell(x,y,rx,ry,o={}){const n=40,p=[];for(let i=0;i<=n;i++){const a=i/n*TAU;p.push([x+Math.cos(a)*rx,y+Math.sin(a)*ry]);}poly(p,{...o,close:true});}
+function rrect(x,y,w,h,r,o={}){const p=[],seg=(cx,cy,a0)=>{for(let i=0;i<=6;i++){const a=a0+i/6*Math.PI/2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}};
+  seg(x+w-r,y+r,-Math.PI/2);seg(x+w-r,y+h-r,0);seg(x+r,y+h-r,Math.PI/2);seg(x+r,y+r,Math.PI);poly(p,{...o,close:true});}
+function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',rot=0}={}){if(k<=0||a<=0)return;ctx.save();ctx.globalAlpha*=a;
+  ctx.font=`${size}px "PH"`;ctx.textBaseline='middle';const full=ctx.measureText(s).width,sub=s.slice(0,Math.ceil(s.length*clamp(k)));
+  const x0=align==='center'?x-full/2:align==='right'?x-full:x;if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
+  if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);if(!stroke){ctx.lineWidth=2.2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);} // faux-bold
+  ctx.restore();return full;}
+function fit(s,size,maxW){ctx.save();ctx.font=`${size}px "PH"`;const w=ctx.measureText(s).width;ctx.restore();return Math.min(size,size*maxW/w);}
+function glow(x,y,r,rgba,a=1){if(a<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
+
+// ===== Cover: Space Station — "STILL ON?!" (identity template, phone-first, thick strokes) =====
+const SPACE='#0A0A1F',WINY='#FFD84A',FIRE='#FF8A1F';
+function draw(){BOIL=3;ctx.setTransform(1,0,0,1,0,0);
+  ctx.fillStyle=SPACE;ctx.fillRect(0,0,W,H);const R=rng(11);for(let k=0;k<220;k++){ctx.fillStyle=`rgba(255,255,255,${0.35+R()*0.5})`;ctx.beginPath();ctx.arc(R()*W,R()*H,1.5+R()*3,0,TAU);ctx.fill();}
+  // Earth limb (background, bottom)
+  const ER=3000,ecy=1560+ER;ctx.save();const g=ctx.createRadialGradient(CX,ecy,ER-10,CX,ecy,ER+120);g.addColorStop(0,'rgba(140,180,255,0.6)');g.addColorStop(1,'rgba(140,180,255,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(CX,ecy,ER+120,0,TAU);ctx.fill();ctx.fillStyle='#000';ctx.beginPath();ctx.arc(CX,ecy,ER,0,TAU);ctx.fill();ctx.restore();
+  // ISS diving to the lower right, fire trail behind (upper left) = the ONE event
+  const X=640,Y=860,ang=0.42; // dive direction
+  ctx.save();const L=900,tx=X-Math.cos(ang)*L,ty=Y-Math.sin(ang)*L;const fg=ctx.createLinearGradient(tx,ty,X,Y);
+  fg.addColorStop(0,'rgba(255,138,31,0)');fg.addColorStop(0.55,'rgba(255,138,31,0.55)');fg.addColorStop(1,'rgba(255,200,90,0.95)');
+  ctx.strokeStyle=fg;ctx.lineCap='round';ctx.lineWidth=330;ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(X-60,Y-30);ctx.stroke();ctx.restore();
+  glow(X+150,Y+120,430,'rgba(255,150,40,0.85)',1); // re-entry plasma at the leading edge
+  ctx.save();ctx.translate(X,Y);ctx.rotate(0.16);
+  const s=0.93;ctx.scale(s,s);
+  line(-500,0,500,0,{w:26,col:INK,seed:1,amp:2});line(-500,0,500,0,{w:12,col:'#d9d9e3',seed:1,amp:2});
+  for(const sx of[-1,1])for(const k of[0,1]){const px=sx*(300+k*120)-55;
+    for(const yy of[-330,40]){ctx.fillStyle='#E9EEF8';ctx.fillRect(px,yy,110,290);
+      poly([[px,yy],[px+110,yy],[px+110,yy+290],[px,yy+290]],{w:LW,col:INK,close:true,seed:20+k+yy,amp:2});
+      for(let gl=1;gl<4;gl++)line(px,yy+gl*72,px+110,yy+gl*72,{w:6,col:INK,seed:30+gl,amp:1});line(px+55,yy,px+55,yy+290,{w:6,col:INK,seed:40,amp:1});}}
+  for(const mx of[-165,0,165]){glow(mx,0,190,'rgba(255,216,74,0.75)',1);
+    rrect(mx-80,-58,160,116,36,{w:LW,col:INK,fill:'#FFFFFF',seed:50+mx,amp:2});
+    for(const wx of[-40,0,40]){ctx.fillStyle=WINY;ctx.beginPath();ctx.arc(mx+wx,0,17,0,TAU);ctx.fill();ctx.lineWidth=5;ctx.strokeStyle=INK;ctx.stroke();}}
+  ctx.restore();
+  // sparks flying off the burning edge
+  const R2=rng(77);for(let k=0;k<16;k++){const d=R2();const sx=X+200+d*230,sy=Y+190+R2()*150-d*30;ctx.fillStyle=k%3?FIRE:'#FFE7A8';ctx.beginPath();ctx.arc(sx,sy,6+R2()*9,0,TAU);ctx.fill();}
+  // big shocked stick figure (white ink, light head) lower left, legs cropped by the limb
+  const fx=230,hy=1330,hr=98;ctx.save();ctx.strokeStyle='#FFFFFF';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=17;
+  ctx.beginPath();ctx.moveTo(fx,hy+hr);ctx.lineTo(fx,hy+hr+360);ctx.moveTo(fx-215,hy-150);ctx.lineTo(fx-120,hy+40);ctx.lineTo(fx,hy+hr+70);ctx.lineTo(fx+120,hy+40);ctx.lineTo(fx+215,hy-150);ctx.stroke();
+  for(const sd of[-1,1]){ctx.beginPath();ctx.arc(fx+sd*215,hy-150,15,0,TAU);ctx.fillStyle='#FFFFFF';ctx.fill();}ctx.restore();
+  ell(fx,hy,hr,hr,{w:14,col:'#FFFFFF',fill:'#F6F4F8',seed:90,amp:2.5});
+  ctx.fillStyle=INK;for(const ex of[-36,36]){ctx.beginPath();ctx.arc(fx+ex,hy-22,17,0,TAU);ctx.fill();}
+  ell(fx,hy+42,24,32,{w:11,col:INK,fill:'#3a1414',seed:91,amp:1});
+  for(const sd of[-1,1])for(let k=0;k<2;k++){const r=hr+26+k*22;ctx.strokeStyle='#FFFFFF';ctx.lineWidth=9;ctx.beginPath();ctx.arc(fx,hy,r,sd<0?Math.PI*0.82:-Math.PI*0.18,sd<0?Math.PI*1.18:Math.PI*0.18);ctx.stroke();}
+  // yellow bar with 2 huge words (top third)
+  ctx.save();ctx.translate(CX,380);ctx.rotate(-0.025);ctx.fillStyle='#FFE14A';ctx.fillRect(-470,-150,940,300);
+  poly([[-470,-150],[470,-150],[470,150],[-470,150]],{w:LW,col:INK,close:true,seed:60,amp:2.5});ctx.restore();
+  txt('STILL ON?!',CX,372,fit('STILL ON?!',270,860),{col:RED,stroke:0,rot:-0.025});
+}
+window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready).then(draw);
+</script></body></html>

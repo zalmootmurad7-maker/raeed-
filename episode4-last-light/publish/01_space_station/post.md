@@ -28,4 +28,4 @@ Would you stay up to watch the ISS fall as our last shooting star? YES or NO?
 Full 100-year story of what happens after we vanish 👉 youtu.be/B_1WOUmyQcc
 ```
 
-**Cover:** cover.png (frame at 0.5 s; inside the 2:3 crop)
+**Cover:** cover.png ("STILL ON?!" — identity template, 10/10 checklist; old frame cover kept as cover_frame_0.5s.png)
