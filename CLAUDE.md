@@ -35,7 +35,8 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 - **Motion in the first second — NOT a static poster.** Something is being written fast, pops in, zooms or shakes
   from frame 0 (shorts that did this kept 55–59%; static full-frame openings kept only 46–53%).
   The headline/question must be readable by ~0.5–0.8 s (fast handwriting), plus a sound hit at 0.0 s.
-- **First-second checklist (shorts 4/5/6: 63.7% → 56.7% → 35.5% as elements went missing):**
+- **First-second checklist (shorts 4/5/6: 63.7% → 56.7% → 35.5% as elements went missing) — PROVISIONAL: the robot
+  vacuum short followed all of it and kept only 48.3% (3 h). Necessary is not proven sufficient; topic may matter more:**
   1. Frame 0 is FULL: the event already drawn + a BIG shocked stick figure (face big, legs cropped); no zoom-out
      from 0.8 that leaves empty borders, no tiny object in an empty frame. Motion = punch-in 1.06→1 + shake.
   2. HUGE text (≥140 px on 1080 wide), 2–3 lines, top third, fully written by ~0.6 s.

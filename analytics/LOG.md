@@ -16,6 +16,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | **Antimatter: what if you met your evil twin?** (corrected rule) | 10-30 | 0:18 | fast-written question + figures pop in, voice opens on the promise | **63.7%** (2 d) | 0:16 | **89%** | 1.8k (+422 in 48 h, slow tail) | +1 | – | **28.9%** ↑ |
 | Solar eclipses would end FOREVER if the Moon became a black hole (corrected rule, standard cover) | 10-31 | 0:19 | "TOTAL SOLAR ECLIPSES" written fast (small text) + eclipse zooms in; no figure, no question; voice opens "and total solar eclipses… gone forever" | **56.7%** (1 d) | 0:15 | ~80% | 1.3k (flat after ~3 h) | +1 | – | 4% (1 d) |
 | Hawking radiation: why this black hole GROWS instead of shrinking (corrected rule, minimal cover) | 11-01 | 0:16 | tiny black hole in a mostly empty white frame + small "WOULD IT EVER GO AWAY?"; no figure; voice opens "And would it ever go away?" ("it" undefined) | **35.5%** (~2 h) | 0:13 | ~81% | 414 engaged (~2 h) | – | – | – |
+| My Robot Vacuum Kept Cleaning… (ep. 4, v7 checklist: full frame 0, big figure, 159–195 px "YOU VANISHED. YOUR VACUUM DIDN'T.") | 11-02 | 0:16 | everything on the first-second checklist | **48.3%** (~3 h) | **0:17 (>100%: rewatches)** | ~103% | 419 engaged (~3 h) | – | – | – |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -55,6 +56,11 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   label + small text + no figure → 56.7%; vague "it" question starting with "And", tiny object in an empty frame, no
   figure → 35.5%. Retention drops with every first-second element that is missing. Promoted to CLAUDE.md as the
   first-second checklist. (Short 6 is only ~2 h old; recheck at 48 h.)
+- **Robot vacuum (first v7 short) = 48.3% at ~3 h → the checklist did NOT lift "stayed" on its own.** Those who stay
+  watch >100% (loop works), so the loss is still the swipe decision. Open hypotheses: (a) topic mismatch — every earlier
+  short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
+  scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
+  separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
 - **Episode 4 shorts = the test of that hypothesis (v7 hook cards, `episode4-last-light/source/shorts7_hookcards.js`):**
   frame 0 already shows the event + a BIG shocked stick figure (face, legs cropped), a 1.06→1 punch-in + shake, a huge
   2–3 line question written by ~0.6 s ("Everyone's gone. Who left this on?!", "Your vacuum didn't."), and the voice
