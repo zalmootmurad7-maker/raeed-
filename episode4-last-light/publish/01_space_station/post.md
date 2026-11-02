@@ -1,20 +1,31 @@
-# Short 1
+# Short — Space Station (fixed version, 18 s)
 
 **Title**
 ```
-Space Station: the last light after every human vanished 🛰️
+Everyone Vanished. Who Left THIS On? 400km Up 🛰️
 ```
 
 **Description**
 ```
-Every human is gone and the cities are dark… but 400 km above us, the Space Station is still lit. Nobody home. With no one to boost it, it falls and burns up: our last shooting star 🌠
+Everyone on Earth vanished. The brightest light isn't on Earth. 400km up, the ISS is still lit, solar powered, nobody home. With no one to boost it, it falls as our last shooting star.
 
-Would you have guessed the last light is in space? 👇
-Full video on the channel 👆
+Full story: youtu.be/B_1WOUmyQcc
 
-#iss #spacestation #space #whatif #science #shorts
+#whatif #spacestation #science #shorts
+```
+
+**Tags**
+```
+space station, ISS, international space station, what if humans disappeared, every human vanished, ISS falling, ISS reentry, shooting star, what if, science shorts, ink and atoms
 ```
 
 **Related video:** Every Human Vanished. One Light Will Never Go Out.
 
-**Pinned comment:** Would you rather be the last person on Earth… or alone on the Space Station? 🛰️🌍
+**Pinned comment**
+```
+Would you stay up to watch the ISS fall as our last shooting star? YES or NO?
+
+Full 100-year story of what happens after we vanish 👉 youtu.be/B_1WOUmyQcc
+```
+
+**Cover:** cover.png (frame at 0.5 s; inside the 2:3 crop)
