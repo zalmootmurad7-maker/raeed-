@@ -61,7 +61,7 @@ function draw(){BOIL=3;ctx.setTransform(1,0,0,1,0,0);bg16();
   glow(X-90,Y+80,330,'rgba(255,150,40,0.85)',1);
   ctx.save();ctx.translate(X,Y);ctx.rotate(-0.14);ctx.scale(0.74,0.74);
   line(-500,0,500,0,{w:26,col:INK,seed:1,amp:2});line(-500,0,500,0,{w:12,col:'#d9d9e3',seed:1,amp:2});
-  for(const sx of[-1,1])for(const k of[0,1]){const px=sx*(300+k*120)-55;for(const yy of[-330,40]){ctx.fillStyle='#E9EEF8';ctx.fillRect(px,yy,110,290);
+  for(const sx of[-1,1])for(const k of[0,1]){const px=sx*(300+k*120)-55;for(const yy of[-330,40]){ctx.fillStyle='#A8C4E5';ctx.fillRect(px,yy,110,290);
     poly([[px,yy],[px+110,yy],[px+110,yy+290],[px,yy+290]],{w:13,col:INK,close:true,seed:20+k+yy,amp:2});for(let gl=1;gl<4;gl++)line(px,yy+gl*72,px+110,yy+gl*72,{w:7,col:INK,seed:30+gl,amp:1});line(px+55,yy,px+55,yy+290,{w:7,col:INK,seed:40,amp:1});}}
   for(const mx of[-165,0,165]){glow(mx,0,190,'rgba(255,216,74,0.75)',1);rrect(mx-80,-58,160,116,36,{w:13,col:INK,fill:'#FFFFFF',seed:50+mx,amp:2});
     for(const wx of[-40,0,40]){ctx.fillStyle=WINY;ctx.beginPath();ctx.arc(mx+wx,0,17,0,TAU);ctx.fill();ctx.lineWidth=6;ctx.strokeStyle=INK;ctx.stroke();}}ctx.restore();

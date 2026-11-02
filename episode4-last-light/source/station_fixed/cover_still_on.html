@@ -49,7 +49,7 @@ function draw(){BOIL=3;ctx.setTransform(1,0,0,1,0,0);
   const s=0.93;ctx.scale(s,s);
   line(-500,0,500,0,{w:26,col:INK,seed:1,amp:2});line(-500,0,500,0,{w:12,col:'#d9d9e3',seed:1,amp:2});
   for(const sx of[-1,1])for(const k of[0,1]){const px=sx*(300+k*120)-55;
-    for(const yy of[-330,40]){ctx.fillStyle='#E9EEF8';ctx.fillRect(px,yy,110,290);
+    for(const yy of[-330,40]){ctx.fillStyle='#A8C4E5';ctx.fillRect(px,yy,110,290);
       poly([[px,yy],[px+110,yy],[px+110,yy+290],[px,yy+290]],{w:LW,col:INK,close:true,seed:20+k+yy,amp:2});
       for(let gl=1;gl<4;gl++)line(px,yy+gl*72,px+110,yy+gl*72,{w:6,col:INK,seed:30+gl,amp:1});line(px+55,yy,px+55,yy+290,{w:6,col:INK,seed:40,amp:1});}}
   for(const mx of[-165,0,165]){glow(mx,0,190,'rgba(255,216,74,0.75)',1);

@@ -60,9 +60,9 @@ function stickShocked(x,y,s,t){ // white-ink stick man, mouth O, shake lines
   ctx.save();ctx.translate(x,y);ctx.scale(s,s);const c=WHITE,w=LW/s*0.9;
   line(0,-110,0,-230,{w,col:c,seed:950});line(0,-110,-45,0,{w,col:c,seed:951});line(0,-110,45,0,{w,col:c,seed:952});
   line(0,-205,-70,-290,{w,col:c,seed:953});line(0,-205,70,-290,{w,col:c,seed:954}); // arms up
-  ell(0,-275,40,40,{w,col:c,fill:SPACE,seed:955});
-  ctx.fillStyle=c;for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,-285,6,0,TAU);ctx.fill();}
-  ell(0,-255,9,12,{w:w*0.7,col:c,seed:956,amp:0.5});
+  ell(0,-275,40,40,{w,col:c,fill:'#F6F4F8',seed:955});
+  ctx.fillStyle=INK;for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,-283,7,0,TAU);ctx.fill();}
+  ell(0,-257,9,12,{w:w*0.6,col:INK,fill:'#3a1414',seed:956,amp:0.5});
   for(const sd of[-1,1])for(let i=0;i<3;i++){const r=58+i*13;ctx.strokeStyle=c;ctx.lineWidth=3/s;ctx.beginPath();ctx.arc(0,-275,r,sd<0?Math.PI*0.8:-Math.PI*0.2,sd<0?Math.PI*1.2:Math.PI*0.2);ctx.stroke();}
   ctx.restore();}
 function T(s,x,y,size,col,o={}){return txt(s,x,y,fit(s,size,o.maxW||980),{col,...o});}
