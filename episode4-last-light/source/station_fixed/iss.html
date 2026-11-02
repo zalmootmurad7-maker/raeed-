@@ -67,12 +67,12 @@ function stickShocked(x,y,s,t){ // white-ink stick man, mouth O, shake lines
   ctx.restore();}
 function T(s,x,y,size,col,o={}){return txt(s,x,y,fit(s,size,o.maxW||980),{col,...o});}
 const B=[1.92,4.26,8.70,11.47,14.60];
-function S1(t){space(t);const z=1+0.10*eOut(P(t,0,1.9));ctx.save();ctx.translate(CX,1030);ctx.scale(z,z);ctx.translate(-CX,-1030);
-  iss2(CX,1030+Math.sin(t*2)*8,400*1.6,t,{lights:1});ctx.restore();
-  stickShocked(200,1700,1.25,t);
-  T("EVERYONE'S GONE.",CX,290,130,WHITE,{});
+function S1(t){space(t);const z=1+0.10*eOut(P(t,0,1.9));ctx.save();ctx.translate(640,960);ctx.scale(z,z);ctx.translate(-640,-960);
+  iss2(640,960+Math.sin(t*2)*8,400*1.6,t,{lights:1});ctx.restore();
+  stickShocked(190,2070,2.8,t);
+  T("EVERYONE'S GONE.",CX,270,160,WHITE,{maxW:1000});
   const sk=t<0.35?[nz(t*60,1)*14,nz(t*55,2)*10]:[0,0];ctx.save();ctx.translate(sk[0],sk[1]);
-  T('WHO LEFT THIS ON?!',CX,520,150,YEL,{stroke:14,strokeCol:SPACE});ctx.restore();}
+  T('WHO LEFT',CX,450,175,YEL,{stroke:14,strokeCol:SPACE});T('THIS ON?!',CX,620,175,YEL,{stroke:14,strokeCol:SPACE});ctx.restore();}
 function S2(t){space(t);const u=P(t,B[0],B[1]);earthCurve(1600);const z=1+0.2*eOut(u);
   ctx.save();ctx.translate(CX,1000);ctx.scale(z,z);ctx.translate(-CX,-1000);iss2(CX,1000,450*1.6,t,{lights:1.25});ctx.restore();
   T('THE BRIGHTEST LIGHT',CX,230,120,WHITE,{k:clamp((t-B[0])/0.35)});
