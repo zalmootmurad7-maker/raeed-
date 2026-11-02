@@ -66,22 +66,22 @@ function stickShocked(x,y,s,t){ // white-ink stick man, mouth O, shake lines
   for(const sd of[-1,1])for(let i=0;i<3;i++){const r=58+i*13;ctx.strokeStyle=c;ctx.lineWidth=3/s;ctx.beginPath();ctx.arc(0,-275,r,sd<0?Math.PI*0.8:-Math.PI*0.2,sd<0?Math.PI*1.2:Math.PI*0.2);ctx.stroke();}
   ctx.restore();}
 function T(s,x,y,size,col,o={}){return txt(s,x,y,fit(s,size,o.maxW||980),{col,...o});}
-const B=[1.92,4.26,8.70,11.47,15.05];
+const B=[1.92,4.26,8.70,11.47,14.60];
 function S1(t){space(t);const z=1+0.10*eOut(P(t,0,1.9));ctx.save();ctx.translate(CX,1030);ctx.scale(z,z);ctx.translate(-CX,-1030);
   iss2(CX,1030+Math.sin(t*2)*8,400*1.6,t,{lights:1});ctx.restore();
-  stickShocked(170,1560,0.62,t);
-  T("EVERYONE'S GONE.",CX,290,110,WHITE,{a:clamp(0.35+t/0.2)});
+  stickShocked(200,1700,1.25,t);
+  T("EVERYONE'S GONE.",CX,290,130,WHITE,{});
   const sk=t<0.35?[nz(t*60,1)*14,nz(t*55,2)*10]:[0,0];ctx.save();ctx.translate(sk[0],sk[1]);
-  glow(CX,576,300,'rgba(255,255,0,0.12)',1);T('WHO LEFT THIS ON?!',CX,576,120,YEL,{stroke:12,strokeCol:SPACE,k:clamp(0.4+t/0.3)});ctx.restore();}
+  T('WHO LEFT THIS ON?!',CX,520,150,YEL,{stroke:14,strokeCol:SPACE});ctx.restore();}
 function S2(t){space(t);const u=P(t,B[0],B[1]);earthCurve(1600);const z=1+0.2*eOut(u);
   ctx.save();ctx.translate(CX,1000);ctx.scale(z,z);ctx.translate(-CX,-1000);iss2(CX,1000,450*1.6,t,{lights:1.25});ctx.restore();
-  T('THE BRIGHTEST LIGHT',CX,192,90,WHITE,{k:clamp((t-B[0])/0.35)});
-  const pu=1+0.05*Math.sin((t-B[0])*TAU*1.5);T("ISN'T ON EARTH",CX,422,100*pu,RED,{k:clamp((t-B[0]-0.5)/0.35)});}
+  T('THE BRIGHTEST LIGHT',CX,230,120,WHITE,{k:clamp((t-B[0])/0.35)});
+  const pu=1+0.05*Math.sin((t-B[0])*TAU*1.5);T("ISN'T ON EARTH",CX,400,135*pu,RED,{k:clamp((t-B[0]-0.5)/0.35)});}
 function S3(t){space(t);const u=P(t,B[1],B[2]),z=1+0.3*eInOut(u);
   ctx.save();ctx.translate(CX,1050);ctx.scale(z,z);ctx.translate(-CX,-1050);iss2(CX,1050,500*1.6,t,{lights:1,rot:-0.12+0.18*u,panelGlow:0.6+0.4*Math.sin(t*3)});ctx.restore();
-  T('400KM UP',CX,192,100,WHITE,{k:clamp((t-4.29)/0.35)});
-  if(t>5.85)T('SOLAR POWERED',CX,422,80,WINY,{k:clamp((t-5.89)/0.45)});
-  if(t>6.9)T('LIGHTS ON. NOBODY HOME.',CX,672,60,GREY,{k:P(t,6.94,8.1)});}
+  if(t<6.92){T('400KM UP',CX,230,150,WHITE,{k:clamp((t-4.29)/0.3)});
+  if(t>5.85)T('SOLAR POWERED',CX,420,125,WINY,{k:clamp((t-5.89)/0.35)});}
+  else{T('LIGHTS ON.',CX,230,150,WINY,{k:clamp((t-6.94)/0.3)});if(t>7.7)T('NOBODY HOME.',CX,420,150,WHITE,{k:clamp((t-7.77)/0.3)});}}
 function S4(t){const u=P(t,B[2],B[3]);const shk=4+16*u;ctx.save();ctx.translate(nz(t*50,5)*shk,nz(t*47,6)*shk);
   space(t);earthCurve(lerp(1700,1330,eInOut(u)));
   const y=lerp(780,1080,eInOut(u)),sz=400*1.6;
@@ -89,26 +89,25 @@ function S4(t){const u=P(t,B[2],B[3]);const shk=4+16*u;ctx.save();ctx.translate(
   iss2(CX,y,sz,t,{lights:1});
   if(u>0.45){const f=P(u,0.45,1);ctx.save();ctx.globalAlpha=f*0.8;for(let i=0;i<7;i++){const xx=CX-300+i*100;line(xx,y+120,xx+nz(i,8)*10,y+190+f*60,{w:4,col:'#FFB060',seed:960+i,amp:2});}ctx.restore();} // air friction
   ctx.restore();
-  T('NO ONE TO BOOST IT',CX,288,90,WHITE,{a:clamp((t-B[2])/0.3)});
-  const alt=Math.round(lerp(400,100,eInOut(u))/10)*10;txt('ALTITUDE: '+alt+' KM',1020,430,56,{col:alt<=200?RED:WHITE,align:'right'});
-  if(t>10.35){const sk=[nz(t*60,7)*8,nz(t*57,8)*6];ctx.save();ctx.translate(sk[0],sk[1]);T("IT'S FALLING.",CX,1440,110,RED,{a:clamp((t-10.35)/0.2),stroke:10,strokeCol:SPACE});ctx.restore();}}
+  T('NO ONE TO BOOST IT',CX,250,125,WHITE,{a:clamp((t-B[2])/0.3)});
+  const alt=Math.round(lerp(400,100,eInOut(u))/10)*10;T('ALTITUDE: '+alt+' KM',CX,430,110,alt<=200?RED:WHITE,{});
+  if(t>10.35){const sk=[nz(t*60,7)*8,nz(t*57,8)*6];ctx.save();ctx.translate(sk[0],sk[1]);T("IT'S FALLING.",CX,1440,140,RED,{a:clamp((t-10.35)/0.2),stroke:10,strokeCol:SPACE});ctx.restore();}}
 function fireball(x,y,r,a=1,trail=1,ang=Math.atan2(1000,360)){if(a<=0)return;ctx.save();ctx.globalAlpha=a;
   const L=620*trail,dx=-Math.cos(ang)*L,dy=-Math.sin(ang)*L;const g=ctx.createLinearGradient(x+dx,y+dy,x,y);g.addColorStop(0,'rgba(255,140,26,0)');g.addColorStop(0.6,'rgba(255,140,26,0.55)');g.addColorStop(1,'rgba(255,230,140,1)');
   ctx.strokeStyle=g;ctx.lineCap='round';ctx.lineWidth=r*1.3;ctx.beginPath();ctx.moveTo(x+dx,y+dy);ctx.lineTo(x,y);ctx.stroke();ctx.restore();
   glow(x,y,r*4,'rgba(255,170,60,0.9)',a);glow(x,y,r*1.6,'rgba(255,245,200,1)',a);}
 function S5(t){const u=P(t,B[3],B[4]),k=1-Math.pow(1-u,2.2); // fast, then slow motion at the end
-  space(t,0.6*(1-u));const x=lerp(CX-60,880,k),y=lerp(380,1340,k);
-  earthCurve(1380,{glowAt:[880,1390],ga:clamp((u-0.35)/0.4)});
-  if(u<0.18)iss2(x,y,100*1.6*(1-u*2),t,{lights:1-u*5}); // ISS breaking up into the fireball
-  fireball(x,y,lerp(26,46,u),clamp(u/0.12),lerp(0.4,1,u));
-  for(let i=0;i<9;i++){const R=rng(970+i);const d=(t*3+R())%1;ctx.fillStyle=`rgba(255,200,120,${1-d})`;ctx.beginPath();ctx.arc(x-Math.cos(1.2)*d*260+nz(i,9)*40,y-Math.sin(1.2)*d*260+nz(i,10)*40,6*(1-d)+2,0,TAU);ctx.fill();}}
+  space(t,0.6*(1-u));const x=lerp(CX-40,800,k),y=lerp(420,1250,k);
+  earthCurve(1330,{glowAt:[800,1340],ga:clamp((u-0.35)/0.4)});
+  if(u<0.18)iss2(x,y,260*(1-u*2),t,{lights:1-u*5}); // ISS breaking up into the fireball
+  fireball(x,y,lerp(55,95,u),clamp(u/0.12),lerp(0.6,1.4,u));
+  for(let i=0;i<9;i++){const R=rng(970+i);const d=(t*3+R())%1;ctx.fillStyle=`rgba(255,200,120,${1-d})`;ctx.beginPath();ctx.arc(x-Math.cos(1.2)*d*420+nz(i,9)*70,y-Math.sin(1.2)*d*420+nz(i,10)*70,12*(1-d)+3,0,TAU);ctx.fill();}}
 function S6(t){space(t);const u=t-B[4];
-  fireball(lerp(860,960,P(t,B[4],18)),lerp(1300,1400,P(t,B[4],18)),18,1-P(t,15.6,18)*0.85,0.5);
-  glow(CX,576,320,'rgba(255,215,0,0.14)',0.7+0.3*Math.sin(u*4));T('OUR LAST SHOOTING STAR.',CX,576,85*1.0,WINY,{k:clamp((t-15.15)/0.6)});
-  T('WOULD YOU WATCH IT FALL?',CX,960,70*1.25,WHITE,{a:clamp((t-16.1)/0.3)});
-  const ps=1+0.08*Math.sin(t*9)*(t>16.8?1:0),sk=t>16.8&&t<17.2?[nz(t*60,11)*10,0]:[0,0];
-  ctx.save();ctx.translate(sk[0],sk[1]);T('YES / NO? COMMENT!',CX,1340,60*1.4*ps,RED,{a:clamp((t-16.5)/0.3)});ctx.restore();
-  txt('FULL STORY: EVERY HUMAN VANISHED',CX,1470,40,{col:GREY,a:clamp((t-16.9)/0.4)});}
+  fireball(lerp(860,960,P(t,B[4],18)),lerp(1380,1460,P(t,B[4],18)),24,1-P(t,15.2,18)*0.85,0.5);
+  glow(CX,576,320,'rgba(255,215,0,0.14)',0.7+0.3*Math.sin(u*4));T('OUR LAST',CX,330,150,WINY,{k:clamp((t-14.65)/0.3)});T('SHOOTING STAR.',CX,500,150,WINY,{k:clamp((t-15.05)/0.4)});
+  T('WOULD YOU',CX,850,140,WHITE,{a:clamp((t-16.29)/0.15)});T('WATCH IT FALL?',CX,1000,140,WHITE,{a:clamp((t-16.6)/0.15)});
+  const ps=1+0.08*Math.sin(t*9)*(t>17.39?1:0),sk=t>17.39&&t<17.8?[nz(t*60,11)*12,0]:[0,0];
+  ctx.save();ctx.translate(sk[0],sk[1]);T('YES / NO? COMMENT!',CX,1260,140*ps,RED,{a:clamp((t-17.0)/0.2),stroke:12,strokeCol:SPACE});ctx.restore();}
 function render(t){BOIL=Math.floor(t/0.15);ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
   if(t<B[0])S1(t);else if(t<B[1])S2(t);else if(t<B[2])S3(t);else if(t<B[3])S4(t);else if(t<B[4])S5(t);else S6(t);}
 window.render=render;window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready);

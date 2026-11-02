@@ -11,7 +11,7 @@ def lp(x,a):
     y=np.empty_like(x);s=0.0
     for i in range(len(x)): s+=a*(x[i]-s); y[i]=s
     return y
-B=[1.92,4.26,8.70,11.47,15.05]
+B=[1.92,4.26,8.70,11.47,14.60]
 # space hum under everything (deep, rises in S2)
 t=tt(L); hum=np.sin(2*np.pi*55*t)+0.5*np.sin(2*np.pi*82.5*t+0.4)+0.3*lp(rng.standard_normal(N),0.02)*6
 lvl=np.interp(t,[0,B[0],B[1],B[2],B[3],B[4],L],[0.5,0.6,1.0,0.7,0.9,0.6,0.0]); sfx+=env(hum*lvl,0.05,0.6)*0.07
@@ -46,17 +46,17 @@ t=tt(2.5); at(sfx,12.0,lp(rng.standard_normal(len(t)),0.04)*np.exp(-t*0.8)*3,0.2
 # S6 soft sad piano + shooting star twinkle
 def piano(f,d=2.8):
     t=tt(d); return env(sum((0.6**h)*np.sin(2*np.pi*f*(h+1)*t)*np.exp(-t*(1.3+h)) for h in range(6)),0.002,0.3)
-at(mus,15.1,piano(440)+0.6*piano(554.4)+0.5*piano(659.3),0.4); at(mus,16.6,piano(392)*0.8,0.3)
+at(mus,14.65,piano(440)+0.6*piano(554.4)+0.5*piano(659.3),0.4); at(mus,16.3,piano(392)*0.8,0.3)
 for k in range(6):
-    t=tt(0.25); at(sfx,15.2+k*0.11,np.sin(2*np.pi*(2400+k*260)*t)*np.exp(-t*18),0.07)
-t=tt(0.3); at(sfx,16.8,np.sin(2*np.pi*90*t)*np.exp(-t*12),0.25)  # shake hit on YES/NO
+    t=tt(0.25); at(sfx,14.75+k*0.11,np.sin(2*np.pi*(2400+k*260)*t)*np.exp(-t*18),0.07)
+t=tt(0.3); at(sfx,17.39,np.sin(2*np.pi*90*t)*np.exp(-t*12),0.25)  # shake hit on YES/NO
 # voice
 w=wave.open('voice.wav');v=np.frombuffer(w.readframes(w.getnframes()),np.int16).astype(float)/32768
 v=v[:N];v=np.pad(v,(0,N-len(v)))
 # duck sfx under voice
 venv=np.convolve(np.abs(v),np.ones(2000)/2000,'same');duck=1-0.45*np.clip(venv/0.05,0,1)
 mix=v*1.0/np.abs(v).max()*0.85+sfx*duck+mus*duck*0.8
-mix[int(17.6*sr):]*=np.linspace(1,0,N-int(17.6*sr))
+mix[int(17.9*sr):]*=np.linspace(1,0,N-int(17.9*sr))
 mix=np.tanh(mix*1.05)/np.tanh(1.05); mix*=0.9/np.abs(mix).max()
 st=np.stack([mix,mix],1)
 o=wave.open('mix.wav','w');o.setnchannels(2);o.setsampwidth(2);o.setframerate(sr);o.writeframes((st*32767).astype(np.int16).tobytes());o.close()
