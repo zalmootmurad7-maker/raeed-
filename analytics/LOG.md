@@ -61,6 +61,10 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
   scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
   separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
+- **Counter-evidence (see `first_frame_evil_vs_vacuum.png`):** the BEST short (evil twin, 63.7%) had an almost EMPTY
+  frame 0 (one small word + a tiny figure) and small text; the vacuum short had a full frame 0 + 159–195 px text and
+  kept 48.3%. Frame-0 "fullness" and text size do not explain "stayed". Stop promising a visual fix; change ONE variable
+  per short and log it.
 - **Episode 4 shorts = the test of that hypothesis (v7 hook cards, `episode4-last-light/source/shorts7_hookcards.js`):**
   frame 0 already shows the event + a BIG shocked stick figure (face, legs cropped), a 1.06→1 punch-in + shake, a huge
   2–3 line question written by ~0.6 s ("Everyone's gone. Who left this on?!", "Your vacuum didn't."), and the voice
