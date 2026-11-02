@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PH";src:url(../work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// Ink & Atoms — Robot Vacuum Part 2 (19 s, 1080x1920). Palette: paper #F5E6D3, ink #1A1A1A, red #FF0000.
+const W=1080,H=1920,CX=540,TAU=Math.PI*2;
+const PAPER='#F5E6D3',INK='#1A1A1A',RED='#FF0000',LW=7;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=k=>1-Math.pow(1-k,3),eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,eBack=k=>{const c=1.70158;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let BOIL=0; // line boil: hand-drawn lines re-wobble every 0.15 s like old animation
+const nz=(i,s)=>{const r=rng(Math.floor(i)*977+s*131+BOIL*7919)();return r*2-1;};
+function wobPts(pts,seed,amp=2.2){return pts.map((p,i)=>[p[0]+nz(i,seed)*amp,p[1]+nz(i+50,seed)*amp]);}
+function poly(pts,{w=LW,col=INK,fill=null,close=false,seed=1,amp=2.2}={}){const q=wobPts(pts,seed,amp);ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);
+  for(let i=1;i<q.length;i++)ctx.lineTo(q[i][0],q[i][1]);if(close)ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(w>0){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function line(x1,y1,x2,y2,o={}){const n=6,p=[];for(let i=0;i<=n;i++)p.push([lerp(x1,x2,i/n),lerp(y1,y2,i/n)]);poly(p,o);}
+function ell(x,y,rx,ry,o={}){const n=40,p=[];for(let i=0;i<=n;i++){const a=i/n*TAU;p.push([x+Math.cos(a)*rx,y+Math.sin(a)*ry]);}poly(p,{...o,close:true});}
+function rrect(x,y,w,h,r,o={}){const p=[],seg=(cx,cy,a0)=>{for(let i=0;i<=6;i++){const a=a0+i/6*Math.PI/2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}};
+  seg(x+w-r,y+r,-Math.PI/2);seg(x+w-r,y+h-r,0);seg(x+r,y+h-r,Math.PI/2);seg(x+r,y+r,Math.PI);poly(p,{...o,close:true});}
+function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',rot=0}={}){if(k<=0||a<=0)return;ctx.save();ctx.globalAlpha*=a;
+  ctx.font=`${size}px "PH"`;ctx.textBaseline='middle';const full=ctx.measureText(s).width,sub=s.slice(0,Math.ceil(s.length*clamp(k)));
+  const x0=align==='center'?x-full/2:align==='right'?x-full:x;if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
+  if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);if(!stroke){ctx.lineWidth=2.2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);} // faux-bold
+  ctx.restore();return full;}
+function fit(s,size,maxW){ctx.save();ctx.font=`${size}px "PH"`;const w=ctx.measureText(s).width;ctx.restore();return Math.min(size,size*maxW/w);}
+function glow(x,y,r,rgba,a=1){if(a<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
+// paper grain (fixed) — subtle old-book texture
+const GRAIN=(()=>{const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');const R=rng(42);
+  for(let i=0;i<26000;i++){const v=R();g.fillStyle=v<0.5?'rgba(120,90,50,0.07)':'rgba(255,255,255,0.10)';g.fillRect(R()*W,R()*H,1+R()*2.5,1+R()*2.5);}
+  for(let i=0;i<60;i++){g.fillStyle='rgba(140,105,60,0.035)';g.beginPath();g.arc(R()*W,R()*H,40+R()*160,0,TAU);g.fill();}return c;})();
+function paper(){ctx.fillStyle=PAPER;ctx.fillRect(0,0,W,H);ctx.drawImage(GRAIN,0,0);}
+// ---------- characters ----------
+// robot vacuum: a round disc with two dot eyes and a small spinning side brush. mood: idle|curious|wide|sad|struggle
+function vac(x,y,R,t,{mood='idle',look=[0,0],brushSpeed=1,col=INK,fill=PAPER,spinAngle=null}={}){
+  ctx.save();ctx.translate(x,y);
+  // side brush (lower left), spinning
+  const bx=-R*0.62,by=R*0.72,ang=spinAngle??t*brushSpeed*14;
+  for(let i=0;i<5;i++){const a=ang+i/5*TAU;line(bx,by,bx+Math.cos(a)*R*0.36,by+Math.sin(a)*R*0.36,{w:LW*0.6,col,seed:300+i,amp:1});}
+  ell(bx,by,R*0.08,R*0.08,{w:LW*0.7,col,fill:col,seed:310,amp:0.5});
+  ell(0,0,R,R,{w:LW*1.2,col,fill,seed:301,amp:2.5});ell(0,0,R*0.78,R*0.78,{w:LW*0.5,col,seed:302,amp:2});
+  line(-R*0.55,-R*0.62,R*0.55,-R*0.62,{w:LW*0.8,col,seed:303,amp:1.5}); // bumper
+  const ex=R*0.27,ey=-R*0.05+look[1]*R*0.12,lx=look[0]*R*0.1,er=mood==='wide'?R*0.13:R*0.09;
+  for(const sd of[-1,1]){ctx.fillStyle=col;ctx.beginPath();
+    if(mood==='sad'){ctx.lineWidth=LW*0.8;ctx.strokeStyle=col;ctx.beginPath();ctx.arc(sd*ex+lx,ey+R*0.05,R*0.09,Math.PI*1.1,Math.PI*1.9,true);ctx.stroke();}
+    else{ctx.arc(sd*ex+lx,ey,er,0,TAU);ctx.fill();if(mood==='wide'){ctx.fillStyle=fill;ctx.beginPath();ctx.arc(sd*ex+lx-er*0.3,ey-er*0.3,er*0.3,0,TAU);ctx.fill();}}
+    if(mood==='sad'||mood==='struggle')line(sd*ex-R*0.13,ey-R*0.2+(sd<0?R*0.06:0),sd*ex+R*0.13,ey-R*0.2+(sd<0?0:R*0.06),{w:LW*0.7,col,seed:320+sd,amp:1});}
+  ctx.restore();}
+// phone (upright or lying), screen dark #1A1A1A
+function phone(x,y,w,h,{screen=null,on=true,rot=0}={}){ctx.save();ctx.translate(x,y);ctx.rotate(rot);
+  rrect(-w/2,-h/2,w,h,w*0.14,{w:LW,fill:PAPER,seed:400});rrect(-w/2+w*0.08,-h/2+h*0.08,w*0.84,h*0.84,w*0.06,{w:LW*0.5,fill:INK,seed:401});
+  if(on&&screen)screen(w,h);ctx.restore();}
+function battery(x,y,s,pct,col){rrect(x-40*s,y-18*s,80*s,36*s,6*s,{w:3*s,col,seed:410,amp:0.6});ctx.fillStyle=col;ctx.fillRect(x+40*s,y-8*s,6*s,16*s);ctx.fillRect(x-34*s,y-12*s,68*s*pct,24*s);}
+function dust(t,seed){const R=rng(seed);for(let i=0;i<70;i++){const x=R()*W,y=900+R()*700,r=2+R()*4;ctx.fillStyle='rgba(26,26,26,0.18)';ctx.beginPath();ctx.arc(x,y+Math.sin(t*0.8+i)*2,r,0,TAU);ctx.fill();}
+  for(let i=0;i<24;i++){const x=R()*W,y=300+R()*700;ctx.fillStyle='rgba(26,26,26,0.12)';ctx.beginPath();ctx.arc(x+Math.sin(t*0.5+i)*14,y+((t*12+i*40)%120),2.5,0,TAU);ctx.fill();}}
+function room(t){paper();line(0,1150,W,1150,{w:LW,seed:500,amp:3}); // floor
+  rrect(80,520,250,300,6,{w:LW*0.7,seed:501}); line(205,520,205,820,{w:LW*0.5,seed:502});line(80,670,330,670,{w:LW*0.5,seed:503}); // empty window
+  dust(t,77);}
+function shake(t,t0,amp,dec){if(t<t0)return[0,0];const k=amp*Math.exp(-(t-t0)*dec);return[nz(t*60,9)*k,nz(t*55,11)*k];}
+// ---------- scenes ----------
+function S1(t){ctx.fillStyle=INK;ctx.fillRect(0,0,W,H);const s=12;ctx.translate(nz(t*30,1)*s,nz(t*30,2)*s); // shake 0.1 s
+  txt('HE FOUND IT.',CX,940,fit('HE FOUND IT.',150,980),{col:'#FFFFFF',stroke:16,strokeCol:INK});}
+function phoneSmall(px,py,t,pct=0.03,blink=true){phone(px,py,200,360,{screen:(w,h)=>{const on=!blink||Math.floor(t*2.5)%2===0;
+  glow(0,0,220,'rgba(255,255,255,0.22)',1);battery(0,-40,1.1,pct,RED);if(on)txt(Math.round(pct*100)+'%',0,50,90,{col:RED});}});}
+function S2(t){room(t);const u=t-0.7;
+  glow(830,975,300,'rgba(255,255,255,0.9)',1);phoneSmall(830,970,t,0.03,false); // phone right of vacuum, screen glowing 3%
+  vac(390,965,185,t,{mood:'idle',look:[0.3,1],brushSpeed:1});
+  txt('AFTER WE VANISHED...',CX,384,fit('AFTER WE VANISHED...',110,960),{a:clamp(u/0.3)});}
+function S3(t){room(t);const u=t-2.0;
+  const vx=lerp(390,545,eInOut(P(t,2.2,3.2)))+(t>3.25&&t<3.45?-30*Math.sin(P(t,3.25,3.45)*Math.PI):0)+(t>4.15&&t<4.35?-30*Math.sin(P(t,4.15,4.35)*Math.PI):0);
+  const [sx,sy]=shake(t,3.3,10,7),[sx2,sy2]=shake(t,4.2,10,7);
+  ctx.save();ctx.translate(sx+sx2,sy+sy2);glow(830,975,300,'rgba(255,255,255,0.9)',1);phoneSmall(830,970,t);ctx.restore();
+  vac(vx,965,185,t,{mood:t>3.3?'wide':'idle',look:[1,0.6],brushSpeed:1.4});
+  if(t>3.3&&t<3.7)txt('?',vx,690,150,{});if(t>4.2&&t<4.7)txt('!',vx,690,160,{col:RED});
+  txt('A PHONE. STILL ON.',CX,384,fit('A PHONE. STILL ON.',120,960),{k:P(t,2.1,2.9)});
+  if(t>3.0){txt('3% BATTERY',CX,1330,110,{col:RED,a:Math.floor(t*2.5)%2===0?1:0.3});}}
+function S4(t){paper();const u=t-5.0,z=1+0.06*eInOut(P(t,5,10));ctx.save();ctx.translate(CX,1000);ctx.scale(z,z);ctx.translate(-CX,-1000);
+  glow(CX,1000,560,'rgba(255,255,255,0.6)',1);
+  phone(CX,1000,600,1000,{screen:(w,h)=>{battery(0,-360,1.4,0.03,RED);txt('3%',150,-360,60,{col:RED});
+    const kk=clamp((t-5.25)/0.3);ctx.save();ctx.globalAlpha=kk;
+    rrect(-230,-200,460,330,30,{w:4,col:'#FFFFFF',seed:600,amp:1});
+    txt('1 MISSED CALL',0,-130,fit('1 MISSED CALL',70,420),{col:'#FFFFFF'});txt('MOM',0,-30,120,{col:'#FFFFFF'});txt('2 YEARS AGO',0,70,56,{col:'#FFFFFF'});ctx.restore();
+    // handset icon
+    if(kk>0){ctx.save();ctx.globalAlpha=kk;ctx.translate(0,250);ctx.rotate(-0.6);rrect(-60,-18,120,36,16,{w:4,col:'#FFFFFF',seed:601,amp:0.8});ctx.restore();}}});
+  ctx.restore();
+  const pulse=1+0.06*Math.sin(u*TAU);txt('1 MISSED CALL: MOM',CX,300,fit('1 MISSED CALL: MOM',96,980)*pulse,{col:RED,k:P(t,5.05,5.5)});
+  vac(170,1470,115,t,{mood:'wide',look:[1,-0.8],brushSpeed:0});
+  if(t>5.6&&t<6.4)txt('!',290,1300,120,{col:RED,a:1-P(t,6.1,6.4)});}
+function S5(t){room(t);const u=t-10.0;
+  const PX=760,PY=950;phone(PX,PY,360,640,{screen:(w,h)=>{glow(0,0,280,'rgba(255,255,255,0.18)',1);battery(0,-230,1,lerp(0.03,0.01,P(t,10,15)),RED);
+    if(t<13.2){txt('MOM',0,-90,110,{col:'#FFFFFF'});txt('1 MISSED CALL',0,0,48,{col:'#FFFFFF'});}
+    else{txt('CALLING',0,-110,76,{col:'#FFFFFF'});txt('MOM...',0,-20,96,{col:'#FFFFFF',k:1});const d=Math.floor((t-13.2)*3)%4;txt('.'.repeat(d),0,60,80,{col:'#FFFFFF'});}
+    const pr=t>13.0&&t<13.4;glow(0,190,110+20*Math.sin(t*8),'rgba(255,0,0,0.55)',t<13.2?1:0.5);
+    ell(0,190,58*(pr?0.88:1),58*(pr?0.88:1),{w:5,col:RED,fill:pr?RED:INK,seed:700,amp:1});
+    ctx.save();ctx.translate(0,190);ctx.rotate(-0.6);rrect(-34,-11,68,22,10,{w:4,col:'#FFFFFF',seed:701,amp:0.6});ctx.restore();}});
+  // vacuum straining: brush reaching for the call button, misses, then hits at 13.0
+  const reach=t<13.0?0.5+0.5*Math.sin(u*5):1;const[sx,sy]=[nz(t*40,3)*6*(t<13.2?1:0.2),nz(t*42,4)*6*(t<13.2?1:0.2)];
+  ctx.save();ctx.translate(sx,sy);vac(lerp(470,560,reach),1240-lerp(0,150,reach),150,t,{mood:t<13.2?'struggle':'wide',look:[1,-1],brushSpeed:t<13.2?4:1});ctx.restore();
+  if(t<13.2){for(let i=0;i<3;i++){const a=-0.6+i*0.5;line(330+Math.cos(a)*170,1290+Math.sin(a)*170,330+Math.cos(a)*215,1290+Math.sin(a)*215,{w:4,seed:720+i});}}
+  txt('HE TRIED TO CALL HER.',CX,1450,fit('HE TRIED TO CALL HER.',96,960),{k:P(t,10.1,11.0)});}
+function S6(t){ctx.fillStyle=INK;ctx.fillRect(0,0,W,H);const u=t-15;
+  const off=P(t,15.6,16.3);phone(720,1000,260,460,{screen:(w,h)=>{if(off<1){ctx.save();ctx.globalAlpha=1-off;battery(0,-40,1,0,RED);txt('0%',0,40,80,{col:RED});ctx.restore();}}});
+  vac(380,1150,140,t,{mood:'sad',look:[0.6,1],brushSpeed:0,col:PAPER,fill:INK,spinAngle:0.4});
+  const[sx,sy]=shake(t,15.05,18,5);ctx.save();ctx.translate(sx,sy);
+  const s=fit('WOULD YOUR VACUUM DO THIS?',104,960);txt('WOULD YOUR VACUUM',CX,380,fit('WOULD YOUR VACUUM',110,960),{col:RED,stroke:12,strokeCol:INK,k:P(t,15.0,15.4)});
+  txt('DO THIS?',CX,520,130,{col:RED,stroke:12,strokeCol:INK,k:P(t,15.3,15.6)});ctx.restore();
+  txt('COMMENT: YES / NO',CX,1420,fit('COMMENT: YES / NO',90,900),{col:'#FFFFFF',a:P(t,16.0,16.5)});
+  txt('SUBSCRIBE FOR PART 3',CX,1540,64,{col:PAPER,a:P(t,17.3,17.8)*0.9});}
+function render(t){BOIL=Math.floor(t/0.15);ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;
+  if(t<0.7)S1(t);else if(t<2.0)S2(t);else if(t<5.0)S3(t);else if(t<10.0)S4(t);else if(t<15.0)S5(t);else S6(t);}
+window.render=render;window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready);
+</script></body></html>
