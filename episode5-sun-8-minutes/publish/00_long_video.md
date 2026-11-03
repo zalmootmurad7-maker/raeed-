@@ -16,6 +16,7 @@ Chapters
 01:25 Earth drifts off course
 01:58 The cosmic domino effect
 02:14 You never see the Sun as it is
+02:25 Would you survive 8 minutes of night?
 
 What should disappear next? Comment FOREVER for the version where the Sun never comes back 👇
 

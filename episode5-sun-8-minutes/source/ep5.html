@@ -7,7 +7,7 @@ html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
 <body><canvas id="c" width="1920" height="1080"></canvas>
 <script>
 // ===== Ink & Atoms — Episode 5: What If the Sun Disappeared for 8 Minutes? (16:9, timed to align.json) =====
-const W=1920,H=1080,CX=960,CY=540,TAU=Math.PI*2,DURATION=153.8;
+const W=1920,H=1080,CX=960,CY=540,TAU=Math.PI*2,DURATION=158.0;
 const PAPER='#F5E6D3',INK='#1A1A1A',RED='#FF4444',GOLD='#FFD700',WHITE='#FFFFFF',SPACE='#0A0A1F',SKY='#BFD9F0',LW=6;
 const cv=document.getElementById('c'),ctx=cv.getContext('2d');
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
@@ -27,8 +27,10 @@ function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',r
   ctx.textBaseline='middle';const sub=s.slice(0,Math.ceil(s.length*clamp(k)));const x0=align==='center'?x-full/2:align==='right'?x-full:x;
   if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
   if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
-  ctx.fillStyle=col;ctx.fillText(sub,x0,y);ctx.lineWidth=2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);ctx.restore();return full;}
-const wk=(t,t0,s,cps=28)=>t<t0?0:clamp((t-t0)*cps/Math.max(1,s.length));
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);ctx.lineWidth=2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);
+  if(sub.includes('7')){let xx=x0;for(const ch of sub){const cw=ctx.measureText(ch).width;if(ch==='7'){ctx.lineWidth=Math.max(3,size*0.07);ctx.strokeStyle=col;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(xx+cw*0.28,y+size*0.04);ctx.lineTo(xx+cw*0.78,y+size*0.04);ctx.stroke();}xx+=cw;}}
+  ctx.restore();return full;}
+const wk=(t,t0,s,cps=28)=>t<t0?0:1; // FIX5: whole text appears at once (no half-written words)
 const pop=(t,t0,d=0.25)=>t<t0?0:eBack(clamp((t-t0)/d));
 function glow(x,y,r,rgba,a=1){if(a<=0||r<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
 function stamp(s,x,y,size,col,t,t0,o={}){const k=pop(t,t0,0.22);if(k<=0)return;ctx.save();ctx.translate(x,y);const sk=t-t0<0.3?nz(t*60,7)*8:0;ctx.translate(sk,0);ctx.scale(k,k);txt(s,0,0,size,{col,...o});ctx.restore();}
@@ -88,8 +90,16 @@ function captions(t){for(let i=0;i<CAP.length;i++){const c=CAP[i];const s=c[0][1
 // ================= SCENES =================
 // S1 hook + setup (0 - 25.6)
 function S1(t){
-  if(t<0.2){ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);txt('GONE',CX+nz(t*80,1)*14,CY,300,{col:RED});return;}
-  if(t<4.75){daySky(t);const z=1+0.06*P(t,0.2,4.7);ctx.save();ctx.translate(1550,280);ctx.scale(z,z);ctx.translate(-1550,-280);sun(1550,280,150,t);ctx.restore();
+  if(t<4.75){const cut=t<0.7?0:t<1.5?1:t<2.2?2:t<3.0?3:t<4.0?4:5,c0=[0,0.7,1.5,2.2,3.0,4.0][cut],z=lerp(1.1,1.0,eOut(P(t,c0,c0+0.35)));
+    ctx.save();ctx.translate(CX,CY);ctx.scale(z,z);ctx.translate(-CX,-CY);
+    if(cut===0){ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);txt('GONE',CX+nz(t*80,1)*16,CY+nz(t*70,2)*10,300,{col:RED});}
+    else if(cut===1){ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);clockBig(CX,CY-30,1.5,'0:00',{});}
+    else if(cut===2){daySky(t);stick(CX,960,2.3,t,{pose:'relax',mood:'happy'});}
+    else if(cut===3){daySky(t);}
+    else if(cut===4){daySky(t);txt('?',CX+nz(t*60,4)*18,CY,320,{col:RED});}
+    else{daySky(t);sun(1550,280,150,t);stick(300,960,1.9,t,{pose:'point',mood:'shock'});clockBig(1000,560,1.0,'8:00',{});txt("YOU WOULDN'T KNOW",1000,760,96,{});}
+    ctx.restore();return;}
+  if(false){daySky(t);const z=1+0.06*P(t,0.2,4.7);ctx.save();ctx.translate(1550,280);ctx.scale(z,z);ctx.translate(-1550,-280);sun(1550,280,150,t);ctx.restore();
     stick(300,960,1.9,t,{pose:'point',mood:t>2.06?'shock':'curious'});
     txt('RIGHT NOW...',830,200,120,{k:wk(t,0.14,'RIGHT NOW...',30)});if(t>2.0)stamp('ALREADY GONE?',830,360,140,RED,t,2.06);
     if(t>3.5){clockBig(1000,640,0.8,'8:00',{});txt("YOU WOULDN'T KNOW",1000,790,70,{});}return;}
@@ -99,10 +109,10 @@ function S1(t){
     else{const k=pop(t,10.76,0.3);sun(560,600,190*k,t);txt('BACK!',560,860,110,{col:GOLD,a:clamp((t-10.8)/0.15)});}
     txt('THE SUN VANISHES',CX,170,110,{col:WHITE,k:wk(t,5.91,'THE SUN VANISHES',30),a:t<9.0?1:0});return;}
   if(t<15.55){paper();stamp('IMPOSSIBLE?',CX,300,190,RED,t,11.37);if(t>12.24)stamp('TOTALLY.',CX,500,150,INK,t,12.24);
-    if(t>12.99){stick(1500,980,1.6,t,{pose:'chin',mood:'curious'});txt('BUT PHYSICS KNOWS',CX-200,720,110,{k:wk(t,12.99,'BUT PHYSICS KNOWS',30)});txt('WHAT HAPPENS NEXT',CX-200,850,110,{col:RED,k:wk(t,14.47,'WHAT HAPPENS NEXT',30)});}return;}
+    if(t>12.99){stick(1500,980,1.6,t,{pose:'chin',mood:'curious'});txt('BUT PHYSICS KNOWS',CX-200,720,110,{});txt('WHAT HAPPENS NEXT',CX-200,850,110,{col:RED});}return;}
   if(t<20.25){space(t);const k=pop(t,15.6,0.35);saturn(CX+300,560,150*k+0.01,1);txt('?',CX+300,560,200,{col:GOLD,a:clamp((t-15.9)/0.2)});
     txt('BEFORE THIS VIDEO IS OVER...',CX,150,90,{col:WHITE,k:wk(t,15.66,'BEFORE THIS VIDEO IS OVER...',36)});
-    txt('THE PLANET THAT SEES',560,500,84,{col:WHITE,k:wk(t,17.56,'THE PLANET THAT SEES',34)});txt('THE BLACKOUT',560,610,100,{col:GOLD,k:wk(t,18.43,'THE BLACKOUT',30)});txt('3 HOURS LATE',560,730,110,{col:RED,k:wk(t,19.01,'3 HOURS LATE',26)});return;}
+    if(t>16.6){txt('THE PLANET THAT SEES',560,500,84,{col:WHITE});txt('THE BLACKOUT',560,610,100,{col:GOLD});txt('3 HOURS LATER',560,730,110,{col:RED});}return;}
   // minute zero (20.3 - 25.6)
   if(t<22.4){ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);const z=1+0.1*P(t,20.3,22.4);ctx.save();ctx.translate(CX,CY);ctx.scale(z,z);clockBig(0,-40,1.6,'0:00',{bg:'#111'});ctx.restore();txt('MINUTE ZERO',CX,820,110,{col:WHITE});
     if(t>21.35)txt('THE SUN IS GONE',CX,940,80,{col:RED,k:wk(t,21.35,'THE SUN IS GONE',30)});return;}
@@ -120,7 +130,7 @@ function S2(t){
     if(t>36.48){for(let i=0;i<4;i++)line(ex-180-i*40,ey+40+i*25,ex-130-i*40,ey+20+i*25,{w:6,col:WHITE,seed:400+i});}
     stick(260,1000,1.8,t,{pose:'up',mood:'scream',col:WHITE});txt('BUT SURELY GRAVITY',CX,140,110,{col:WHITE,k:wk(t,32.77,'BUT SURELY GRAVITY',30)});txt('WOULD TELL US!',CX,260,110,{col:GOLD,k:wk(t,33.89,'WOULD TELL US!',30)});
     if(t>34.89)txt('NO SUN → NO PULL → EARTH FLIES OFF?',1110,880,70,{col:WHITE,maxW:1300,k:wk(t,34.89,'NO SUN → NO PULL → EARTH FLIES OFF?',24)});return;}
-  if(t<40.7){paper();stamp('NOPE.',CX,300,260,RED,t,37.77);if(t>38.45){txt('GRAVITY',CX,620,150,{k:wk(t,38.45,'GRAVITY',30)});txt('= SPEED OF LIGHT',CX,800,150,{col:RED,k:wk(t,39.4,'= SPEED OF LIGHT',30)});}return;}
+  if(t<40.7){paper();stamp('NOPE.',CX,300,260,RED,t,37.77);if(t>38.45){glow(CX,700,700,'rgba(255,68,68,0.35)',1);txt('GRAVITY = SPEED OF LIGHT',CX,700,90*1.6,{col:RED,stroke:6,strokeCol:'#7a0000'});}return;}
   if(t<45.9){space(t);const k=P(t,40.9,41.9);const ang=t*(4+k*14),d=lerp(170,0,eInOut(k));
     if(k<1){for(const sd of[-1,1]){const x=CX+Math.cos(ang)*d*sd,y=470+Math.sin(ang)*d*sd*0.5;glow(x,y,80,'rgba(200,220,255,0.9)',1);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,22,0,TAU);ctx.fill();}}
     else{const f=P(t,41.9,43.0);glow(CX,470,lerp(120,420,f),'rgba(255,240,200,0.9)',1-f*0.4);for(let i=0;i<4;i++){ctx.strokeStyle=`rgba(255,68,68,${0.8-i*0.18})`;ctx.lineWidth=6;ctx.beginPath();ctx.arc(CX,470,60+((t-41.9)*300+i*90)%600,0,TAU);ctx.stroke();}}
@@ -133,7 +143,7 @@ function S2(t){
     glow(lerp(x0+250,x1,k),470,60,'rgba(255,215,0,0.9)',1);
     ctx.strokeStyle=RED;ctx.lineWidth=9;ctx.beginPath();for(let x=x0+250;x<=lerp(x0+250,x1,k);x+=6){const y=790+Math.sin(x*0.05-t*12)*26;x===x0+250?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.stroke();
     txt('130 MILLION YEARS OF RACING',CX,140,90,{k:wk(t,46.0,'130 MILLION YEARS OF RACING',34)});
-    if(t>49.71){stamp('TIE!',x1-260,620,170,RED,t,49.71);stamp('1.7 SEC APART',CX,905,90,INK,t,50.12);txt('GW170817',x1-260,760,56,{a:clamp((t-50.2)/0.2)});}return;}
+    if(t>49.71){const pl=1+0.08*Math.sin((t-49.71)*12);stamp('TIE!',x1-260,620,100*1.7*pl,GOLD,t,49.71,{stroke:12,strokeCol:INK});stamp('1.7 SEC APART',CX,905,90,INK,t,50.12);txt('GW170817',x1-260,760,56,{a:clamp((t-50.2)/0.2)});}return;}
   if(t<57.55){paper();telescope(520,600,1.5);satellite(1400,520,1.2);bigX(520,620,190,t,54.22);bigX(1400,520,190,t,55.19);
     txt('FOR 8 MINUTES 20 SECONDS',CX,140,100,{k:wk(t,51.91,'FOR 8 MINUTES 20 SECONDS',36)});if(t>55.9)stamp('NOTHING CAN KNOW',CX,900,130,RED,t,55.94);return;}
   daySky(t);sun(1500,240,120,t);ctx.fillStyle='#F2D99A';ctx.fillRect(0,860,W,220);line(0,860,W,860,{w:LW,seed:430});
@@ -144,7 +154,7 @@ function S3(t){
   if(t<62.5){ctx.fillStyle='#111';ctx.fillRect(0,0,W,H);const k=pop(t,60.68,0.3);ctx.save();ctx.translate(CX,480);ctx.scale(k,k);clockBig(0,0,1.7,'8:20',{col:GOLD});ctx.restore();txt('MINUTE 8, SECOND 20',CX,860,100,{col:WHITE,k:wk(t,60.68,'MINUTE 8, SECOND 20',30)});return;}
   if(t<65.3){daySky(t);sun(1750,170,110,t);stick(1450,970,2.1,t,{pose:'relax',mood:'happy'});
     txt("IT'S NOON.",620,260,120,{k:wk(t,62.58,"IT'S NOON.",30)});txt('THE SKY IS BRIGHT.',620,400,100,{k:wk(t,63.4,'THE SKY IS BRIGHT.',30)});if(t>64.54)txt('AND THEN...',620,620,130,{col:RED,k:wk(t,64.54,'AND THEN...',26)});return;}
-  const sh=t<65.6?[nz(t*60,9)*18,nz(t*55,10)*12]:[0,0];ctx.save();ctx.translate(sh[0],sh[1]);
+  const sh=t<65.52?[nz(t*60,9)*20,nz(t*55,10)*14]:[0,0];ctx.save();ctx.translate(sh[0],sh[1]);
   if(t<70.7){nightSky(t);stick(1500,970,2.1,t,{pose:'up',mood:'shock',col:WHITE});stamp('DARKNESS.',700,200,190,WHITE,t,65.32);
     if(t>66.2)txt('NO SUNSET.',700,390,100,{col:GOLD,k:wk(t,66.21,'NO SUNSET.',30)});if(t>67.2)txt('NO WARNING.',700,510,100,{col:GOLD,k:wk(t,67.22,'NO WARNING.',30)});
     if(t>68.2)stamp('JUST NIGHT.',700,660,140,RED,t,68.22);if(t>69.08)txt('STARS AT LUNCHTIME',700,820,90,{col:WHITE,k:wk(t,69.08,'STARS AT LUNCHTIME',34)});ctx.restore();return;}
@@ -169,15 +179,16 @@ function S4(t){
   if(t<93.8){space(t);const x=lerp(500,1100,P(t,86.1,93.8)),y=560;for(let i=0;i<5;i++)line(x-170-i*10,y-60+i*30,x-280-i*20,y-60+i*30,{w:5,col:WHITE,seed:600+i});earth(x,y,130);
     if(t>92.18){const an=t*2.2;moon(x+Math.cos(an)*230,y+Math.sin(an)*110,40,0);txt('THE MOON COMES ALONG',CX,900,84,{col:WHITE,k:wk(t,92.18,'THE MOON COMES ALONG',30)});}
     stamp("IT DOESN'T STOP.",CX,140,130,WHITE,t,86.12);if(t>88.18){rrect(1400,220,440,180,30,{w:6,col:WHITE,fill:'#222',seed:610});txt('30 KM/S',1620,310,110,{col:GOLD,k:wk(t,88.18,'30 KM/S',20)});}return;}
-  if(t<103.1){space(t);// orbit (dashed) vs straight-line path (red); deviation exaggerated for visibility
+  if(t<103.1){space(t);const zz=lerp(1.1,1.3,P(t,95.0,102.0));ctx.save();ctx.translate(1100,520);ctx.scale(zz,zz);ctx.translate(-1100,-520);// FIX6 zoom 110->130% // orbit (dashed) vs straight path (red)
     const C=[CX,2150],R=1550,A=0.32;ctx.setLineDash([16,16]);ctx.strokeStyle='rgba(255,255,255,0.75)';ctx.lineWidth=5;ctx.beginPath();ctx.arc(C[0],C[1],R,-Math.PI/2-0.45,-Math.PI/2+0.45);ctx.stroke();ctx.setLineDash([]);
     const k=eInOut(P(t,94.0,98.6)),an=-A+2*A*k,p0=[C[0]+R*Math.sin(-A),C[1]-R*Math.cos(-A)],orb=[C[0]+R*Math.sin(an),C[1]-R*Math.cos(an)],L=R*2*A*k;
     const ex=p0[0]+L*Math.cos(-A),ey=p0[1]+L*Math.sin(-A);
     ctx.strokeStyle=RED;ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(p0[0],p0[1]);ctx.lineTo(ex,ey);ctx.stroke();
-    if(k>0.05){ctx.save();ctx.globalAlpha=0.45;earth(orb[0],orb[1],55,{seed:82});ctx.restore();txt('USUAL ORBIT',orb[0],orb[1]+105,52,{col:WHITE});}
+    if(k>0.05){ctx.save();ctx.globalAlpha=0.45;earth(orb[0],orb[1],55,{seed:82});ctx.restore();txt('USUAL ORBIT',orb[0]-260,orb[1]+30,52,{col:WHITE});}
     earth(ex,ey,60);txt('ACTUAL PATH',ex,ey-100,52,{col:RED,a:clamp(k*3)});
     if(t>98.68){line(ex,ey+65,orb[0],orb[1]-60,{w:6,col:GOLD,seed:620});stamp('≈ 700 m',orb[0]-260,(ey+orb[1])/2,100,GOLD,t,98.68);}
-    txt("WITHOUT THE SUN'S PULL",CX,120,96,{col:WHITE,k:wk(t,93.87,"WITHOUT THE SUN'S PULL",34)});
+    ctx.restore();txt("WITHOUT THE SUN'S PULL",CX,120,96,{col:WHITE,k:wk(t,93.87,"WITHOUT THE SUN'S PULL",34)});
+    if(t>96.68){const steps=['0 m','100 m','300 m','500 m','700 m'],si=Math.min(4,Math.floor((t-96.68)/0.5));rrect(1100,850,380,140,26,{w:6,col:GOLD,fill:'#111',seed:660});txt(steps[si],1290,920,96,{col:GOLD});}
     if(t>101.5){rrect(110,230,520,170,30,{w:6,col:WHITE,fill:'#222',seed:630});stick(210,385,0.5,t,{pose:'walk',mood:'happy',col:WHITE});txt('< 10 MIN WALK',430,315,62,{col:GOLD});}
     txt('(drift exaggerated)',1680,930,40,{col:'#9a9ab0',a:clamp((t-95)/0.3)});return;}
   if(t<107.95){space(t);halfEarth(CX,1300,620,0);iss(CX,420,1.3,t);rrect(1350,560,420,200,30,{w:6,col:WHITE,fill:'#222',seed:640});
@@ -210,19 +221,19 @@ function S6(t){
     if(t>138.58)txt('YOU NEVER SEE IT AS IT IS',CX,800,90,{col:WHITE,k:wk(t,138.58,'YOU NEVER SEE IT AS IT IS',34)});if(t>140.85)stamp('ONLY AS IT WAS.',CX,905,90,RED,t,140.85);return;}
   if(t<145.85){paper();sun(1300,420,170,t,{a:0.9});txt('?',1300,420,220,{col:RED,a:clamp((t-142.83)/0.2)});stick(520,1000,2.0,t,{pose:'chin',mood:'curious'});
     txt('IF IT DISAPPEARED',1200,760,96,{k:wk(t,142.3,'IF IT DISAPPEARED',30)});txt('RIGHT NOW...',1200,870,96,{k:wk(t,143.78,'RIGHT NOW...',30)});if(t>144.75)stamp('WOULD YOU EVEN KNOW?',CX,140,120,RED,t,144.75);return;}
-  if(t<150.25){paper();txt('WHAT IF IT NEVER CAME BACK?',CX,150,110,{k:wk(t,145.91,'WHAT IF IT NEVER CAME BACK?',34)});
-    rrect(460,320,1000,480,40,{w:8,fill:'#fff',seed:700});ell(560,420,50,50,{w:6,fill:'#ddd',seed:701});txt('@you',640,420,60,{align:'left',col:'#666'});
-    const ps=1+0.06*Math.sin(t*8);ctx.save();ctx.translate(CX,600);ctx.scale(ps,ps);txt('FOREVER',0,0,200,{col:RED,k:wk(t,148.26,'FOREVER',20)});ctx.restore();
-    txt('COMMENT IT ↓',CX,900,90,{col:INK,a:clamp((t-147.76)/0.2)});return;}
-  if(t<152.4){paper();likeBtn(1250,560,1.7,t>151.41);stick(560,1000,2.0,t,{pose:'point',mood:'happy'});txt('IF THIS BLEW YOUR MIND',CX,150,110,{k:wk(t,150.3,'IF THIS BLEW YOUR MIND',34)});if(t>151.41)stamp('HIT LIKE!',1250,860,120,RED,t,151.41);return;}
-  space(t);txt('NEXT:',CX,330,90,{col:GOLD});txt('WHAT IF THE SUN',CX,480,130,{col:WHITE});txt('NEVER CAME BACK?',CX,630,130,{col:RED});}
+  if(t<148.2){paper();stamp('WHAT IF IT NEVER CAME BACK?',CX,CY,90*1.5,RED,t,145.91);return;}
+  if(t<150.25){paper();txt('WHAT IF IT NEVER CAME BACK?',CX,140,90,{col:RED});rrect(460,280,1000,600,40,{w:8,fill:'#fff',seed:700});ell(560,380,50,50,{w:6,fill:'#ddd',seed:701});txt('@YOU',640,380,60,{align:'left',col:'#666'});
+    const ps=1+0.07*Math.sin(t*9);ctx.save();ctx.translate(CX,560);ctx.scale(ps,ps);txt('FOREVER',0,0,180,{col:RED});ctx.restore();
+    if(t>148.9){txt('YES',760,770,110,{col:RED,a:clamp((t-148.9)/0.12)});}if(t>149.3){txt('NO',1160,770,110,{col:RED,a:clamp((t-149.3)/0.12)});}return;}
+  space(t);const ps=1+0.06*Math.sin(t*8);txt('WOULD YOU SURVIVE',CX,330,70*1.6,{col:WHITE});txt('8 MINUTES OF SURPRISE NIGHT?',CX,470,70*1.6,{col:WHITE});
+  ctx.save();ctx.translate(CX,700);ctx.scale(ps,ps);txt('YES / NO? COMMENT!',0,0,130,{col:RED});ctx.restore();}
 function render(t){BOIL=Math.floor(t/0.15);ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.setLineDash([]);
   if(t<25.6)S1(t);else if(t<60.62)S2(t);else if(t<85.25)S3(t);else if(t<118.3)S4(t);else if(t<134.3)S5(t);else S6(t);
   // story clock badge
-  const lab=t<20.3?null:t<51.9?'0:00':t<60.62?(()=>{const s=Math.round(lerp(0,500,P(t,51.9,60.6)));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');})():t<111.7?'8:20':t<118.3?'16:20':null;
+  const lab=t<4.75?null:t<20.3?null:t<51.9?'0:00':t<60.62?(()=>{const s=Math.round(lerp(0,500,P(t,51.9,60.6)));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');})():t<111.7?'8:20':t<118.3?'16:20':null;
   const dark=!(t>=22.4&&t<25.6)&&!(t>=37.75&&t<40.7)&&!(t>=45.9&&t<60.62)&&!(t>=62.5&&t<65.3);
   if(lab&&!(t>=20.3&&t<22.4)&&!(t>=60.62&&t<62.5)&&!(t>=111.7&&t<114.4))clockBadge(lab,dark);
-  captions(t);}
+  /* FIX5: subtitle bar removed */}
 window.render=render;
 window.ready=Promise.all([document.fonts.load('40px "PH"'),Promise.resolve().then(()=>{WORDS=ALIGN;buildCaps();})]).then(()=>document.fonts.ready);
 </script></body></html>
