@@ -3,6 +3,24 @@
 "What if?" science channel: English voiceover, hand-drawn stick-figure style, YouTube (16:9) + Reels/Shorts/TikTok (9:16).
 The user writes in Arabic — reply in Arabic; on-screen text and scripts are in English.
 
+## Channel identity (decided by the owner, 2026-11-03) — every video must fit this
+- **Promise:** "We explore impossible scientific scenarios and explain what would actually happen."
+  Not "any science topic": every episode is ONE impossible scenario + the real physics of what follows.
+- **Identity:** hand-drawn science animation. **Goal:** growth + monetization.
+- **The Ink & Atoms Formula (long videos):**
+  1. 0–5 s **Hook** — a shocking image or unexpected question ("What if the Sun suddenly disappeared?").
+  2. 5–20 s **Setup** — the scenario, fast; no intro, no greeting.
+  3. 20–90 s **Science** — what physically happens, shown with hand-drawn diagrams.
+  4. 90–180 s **Consequences** — escalate; each result bigger than the last.
+  5. End **Twist** — the most surprising real result, then a question that leads to another video.
+  Rule: don't explain everything in the first 20 s — make them want the next step, but never mislead.
+- **Titles & thumbnails:** title = the "What If …?" question (e.g. "What If Earth Suddenly Lost Gravity?");
+  thumbnail text = 2–3 words that are NOT the title ("NO GRAVITY?!"); ONE visual idea, readable in 1 second;
+  one unified visual system, but a unique image for every video.
+- **Topic backlog (owner's list, in order):** 1 Sun disappeared for 8 minutes · 2 Earth lost gravity for 5 s ·
+  3 Earth stopped spinning · 4 black hole near Earth · 5 Moon exploded · 6 atmosphere disappeared ·
+  7 matter touches antimatter · 8 time ran backwards.
+
 **Every rule below comes from our own analytics. The numbers live in `analytics/LOG.md`.**
 After each upload, add its 48 h and 7-day numbers there. Change a rule only when 3+ uploads agree.
 
