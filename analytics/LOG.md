@@ -17,6 +17,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | Solar eclipses would end FOREVER if the Moon became a black hole (corrected rule, standard cover) | 10-31 | 0:19 | "TOTAL SOLAR ECLIPSES" written fast (small text) + eclipse zooms in; no figure, no question; voice opens "and total solar eclipses… gone forever" | **56.7%** (1 d) | 0:15 | ~80% | 1.3k (flat after ~3 h) | +1 | – | 4% (1 d) |
 | Hawking radiation: why this black hole GROWS instead of shrinking (corrected rule, minimal cover) | 11-01 | 0:16 | tiny black hole in a mostly empty white frame + small "WOULD IT EVER GO AWAY?"; no figure; voice opens "And would it ever go away?" ("it" undefined) | **35.5%** (~2 h) | 0:13 | ~81% | 414 engaged (~2 h) | – | – | – |
 | My Robot Vacuum Kept Cleaning… (ep. 4, v7 checklist: full frame 0, big figure, 159–195 px "YOU VANISHED. YOUR VACUUM DIDN'T.") | 11-02 | 0:16 | everything on the first-second checklist | **48.3%** (~3 h) | **0:17 (>100%: rewatches)** | ~103% | 419 engaged (~3 h) | – | – | – |
+| Everyone Vanished. Who Left THIS On? 400km Up (user spec + v3 audit: 144–175 px hook, big figure, recorded hook voice, comment CTA) | 11-03 | 0:18 | full frame 0, voice = text, all checklist items pass | **48.0%** (~3 h) | 0:15 | ~83% | 263 (~3 h) | – | – | – |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -61,6 +62,11 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
   scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
   separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
+- **Checklist verdict (vacuum 48.3%, station 48.0%):** both "10/10 on the checklist" shorts kept LESS than the
+  average of the earlier shorts (~53%). The first-second checklist does not raise "stayed". Small-channel "stayed"
+  sits at ~45–60% whatever we change in the first frame. What differs across our 12 shorts is the TOPIC:
+  most views = "you / your body" or planet-scale (spaghettification 2.3k, anti-Moon hits Earth 1.9k, evil twin 1.8k);
+  fewest = abstract/household (Hawking 959, vacuum, station). Next lever to test = topic, not frame 0.
 - **Counter-evidence (see `first_frame_evil_vs_vacuum.png`):** the BEST short (evil twin, 63.7%) had an almost EMPTY
   frame 0 (one small word + a tiny figure) and small text; the vacuum short had a full frame 0 + 159–195 px text and
   kept 48.3%. Frame-0 "fullness" and text size do not explain "stayed". Stop promising a visual fix; change ONE variable

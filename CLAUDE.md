@@ -35,8 +35,9 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 - **Motion in the first second — NOT a static poster.** Something is being written fast, pops in, zooms or shakes
   from frame 0 (shorts that did this kept 55–59%; static full-frame openings kept only 46–53%).
   The headline/question must be readable by ~0.5–0.8 s (fast handwriting), plus a sound hit at 0.0 s.
-- **First-second checklist (shorts 4/5/6: 63.7% → 56.7% → 35.5% as elements went missing) — PROVISIONAL: the robot
-  vacuum short followed all of it and kept only 48.3% (3 h). Necessary is not proven sufficient; topic may matter more:**
+- **First-second checklist (shorts 4/5/6: 63.7% → 56.7% → 35.5% as elements went missing) — NOT SUPPORTED: the two
+  shorts that passed all of it kept 48.3% (vacuum) and 48.0% (station), below the earlier average. Keep it as basic
+  hygiene only; it does not move "stayed". The bigger lever is the topic ("you / your body", planet-scale):**
   1. Frame 0 is FULL: the event already drawn + a BIG shocked stick figure (face big, legs cropped); no zoom-out
      from 0.8 that leaves empty borders, no tiny object in an empty frame. Motion = punch-in 1.06→1 + shake.
   2. HUGE text (≥140 px on 1080 wide), 2–3 lines, top third, fully written by ~0.6 s.
@@ -57,7 +58,7 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 Before handing over ANY video, cover or thumbnail, score it against every rule in this file (first-second checklist,
 QA list, thumbnail rules 1–7, identity guardrails, 180×320 + 2:3 checks). If any rule fails, fix it and re-check —
 deliver only when all pass, and show the user the scorecard (rule → pass + the evidence image).
-"10/10" means 10/10 against our checklist; never promise view or retention numbers.
+"10/10" means 10/10 against our checklist; never promise view or retention numbers — two 10/10 shorts kept only 48%.
 
 ## Before delivering ANY short (QA — mistakes we already made)
 Do every step and show the user the evidence; never hand over a short on "it looks fine".
