@@ -1,22 +1,25 @@
-# Short 1 — The 8-minute illusion (publish first, 2–3 h after the long video)
+# Short 1 — STILL SHINING (v2, owner spec: rapid-cut hook, no subtitle bar, comment CTA) — 19.9 s
 
 **Title**
 ```
-Sun: It Could Be GONE Right Now… And You Wouldn't Know ☀️
+The Sun Could Be GONE Right Now... And You Wouldn't Know For 8 Minutes
 ```
 
 **Description**
 ```
-If the Sun vanished, you wouldn't know for 8 minutes 20 seconds. Light and gravity both travel at the speed of light — in 2017, two neutron stars 130 million light-years away sent us light and gravitational waves that arrived 1.7 seconds apart.
+The light hitting your face right now left the sun 8m20s ago. You're looking at the past. For 8m20s no telescope can know the sun is gone.
 
-Would you notice? 👇
-Full video: What If the Sun Disappeared for 8 Minutes?
+Full story: youtu.be/xQwfpcWWy94
 
 #sun #space #whatif #science #shorts
 ```
 
-**Related video:** What If the Sun Disappeared for 8 Minutes?
+**Related video:** What If The Sun Vanished For 8 Minutes Then Came Back? (youtu.be/xQwfpcWWy94)
 
-**Pinned comment:** Would you notice if the Sun vanished RIGHT NOW? YES or NO? 👇
+**Pinned comment**
+```
+Would you notice if the sun vanished RIGHT NOW? YES/NO? Comment! 👇
+Full 2:39 story of what happens after 8m20s 👉 youtu.be/xQwfpcWWy94
+```
 
-**Cover:** cover.png (STILL SHINING?)
+**Cover:** cover.png (STILL SHINING?) — better than frame 0.5 s, which shows only "GONE" on black.
