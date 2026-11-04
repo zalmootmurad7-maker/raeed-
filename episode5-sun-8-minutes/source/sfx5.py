@@ -63,7 +63,8 @@ for t0,f in[(134.3,440),(136.0,523.3),(138.0,392),(140.0,349.2),(142.3,329.6),(1
     at(mus,t0,piano(f)+0.5*piano(f*1.5),0.22)
 venv=np.convolve(np.abs(v),np.ones(2200)/2200,'same');duck=1-0.55*np.clip(venv/0.04,0,1)
 vv=v/np.abs(v).max()*0.8
-mix=vv+sfx*(0.6+0.4*duck)+mus*duck
+mduck=1-0.75*np.clip(venv/0.04,0,1)
+mix=vv+sfx*(0.6+0.4*duck)+mus*0.32*mduck  # music -10 dB, ducks -12 dB under voice
 mix[int(156.8*sr):]*=np.linspace(1,0,N-int(156.8*sr))
 mix=np.tanh(mix*1.1)/np.tanh(1.1);mix*=0.92/np.abs(mix).max()
 st=np.stack([mix,mix],1)
