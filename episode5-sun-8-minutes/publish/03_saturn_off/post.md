@@ -2,7 +2,7 @@
 
 **Title**
 ```
-Saturn Goes Dark 3 HOURS After the Sun Comes Back 🪐
+Saturn Goes Dark 3 HOURS After the Sun Vanished 🪐
 ```
 
 **Description**
