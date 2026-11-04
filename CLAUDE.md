@@ -135,6 +135,10 @@ Do every step and show the user the evidence; never hand over a short on "it loo
 - Script → ElevenLabs v3 (voice "Mark", audio tags like [excited], [serious], [short pause]).
 - Word timings: pocketsphinx forced alignment (`moon-blackhole/source/align.py`, with custom pronunciations).
 - Render: Playwright frame-by-frame → ffmpeg (`moon-protons/source/render.js`, 4 workers in parallel).
+- **Audio mix levels (owner rule, CapCut-style %, voice = 100% reference):** voice 100%, peak ≈ −6 dBFS, no echo/reverb;
+  music 20% base → 10% under speech → 25% in silences; extra ducks: 5% for 1 s on key lines, 0% for 0.5 s on big hits;
+  SFX bus 75% (bass drop 80%, power click 90%, crickets 40%, ding 80%, counter ticks 50%). Then one static gain to
+  −14.5 LUFS + limiter at −1 dBFS (keeps the ratios). Reference: `episode5-sun-8-minutes/source/sfx5.py`.
 - Sound: synthesized SFX + light plucked music bed (`moon-blackhole/source/sfx_v3.py`); pencil/pop cues parsed from the scene code.
 
 ## Publishing
