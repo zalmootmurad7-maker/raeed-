@@ -13,13 +13,13 @@
 
 [curious] Step one. Hold up the road. Normal bridges stand on pillars. So how deep is the water?
 The Pacific is about four kilometers deep on average. Its deepest trench goes down almost eleven. Flip Mount Everest upside down, drop it in, and it still doesn't touch the bottom.
-The deepest bridge pillar ever built stands in about sixty-five meters of water. The deepest fixed oil platform, about five hundred. We'd need towers eight times taller than that. Thousands of them.
+Record-breaking bridge pillars, in Greece, stand in about sixty-five meters of water. The deepest fixed oil platform, about five hundred. We'd need towers eight times taller than that. Thousands of them.
 [excited] So, forget pillars. We float the bridge!
 Floating bridges are real. The longest one, near Seattle, is two point three kilometers long. It sits on giant concrete pontoons, chained to the lake bed.
-Ours needs to be three thousand five hundred times longer. And chained to the bottom of the Pacific. Four kilometers down. Nobody has ever anchored anything that deep.
+Ours needs to be three thousand five hundred times longer. And chained to the bottom of the Pacific. Four kilometers down. The deepest giant floating platform ever anchored, an oil ship in the Gulf of Mexico, sits in less than three.
 
 [serious] Now the ocean fights back.
-This isn't a lake. The Pacific makes typhoons. Waves taller than a six-story building, slamming into your road, all day, every day, for decades. One weak spot, and the whole thing snaps.
+This isn't a lake. The Pacific makes typhoons. One typhoon wave was measured at thirty-two meters. A ten-story building, slamming into your road, all day, every day, for decades. One weak spot, and the whole thing snaps.
 [mischievously] Fine. Let's cheat. Build artificial islands every four kilometers, and connect them with short bridges.
 That's two thousand islands. Each one a tiny offshore city, floating in open ocean, with no land in sight.
 [curious] But wait. Ships. Every year, thousands of giant cargo ships cross the Pacific. Your bridge just built an eight thousand kilometer wall across their path. So every island needs a drawbridge. Two thousand drawbridges.
@@ -44,20 +44,20 @@ If this blew your mind, hit like!
 | Pacific average depth | ~4.0–4.3 km ("about four") | NOAA |
 | Deepest trench | Challenger Deep ~10.9 km ("almost eleven") | NOAA |
 | Everest upside down doesn't touch bottom | Everest 8.85 km < 10.9 km | computed |
-| Deepest bridge pillar | Rion–Antirion bridge, ~65 m of water | bridge records |
-| Deepest fixed oil platform | Petronius compliant tower, ~535 m ("about five hundred") | offshore records |
+| Record bridge pillars | Rion–Antirion bridge (Greece), 60–65 m of water; foundation depth described as a world record for a bridge | ✅ verified (ASCE / Structurae / Modern Steel Construction) |
+| Deepest fixed oil platform | Petronius compliant tower, 535 m of water ("about five hundred") | ✅ verified (offshore-technology.com, Structurae) |
 | "eight times taller" | 4,000 m ÷ ~500 m | computed |
-| Longest floating bridge | Evergreen Point (SR 520), Seattle, 2.35 km | WSDOT |
+| Longest floating bridge | Evergreen Point (SR 520), Seattle, 7,710 ft = 2.35 km, Guinness-certified 2016 | ✅ verified (WSP / WSDOT) |
 | "three thousand five hundred times longer" | 8,270 ÷ 2.35 ≈ 3,500; hook says "three thousand times" (rounded down) | computed |
-| "Nobody has ever anchored anything that deep" | deepest moored floating production units ≈ 2.9 km (Stones FPSO) < 4 km | offshore records — re-check |
-| Typhoon waves taller than a 6-story building | storm waves of 20 m+ are recorded in Pacific typhoons | buoy records — re-check |
+| Deepest giant floating platform anchored: "less than three" km | Shell Stones FPSO *Turritella*, 2,900 m, Gulf of Mexico (2016) | ✅ verified. NOTE: "nobody ever anchored anything that deep" was FALSE — small tsunami (DART) buoys are anchored in up to 6,000 m; the script now says *giant floating platform* |
+| One typhoon wave measured 32 m ("a ten-story building") | 32.3 m max wave, buoy off NE Taiwan, Typhoon Krosa 2007 (Liu et al., Annales Geophysicae 2008) | ✅ verified |
 | 2,000 islands | 8,000 km ÷ 4 km | computed |
-| Longest sea bridge cost | Hong Kong–Zhuhai–Macau, 55 km, ~US$18.8 bn → ~$340 M/km ("about three hundred million") | reported cost |
+| Longest sea bridge cost | Hong Kong–Zhuhai–Macau, 55 km, ¥127 bn ≈ US$18.8 bn → ~$340 M/km ("about three hundred million") | ✅ verified (reported cost range $15.6–20 bn) |
 | Almost three trillion | $0.34 bn × 8,000 km ≈ $2.7 trillion | computed |
 | 400× air pressure at the seafloor | 4,000 m of seawater ≈ 397 atm | computed |
-| Longest undersea tunnel section | Channel Tunnel, ~38 km under the sea | Eurotunnel |
+| Longest undersea tunnel section | Channel Tunnel, 37.9 km under the sea ("thirty-eight") | ✅ verified (Getlink / CNN) |
 
-Numbers marked "re-check" must be confirmed before recording.
+All numbers above were checked on 2026-11-05.
 
 ## Re-hooks (every 20–30 s)
 promise "the thing that actually breaks… not the ocean" (≈0:12) → "Flip Mount Everest upside down" (≈0:30) → "So, forget pillars!" (≈0:50)
@@ -74,7 +74,7 @@ Ocean scenes: a cross-section panel (sky / sea in light blue ink wash / black se
 | 0:20 | Ocean cross-section: depth ruler 4 KM, trench 11 KM, Everest drawn upside down in the trench (doesn't reach the floor) |
 | 0:40 | Pillar comparison: Rion-Antirion 65 m, oil platform 500 m, needed tower 4,000 m (towering red dashed outline) |
 | 0:55 | Floating bridge on pontoons, chains down to a lake bed; then zoom out ×3,500 and chains vanishing 4 km down |
-| 1:15 | Typhoon: bridge flexing on a 20 m wave next to a 6-story building silhouette; one red crack → snap |
+| 1:15 | Typhoon: bridge flexing on a 32 m wave next to a 10-story building silhouette; one red crack → snap |
 | 1:30 | Chain of islands across the map, counter 0 → 2,000 |
 | 1:45 | Cargo ships blocked by the line ("8,000 KM WALL"), drawbridges popping up one after another |
 | 2:00 | Cost: HZMB drawn small, "$340 M / KM" × 8,000 → money counter rolling to "$2.7 TRILLION" |
