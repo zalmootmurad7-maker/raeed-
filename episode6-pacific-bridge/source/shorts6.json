@@ -1,0 +1,44 @@
+{
+ "A_everest": {
+  "id": "A",
+  "segs": [
+   [
+    29.53,
+    51.0
+   ]
+  ],
+  "cta": "COULD WE BUILD IT?"
+ },
+ "B_drawbridges": {
+  "id": "B",
+  "segs": [
+   [
+    93.57,
+    99.9
+   ],
+   [
+    105.06,
+    118.27
+   ]
+  ],
+  "cta": "BRIDGE OR TUNNEL?"
+ },
+ "C_the_bill": {
+  "id": "C",
+  "segs": [
+   [
+    129.91,
+    134.4
+   ],
+   [
+    120.03,
+    129.85
+   ],
+   [
+    148.42,
+    151.7
+   ]
+  ],
+  "cta": "WORTH $2.7 TRILLION?"
+ }
+}

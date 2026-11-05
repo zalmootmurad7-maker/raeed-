@@ -1,0 +1,71 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PH";src:url(file:///tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas>
+<script>
+// Ink & Atoms — Robot Vacuum Part 2 (19 s, 1080x1920). Palette: paper #F5E6D3, ink #1A1A1A, red #FF0000.
+const W=1280,H=720,CX=640,TAU=Math.PI*2;
+const PAPER='#F6F4F8',INK='#161616',RED='#D2382C',LW=12;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=k=>1-Math.pow(1-k,3),eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,eBack=k=>{const c=1.70158;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let BOIL=0; // line boil: hand-drawn lines re-wobble every 0.15 s like old animation
+const nz=(i,s)=>{const r=rng(Math.floor(i)*977+s*131+BOIL*7919)();return r*2-1;};
+function wobPts(pts,seed,amp=2.2){return pts.map((p,i)=>[p[0]+nz(i,seed)*amp,p[1]+nz(i+50,seed)*amp]);}
+function poly(pts,{w=LW,col=INK,fill=null,close=false,seed=1,amp=2.2}={}){const q=wobPts(pts,seed,amp);ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);
+  for(let i=1;i<q.length;i++)ctx.lineTo(q[i][0],q[i][1]);if(close)ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(w>0){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function line(x1,y1,x2,y2,o={}){const n=6,p=[];for(let i=0;i<=n;i++)p.push([lerp(x1,x2,i/n),lerp(y1,y2,i/n)]);poly(p,o);}
+function ell(x,y,rx,ry,o={}){const n=40,p=[];for(let i=0;i<=n;i++){const a=i/n*TAU;p.push([x+Math.cos(a)*rx,y+Math.sin(a)*ry]);}poly(p,{...o,close:true});}
+function rrect(x,y,w,h,r,o={}){const p=[],seg=(cx,cy,a0)=>{for(let i=0;i<=6;i++){const a=a0+i/6*Math.PI/2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}};
+  seg(x+w-r,y+r,-Math.PI/2);seg(x+w-r,y+h-r,0);seg(x+r,y+h-r,Math.PI/2);seg(x+r,y+r,Math.PI);poly(p,{...o,close:true});}
+function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',rot=0}={}){if(k<=0||a<=0)return;ctx.save();ctx.globalAlpha*=a;
+  ctx.font=`${size}px "PH"`;ctx.textBaseline='middle';const full=ctx.measureText(s).width,sub=s.slice(0,Math.ceil(s.length*clamp(k)));
+  const x0=align==='center'?x-full/2:align==='right'?x-full:x;if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
+  if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);if(!stroke){ctx.lineWidth=2.2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);} // faux-bold
+  ctx.restore();return full;}
+function fit(s,size,maxW){ctx.save();ctx.font=`${size}px "PH"`;const w=ctx.measureText(s).width;ctx.restore();return Math.min(size,size*maxW/w);}
+function glow(x,y,r,rgba,a=1){if(a<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
+
+// ===== Cover: Space Station — "STILL ON?!" (identity template, phone-first, thick strokes) =====
+const SPACE='#0A0A1F',WINY='#FFD84A',FIRE='#FF8A1F';
+
+function bg(){ctx.fillStyle=SPACE;ctx.fillRect(0,0,W,H);const R=rng(11);for(let k=0;k<200;k++){ctx.fillStyle=`rgba(255,255,255,${0.3+R()*0.5})`;ctx.beginPath();ctx.arc(R()*W,R()*H,1.5+R()*3,0,TAU);ctx.fill();}}
+function figureBig(fx,hy,hr){ctx.save();ctx.strokeStyle='#FFFFFF';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=17;
+  ctx.beginPath();ctx.moveTo(fx,hy+hr);ctx.lineTo(fx,hy+hr+380);ctx.moveTo(fx-215,hy-150);ctx.lineTo(fx-120,hy+40);ctx.lineTo(fx,hy+hr+70);ctx.lineTo(fx+120,hy+40);ctx.lineTo(fx+215,hy-150);ctx.stroke();
+  for(const sd of[-1,1]){ctx.beginPath();ctx.arc(fx+sd*215,hy-150,15,0,TAU);ctx.fillStyle='#FFFFFF';ctx.fill();}ctx.restore();
+  ell(fx,hy,hr,hr,{w:14,col:'#FFFFFF',fill:'#F6F4F8',seed:90,amp:2.5});ctx.fillStyle=INK;for(const ex of[-36,36]){ctx.beginPath();ctx.arc(fx+ex,hy-22,17,0,TAU);ctx.fill();}
+  ell(fx,hy+42,24,32,{w:11,col:INK,fill:'#3a1414',seed:91,amp:1});
+  for(const sd of[-1,1])for(let k=0;k<2;k++){const r=hr+26+k*22;ctx.strokeStyle='#FFFFFF';ctx.lineWidth=9;ctx.beginPath();ctx.arc(fx,hy,r,sd<0?Math.PI*0.82:-Math.PI*0.18,sd<0?Math.PI*1.18:Math.PI*0.18);ctx.stroke();}}
+function bar(word,size=270){ctx.save();ctx.translate(CX,380);ctx.rotate(-0.025);ctx.fillStyle='#FFE14A';ctx.fillRect(-470,-150,940,300);
+  poly([[-470,-150],[470,-150],[470,150],[-470,150]],{w:LW,col:INK,close:true,seed:60,amp:2.5});ctx.restore();txt(word,CX,372,fit(word,size,860),{col:RED,rot:-0.025});}
+
+function bar16(word){ctx.save();ctx.translate(360,125);ctx.rotate(-0.02);ctx.fillStyle='#FFE14A';ctx.fillRect(-330,-90,660,180);
+  poly([[-330,-90],[330,-90],[330,90],[-330,90]],{w:10,col:INK,close:true,seed:60,amp:2});ctx.restore();txt(word,360,120,fit(word,170,600),{col:RED,rot:-0.02});}
+function fig16(fx,hy,hr){ctx.save();ctx.strokeStyle='#FFFFFF';ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=13;
+  ctx.beginPath();ctx.moveTo(fx,hy+hr);ctx.lineTo(fx,hy+hr+300);ctx.moveTo(fx-160,hy-115);ctx.lineTo(fx-92,hy+30);ctx.lineTo(fx,hy+hr+55);ctx.lineTo(fx+92,hy+30);ctx.lineTo(fx+160,hy-115);ctx.stroke();
+  for(const sd of[-1,1]){ctx.beginPath();ctx.arc(fx+sd*160,hy-115,12,0,TAU);ctx.fillStyle='#FFFFFF';ctx.fill();}ctx.restore();
+  ell(fx,hy,hr,hr,{w:11,col:'#FFFFFF',fill:'#F6F4F8',seed:90,amp:2});ctx.fillStyle=INK;for(const ex of[-28,28]){ctx.beginPath();ctx.arc(fx+ex,hy-17,13,0,TAU);ctx.fill();}
+  ell(fx,hy+33,19,25,{w:9,col:INK,fill:'#3a1414',seed:91,amp:1});
+  for(const sd of[-1,1])for(let k=0;k<2;k++){const r=hr+20+k*17;ctx.strokeStyle='#FFFFFF';ctx.lineWidth=7;ctx.beginPath();ctx.arc(fx,hy,r,sd<0?Math.PI*0.82:-Math.PI*0.18,sd<0?Math.PI*1.18:Math.PI*0.18);ctx.stroke();}}
+function bg16(){ctx.fillStyle=SPACE;ctx.fillRect(0,0,W,H);const R=rng(11);for(let k=0;k<160;k++){ctx.fillStyle=`rgba(255,255,255,${0.3+R()*0.5})`;ctx.beginPath();ctx.arc(R()*W,R()*H,1+R()*2.5,0,TAU);ctx.fill();}}
+
+function oceanBG(hz){const g=ctx.createLinearGradient(0,0,0,hz);g.addColorStop(0,'#bcd8ef');g.addColorStop(1,'#eaf3fa');ctx.fillStyle=g;ctx.fillRect(0,0,W,hz);
+  const s=ctx.createLinearGradient(0,hz,0,H);s.addColorStop(0,'#6f9cc7');s.addColorStop(1,'#1f4468');ctx.fillStyle=s;ctx.fillRect(0,hz,W,H-hz);line(0,hz,W,hz,{w:6,col:'#2c557d',seed:3,amp:1});
+  const R=rng(9);for(let k=0;k<40;k++){const x=R()*W,y=hz+20+R()*(H-hz-20);line(x,y,x+30+R()*40,y-4,{w:4,col:'#cfe2f2',seed:10+k,amp:1});}}
+function carT(x,y,s){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-70,-40,140,50,14,{w:7,fill:'#d2382c',seed:810});rrect(-40,-75,80,40,12,{w:7,fill:'#fff',seed:811});for(const wx of[-42,42])ell(wx,12,18,18,{w:7,fill:INK,seed:813+wx});ctx.restore();}
+function draw(){BOIL=3;ctx.setTransform(1,0,0,1,0,0);const hz=300;oceanBG(hz);
+  // road from bottom-right to the horizon (perspective), glowing deck = the ONE event
+  glow(900,330,420,'rgba(255,215,0,0.55)',1);
+  ctx.fillStyle='#3d3d45';ctx.beginPath();ctx.moveTo(560,720);ctx.lineTo(1280,720);ctx.lineTo(905,hz);ctx.lineTo(895,hz);ctx.closePath();ctx.fill();
+  ctx.strokeStyle=INK;ctx.lineWidth=10;ctx.beginPath();ctx.moveTo(560,720);ctx.lineTo(895,hz);ctx.moveTo(1280,720);ctx.lineTo(905,hz);ctx.stroke();
+  ctx.strokeStyle='#FFD84A';ctx.lineWidth=8;ctx.setLineDash([40,30]);ctx.beginPath();ctx.moveTo(920,720);ctx.lineTo(900,hz);ctx.stroke();ctx.setLineDash([]);
+  for(let k=0;k<8;k++){const y=lerp(700,hz+8,Math.pow(k/8,0.6));const hw=lerp(360,6,Math.pow(k/8,0.6));rrect(920-hw*0.2-8,y,16,lerp(80,4,k/8),3,{w:3,fill:'#c9c9d2',seed:40+k});}
+  carT(1010,640,1.0);fig16(190,440,80);bar16('8,000 KM?!');}
+window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready).then(draw);
+</script></body></html>
