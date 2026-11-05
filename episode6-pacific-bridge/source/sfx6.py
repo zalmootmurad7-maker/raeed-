@@ -78,6 +78,11 @@ g=smooth(g,120);music=mus_n*g
 def norm(x):p=np.abs(x).max();return x/p if p>0 else x
 pct={'gen':0.75,'bass':0.80,'click':0.90,'ding':0.80,'tick':0.50,'whoosh':0.70,'wave':0.60,'birds':0.40}
 fx=sum(VPK*pct[k]*norm(BUS[k]) for k in BUS if np.abs(BUS[k]).max()>0)
+SFX_LEVEL=0.40                                  # v2: SFX bus down ~8 dB overall (owner: SFX covered the voice)
+fxduck=smooth(np.where(speech,0.45,1.0),60)      # and a further ~7 dB under every spoken word
+fx=fx*SFX_LEVEL*fxduck
+r_=lambda x:20*np.log10(np.sqrt(np.mean(x**2))+1e-12)
+print('SFX under voice %.1f dB | SFX in gaps %.1f dB'%(r_(fx[speech]),r_(fx[~speech])))
 mix=vv+music+fx;mix[int(175.4*sr):]*=np.linspace(1,0,N-int(175.4*sr))
 pk=np.abs(mix).max();mix=mix/pk*0.97 if pk>0.97 else mix
 st=np.stack([mix,mix],1);o=wave.open('mix6_pre.wav','w');o.setnchannels(2);o.setsampwidth(2);o.setframerate(sr);o.writeframes((np.clip(st,-1,1)*32767).astype(np.int16).tobytes());o.close()
