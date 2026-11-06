@@ -1,4 +1,4 @@
-# Episode 6 FINAL — pacific_bridge_final.mp4 (4:26, locked voiceover)
+# Episode 6 FINAL — pacific_bridge_final_3m55.mp4 (3:55; pauses capped at 0.3 s + voice 1.097×, pitch kept)
 
 **Title**
 ```
@@ -11,20 +11,20 @@ You're driving. Rain hammering your windshield. 7,800 km of road ahead, and no l
 
 CHAPTERS
 00:00 You're driving across the Pacific
-00:19 Tokyo to San Francisco: 8,000 km
-00:36 Step 1: hold up the road
-00:43 How deep is the Pacific?
-00:54 We'd need towers 4,000 m tall
-01:08 The Ring of Fire
-01:19 Forget pillars: float it
-01:46 The 80 hours: survival islands
-02:11 Ships: 2,000 drawbridges
-02:25 The ocean fights back
-02:37 Metal fatigue
-02:50 The bill: $2.7 trillion
-03:18 The twist
-03:36 Just dig a tunnel?
-04:02 Would you dare?
+00:16 Tokyo to San Francisco: 8,000 km
+00:31 Step 1: hold up the road
+00:37 How deep is the Pacific?
+00:46 We'd need towers 4,000 m tall
+00:59 The Ring of Fire
+01:08 Forget pillars: float it
+01:32 The 80 hours: survival islands
+01:54 Ships: 2,000 drawbridges
+02:07 The ocean fights back
+02:18 Metal fatigue
+02:29 The bill: $2.7 trillion
+02:54 The twist
+03:10 Just dig a tunnel?
+03:33 Would you dare?
 
 THE NUMBERS
 - Tokyo → San Francisco: ~8,000 km (80 hours of driving)
