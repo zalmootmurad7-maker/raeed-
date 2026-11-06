@@ -1,4 +1,4 @@
-# Episode 6 FINAL — pacific_bridge_final_3m55.mp4 (3:55; pauses capped at 0.3 s + voice 1.097×, pitch kept)
+# Episode 6 FINAL — pacific_bridge_final_3m55.mp4 (3:55; "in Greece" + "hair" lines re-recorded, pauses capped at 0.3 s + voice 1.099×, pitch kept)
 
 **Title**
 ```
@@ -16,9 +16,9 @@ CHAPTERS
 00:37 How deep is the Pacific?
 00:46 We'd need towers 4,000 m tall
 00:59 The Ring of Fire
-01:08 Forget pillars: float it
-01:32 The 80 hours: survival islands
-01:54 Ships: 2,000 drawbridges
+01:09 Forget pillars: float it
+01:33 The 80 hours: survival islands
+01:55 Ships: 2,000 drawbridges
 02:07 The ocean fights back
 02:18 Metal fatigue
 02:29 The bill: $2.7 trillion
