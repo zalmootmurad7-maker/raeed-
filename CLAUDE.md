@@ -63,6 +63,11 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
   4. First voice words are a complete, self-explanatory sentence: never start with "And / But / So", never an
      undefined "it". Prepend the episode's premise line if needed ("Every human on Earth just vanished.").
   Reference implementation: `episode4-last-light/source/shorts7_hookcards.js`.
+- **Short = the doorway into the long video's story (owner rule, 2026-11-08).** The short must be enjoyable and complete
+  on its own (it pays off the WHAT: one surprising, true fact + one number, as in SATURN OFF?! = 11.3k views, 69.7% stayed),
+  but it does NOT give the whole explanation: it ends on a puzzle/question whose WHY and details are only in the long
+  video. Never an ad ("watch the full video" as the payoff is not allowed); the funnel is the Related video link,
+  the pinned comment and the open question on screen.
 - **Open on the strongest voice line of the clip** (a question or the title's promise), even if it comes from later
   in the long video — reorder segments. The first words must match the title.
 - **Length 15–22 s** (17–22 s shorts are watched 82–94% through; 30–37 s only 49–71%). One idea per short.
