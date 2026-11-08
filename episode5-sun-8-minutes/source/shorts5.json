@@ -56,5 +56,32 @@
    ]
   ],
   "cta": "JUPITER OR SATURN?"
+ },
+ "s2b": {
+  "id": "s2b",
+  "segs": [
+   [
+    5.85,
+    7.8
+   ],
+   [
+    22.4,
+    25.5
+   ],
+   [
+    52.0,
+    57.4
+   ],
+   [
+    60.62,
+    68.85
+   ],
+   [
+    25.62,
+    26.15
+   ]
+  ],
+  "hold": 2.0,
+  "note": "v2 SATURN formula: surprising fact + number; WHY left for the long video; answer card 2 s"
  }
 }

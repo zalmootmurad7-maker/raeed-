@@ -1,22 +1,32 @@
-# Short 2 — Instant night (day 2)
+# Short 2 (v2) — THE SKY WAITS (NOON = NIGHT?) — SATURN OFF?! formula: one surprising fact + one number; the WHY is answered only in the long video
+
+`short.mp4` — 21.2 s, 1080×1920, −14.6 LUFS. Ends on the voice asking "Why?" + a 2 s card "THE ANSWER IS IN THE FULL VIDEO" with an arrow down to the Related video link.
 
 **Title**
 ```
-Sun Disappears: At Noon, the Sky Just… Turns Off 🌑
+The Sky Stays Blue for 8 Minutes After the Sun Vanishes. Why? ☀️
 ```
 
 **Description**
 ```
-Minute 8:20 after the Sun vanished: no sunset, no warning, just night. Stars at lunchtime, solar panels drop to zero, crickets start singing, and the Moon turns black.
+The Sun vanishes. Poof. And for 8 minutes and 20 seconds… nothing happens. The sky stays blue. No telescope, no satellite, nothing on Earth can tell. Then, at noon, it turns to night in a single second. No sunset. No warning.
 
-What would YOU do if noon turned into night? 👇
-Full video: What If the Sun Disappeared for 8 Minutes?
+So why did the sky wait 8 minutes? The answer is in the full video 👇
+Full video: youtu.be/xQwfpcWWy94
 
-#sun #blackout #whatif #science #shorts
+#sun #space #whatif #science #shorts
 ```
 
-**Related video:** What If the Sun Disappeared for 8 Minutes?
+**Tags**
+```
+sun disappeared, what if the sun disappeared, sun vanished, sky stays blue, noon turns to night, 8 minutes 20 seconds, speed of light, space facts, astronomy shorts, science shorts, ink and atoms
+```
 
-**Pinned comment:** What would YOU do if noon turned into night instantly? 👇
+**Related video:** What If The Sun Vanished For 8 Minutes Then Came Back? (youtu.be/xQwfpcWWy94)
 
-**Cover:** cover.png (NOON = NIGHT?)
+**Pinned comment**
+```
+Why did the sky WAIT 8 minutes after the Sun was gone? ☀️⏳ Guess first in the comments 👇 then check the full video: youtu.be/xQwfpcWWy94
+```
+
+**Cover:** `cover.png` (NOON = NIGHT? — unchanged, already passes the 180×320 and 2:3 checks)
