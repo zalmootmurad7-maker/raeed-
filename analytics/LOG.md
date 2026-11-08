@@ -19,6 +19,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | My Robot Vacuum Kept Cleaning… (ep. 4, v7 checklist: full frame 0, big figure, 159–195 px "YOU VANISHED. YOUR VACUUM DIDN'T.") | 11-02 | 0:16 | everything on the first-second checklist | **48.3%** (~3 h) | **0:17 (>100%: rewatches)** | ~103% | 419 engaged (~3 h) | – | – | – |
 | Everyone Vanished. Who Left THIS On? 400km Up (user spec + v3 audit: 144–175 px hook, big figure, recorded hook voice, comment CTA) | 11-03 | 0:18 | full frame 0, voice = text, all checklist items pass | **48.0%** (~3 h) | 0:15 | ~83% | 263 (~3 h) | – | – | – |
 | You Are Living 8 Minutes In The Past… (ep. 5 short 1 "short_11_FINAL": owner spec, 5 rapid cuts, black "GONE" frame 0, no subtitle bar, music ducked to 5%) | 11-05 | 0:20 | black frame + red GONE, flash, cuts every 0.8 s | **45.1%** (~12 h) | 0:15 | ~75% | 523 engaged (flat after ~3 h) | – | – | – |
+| **Saturn Goes Dark 3 Hours After the Sun Vanishes 🪐** (ep. 5 short 3 "SATURN OFF?!": cosmic-dominoes fact, one precise number) | 11-06 | 0:19 | ONE big Sun on black + plain statement "THE SUN VANISHES" (no question, no "you", no figure) | **69.7%** (2 d 3 h) — best ever | 0:19 | **103.5%** | **11.3k** (5× our best; #1 of 10; 9.8k in 48 h) | – | 1 | – |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -63,6 +64,14 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
   scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
   separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
+- **SATURN OFF?! = breakout (11-06, 2 d 3 h): 69.7% stayed, 103.5% watched, 11.3k views, 49 likes, 4.6k unique
+  viewers, 30.9 h watch time.** First short to pass ~63% and the first to get a 2nd/3rd wave (views climbed steadily
+  for 2 days instead of stopping at ~1–2k). What it had: a simple frame 0 (one big Sun, 3 plain words, no figure, no
+  question); a COUNTER-INTUITIVE consequence with one precise number ("Saturn goes dark ~3 hours later"); title = the
+  surprising claim itself, planet-scale space topic; 19 s; loop. It breaks checklist item 3 (no "you" question) and
+  still won → more evidence the lever is the idea, not the frame-0 recipe. Hypothesis to test on the next 3 shorts:
+  **"a surprising, specific, true consequence + one number" titles/openings** (e.g. "Everest upside down doesn't reach
+  the bottom of the Pacific"). One upload is not a rule: promote to CLAUDE.md only if 2 of the next 3 agree.
 - **Rapid-cut hook did not help either (ep. 5 short 1: 45.1%).** Five different first-second treatments in a row
   (full frame + big figure, owner rapid-cut spec, black GONE flash) all landed at 45–48%. The first frame is not the
   lever we can move by small changes. Stop redesigning the hook each upload; keep one format fixed and change only
