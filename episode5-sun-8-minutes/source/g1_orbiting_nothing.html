@@ -1,0 +1,198 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PH";src:url(../work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ===== Ink & Atoms — Episode 5: What If the Sun Disappeared for 8 Minutes? (16:9, timed to align.json) =====
+const W=1080,H=1920,CX=540,CY=960,TAU=Math.PI*2;
+const PAPER='#F5E6D3',INK='#1A1A1A',RED='#FF4444',GOLD='#FFD700',WHITE='#FFFFFF',SPACE='#0A0A1F',SKY='#BFD9F0',LW=6;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=k=>1-Math.pow(1-k,3),eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,eBack=k=>{const c=1.70158;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let BOIL=0;const nz=(i,s)=>rng(Math.floor(i)*977+s*131+BOIL*7919)()*2-1;
+function wobPts(p,seed,amp=2){return p.map((q,i)=>[q[0]+nz(i,seed)*amp,q[1]+nz(i+50,seed)*amp]);}
+function poly(pts,{w=LW,col=INK,fill=null,close=false,seed=1,amp=2,k=1}={}){const q=wobPts(pts,seed,amp);const n=Math.max(2,Math.ceil(q.length*clamp(k)));
+  ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);for(let i=1;i<n;i++)ctx.lineTo(q[i][0],q[i][1]);if(close&&k>=1)ctx.closePath();
+  if(fill&&k>=1){ctx.fillStyle=fill;ctx.fill();}if(w>0){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function line(x1,y1,x2,y2,o={}){const n=8,p=[];for(let i=0;i<=n;i++)p.push([lerp(x1,x2,i/n),lerp(y1,y2,i/n)]);poly(p,o);}
+function ell(x,y,rx,ry,o={}){const n=44,p=[];for(let i=0;i<=n;i++){const a=i/n*TAU;p.push([x+Math.cos(a)*rx,y+Math.sin(a)*ry]);}poly(p,{...o,close:true});}
+function rrect(x,y,w,h,r,o={}){const p=[],seg=(cx,cy,a0)=>{for(let i=0;i<=6;i++){const a=a0+i/6*Math.PI/2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}};
+  seg(x+w-r,y+r,-Math.PI/2);seg(x+w-r,y+h-r,0);seg(x+r,y+h-r,Math.PI/2);seg(x+r,y+r,Math.PI);poly(p,{...o,close:true});}
+function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',rot=0,maxW=1800}={}){if(k<=0||a<=0)return 0;ctx.save();ctx.globalAlpha*=a;
+  ctx.font=`${size}px "PH"`;let full=ctx.measureText(s).width;if(full>maxW){size*=maxW/full;ctx.font=`${size}px "PH"`;full=maxW;}
+  ctx.textBaseline='middle';const sub=s.slice(0,Math.ceil(s.length*clamp(k)));const x0=align==='center'?x-full/2:align==='right'?x-full:x;
+  if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
+  if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);ctx.lineWidth=2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);ctx.restore();return full;}
+const wk=(t,t0,s,cps=28)=>t<t0?0:clamp((t-t0)*cps/Math.max(1,s.length));
+const pop=(t,t0,d=0.25)=>t<t0?0:eBack(clamp((t-t0)/d));
+function glow(x,y,r,rgba,a=1){if(a<=0||r<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
+function stamp(s,x,y,size,col,t,t0,o={}){const k=pop(t,t0,0.22);if(k<=0)return;ctx.save();ctx.translate(x,y);const sk=t-t0<0.3?nz(t*60,7)*8:0;ctx.translate(sk,0);ctx.scale(k,k);txt(s,0,0,size,{col,...o});ctx.restore();}
+// ---------- backgrounds ----------
+const GRAIN=(()=>{const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');const R=rng(42);
+  for(let i=0;i<30000;i++){g.fillStyle=R()<0.5?'rgba(120,90,50,0.06)':'rgba(255,255,255,0.09)';g.fillRect(R()*W,R()*H,1+R()*2.5,1+R()*2.5);}return c;})();
+function paper(){ctx.fillStyle=PAPER;ctx.fillRect(0,0,W,H);ctx.drawImage(GRAIN,0,0);}
+const STARS=(()=>{const R=rng(5),a=[];for(let i=0;i<320;i++)a.push([R()*W,R()*H,0.8+R()*2.3,R()*TAU]);return a;})();
+function space(t,a=1){ctx.fillStyle=SPACE;ctx.fillRect(0,0,W,H);for(const[x,y,r,ph]of STARS){ctx.fillStyle=`rgba(255,255,255,${(0.4+0.4*Math.sin(t*2+ph))*a})`;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();}}
+function daySky(t,sky=1){paper();if(sky>0){ctx.save();ctx.globalAlpha=0.85*sky;ctx.fillStyle=SKY;ctx.fillRect(0,0,W,GY);ctx.restore();}
+  ctx.fillStyle='#CFE3B0';ctx.fillRect(0,GY,W,H-GY);ctx.drawImage(GRAIN,0,0);line(0,GY,W,GY,{w:LW,seed:600,amp:3});
+  for(let i=0;i<15;i++){const x=40+i*74;line(x,GY+30+(i%3)*40,x+12,GY+8+(i%3)*40,{w:3,col:'#6a8a4a',seed:610+i,amp:1});}}
+const GY=1560;function nightSky(t){space(t);ctx.fillStyle='#0d1a10';ctx.fillRect(0,GY,W,H-GY);line(0,GY,W,GY,{w:LW,col:'#3a4a3a',seed:600,amp:3});}
+// ---------- glyphs ----------
+function sun(x,y,r,t,{a=1,dashed=false}={}){if(a<=0||r<=0)return;ctx.save();ctx.globalAlpha*=a;
+  if(dashed){ctx.setLineDash([18,16]);ctx.strokeStyle=RED;ctx.lineWidth=6;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.stroke();ctx.setLineDash([]);ctx.restore();return;}
+  glow(x,y,r*2.4,'rgba(255,215,0,0.45)',1);for(let i=0;i<14;i++){const an=i/14*TAU+t*0.2;line(x+Math.cos(an)*(r+16),y+Math.sin(an)*(r+16),x+Math.cos(an)*(r+(i%2?50:78)),y+Math.sin(an)*(r+(i%2?50:78)),{w:7,col:'#E8A400',seed:70+i,amp:1.5});}
+  ell(x,y,r,r,{w:LW+1,col:INK,fill:GOLD,seed:71,amp:2.5});ctx.restore();}
+function earth(x,y,r,{lit=1,seed=80}={}){ell(x,y,r,r,{w:LW,col:lit>0.5?INK:'#cfd6ea',fill:lit>0.5?'#7FB2E5':'#1b2033',seed,amp:2});
+  if(lit>0.5){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();ctx.fillStyle='#8CC06A';const R=rng(seed);for(let i=0;i<5;i++){ctx.beginPath();ctx.ellipse(x+(R()-.5)*r*1.4,y+(R()-.5)*r*1.4,r*(0.18+R()*0.22),r*(0.12+R()*0.18),R()*3,0,TAU);ctx.fill();}ctx.restore();ell(x,y,r,r,{w:LW,col:INK,seed,amp:2});}}
+function halfEarth(x,y,r,dark){earth(x,y,r,{lit:1});if(dark>0){ctx.save();ctx.globalAlpha=dark;ctx.beginPath();ctx.arc(x,y,r-2,0,TAU);ctx.fillStyle='#0b0f1e';ctx.fill();ctx.restore();ell(x,y,r,r,{w:LW,col:'#cfd6ea',seed:81,amp:2});}}
+function moon(x,y,r,dark=0){ell(x,y,r,r,{w:LW-1,col:dark>0.5?'#cfd6ea':INK,fill:dark>0.5?'#000000':'#EDEDF2',seed:90,amp:1.5});if(dark<0.5){ctx.fillStyle='rgba(0,0,0,0.12)';for(const[dx,dy,rr]of[[-0.3,-0.2,0.2],[0.25,0.15,0.16],[-0.05,0.35,0.12]]){ctx.beginPath();ctx.arc(x+dx*r,y+dy*r,rr*r,0,TAU);ctx.fill();}}}
+// stickman: pose up|point|walk|relax|chin, mood shock|happy|curious|scream ; col for dark scenes
+function stick(x,y,s,t,{pose='relax',mood='shock',col=INK,head='#F6F4F8',shake=false,seed=100}={}){ctx.save();ctx.translate(x,y);ctx.scale(s,s);const w=LW/s*1.1;
+  const hy=-270,hr=40;line(0,-110,0,hy+hr,{w,col,seed});
+  const legs=pose==='walk'?[[-40+Math.sin(t*8)*25,0],[40-Math.sin(t*8)*25,0]]:[[-42,0],[42,0]];for(const[lx,ly]of legs)line(0,-110,lx,ly,{w,col,seed:seed+1});
+  const arms={up:[[-80,-300],[80,-300]],point:[[-50,-120],[110,-250]],walk:[[-60,-140+Math.sin(t*8)*20],[60,-140-Math.sin(t*8)*20]],relax:[[-55,-120],[55,-120]],chin:[[-50,-120],[20,-235]],cheer:[[-90,-280],[90,-280]]}[pose];
+  for(const[ax,ay]of arms)line(0,-200,ax,ay,{w,col,seed:seed+2});
+  ell(0,hy,hr,hr,{w,col,fill:head,seed:seed+3,amp:1.2});ctx.fillStyle=INK;
+  if(mood==='happy'){for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,hy-8,5,0,TAU);ctx.fill();}ctx.lineWidth=w*0.7;ctx.strokeStyle=INK;ctx.beginPath();ctx.arc(0,hy+6,16,0.15*Math.PI,0.85*Math.PI);ctx.stroke();}
+  else if(mood==='curious'){for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,hy-6,5,0,TAU);ctx.fill();}line(-6,hy+18,10,hy+16,{w:w*0.7,seed:seed+4,amp:0.5});line(-22,hy-22,-6,hy-26,{w:w*0.6,seed:seed+5,amp:0.5});}
+  else{for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,hy-8,6.5,0,TAU);ctx.fill();}ctx.fillStyle='#3a1414';ctx.beginPath();ctx.ellipse(0,hy+17,mood==='scream'?12:9,mood==='scream'?16:12,0,0,TAU);ctx.fill();ctx.lineWidth=3;ctx.strokeStyle=INK;ctx.stroke();}
+  if(shake||mood==='shock'||mood==='scream'){ctx.strokeStyle=col;ctx.lineWidth=4/s*1.2;for(const sd of[-1,1])for(let k=0;k<2;k++){ctx.beginPath();ctx.arc(0,hy,hr+16+k*12,sd<0?Math.PI*0.8:-Math.PI*0.2,sd<0?Math.PI*1.2:Math.PI*0.2);ctx.stroke();}}
+  ctx.restore();}
+function clockBig(x,y,s,label,{col=WHITE,bg='#111'}={}){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-230,-95,460,190,30,{w:8,col:INK,fill:bg,seed:120,amp:1.5});
+  ctx.font='150px "PH"';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=col;ctx.fillText(label,0,8);ctx.restore();}
+function clockBadge(label,dark){rrect(1610,968,280,90,20,{w:5,col:dark?'#cfd6ea':INK,fill:dark?'rgba(10,10,31,0.85)':'rgba(255,255,255,0.85)',seed:121,amp:1});
+  txt('T+ '+label,1750,1013,56,{col:dark?WHITE:INK});}
+function iss(x,y,s,t){ctx.save();ctx.translate(x,y);ctx.scale(s,s);line(-260,0,260,0,{w:12,col:'#d8d8e8',seed:130,amp:1});
+  for(const sx of[-1,1])for(const k of[0,1]){const px=sx*(150+k*70)-28;for(const yy of[-170,20]){ctx.fillStyle='#A8C4E5';ctx.fillRect(px,yy,56,150);poly([[px,yy],[px+56,yy],[px+56,yy+150],[px,yy+150]],{w:5,col:'#1A1A3A',close:true,seed:131+k,amp:1});}}
+  for(const mx of[-80,0,80]){rrect(mx-36,-26,72,52,16,{w:5,col:'#1A1A3A',fill:WHITE,seed:140+mx,amp:1});}ctx.restore();}
+function telescope(x,y,s){ctx.save();ctx.translate(x,y);ctx.scale(s,s);ctx.rotate(-0.5);rrect(-120,-30,240,60,10,{w:6,fill:'#ddd',seed:150});ctx.restore();ctx.save();ctx.translate(x,y);ctx.scale(s,s);line(0,10,-60,140,{seed:151});line(0,10,60,140,{seed:152});line(0,10,0,140,{seed:153});ctx.restore();}
+function satellite(x,y,s){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-40,-40,80,80,8,{w:6,fill:'#ddd',seed:160});for(const sx of[-1,1]){ctx.fillStyle='#A8C4E5';ctx.fillRect(sx>0?50:-170,-30,120,60);poly([[sx>0?50:-170,-30],[sx>0?170:-50,-30],[sx>0?170:-50,30],[sx>0?50:-170,30]],{w:5,close:true,seed:161});}line(0,-40,0,-90,{seed:162});ell(0,-100,12,12,{w:5,seed:163});ctx.restore();}
+function bigX(x,y,r,t,t0){const k=clamp((t-t0)/0.25);if(k<=0)return;line(x-r,y-r,lerp(x-r,x+r,k),lerp(y-r,y+r,k),{w:16,col:RED,seed:170,amp:2});if(k>=1)line(x+r,y-r,lerp(x+r,x-r,clamp((t-t0-0.1)/0.2)),lerp(y-r,y+r,clamp((t-t0-0.1)/0.2)),{w:16,col:RED,seed:171,amp:2});}
+function jupiter(x,y,r,dark=0){ell(x,y,r,r,{w:LW,col:dark>0.5?'#cfd6ea':INK,fill:dark>0.5?'#000':'#E7C79A',seed:180,amp:1.5});if(dark<0.5){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();ctx.fillStyle='#C99A63';for(const dy of[-0.5,-0.15,0.25,0.55])ctx.fillRect(x-r,y+dy*r,2*r,r*0.12);ctx.fillStyle='#D2382C';ctx.beginPath();ctx.ellipse(x+r*0.3,y+r*0.35,r*0.16,r*0.09,0,0,TAU);ctx.fill();ctx.restore();ell(x,y,r,r,{w:LW,col:INK,seed:180,amp:1.5});}}
+function saturn(x,y,r,dark=0){const c=dark>0.5?'#cfd6ea':INK;ctx.save();ctx.translate(x,y);ctx.rotate(-0.25);ell(0,0,r*2.1,r*0.55,{w:LW,col:c,seed:190,amp:1.5});ctx.restore();
+  ell(x,y,r,r,{w:LW,col:c,fill:dark>0.5?'#000':'#EAD9A6',seed:191,amp:1.5});ctx.save();ctx.beginPath();ctx.rect(x-r*2.3,y-2,r*4.6,r*2);ctx.translate(x,y);ctx.rotate(-0.25);ctx.strokeStyle=c;ctx.lineWidth=LW;ctx.beginPath();ctx.ellipse(0,0,r*2.1,r*0.55,0,0,Math.PI);ctx.stroke();ctx.restore();}
+function likeBtn(x,y,s,pressed){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-110,-90,220,180,30,{w:8,fill:pressed?'#FFD9D9':'#fff',seed:200});
+  poly([[-55,-5],[-20,-5],[0,-60],[25,-55],[18,-10],[60,-10],[60,55],[-20,55],[-20,-5]],{w:8,col:pressed?RED:INK,seed:201,close:true,fill:pressed?RED:null});rrect(-60,-5,32,62,6,{w:8,col:pressed?RED:INK,seed:202,fill:pressed?RED:null});ctx.restore();}
+// ---------- captions (burned-in, phrase by phrase) ----------
+let WORDS=[];const CAP=[];const ALIGN=[["right", 0.14, 0.39], ["now", 0.4, 0.73], ["the", 0.74, 0.96], ["sun", 0.97, 1.26], ["could", 1.27, 1.41], ["already", 1.42, 1.93], ["be", 1.94, 2.05], ["gone", 2.06, 2.53], ["and", 2.54, 2.91], ["you", 2.92, 3.02], ["wouldn't", 3.03, 3.3], ["know", 3.31, 3.52], ["for", 3.53, 3.75], ["eight", 3.85, 4.14], ["minutes", 4.15, 4.61], ["so", 4.79, 5.09], ["let's", 5.1, 5.36], ["do", 5.37, 5.75], ["it", 5.76, 5.9], ["the", 5.91, 6.07], ["sun", 6.08, 6.48], ["vanishes", 6.49, 7.16], ["poof", 7.37, 7.67], ["all", 7.86, 8.05], ["of", 8.06, 8.14], ["it", 8.15, 8.39], ["then", 8.4, 8.83], ["eight", 9.02, 9.18], ["minutes", 9.19, 9.45], ["later", 9.46, 9.77], ["it", 9.98, 10.06], ["pops", 10.07, 10.41], ["right", 10.42, 10.75], ["back", 10.76, 11.08], ["impossible", 11.37, 11.98], ["totally", 12.24, 12.74], ["but", 12.99, 13.17], ["physics", 13.18, 13.55], ["knows", 13.56, 13.81], ["exactly", 13.82, 14.46], ["what", 14.47, 14.63], ["happens", 14.64, 15.02], ["next", 15.03, 15.39], ["and", 15.66, 15.76], ["before", 15.77, 16.01], ["this", 16.02, 16.17], ["video", 16.18, 16.48], ["is", 16.49, 16.59], ["over", 16.6, 16.95], ["i'll", 17.1, 17.24], ["show", 17.25, 17.42], ["you", 17.43, 17.55], ["the", 17.56, 17.63], ["planet", 17.64, 18.0], ["that", 18.01, 18.12], ["sees", 18.13, 18.42], ["the", 18.43, 18.51], ["blackout", 18.52, 19.0], ["three", 19.01, 19.43], ["hours", 19.44, 19.73], ["late", 19.74, 20.01], ["minute", 20.3, 20.62], ["zero", 20.63, 21.11], ["the", 21.35, 21.42], ["sun", 21.43, 21.66], ["is", 21.67, 21.79], ["gone", 21.8, 22.23], ["you're", 22.45, 22.62], ["outside", 22.63, 23.14], ["the", 23.39, 23.44], ["sky", 23.45, 23.79], ["is", 23.8, 23.91], ["blue", 23.92, 24.27], ["nothing", 24.53, 24.92], ["happens", 24.93, 25.42], ["why", 25.68, 26.05], ["because", 26.32, 26.59], ["the", 26.6, 26.66], ["light", 26.67, 26.94], ["hitting", 26.95, 27.2], ["your", 27.21, 27.31], ["face", 27.32, 27.66], ["right", 27.67, 28.05], ["now", 28.06, 28.42], ["left", 28.43, 28.73], ["the", 28.74, 28.8], ["sun", 28.81, 29.11], ["eight", 29.12, 29.46], ["minutes", 29.47, 29.8], ["and", 29.81, 29.95], ["twenty", 29.96, 30.28], ["seconds", 30.29, 30.7], ["ago", 30.71, 30.99], ["you're", 31.26, 31.38], ["looking", 31.39, 31.75], ["at", 31.76, 31.84], ["the", 31.85, 31.91], ["past", 31.92, 32.51], ["but", 32.77, 32.93], ["surely", 32.94, 33.37], ["gravity", 33.38, 33.88], ["would", 33.89, 34.05], ["tell", 34.06, 34.3], ["us", 34.31, 34.56], ["no", 34.89, 35.05], ["sun", 35.06, 35.58], ["no", 35.59, 35.84], ["pull", 35.85, 36.32], ["earth", 36.48, 36.6], ["flies", 36.61, 36.96], ["off", 36.97, 37.24], ["right", 37.25, 37.53], ["nope", 37.77, 38.14], ["gravity", 38.45, 38.93], ["is", 38.94, 39.04], ["stuck", 39.05, 39.32], ["at", 39.33, 39.39], ["the", 39.4, 39.45], ["speed", 39.46, 39.74], ["of", 39.75, 39.84], ["light", 39.85, 40.08], ["too", 40.09, 40.43], ["in", 40.71, 40.82], ["two", 40.83, 40.9], ["neutron", 40.91, 41.41], ["stars", 41.42, 41.71], ["collided", 41.72, 42.35], ["a", 42.36, 42.38], ["hundred", 42.39, 42.88], ["and", 43.6, 43.72], ["thirty", 43.73, 44.4], ["million", 44.41, 44.86], ["light", 44.87, 45.08], ["years", 45.09, 45.32], ["away", 45.33, 45.62], ["their", 45.95, 46.05], ["gravitational", 46.06, 46.77], ["waves", 46.78, 47.17], ["and", 47.18, 47.38], ["their", 47.39, 47.49], ["light", 47.5, 47.78], ["raced", 47.79, 48.21], ["each", 48.22, 48.38], ["other", 48.39, 48.54], ["the", 48.55, 48.64], ["whole", 48.65, 48.99], ["way", 49.0, 49.33], ["and", 49.61, 49.7], ["arrived", 49.71, 50.11], ["less", 50.12, 50.34], ["than", 50.35, 50.48], ["two", 50.49, 50.8], ["seconds", 50.81, 51.22], ["apart", 51.23, 51.64], ["so", 51.91, 52.06], ["for", 52.07, 52.24], ["eight", 52.34, 52.52], ["minutes", 52.53, 52.85], ["and", 52.86, 52.98], ["twenty", 52.99, 53.31], ["seconds", 53.32, 53.78], ["no", 54.01, 54.21], ["telescope", 54.22, 54.89], ["no", 54.9, 55.18], ["satellite", 55.19, 55.93], ["nothing", 55.94, 56.46], ["on", 56.47, 56.59], ["earth", 56.6, 56.83], ["can", 56.84, 57.02], ["know", 57.03, 57.32], ["the", 57.57, 57.63], ["sun", 57.64, 58.01], ["is", 58.02, 58.21], ["gone", 58.22, 58.59], ["and", 58.6, 58.73], ["it's", 59.06, 59.27], ["still", 59.28, 59.58], ["a", 59.59, 59.61], ["beautiful", 59.62, 60.08], ["day", 60.09, 60.38], ["minute", 60.68, 61.0], ["eight", 61.01, 61.47], ["second", 61.48, 61.9], ["twenty", 61.91, 62.34], ["it's", 62.58, 62.74], ["noon", 62.75, 63.15], ["the", 63.4, 63.45], ["sky", 63.46, 63.79], ["is", 63.8, 63.91], ["bright", 63.92, 64.31], ["and", 64.54, 64.7], ["then", 64.71, 65.07], ["darkness", 65.32, 65.91], ["no", 66.21, 66.39], ["sunset", 66.4, 66.97], ["no", 67.22, 67.44], ["warning", 67.45, 67.94], ["just", 68.22, 68.45], ["night", 68.46, 68.79], ["stars", 69.08, 69.51], ["appear", 69.52, 69.81], ["at", 69.82, 69.9], ["lunchtime", 69.91, 70.44], ["every", 70.75, 71.04], ["solar", 71.05, 71.39], ["panel", 71.4, 71.71], ["on", 71.72, 71.8], ["the", 71.81, 71.87], ["day", 71.88, 72.1], ["side", 72.11, 72.41], ["drops", 72.42, 72.71], ["to", 72.72, 72.81], ["practically", 72.82, 73.41], ["zero", 73.42, 73.96], ["the", 74.21, 74.27], ["temperature", 74.28, 74.7], ["barely", 74.71, 75.13], ["changes", 75.14, 75.54], ["at", 75.55, 75.62], ["first", 75.63, 76.04], ["a", 76.23, 76.31], ["degree", 76.32, 76.82], ["maybe", 76.83, 77.15], ["two", 77.16, 77.51], ["but", 77.76, 77.91], ["birds", 77.92, 78.28], ["go", 78.29, 78.43], ["quiet", 78.44, 78.9], ["crickets", 79.12, 79.55], ["start", 79.56, 79.77], ["singing", 79.78, 80.17], ["they", 80.42, 80.53], ["think", 80.54, 80.75], ["it's", 80.76, 80.9], ["night", 80.91, 81.26], ["on", 81.5, 81.61], ["the", 81.62, 81.67], ["night", 81.68, 81.94], ["side", 81.95, 82.4], ["people", 82.41, 82.74], ["look", 82.75, 82.94], ["up", 82.95, 83.47], ["and", 83.48, 83.58], ["the", 83.59, 83.64], ["moon", 83.65, 84.07], ["has", 84.08, 84.24], ["turned", 84.25, 84.53], ["black", 84.54, 85.04], ["and", 85.28, 85.48], ["earth", 85.49, 85.87], ["it", 86.12, 86.23], ["doesn't", 86.24, 86.5], ["stop", 86.51, 87.01], ["it", 87.31, 87.42], ["keeps", 87.43, 87.79], ["going", 87.8, 88.17], ["thirty", 88.18, 88.64], ["kilometers", 88.65, 89.29], ["every", 89.3, 89.63], ["second", 89.64, 90.23], ["in", 90.24, 90.34], ["the", 90.35, 90.41], ["direction", 90.42, 90.84], ["it", 90.85, 90.91], ["was", 90.92, 91.04], ["already", 91.05, 91.5], ["moving", 91.51, 91.91], ["the", 92.18, 92.25], ["moon", 92.26, 92.55], ["comes", 92.56, 92.79], ["along", 92.8, 93.04], ["for", 93.05, 93.15], ["the", 93.16, 93.24], ["ride", 93.25, 93.62], ["but", 93.87, 93.98], ["without", 93.99, 94.28], ["the", 94.29, 94.36], ["sun's", 94.37, 94.7], ["pull", 94.71, 95.16], ["earth", 95.32, 95.54], ["drifts", 95.55, 95.94], ["off", 95.95, 96.14], ["its", 96.15, 96.29], ["usual", 96.3, 96.62], ["path", 96.63, 97.05], ["after", 97.25, 97.51], ["eight", 97.62, 97.8], ["minutes", 97.81, 98.21], ["it's", 98.22, 98.41], ["about", 98.42, 98.67], ["seven", 98.68, 99.08], ["hundred", 99.09, 99.41], ["meters", 99.42, 99.78], ["from", 99.79, 99.92], ["where", 99.93, 100.07], ["its", 100.08, 100.18], ["orbit", 100.19, 100.51], ["would", 100.52, 100.74], ["have", 100.75, 100.83], ["taken", 100.84, 101.16], ["it", 101.17, 101.26], ["less", 101.54, 101.76], ["than", 101.77, 101.88], ["a", 101.89, 101.95], ["ten", 101.96, 102.26], ["minute", 102.27, 102.47], ["walk", 102.48, 102.86], ["the", 103.12, 103.2], ["space", 103.21, 103.53], ["station", 103.54, 103.89], ["keeps", 103.9, 104.25], ["circling", 104.26, 104.66], ["earth", 104.67, 104.98], ["its", 105.19, 105.35], ["batteries", 105.36, 105.8], ["handle", 105.81, 106.08], ["darkness", 106.09, 106.55], ["sixteen", 106.56, 107.05], ["times", 107.06, 107.36], ["a", 107.37, 107.41], ["day", 107.42, 107.72], ["but", 107.97, 108.1], ["out", 108.11, 108.23], ["the", 108.24, 108.3], ["window", 108.31, 108.77], ["the", 108.98, 109.05], ["whole", 109.06, 109.43], ["day", 109.44, 109.64], ["side", 109.65, 109.88], ["of", 109.89, 109.94], ["the", 109.95, 110.0], ["planet", 110.01, 110.42], ["just", 110.43, 110.79], ["went", 110.8, 110.97], ["black", 110.98, 111.43], ["minute", 111.7, 111.98], ["sixteen", 111.99, 112.63], ["daylight", 112.92, 113.35], ["snaps", 113.36, 113.84], ["back", 113.85, 114.21], ["the", 114.45, 114.53], ["sun", 114.54, 114.81], ["returned", 114.82, 115.19], ["at", 115.2, 115.28], ["minute", 115.29, 115.62], ["eight", 115.63, 115.91], ["its", 116.17, 116.33], ["light", 116.34, 116.55], ["just", 116.56, 116.75], ["needed", 116.76, 117.09], ["eight", 117.1, 117.26], ["minutes", 117.27, 117.57], ["to", 117.58, 117.66], ["get", 117.67, 117.87], ["here", 117.88, 118.12], ["but", 118.36, 118.57], ["the", 118.58, 118.66], ["blackout", 118.67, 119.26], ["isn't", 119.27, 119.63], ["over", 119.64, 120.02], ["sunlight", 120.33, 120.72], ["has", 120.73, 120.93], ["to", 120.94, 121.02], ["reach", 121.03, 121.36], ["the", 121.37, 121.44], ["planets", 121.45, 121.94], ["then", 121.95, 122.21], ["bounce", 122.22, 122.5], ["all", 122.64, 122.93], ["the", 122.94, 123.01], ["way", 123.02, 123.17], ["back", 123.18, 123.41], ["to", 123.42, 123.6], ["us", 123.61, 123.91], ["so", 124.2, 124.53], ["about", 124.54, 124.78], ["an", 124.79, 124.9], ["hour", 124.91, 125.23], ["and", 125.24, 125.32], ["a", 125.33, 125.35], ["half", 125.36, 125.66], ["after", 125.67, 125.87], ["the", 125.88, 125.95], ["sun", 125.96, 126.23], ["vanished", 126.24, 126.73], ["jupiter", 126.9, 127.35], ["goes", 127.36, 127.62], ["dark", 127.63, 127.94], ["and", 128.19, 128.3], ["almost", 128.31, 128.67], ["three", 128.68, 129.03], ["hours", 129.04, 129.34], ["later", 129.35, 129.79], ["saturn", 129.8, 130.25], ["switches", 130.26, 130.66], ["off", 130.67, 130.9], ["for", 131.11, 131.23], ["eight", 131.41, 131.62], ["minutes", 131.63, 132.05], ["long", 132.28, 132.68], ["after", 132.69, 132.97], ["we're", 132.98, 133.09], ["back", 133.1, 133.34], ["in", 133.35, 133.41], ["the", 133.42, 133.48], ["sunshine", 133.49, 134.06], ["and", 134.33, 134.45], ["remember", 134.46, 134.94], ["the", 135.16, 135.22], ["sun", 135.23, 135.52], ["you", 135.53, 135.65], ["see", 135.66, 135.87], ["right", 135.88, 136.26], ["now", 136.27, 136.64], ["is", 136.65, 136.85], ["already", 136.86, 137.47], ["eight", 137.57, 137.74], ["minutes", 137.75, 138.08], ["old", 138.09, 138.43], ["you", 138.58, 138.71], ["never", 138.72, 139.13], ["see", 139.14, 139.32], ["the", 139.33, 139.4], ["sun", 139.41, 139.85], ["as", 139.86, 140.06], ["it", 140.07, 140.16], ["is", 140.17, 140.6], ["only", 140.85, 141.22], ["as", 141.23, 141.37], ["it", 141.38, 141.43], ["was", 141.44, 142.01], ["so", 142.3, 142.72], ["if", 142.83, 142.94], ["it", 142.95, 143.04], ["disappeared", 143.05, 143.77], ["right", 143.78, 144.01], ["now", 144.02, 144.43], ["would", 144.75, 144.89], ["you", 144.9, 145.0], ["even", 145.01, 145.23], ["know", 145.24, 145.64], ["what", 145.91, 146.09], ["if", 146.1, 146.21], ["it", 146.22, 146.34], ["never", 146.35, 146.74], ["came", 146.75, 147.04], ["back", 147.05, 147.75], ["comment", 147.76, 148.25], ["forever", 148.26, 148.9], ["if", 148.91, 149.02], ["you", 149.03, 149.13], ["want", 149.14, 149.33], ["that", 149.34, 149.54], ["video", 149.55, 149.97], ["if", 150.3, 150.38], ["this", 150.39, 150.56], ["blew", 150.57, 150.76], ["your", 150.77, 150.9], ["mind", 150.91, 151.27], ["hit", 151.41, 151.58], ["like", 151.59, 152.16]];
+function buildCaps(){for(const[s0,e0]of CFG.segs){let cur=[];for(const[w,s,e]of WORDS){if(s<s0-0.02||s>=e0)continue;cur.push([w,s,e]);const L=cur.reduce((a,b)=>a+b[0].length+1,0);if(L>16){CAP.push(cur);cur=[];}}if(cur.length)CAP.push(cur);}}
+function captions(t){for(let i=CAP.length-1;i>=0;i--){const c=CAP[i];const s=c[0][1],e=(CAP[i+1]&&CAP[i+1][0][1]>s?Math.min(CAP[i+1][0][1],c[c.length-1][2]+0.5):c[c.length-1][2]+0.5);if(t>=s-0.05&&t<e){
+  const str=c.map(x=>x[0]).join(' ').toUpperCase();let size=96;ctx.save();ctx.font=size+'px "PH"';let w=ctx.measureText(str).width;if(w>960){size*=960/w;ctx.font=size+'px "PH"';w=960;}ctx.restore();
+  rrect(CX-w/2-30,1400,w+60,size+34,24,{w:0,fill:'rgba(17,17,17,0.82)',seed:210,amp:0.5});
+  let x=CX-w/2;ctx.save();ctx.font=size+'px "PH"';ctx.textBaseline='middle';for(const[wd,ws]of c){const s2=wd.toUpperCase()+' ';ctx.fillStyle=t>=ws?GOLD:'#FFFFFF';ctx.fillText(s2,x,1400+(size+34)/2+2);x+=ctx.measureText(s2).width;}ctx.restore();return;}}}
+const CFG={"id": "g1", "segs": [[5.85, 7.8], [34.85, 37.6], [37.7, 38.25], [52.0, 53.85], [55.9, 57.4], [85.28, 91.95]], "cta": "", "pz": ["HOW DID EARTH KNOW", "WHEN TO LET GO?"], "pzAt": 12.67};
+// ===== Episode 5 shorts (9:16). Scenes are functions of SOURCE time t (long-video timeline). Safe zone y 288–1536. =====
+function T(s,y,size,col,k=1,o={}){return txt(s,CX,y,size,{col,k,maxW:960,...o});}
+// ---- short 1: the 8-minute illusion ----
+function a_hook(t,tr){daySky(t);sun(700,820,190,t);stick(260,GY,2.4,t,{pose:'point',mood:'shock'});
+  T('THE SUN COULD BE',330,120,INK);T('GONE RIGHT NOW?!',480,150,RED);
+  if(t>2.9){rrect(560,1070,440,190,30,{w:7,fill:'#111',seed:900});txt('8:00',780,1170,140,{col:GOLD});}}
+function a_why(t){space(t);sun(540,700,150,t);earth(540,1250,110);ctx.setLineDash([14,18]);ctx.strokeStyle=GOLD;ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(540,880);ctx.lineTo(540,1130);ctx.stroke();ctx.setLineDash([]);
+  const py=lerp(880,1130,((t-26.3)/2.5)%1);if(t>26.3){glow(540,py,70,'rgba(255,215,0,0.9)',1);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(540,py,12,0,TAU);ctx.fill();}
+  T('WHY?',330,170,WHITE,1);if(t>29.1)txt('8m 20s',840,1000,90,{col:GOLD,k:wk(t,29.12,'8m 20s',20)});if(t>29.5)txt('OLD LIGHT',840,1090,70,{col:GOLD,k:wk(t,29.6,'OLD LIGHT',24)});
+  if(t>31.26)stamp('YOU SEE THE PAST',CX,480,110,RED,t,31.26);}
+function a_know(t){if(t<57.55){paper();telescope(330,800,1.1);satellite(760,1080,0.9);bigX(330,820,150,t,54.22);bigX(760,1080,150,t,55.19);
+    T('FOR 8 MIN 20 SEC',330,120,INK,wk(t,51.91,'FOR 8 MIN 20 SEC',30));if(t>55.9)stamp('NOTHING CAN KNOW',CX,520,110,RED,t,55.94);return;}
+  daySky(t);sun(820,700,130,t);ctx.fillStyle='#F2D99A';ctx.fillRect(0,1300,W,260);line(0,1300,W,1300,{w:LW,seed:430});
+  stick(330,1500,2.2,t,{pose:'cheer',mood:'happy'});ctx.fillStyle=INK;ctx.fillRect(330-44,1500-594,34,15);ctx.fillRect(330+9,1500-594,34,15);
+  T('THE SUN IS GONE...',330,110,RED,wk(t,57.57,'THE SUN IS GONE...',30));if(t>58.6)T("AND IT'S STILL A",470,100,INK,wk(t,58.6,"AND IT'S STILL A",30));if(t>59.5)T('BEAUTIFUL DAY',610,130,'#2a7a3a',wk(t,59.59,'BEAUTIFUL DAY',30));}
+// ---- short 2: instant night ----
+function b_noon(t){daySky(t);sun(800,720,150,t);stick(300,GY,2.4,t,{pose:'relax',mood:'happy'});T("IT'S NOON.",330,170,INK);T('THE SKY IS BRIGHT.',490,110,INK);
+  if(t>64.54)stamp('AND THEN...',740,1150,130,RED,t,64.54);}
+function b_dark(t){const sh=t<65.6?[nz(t*60,9)*18,nz(t*55,10)*12]:[0,0];ctx.save();ctx.translate(sh[0],sh[1]);nightSky(t);stick(820,GY,2.2,t,{pose:'up',mood:'shock',col:WHITE});
+  stamp('DARKNESS.',CX,330,190,WHITE,t,65.32);if(t>66.2)T('NO SUNSET.',520,120,GOLD,wk(t,66.21,'NO SUNSET.',30));if(t>67.2)T('NO WARNING.',650,120,GOLD,wk(t,67.22,'NO WARNING.',30));
+  if(t>68.2)stamp('JUST NIGHT.',CX,820,160,RED,t,68.22);if(t>69.08)txt('STARS AT',360,1010,100,{col:WHITE,k:wk(t,69.08,'STARS AT',30)});if(t>69.5)txt('LUNCHTIME',360,1120,100,{col:WHITE,k:wk(t,69.52,'LUNCHTIME',30)});ctx.restore();}
+function b_solar(t){nightSky(t);const X0=170,Y0=1200,Wg=780,Hg=560;line(X0,Y0-Hg,X0,Y0,{w:7,col:WHITE,seed:500});line(X0,Y0,X0+Wg,Y0,{w:7,col:WHITE,seed:501});
+  txt('100%',X0+20,Y0-Hg-40,60,{col:WHITE,align:'left'});txt('0%',X0+20,Y0+50,60,{col:WHITE,align:'left'});
+  const k=P(t,70.75,72.4),dk=P(t,72.42,72.6),xs=X0+Wg*0.5;ctx.lineWidth=12;ctx.strokeStyle=dk>0?RED:GOLD;ctx.beginPath();ctx.moveTo(X0,Y0-Hg+40);ctx.lineTo(lerp(X0,xs,k),Y0-Hg+40);
+  if(dk>0){ctx.lineTo(xs,lerp(Y0-Hg+40,Y0-6,dk));if(dk>=1)ctx.lineTo(lerp(xs,X0+Wg,P(t,72.6,73.5)),Y0-6);}ctx.stroke();
+  T('SOLAR PANELS',330,140,WHITE);if(t>72.8)stamp('ZERO',700,900,170,RED,t,72.82);}
+function b_birds(t){nightSky(t);for(let i=0;i<3;i++){const bx=260+i*280,by=600;poly([[bx-55,by],[bx,by+28],[bx+55,by]],{w:8,col:WHITE,seed:520+i});txt('Z',bx+40+((t*20+i*7)%30),by-70-((t*30+i*10)%40),60,{col:GOLD});}
+  T('BIRDS GO QUIET',330,120,WHITE,wk(t,77.76,'BIRDS GO QUIET',30));
+  if(t>79.12){for(let i=0;i<3;i++){const cx=260+i*280,cy=1050;ell(cx,cy,60,26,{w:7,col:WHITE,fill:'#2a4a2a',seed:530+i});line(cx-40,cy+20,cx-65,cy+60,{w:6,col:WHITE,seed:540+i});line(cx+25,cy+20,cx+60,cy+60,{w:6,col:WHITE,seed:545+i});txt('♪',cx+25,cy-90-Math.abs(Math.sin(t*6+i))*25,90,{col:GOLD});}
+    T('CRICKETS:',820,120,GOLD,wk(t,79.12,'CRICKETS:',30));T('"IT\'S NIGHT!"',1240,120,GOLD,wk(t,79.8,'"IT\'S NIGHT!"',30));}}
+function b_moon(t){nightSky(t);const dk=P(t,84.25,84.6);glow(CX,800,330,'rgba(230,230,240,0.5)',1-dk);moon(CX,800,230,dk>0.5?1:0);stick(220,GY,2.0,t,{pose:'point',mood:dk>0.5?'shock':'curious',col:WHITE});
+  T('ON THE NIGHT SIDE...',330,110,WHITE,wk(t,81.5,'ON THE NIGHT SIDE...',30));if(t>84.25)stamp('THE MOON',CX,1150,150,RED,t,84.3),stamp('TURNED BLACK',CX,1290,130,RED,t,84.4);}
+// ---- short 3: cosmic dominoes ----
+function c_poof(t){space(t);if(t<7.37)sun(CX,820,230,t);else if(t<10.76){const k=P(t,7.37,7.6);if(k<1){ctx.save();ctx.globalAlpha=1-k;for(let i=0;i<14;i++){const an=i/14*TAU;line(CX+Math.cos(an)*(230+k*160),820+Math.sin(an)*(230+k*160),CX+Math.cos(an)*(270+k*200),820+Math.sin(an)*(270+k*200),{w:9,col:GOLD,seed:300+i});}ctx.restore();}
+    sun(CX,820,230,t,{dashed:true});txt('POOF!',CX,820,170,{col:RED,a:clamp((t-7.37)/0.1)});}
+  else{sun(CX,820,230*pop(t,10.76,0.3),t);}
+  T('THE SUN VANISHES',330,130,WHITE);if(t>9.0)T('8 MIN LATER: BACK!',1250,110,GOLD,wk(t,9.02,'8 MIN LATER: BACK!',30));}
+function c_dom(t){space(t);const SX=CX,SY=560,EY=780,JY=1010,SAY=1260,LX=760;sun(SX,SY,95,t);earth(SX,EY,42);
+  const jd=t>127.36&&t<133.0,sd=t>130.67;jupiter(SX,JY,95,jd?1:0);saturn(SX,SAY,62,sd?1:0);
+  T("THE BLACKOUT ISN'T OVER",330,100,WHITE,1);
+  if(t>120.33&&t<124.2){const k=P(t,120.33,123.6);ctx.setLineDash([12,16]);ctx.strokeStyle=GOLD;ctx.lineWidth=7;for(const py of[JY,SAY]){ctx.beginPath();ctx.moveTo(SX-60,SY+90);ctx.lineTo(SX-60,lerp(SY+90,py-80,Math.min(1,k*2)));ctx.stroke();
+      if(k>0.5){ctx.beginPath();ctx.moveTo(SX+60,py-80);ctx.lineTo(SX+60,lerp(py-80,EY+50,(k-0.5)*2));ctx.stroke();}}ctx.setLineDash([]);txt('OUT...',250,900,80,{col:GOLD});txt('...AND BACK',840,900,70,{col:GOLD,a:clamp((k-0.5)*3)});}
+  if(t>124.2){if(t<127.36){const k=P(t,124.2,127.36);ctx.save();ctx.globalAlpha=0.8;ctx.fillStyle='#000';ctx.beginPath();ctx.moveTo(SX,SY);ctx.arc(SX,SY,lerp(100,JY-SY,k),Math.PI/2-0.3,Math.PI/2+0.3);ctx.fill();ctx.restore();}
+    if(jd)bigX(SX,JY,120,t,127.4);txt('JUPITER',230,JY,64,{col:WHITE});txt('~1h 30m',LX+110,JY,72,{col:GOLD,k:wk(t,124.54,'~1h 30m',20)});}
+  if(t>128.19){if(t<130.67){const k=P(t,128.19,130.67);ctx.save();ctx.globalAlpha=0.8;ctx.fillStyle='#000';ctx.beginPath();ctx.moveTo(SX,SY);ctx.arc(SX,SY,lerp(100,SAY-SY,k),Math.PI/2-0.22,Math.PI/2+0.22);ctx.fill();ctx.restore();}
+    if(sd)bigX(SX,SAY,110,t,130.7);txt('SATURN',230,SAY,64,{col:WHITE});txt('~3 HOURS',LX+110,SAY,72,{col:RED,k:wk(t,128.31,'~3 HOURS',20)});}}
+const SCENES={
+  s1:t=>t<5?a_hook(t):t<33?a_why(t):a_know(t),
+  s2:t=>t<65.3?b_noon(t):t<70.7?b_dark(t):t<74?b_solar(t):t<81.4?b_birds(t):b_moon(t),
+  s3:t=>t<12?c_poof(t):c_dom(t)};
+
+// ---- short 2 v2: "THE SKY WAITS" (Saturn formula: one surprising fact + one number; the WHY is left for the long video) ----
+function d_poof(t){daySky(t);const SY=860;
+  if(t<7.37)sun(CX,SY,230,t);
+  else{const k=P(t,7.37,7.6);if(k<1){ctx.save();ctx.globalAlpha=1-k;for(let i=0;i<14;i++){const an=i/14*TAU;line(CX+Math.cos(an)*(230+k*160),SY+Math.sin(an)*(230+k*160),CX+Math.cos(an)*(270+k*200),SY+Math.sin(an)*(270+k*200),{w:9,col:GOLD,seed:300+i});}ctx.restore();}
+    sun(CX,SY,230,t,{dashed:true});stamp('POOF!',CX,SY,190,RED,t,7.37);}
+  T('THE SUN',290,175,INK);T('VANISHES',470,190,RED,1,{stroke:6,strokeCol:'#7a0000'});}
+function d_blue(t){daySky(t);sun(800,960,130,t,{dashed:true});txt('SUN: GONE',800,1135,66,{col:RED});
+  stick(280,GY,2.5,t,{pose:'relax',mood:'happy'});
+  T('THE SKY:',330,120,INK,wk(t,22.45,'THE SKY:',30));if(t>23.45)T('STILL BLUE?!',480,160,'#1f5fa8',wk(t,23.45,'STILL BLUE?!',30));
+  if(t>24.53)stamp('NOTHING HAPPENS',CX,650,110,RED,t,24.53);}
+function d_why(t){const sh=t<25.95?[nz(t*60,11)*14,nz(t*55,12)*10]:[0,0];ctx.save();ctx.translate(sh[0],sh[1]);nightSky(t);
+  sun(CX,620,170,t,{dashed:true});stick(CX,GY,2.4,t,{pose:'up',mood:'shock',col:WHITE});
+  if(!CFG.pz)stamp('WHY?',CX,330,260,RED,t,25.66,{stroke:8,strokeCol:'#5a0000'});ctx.restore();}
+SCENES.s2b=t=>t<12?d_poof(t):t<25.58?d_blue(t):t<40?d_why(t):t<59?a_know(t):t<65.3?b_noon(t):b_dark(t);
+function answerCard(u){const k=eOut(clamp(u/0.3));ctx.save();ctx.globalAlpha=k;ctx.fillStyle='rgba(5,5,20,0.55)';ctx.fillRect(0,0,W,H);ctx.restore();
+  ctx.save();ctx.translate(0,(1-k)*-500);rrect(50,520,980,600,36,{w:9,fill:'rgba(251,250,253,0.98)',seed:9200});
+  txt('WHY DID THE SKY',CX,615,96,{col:INK,maxW:900});txt('WAIT 8 MIN 20 SEC?',CX,735,104,{col:RED,maxW:920});
+  line(150,820,930,820,{w:5,col:INK,seed:9201});
+  const ps=1+0.05*Math.sin(u*9);ctx.save();ctx.translate(CX,920);ctx.scale(ps,ps);txt('THE ANSWER IS IN',0,0,92,{col:INK,maxW:900});ctx.restore();
+  txt('THE FULL VIDEO',CX,1035,104,{col:'#1f5fa8',maxW:900});ctx.restore();
+  const by=1260+Math.abs(Math.sin(u*6))*60;ctx.save();ctx.globalAlpha=clamp((u-0.25)/0.2);
+  line(CX,1170,CX,by+120,{w:16,col:GOLD,seed:9202});poly([[CX-80,by+60],[CX,by+160],[CX+80,by+60]],{w:16,col:GOLD,seed:9203});ctx.restore();}
+
+// ---- gravity short: "Earth keeps orbiting NOTHING" (WHAT shown; the WHY = gravity at light speed is in the long video) ----
+let TR=0;const OX=CX,OY=990,OR=330,OW=0.35,TREL=8.6,A0=Math.PI/2-OW*8.6;
+function ePos(tr){if(tr<TREL){const a=A0+OW*tr;return[OX+OR*Math.cos(a),OY+OR*Math.sin(a)];}return[OX-OR*OW*(tr-TREL),OY+OR];}
+function orbitBase(t,sunState){space(t);ctx.save();ctx.setLineDash([10,16]);ctx.strokeStyle='rgba(255,255,255,0.35)';ctx.lineWidth=4;ctx.beginPath();ctx.arc(OX,OY,OR,0,TAU);ctx.stroke();ctx.restore();
+  if(sunState==='full')sun(OX,OY,150,t);else sun(OX,OY,150,t,{dashed:true});
+  if(TR>=TREL){ctx.save();ctx.setLineDash([16,14]);ctx.strokeStyle=GOLD;ctx.lineWidth=7;const p=ePos(TR);ctx.beginPath();ctx.moveTo(OX,OY+OR);ctx.lineTo(p[0],p[1]);ctx.stroke();ctx.restore();}
+  const p=ePos(TR);earth(p[0],p[1],58);}
+function g_poof(t){if(t<7.37)orbitBase(t,'full');else{orbitBase(t,'gone');const k=P(t,7.37,7.6);if(k<1){ctx.save();ctx.globalAlpha=1-k;for(let i=0;i<14;i++){const an=i/14*TAU;line(OX+Math.cos(an)*(150+k*160),OY+Math.sin(an)*(150+k*160),OX+Math.cos(an)*(190+k*200),OY+Math.sin(an)*(190+k*200),{w:9,col:GOLD,seed:300+i});}ctx.restore();}stamp('POOF!',OX,OY,150,RED,t,7.37);}
+  T('THE SUN',290,175,WHITE);T('VANISHES',470,190,RED,1,{stroke:6,strokeCol:'#7a0000'});}
+function tangentGuess(t,crossT){const p=ePos(TR),a=A0+OW*TR,dx=-Math.sin(a),dy=Math.cos(a);ctx.save();ctx.setLineDash([14,14]);ctx.strokeStyle=GOLD;ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(p[0]+dx*70,p[1]+dy*70);ctx.lineTo(p[0]+dx*330,p[1]+dy*330);ctx.stroke();ctx.restore();
+  txt('?',p[0]+dx*400,p[1]+dy*400,120,{col:GOLD});if(crossT&&t>crossT)bigX(p[0]+dx*200,p[1]+dy*200,110,t,crossT);}
+function g_guess(t){orbitBase(t,'gone');tangentGuess(t,0);
+  T('NO SUN. NO PULL.',300,120,WHITE,wk(t,34.89,'NO SUN. NO PULL.',30));if(t>36.48)T('EARTH FLIES OFF...',440,120,GOLD,wk(t,36.48,'EARTH FLIES OFF...',30));if(t>37.25)T('RIGHT?',580,130,WHITE,wk(t,37.25,'RIGHT?',30));}
+function g_nope(t){orbitBase(t,'gone');tangentGuess(t,37.78);stamp('NOPE.',CX,380,250,RED,t,37.77,{stroke:8,strokeCol:'#5a0000'});}
+function g_keep(t){orbitBase(t,'gone');const k=P(TR,5.25,8.6),sec=Math.round(k*500);clockBig(CX,330,0.85,'T+ '+Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0'),{col:GOLD});
+  T('EARTH KEEPS ORBITING',520,100,WHITE);if(t>55.94)stamp('NOTHING!',OX,OY,140,RED,t,55.94,{stroke:6,strokeCol:'#5a0000'});}
+function g_go(t){orbitBase(t,'gone');clockBig(CX,330,0.85,'T+ 8:20',{col:RED});stamp('EARTH LETS GO',CX,520,120,GOLD,t,85.3);
+  if(t>88.18)txt('30 KM EVERY SECOND',CX,1180,88,{col:WHITE,k:wk(t,88.18,'30 KM EVERY SECOND',26)});}
+SCENES.g1=t=>t<12?g_poof(t):t<37.65?g_guess(t):t<40?g_nope(t):t<60?g_keep(t):g_go(t);
+function puzzleCard(u,pz){const k=eOut(clamp(u/0.3));ctx.save();ctx.translate(0,-(1-k)*500);glow(CX,445,600,'rgba(255,68,68,0.22)',0.6+0.4*Math.sin(u*7));
+  rrect(40,190,1000,510,34,{w:9,col:RED,fill:'#FBFAFD',seed:9300});const ps=1+0.04*Math.sin(u*9);
+  ctx.save();ctx.translate(CX,445);ctx.scale(ps,ps);txt(pz[0],0,-80,112,{col:INK,maxW:920});txt(pz[1],0,80,128,{col:RED,maxW:920});ctx.restore();ctx.restore();}
+const HOLD=2.0;
+function ctaBanner(u,q){const k=eOut(clamp(u/0.25));ctx.save();ctx.translate(0,-(1-k)*400);rrect(40,300,1000,250,30,{w:7,fill:'rgba(251,250,253,0.97)',seed:9100});
+  txt(q,CX,370,100,{col:INK,maxW:900});const ps=1+0.06*Math.sin(u*10);txt('YES / NO? COMMENT!',CX,480,96*ps,{col:RED,maxW:900,a:clamp((u-0.3)/0.2)});ctx.restore();}
+const SEG_LEN=CFG.segs.reduce((a,[s,e])=>a+(e-s),0);const REEL_LEN=SEG_LEN+(CFG.hold||0);
+function render(tr){BOIL=Math.floor(tr/0.15);ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.setLineDash([]);
+  let acc=0,t=CFG.segs[CFG.segs.length-1][1]-0.001;for(const[s,e]of CFG.segs){if(tr<acc+(e-s)){t=s+(tr-acc);break;}acc+=e-s;}
+  ctx.save();if(tr<0.5){const k=eOut(clamp(tr/0.5));ctx.translate(nz(tr*60,1)*14*(1-k),nz(tr*55,2)*14*(1-k));ctx.translate(CX,CY);ctx.scale(lerp(1.06,1,k),lerp(1.06,1,k));ctx.translate(-CX,-CY);}
+  TR=tr;SCENES[CFG.id](t);ctx.restore();if(!(CFG.hold&&tr>SEG_LEN&&!CFG.pz))captions(t);
+  if(CFG.pz){if(tr>=CFG.pzAt){ctx.setTransform(1,0,0,1,0,0);puzzleCard(tr-CFG.pzAt,CFG.pz);}}
+  else if(CFG.hold){if(tr>SEG_LEN){ctx.setTransform(1,0,0,1,0,0);answerCard(tr-SEG_LEN);}}
+  else if(tr>REEL_LEN-2.0){ctx.setTransform(1,0,0,1,0,0);ctaBanner(tr-(REEL_LEN-2.0),CFG.cta);}}
+window.render=render;window.REEL_LEN=REEL_LEN;
+window.ready=Promise.all([document.fonts.load('40px "PH"')]).then(()=>{WORDS=ALIGN;buildCaps();}).then(()=>document.fonts.ready);
+</script></body></html>

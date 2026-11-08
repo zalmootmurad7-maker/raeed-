@@ -85,7 +85,7 @@ function captions(t){for(let i=CAP.length-1;i>=0;i--){const c=CAP[i];const s=c[0
   const str=c.map(x=>x[0]).join(' ').toUpperCase();let size=96;ctx.save();ctx.font=size+'px "PH"';let w=ctx.measureText(str).width;if(w>960){size*=960/w;ctx.font=size+'px "PH"';w=960;}ctx.restore();
   rrect(CX-w/2-30,1400,w+60,size+34,24,{w:0,fill:'rgba(17,17,17,0.82)',seed:210,amp:0.5});
   let x=CX-w/2;ctx.save();ctx.font=size+'px "PH"';ctx.textBaseline='middle';for(const[wd,ws]of c){const s2=wd.toUpperCase()+' ';ctx.fillStyle=t>=ws?GOLD:'#FFFFFF';ctx.fillText(s2,x,1400+(size+34)/2+2);x+=ctx.measureText(s2).width;}ctx.restore();return;}}}
-const CFG={"id":"s2b","segs":[[5.85,7.80],[22.40,25.50],[52.00,57.40],[60.62,68.85],[25.62,26.15]],"cta":"","hold":2.0};
+const CFG={"id": "s2b", "segs": [[5.85, 7.8], [22.4, 25.5], [52.0, 57.4], [60.62, 68.85], [25.62, 26.15]], "cta": "", "hold": 0.7, "pz": ["WHY DID THE SKY WAIT", "8 MIN 20 SEC?"], "pzAt": 18.05};
 // ===== Episode 5 shorts (9:16). Scenes are functions of SOURCE time t (long-video timeline). Safe zone y 288–1536. =====
 function T(s,y,size,col,k=1,o={}){return txt(s,CX,y,size,{col,k,maxW:960,...o});}
 // ---- short 1: the 8-minute illusion ----
@@ -149,7 +149,7 @@ function d_blue(t){daySky(t);sun(800,960,130,t,{dashed:true});txt('SUN: GONE',80
   if(t>24.53)stamp('NOTHING HAPPENS',CX,650,110,RED,t,24.53);}
 function d_why(t){const sh=t<25.95?[nz(t*60,11)*14,nz(t*55,12)*10]:[0,0];ctx.save();ctx.translate(sh[0],sh[1]);nightSky(t);
   sun(CX,620,170,t,{dashed:true});stick(CX,GY,2.4,t,{pose:'up',mood:'shock',col:WHITE});
-  stamp('WHY?',CX,330,260,RED,t,25.66,{stroke:8,strokeCol:'#5a0000'});ctx.restore();}
+  if(!CFG.pz)stamp('WHY?',CX,330,260,RED,t,25.66,{stroke:8,strokeCol:'#5a0000'});ctx.restore();}
 SCENES.s2b=t=>t<12?d_poof(t):t<25.58?d_blue(t):t<40?d_why(t):t<59?a_know(t):t<65.3?b_noon(t):b_dark(t);
 function answerCard(u){const k=eOut(clamp(u/0.3));ctx.save();ctx.globalAlpha=k;ctx.fillStyle='rgba(5,5,20,0.55)';ctx.fillRect(0,0,W,H);ctx.restore();
   ctx.save();ctx.translate(0,(1-k)*-500);rrect(50,520,980,600,36,{w:9,fill:'rgba(251,250,253,0.98)',seed:9200});
@@ -159,6 +159,29 @@ function answerCard(u){const k=eOut(clamp(u/0.3));ctx.save();ctx.globalAlpha=k;c
   txt('THE FULL VIDEO',CX,1035,104,{col:'#1f5fa8',maxW:900});ctx.restore();
   const by=1260+Math.abs(Math.sin(u*6))*60;ctx.save();ctx.globalAlpha=clamp((u-0.25)/0.2);
   line(CX,1170,CX,by+120,{w:16,col:GOLD,seed:9202});poly([[CX-80,by+60],[CX,by+160],[CX+80,by+60]],{w:16,col:GOLD,seed:9203});ctx.restore();}
+
+// ---- gravity short: "Earth keeps orbiting NOTHING" (WHAT shown; the WHY = gravity at light speed is in the long video) ----
+let TR=0;const OX=CX,OY=990,OR=330,OW=0.35,TREL=8.6,A0=Math.PI/2-OW*8.6;
+function ePos(tr){if(tr<TREL){const a=A0+OW*tr;return[OX+OR*Math.cos(a),OY+OR*Math.sin(a)];}return[OX-OR*OW*(tr-TREL),OY+OR];}
+function orbitBase(t,sunState){space(t);ctx.save();ctx.setLineDash([10,16]);ctx.strokeStyle='rgba(255,255,255,0.35)';ctx.lineWidth=4;ctx.beginPath();ctx.arc(OX,OY,OR,0,TAU);ctx.stroke();ctx.restore();
+  if(sunState==='full')sun(OX,OY,150,t);else sun(OX,OY,150,t,{dashed:true});
+  if(TR>=TREL){ctx.save();ctx.setLineDash([16,14]);ctx.strokeStyle=GOLD;ctx.lineWidth=7;const p=ePos(TR);ctx.beginPath();ctx.moveTo(OX,OY+OR);ctx.lineTo(p[0],p[1]);ctx.stroke();ctx.restore();}
+  const p=ePos(TR);earth(p[0],p[1],58);}
+function g_poof(t){if(t<7.37)orbitBase(t,'full');else{orbitBase(t,'gone');const k=P(t,7.37,7.6);if(k<1){ctx.save();ctx.globalAlpha=1-k;for(let i=0;i<14;i++){const an=i/14*TAU;line(OX+Math.cos(an)*(150+k*160),OY+Math.sin(an)*(150+k*160),OX+Math.cos(an)*(190+k*200),OY+Math.sin(an)*(190+k*200),{w:9,col:GOLD,seed:300+i});}ctx.restore();}stamp('POOF!',OX,OY,150,RED,t,7.37);}
+  T('THE SUN',290,175,WHITE);T('VANISHES',470,190,RED,1,{stroke:6,strokeCol:'#7a0000'});}
+function tangentGuess(t,crossT){const p=ePos(TR),a=A0+OW*TR,dx=-Math.sin(a),dy=Math.cos(a);ctx.save();ctx.setLineDash([14,14]);ctx.strokeStyle=GOLD;ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(p[0]+dx*70,p[1]+dy*70);ctx.lineTo(p[0]+dx*330,p[1]+dy*330);ctx.stroke();ctx.restore();
+  txt('?',p[0]+dx*400,p[1]+dy*400,120,{col:GOLD});if(crossT&&t>crossT)bigX(p[0]+dx*200,p[1]+dy*200,110,t,crossT);}
+function g_guess(t){orbitBase(t,'gone');tangentGuess(t,0);
+  T('NO SUN. NO PULL.',300,120,WHITE,wk(t,34.89,'NO SUN. NO PULL.',30));if(t>36.48)T('EARTH FLIES OFF...',440,120,GOLD,wk(t,36.48,'EARTH FLIES OFF...',30));if(t>37.25)T('RIGHT?',580,130,WHITE,wk(t,37.25,'RIGHT?',30));}
+function g_nope(t){orbitBase(t,'gone');tangentGuess(t,37.78);stamp('NOPE.',CX,380,250,RED,t,37.77,{stroke:8,strokeCol:'#5a0000'});}
+function g_keep(t){orbitBase(t,'gone');const k=P(TR,5.25,8.6),sec=Math.round(k*500);clockBig(CX,330,0.85,'T+ '+Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0'),{col:GOLD});
+  T('EARTH KEEPS ORBITING',520,100,WHITE);if(t>55.94)stamp('NOTHING!',OX,OY,140,RED,t,55.94,{stroke:6,strokeCol:'#5a0000'});}
+function g_go(t){orbitBase(t,'gone');clockBig(CX,330,0.85,'T+ 8:20',{col:RED});stamp('EARTH LETS GO',CX,520,120,GOLD,t,85.3);
+  if(t>88.18)txt('30 KM EVERY SECOND',CX,1180,88,{col:WHITE,k:wk(t,88.18,'30 KM EVERY SECOND',26)});}
+SCENES.g1=t=>t<12?g_poof(t):t<37.65?g_guess(t):t<40?g_nope(t):t<60?g_keep(t):g_go(t);
+function puzzleCard(u,pz){const k=eOut(clamp(u/0.3));ctx.save();ctx.translate(0,-(1-k)*500);glow(CX,445,600,'rgba(255,68,68,0.22)',0.6+0.4*Math.sin(u*7));
+  rrect(40,190,1000,510,34,{w:9,col:RED,fill:'#FBFAFD',seed:9300});const ps=1+0.04*Math.sin(u*9);
+  ctx.save();ctx.translate(CX,445);ctx.scale(ps,ps);txt(pz[0],0,-80,112,{col:INK,maxW:920});txt(pz[1],0,80,128,{col:RED,maxW:920});ctx.restore();ctx.restore();}
 const HOLD=2.0;
 function ctaBanner(u,q){const k=eOut(clamp(u/0.25));ctx.save();ctx.translate(0,-(1-k)*400);rrect(40,300,1000,250,30,{w:7,fill:'rgba(251,250,253,0.97)',seed:9100});
   txt(q,CX,370,100,{col:INK,maxW:900});const ps=1+0.06*Math.sin(u*10);txt('YES / NO? COMMENT!',CX,480,96*ps,{col:RED,maxW:900,a:clamp((u-0.3)/0.2)});ctx.restore();}
@@ -166,8 +189,9 @@ const SEG_LEN=CFG.segs.reduce((a,[s,e])=>a+(e-s),0);const REEL_LEN=SEG_LEN+(CFG.
 function render(tr){BOIL=Math.floor(tr/0.15);ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.setLineDash([]);
   let acc=0,t=CFG.segs[CFG.segs.length-1][1]-0.001;for(const[s,e]of CFG.segs){if(tr<acc+(e-s)){t=s+(tr-acc);break;}acc+=e-s;}
   ctx.save();if(tr<0.5){const k=eOut(clamp(tr/0.5));ctx.translate(nz(tr*60,1)*14*(1-k),nz(tr*55,2)*14*(1-k));ctx.translate(CX,CY);ctx.scale(lerp(1.06,1,k),lerp(1.06,1,k));ctx.translate(-CX,-CY);}
-  SCENES[CFG.id](t);ctx.restore();if(!(CFG.hold&&tr>SEG_LEN))captions(t);
-  if(CFG.hold){if(tr>SEG_LEN){ctx.setTransform(1,0,0,1,0,0);answerCard(tr-SEG_LEN);}}
+  TR=tr;SCENES[CFG.id](t);ctx.restore();if(!(CFG.hold&&tr>SEG_LEN&&!CFG.pz))captions(t);
+  if(CFG.pz){if(tr>=CFG.pzAt){ctx.setTransform(1,0,0,1,0,0);puzzleCard(tr-CFG.pzAt,CFG.pz);}}
+  else if(CFG.hold){if(tr>SEG_LEN){ctx.setTransform(1,0,0,1,0,0);answerCard(tr-SEG_LEN);}}
   else if(tr>REEL_LEN-2.0){ctx.setTransform(1,0,0,1,0,0);ctaBanner(tr-(REEL_LEN-2.0),CFG.cta);}}
 window.render=render;window.REEL_LEN=REEL_LEN;
 window.ready=Promise.all([document.fonts.load('40px "PH"')]).then(()=>{WORDS=ALIGN;buildCaps();}).then(()=>document.fonts.ready);
