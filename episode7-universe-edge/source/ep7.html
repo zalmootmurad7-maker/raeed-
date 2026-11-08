@@ -1,0 +1,404 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"PH";src:url(../work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas>
+<script>
+// ===== Ink & Atoms — Episode 5: What If the Sun Disappeared for 8 Minutes? (16:9, timed to align.json) =====
+const W=1920,H=1080,CX=960,CY=540,TAU=Math.PI*2,DURATION=176.0;
+const PAPER='#F5E6D3',INK='#1A1A1A',RED='#FF4444',GOLD='#FFD700',WHITE='#FFFFFF',SPACE='#0A0A1F',SKY='#BFD9F0',LW=6;
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),lerp=(a,b,k)=>a+(b-a)*k,P=(t,a,b)=>clamp((t-a)/(b-a));
+const eOut=k=>1-Math.pow(1-k,3),eInOut=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,eBack=k=>{const c=1.70158;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+let BOIL=0;const nz=(i,s)=>rng(Math.floor(i)*977+s*131+BOIL*7919)()*2-1;
+function wobPts(p,seed,amp=2){return p.map((q,i)=>[q[0]+nz(i,seed)*amp,q[1]+nz(i+50,seed)*amp]);}
+function poly(pts,{w=LW,col=INK,fill=null,close=false,seed=1,amp=2,k=1}={}){const q=wobPts(pts,seed,amp);const n=Math.max(2,Math.ceil(q.length*clamp(k)));
+  ctx.beginPath();ctx.moveTo(q[0][0],q[0][1]);for(let i=1;i<n;i++)ctx.lineTo(q[i][0],q[i][1]);if(close&&k>=1)ctx.closePath();
+  if(fill&&k>=1){ctx.fillStyle=fill;ctx.fill();}if(w>0){ctx.strokeStyle=col;ctx.lineWidth=w;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();}}
+function line(x1,y1,x2,y2,o={}){const n=8,p=[];for(let i=0;i<=n;i++)p.push([lerp(x1,x2,i/n),lerp(y1,y2,i/n)]);poly(p,o);}
+function ell(x,y,rx,ry,o={}){const n=44,p=[];for(let i=0;i<=n;i++){const a=i/n*TAU;p.push([x+Math.cos(a)*rx,y+Math.sin(a)*ry]);}poly(p,{...o,close:true});}
+function rrect(x,y,w,h,r,o={}){const p=[],seg=(cx,cy,a0)=>{for(let i=0;i<=6;i++){const a=a0+i/6*Math.PI/2;p.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}};
+  seg(x+w-r,y+r,-Math.PI/2);seg(x+w-r,y+h-r,0);seg(x+r,y+h-r,Math.PI/2);seg(x+r,y+r,Math.PI);poly(p,{...o,close:true});}
+function txt(s,x,y,size,{col=INK,k=1,stroke=0,strokeCol=INK,a=1,align='center',rot=0,maxW=1800}={}){if(k<=0||a<=0)return 0;ctx.save();ctx.globalAlpha*=a;
+  ctx.font=`${size}px "PH"`;let full=ctx.measureText(s).width;if(full>maxW){size*=maxW/full;ctx.font=`${size}px "PH"`;full=maxW;}
+  ctx.textBaseline='middle';const sub=s.slice(0,Math.ceil(s.length*clamp(k)));const x0=align==='center'?x-full/2:align==='right'?x-full:x;
+  if(rot){ctx.translate(x,y);ctx.rotate(rot);ctx.translate(-x,-y);}
+  if(stroke){ctx.lineWidth=stroke;ctx.strokeStyle=strokeCol;ctx.lineJoin='round';ctx.strokeText(sub,x0,y);}
+  ctx.fillStyle=col;ctx.fillText(sub,x0,y);ctx.lineWidth=2;ctx.strokeStyle=col;ctx.strokeText(sub,x0,y);
+  if(sub.includes('7')){let xx=x0;for(const ch of sub){const cw=ctx.measureText(ch).width;if(ch==='7'){ctx.lineWidth=Math.max(3,size*0.07);ctx.strokeStyle=col;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(xx+cw*0.28,y+size*0.04);ctx.lineTo(xx+cw*0.78,y+size*0.04);ctx.stroke();}xx+=cw;}}
+  ctx.restore();return full;}
+const wk=(t,t0,s,cps=28)=>t<t0?0:1; // FIX5: whole text appears at once (no half-written words)
+const pop=(t,t0,d=0.25)=>t<t0?0:eBack(clamp((t-t0)/d));
+function glow(x,y,r,rgba,a=1){if(a<=0||r<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,rgba);g.addColorStop(1,rgba.replace(/[\d.]+\)$/,'0)'));ctx.save();ctx.globalAlpha=a;ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();}
+function stamp(s,x,y,size,col,t,t0,o={}){const k=pop(t,t0,0.22);if(k<=0)return;ctx.save();ctx.translate(x,y);const sk=t-t0<0.3?nz(t*60,7)*8:0;ctx.translate(sk,0);ctx.scale(k,k);txt(s,0,0,size,{col,...o});ctx.restore();}
+// ---------- backgrounds ----------
+const GRAIN=(()=>{const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');const R=rng(42);
+  for(let i=0;i<30000;i++){g.fillStyle=R()<0.5?'rgba(120,90,50,0.06)':'rgba(255,255,255,0.09)';g.fillRect(R()*W,R()*H,1+R()*2.5,1+R()*2.5);}return c;})();
+function paper(){ctx.fillStyle=PAPER;ctx.fillRect(0,0,W,H);ctx.drawImage(GRAIN,0,0);}
+const STARS=(()=>{const R=rng(5),a=[];for(let i=0;i<320;i++)a.push([R()*W,R()*H,0.8+R()*2.3,R()*TAU]);return a;})();
+function space(t,a=1){ctx.fillStyle=SPACE;ctx.fillRect(0,0,W,H);for(const[x,y,r,ph]of STARS){ctx.fillStyle=`rgba(255,255,255,${(0.4+0.4*Math.sin(t*2+ph))*a})`;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();}}
+function daySky(t,sky=1){paper();if(sky>0){ctx.save();ctx.globalAlpha=0.85*sky;ctx.fillStyle=SKY;ctx.fillRect(0,0,W,800);ctx.restore();}
+  ctx.fillStyle='#CFE3B0';ctx.fillRect(0,800,W,280);ctx.drawImage(GRAIN,0,0);line(0,800,W,800,{w:LW,seed:600,amp:3});
+  for(let i=0;i<26;i++){const x=40+i*74;line(x,830+(i%3)*40,x+12,808+(i%3)*40,{w:3,col:'#6a8a4a',seed:610+i,amp:1});}}
+function nightSky(t){space(t);ctx.fillStyle='#0d1a10';ctx.fillRect(0,800,W,280);line(0,800,W,800,{w:LW,col:'#3a4a3a',seed:600,amp:3});}
+// ---------- glyphs ----------
+function sun(x,y,r,t,{a=1,dashed=false}={}){if(a<=0||r<=0)return;ctx.save();ctx.globalAlpha*=a;
+  if(dashed){ctx.setLineDash([18,16]);ctx.strokeStyle=RED;ctx.lineWidth=6;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.stroke();ctx.setLineDash([]);ctx.restore();return;}
+  glow(x,y,r*2.4,'rgba(255,215,0,0.45)',1);for(let i=0;i<14;i++){const an=i/14*TAU+t*0.2;line(x+Math.cos(an)*(r+16),y+Math.sin(an)*(r+16),x+Math.cos(an)*(r+(i%2?50:78)),y+Math.sin(an)*(r+(i%2?50:78)),{w:7,col:'#E8A400',seed:70+i,amp:1.5});}
+  ell(x,y,r,r,{w:LW+1,col:INK,fill:GOLD,seed:71,amp:2.5});ctx.restore();}
+function earth(x,y,r,{lit=1,seed=80}={}){ell(x,y,r,r,{w:LW,col:lit>0.5?INK:'#cfd6ea',fill:lit>0.5?'#7FB2E5':'#1b2033',seed,amp:2});
+  if(lit>0.5){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();ctx.fillStyle='#8CC06A';const R=rng(seed);for(let i=0;i<5;i++){ctx.beginPath();ctx.ellipse(x+(R()-.5)*r*1.4,y+(R()-.5)*r*1.4,r*(0.18+R()*0.22),r*(0.12+R()*0.18),R()*3,0,TAU);ctx.fill();}ctx.restore();ell(x,y,r,r,{w:LW,col:INK,seed,amp:2});}}
+function halfEarth(x,y,r,dark){earth(x,y,r,{lit:1});if(dark>0){ctx.save();ctx.globalAlpha=dark;ctx.beginPath();ctx.arc(x,y,r-2,0,TAU);ctx.fillStyle='#0b0f1e';ctx.fill();ctx.restore();ell(x,y,r,r,{w:LW,col:'#cfd6ea',seed:81,amp:2});}}
+function moon(x,y,r,dark=0){ell(x,y,r,r,{w:LW-1,col:dark>0.5?'#cfd6ea':INK,fill:dark>0.5?'#000000':'#EDEDF2',seed:90,amp:1.5});if(dark<0.5){ctx.fillStyle='rgba(0,0,0,0.12)';for(const[dx,dy,rr]of[[-0.3,-0.2,0.2],[0.25,0.15,0.16],[-0.05,0.35,0.12]]){ctx.beginPath();ctx.arc(x+dx*r,y+dy*r,rr*r,0,TAU);ctx.fill();}}}
+// stickman: pose up|point|walk|relax|chin, mood shock|happy|curious|scream ; col for dark scenes
+function stick(x,y,s,t,{pose='relax',mood='shock',col=INK,head='#F6F4F8',shake=false,seed=100}={}){ctx.save();ctx.translate(x,y);ctx.scale(s,s);const w=LW/s*1.1;
+  const hy=-270,hr=40;line(0,-110,0,hy+hr,{w,col,seed});
+  const legs=pose==='walk'?[[-40+Math.sin(t*8)*25,0],[40-Math.sin(t*8)*25,0]]:[[-42,0],[42,0]];for(const[lx,ly]of legs)line(0,-110,lx,ly,{w,col,seed:seed+1});
+  const arms={up:[[-80,-300],[80,-300]],point:[[-50,-120],[110,-250]],walk:[[-60,-140+Math.sin(t*8)*20],[60,-140-Math.sin(t*8)*20]],relax:[[-55,-120],[55,-120]],chin:[[-50,-120],[20,-235]],cheer:[[-90,-280],[90,-280]]}[pose];
+  for(const[ax,ay]of arms)line(0,-200,ax,ay,{w,col,seed:seed+2});
+  ell(0,hy,hr,hr,{w,col,fill:head,seed:seed+3,amp:1.2});ctx.fillStyle=INK;
+  if(mood==='happy'){for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,hy-8,5,0,TAU);ctx.fill();}ctx.lineWidth=w*0.7;ctx.strokeStyle=INK;ctx.beginPath();ctx.arc(0,hy+6,16,0.15*Math.PI,0.85*Math.PI);ctx.stroke();}
+  else if(mood==='curious'){for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,hy-6,5,0,TAU);ctx.fill();}line(-6,hy+18,10,hy+16,{w:w*0.7,seed:seed+4,amp:0.5});line(-22,hy-22,-6,hy-26,{w:w*0.6,seed:seed+5,amp:0.5});}
+  else{for(const ex of[-14,14]){ctx.beginPath();ctx.arc(ex,hy-8,6.5,0,TAU);ctx.fill();}ctx.fillStyle='#3a1414';ctx.beginPath();ctx.ellipse(0,hy+17,mood==='scream'?12:9,mood==='scream'?16:12,0,0,TAU);ctx.fill();ctx.lineWidth=3;ctx.strokeStyle=INK;ctx.stroke();}
+  if(shake||mood==='shock'||mood==='scream'){ctx.strokeStyle=col;ctx.lineWidth=4/s*1.2;for(const sd of[-1,1])for(let k=0;k<2;k++){ctx.beginPath();ctx.arc(0,hy,hr+16+k*12,sd<0?Math.PI*0.8:-Math.PI*0.2,sd<0?Math.PI*1.2:Math.PI*0.2);ctx.stroke();}}
+  ctx.restore();}
+function clockBig(x,y,s,label,{col=WHITE,bg='#111'}={}){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-230,-95,460,190,30,{w:8,col:INK,fill:bg,seed:120,amp:1.5});
+  ctx.font='150px "PH"';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=col;ctx.fillText(label,0,8);ctx.restore();}
+function clockBadge(label,dark){rrect(1610,968,280,90,20,{w:5,col:dark?'#cfd6ea':INK,fill:dark?'rgba(10,10,31,0.85)':'rgba(255,255,255,0.85)',seed:121,amp:1});
+  txt('T+ '+label,1750,1013,56,{col:dark?WHITE:INK});}
+function iss(x,y,s,t){ctx.save();ctx.translate(x,y);ctx.scale(s,s);line(-260,0,260,0,{w:12,col:'#d8d8e8',seed:130,amp:1});
+  for(const sx of[-1,1])for(const k of[0,1]){const px=sx*(150+k*70)-28;for(const yy of[-170,20]){ctx.fillStyle='#A8C4E5';ctx.fillRect(px,yy,56,150);poly([[px,yy],[px+56,yy],[px+56,yy+150],[px,yy+150]],{w:5,col:'#1A1A3A',close:true,seed:131+k,amp:1});}}
+  for(const mx of[-80,0,80]){rrect(mx-36,-26,72,52,16,{w:5,col:'#1A1A3A',fill:WHITE,seed:140+mx,amp:1});}ctx.restore();}
+function telescope(x,y,s){ctx.save();ctx.translate(x,y);ctx.scale(s,s);ctx.rotate(-0.5);rrect(-120,-30,240,60,10,{w:6,fill:'#ddd',seed:150});ctx.restore();ctx.save();ctx.translate(x,y);ctx.scale(s,s);line(0,10,-60,140,{seed:151});line(0,10,60,140,{seed:152});line(0,10,0,140,{seed:153});ctx.restore();}
+function satellite(x,y,s){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-40,-40,80,80,8,{w:6,fill:'#ddd',seed:160});for(const sx of[-1,1]){ctx.fillStyle='#A8C4E5';ctx.fillRect(sx>0?50:-170,-30,120,60);poly([[sx>0?50:-170,-30],[sx>0?170:-50,-30],[sx>0?170:-50,30],[sx>0?50:-170,30]],{w:5,close:true,seed:161});}line(0,-40,0,-90,{seed:162});ell(0,-100,12,12,{w:5,seed:163});ctx.restore();}
+function bigX(x,y,r,t,t0){const k=clamp((t-t0)/0.25);if(k<=0)return;line(x-r,y-r,lerp(x-r,x+r,k),lerp(y-r,y+r,k),{w:16,col:RED,seed:170,amp:2});if(k>=1)line(x+r,y-r,lerp(x+r,x-r,clamp((t-t0-0.1)/0.2)),lerp(y-r,y+r,clamp((t-t0-0.1)/0.2)),{w:16,col:RED,seed:171,amp:2});}
+function jupiter(x,y,r,dark=0){ell(x,y,r,r,{w:LW,col:dark>0.5?'#cfd6ea':INK,fill:dark>0.5?'#000':'#E7C79A',seed:180,amp:1.5});if(dark<0.5){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();ctx.fillStyle='#C99A63';for(const dy of[-0.5,-0.15,0.25,0.55])ctx.fillRect(x-r,y+dy*r,2*r,r*0.12);ctx.fillStyle='#D2382C';ctx.beginPath();ctx.ellipse(x+r*0.3,y+r*0.35,r*0.16,r*0.09,0,0,TAU);ctx.fill();ctx.restore();ell(x,y,r,r,{w:LW,col:INK,seed:180,amp:1.5});}}
+function saturn(x,y,r,dark=0){const c=dark>0.5?'#cfd6ea':INK;ctx.save();ctx.translate(x,y);ctx.rotate(-0.25);ell(0,0,r*2.1,r*0.55,{w:LW,col:c,seed:190,amp:1.5});ctx.restore();
+  ell(x,y,r,r,{w:LW,col:c,fill:dark>0.5?'#000':'#EAD9A6',seed:191,amp:1.5});ctx.save();ctx.beginPath();ctx.rect(x-r*2.3,y-2,r*4.6,r*2);ctx.translate(x,y);ctx.rotate(-0.25);ctx.strokeStyle=c;ctx.lineWidth=LW;ctx.beginPath();ctx.ellipse(0,0,r*2.1,r*0.55,0,0,Math.PI);ctx.stroke();ctx.restore();}
+function likeBtn(x,y,s,pressed){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-110,-90,220,180,30,{w:8,fill:pressed?'#FFD9D9':'#fff',seed:200});
+  poly([[-55,-5],[-20,-5],[0,-60],[25,-55],[18,-10],[60,-10],[60,55],[-20,55],[-20,-5]],{w:8,col:pressed?RED:INK,seed:201,close:true,fill:pressed?RED:null});rrect(-60,-5,32,62,6,{w:8,col:pressed?RED:INK,seed:202,fill:pressed?RED:null});ctx.restore();}
+// ---------- captions (burned-in, phrase by phrase) ----------
+let WORDS=[];const CAP=[];const ALIGN=[];
+function buildCaps(){let cur=[];for(const[w,s,e]of WORDS){cur.push([w,s,e]);const L=cur.reduce((a,b)=>a+b[0].length+1,0);if(L>34||/^(why|nope|poof|so|but|and)$/.test(w)&&cur.length>4){CAP.push(cur);cur=[];}}if(cur.length)CAP.push(cur);}
+function captions(t){for(let i=0;i<CAP.length;i++){const c=CAP[i];const s=c[0][1],e=(CAP[i+1]?CAP[i+1][0][1]:c[c.length-1][2]+0.4);if(t>=s-0.05&&t<e){
+  const str=c.map(x=>x[0]).join(' ').toUpperCase();ctx.save();ctx.font='58px "PH"';const w=ctx.measureText(str).width;ctx.restore();
+  ctx.save();ctx.globalAlpha=0.78;ctx.fillStyle='#111';rrect(CX-w/2-30,980,w+60,82,22,{w:0,fill:'rgba(17,17,17,0.78)',seed:210,amp:0.5});ctx.restore();
+  let x=CX-w/2;ctx.save();ctx.font='58px "PH"';ctx.textBaseline='middle';for(const[wd,ws]of c){const s2=wd.toUpperCase()+' ';ctx.fillStyle=t>=ws?GOLD:'#FFFFFF';ctx.fillText(s2,x,1022);x+=ctx.measureText(s2).width;}ctx.restore();return;}}}
+// ===== Ink & Atoms — Episode 7: What If the Universe Has No Edge? (16:9, timed to align.json) =====
+const PAPER7='#F6F4F8',SCARF='#d2382c',CMB1='#E8A25A',CMB2='#7FA8D8';
+function paper(){ctx.fillStyle=PAPER7;ctx.fillRect(0,0,W,H);ctx.drawImage(GRAIN,0,0);}
+function TX(s,x,y,size,col=INK,o={}){const dark=col!==INK;return txt(s,x,y,size,{col,maxW:1720,stroke:dark?Math.max(6,size*0.1):0,strokeCol:'#000',...o});}
+function ST(s,x,y,size,col,t,t0,o={}){if(t<t0)return;const k=pop(t,t0,0.22);const sk=t-t0<0.25?nz(t*60,7)*8:0;ctx.save();ctx.translate(x+sk,y);ctx.scale(k,k);TX(s,0,0,size,col,o);ctx.restore();}
+function WR(s,x,y,size,col,t,t0,cps=26,o={}){if(t<t0)return;TX(s,x,y,size,col,{k:wk(t,t0,s,cps),...o});}
+// ---------- camera: keys [[t,zoom,focusX,focusY,rot]] eased ----------
+function cam(t,keys){let a=keys[0],b=keys[keys.length-1];for(let i=0;i+1<keys.length;i++){if(t>=keys[i][0]&&t<=keys[i+1][0]){a=keys[i];b=keys[i+1];break;}}
+  const k=t<=a[0]?0:t>=b[0]?1:eInOut((t-a[0])/((b[0]-a[0])||1));const z=lerp(a[1],b[1],k),x=lerp(a[2],b[2],k),y=lerp(a[3],b[3],k),r=lerp(a[4]||0,b[4]||0,k);
+  ctx.translate(CX,CY);ctx.rotate(r);ctx.scale(z,z);ctx.translate(-x,-y);}
+function shake(t,t0,amp=16,d=0.35){if(t<t0||t>t0+d)return;const k=amp*(1-(t-t0)/d);ctx.translate(nz(t*60,3)*k,nz(t*57,4)*k);}
+// ---------- deep space ----------
+const DSTARS=(()=>{const R=rng(77),a=[];for(let i=0;i<520;i++)a.push([R()*W*1.6-W*0.3,R()*H*1.6-H*0.3,0.2+R()*0.8,R()*TAU]);return a;})();
+function deep(t,{speed=0,dirx=1,diry=0,dim=1}={}){ctx.fillStyle='#05060F';ctx.fillRect(-W,-H,W*3,H*3);
+  for(const[x0,y0,d,ph]of DSTARS){let x=x0-dirx*t*speed*d,y=y0-diry*t*speed*d;const w=W*1.6,h=H*1.6;x=((x+W*0.3)%w+w)%w-W*0.3;y=((y+H*0.3)%h+h)%h-H*0.3;
+    const a=(0.35+0.45*Math.sin(t*2+ph))*dim,len=speed*d*0.06;ctx.strokeStyle=`rgba(255,255,255,${a})`;ctx.fillStyle=ctx.strokeStyle;
+    if(len>3){ctx.lineWidth=1+d*2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+dirx*len,y+diry*len);ctx.stroke();}else{ctx.beginPath();ctx.arc(x,y,0.8+d*2,0,TAU);ctx.fill();}}}
+function vignette(a=0.55){const g=ctx.createRadialGradient(CX,CY,H*0.35,CX,CY,H*1.05);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,`rgba(0,0,0,${a})`);ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+// ---------- the pilot + ship (red scarf = "you", visible from front AND back) ----------
+function ship(x,y,s,t,{flame=1,mood='happy',tilt=0}={}){ctx.save();ctx.translate(x,y);ctx.rotate(tilt);ctx.scale(s,s);
+  if(flame>0){const f=1+0.25*Math.sin(t*40);poly([[-150,-28],[-150-120*f*flame,0],[-150,28]],{w:6,col:'#E8A400',fill:GOLD,close:true,seed:7001});poly([[-150,-14],[-150-60*f*flame,0],[-150,14]],{w:0,fill:'#fff',close:true,seed:7002});}
+  // scarf trailing behind the window
+  const wv=Math.sin(t*9)*10;poly([[-10,-70],[-90,-80+wv],[-170,-60-wv],[-160,-40+wv],[-80,-55],[-10,-52]],{w:5,col:INK,fill:SCARF,close:true,seed:7003,amp:1.5});
+  poly([[-150,-60],[110,-60],[200,0],[110,60],[-150,60]],{w:8,col:INK,fill:'#FFFFFF',close:true,seed:7004,amp:2});
+  poly([[110,-60],[200,0],[110,60]],{w:8,col:INK,fill:RED,close:true,seed:7005,amp:2});
+  for(const sy of[-1,1])poly([[-150,sy*60],[-200,sy*115],[-90,sy*60]],{w:8,col:INK,fill:RED,close:true,seed:7006+sy,amp:2});
+  ell(20,0,46,46,{w:8,col:INK,fill:'#CFE3F2',seed:7008,amp:1.2});
+  // pilot face (looking right)
+  ell(26,6,26,26,{w:5,col:INK,fill:'#F6F4F8',seed:7009,amp:0.8});ctx.fillStyle=INK;
+  if(mood==='shock'){for(const ex of[22,40]){ctx.beginPath();ctx.arc(ex,0,4.5,0,TAU);ctx.fill();}ctx.fillStyle='#3a1414';ctx.beginPath();ctx.ellipse(34,16,5,7,0,0,TAU);ctx.fill();}
+  else{for(const ex of[22,40]){ctx.beginPath();ctx.arc(ex,0,4,0,TAU);ctx.fill();}ctx.strokeStyle=INK;ctx.lineWidth=3;ctx.beginPath();ctx.arc(32,8,9,0.2*Math.PI,0.85*Math.PI);ctx.stroke();}
+  ctx.restore();}
+// big front stick figure with scarf
+function hero(x,y,s,t,o={}){stick(x,y,s,t,o);ctx.save();ctx.translate(x,y);ctx.scale(s,s);poly([[-30,-228],[30,-228],[34,-212],[-34,-212]],{w:4,col:INK,fill:SCARF,close:true,seed:7020,amp:1});
+  const wv=Math.sin(t*7)*6;poly([[20,-220],[70,-200+wv],[64,-182+wv],[16,-206]],{w:4,col:INK,fill:SCARF,close:true,seed:7021,amp:1});ctx.restore();}
+// the same person from BEHIND: head with no face, scarf knot on the back
+function heroBack(x,y,s,t,{col=INK,head='#F6F4F8'}={}){ctx.save();ctx.translate(x,y);ctx.scale(s,s);const w=LW/s*1.1;
+  line(0,-110,0,-230,{w,col,seed:7030});line(0,-110,-42,0,{w,col,seed:7031});line(0,-110,42,0,{w,col,seed:7032});line(0,-200,-55,-120,{w,col,seed:7033});line(0,-200,55,-120,{w,col,seed:7034});
+  ell(0,-270,40,40,{w,col,fill:head,seed:7035,amp:1.2});poly([[-32,-228],[32,-228],[36,-212],[-36,-212]],{w:4,col:INK,fill:SCARF,close:true,seed:7036,amp:1});
+  const wv=Math.sin(t*7)*8;poly([[-6,-220],[-26,-170+wv],[-6,-160+wv],[6,-212]],{w:4,col:INK,fill:SCARF,close:true,seed:7037,amp:1});poly([[6,-220],[30,-176-wv],[44,-186-wv],[14,-214]],{w:4,col:INK,fill:SCARF,close:true,seed:7038,amp:1});
+  ctx.restore();}
+// ---------- cosmic glyphs ----------
+function galaxy(x,y,r,rot,{a=1,col='rgba(220,225,255,'}={}){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(1,0.55);glow(0,0,r*0.7,'rgba(255,240,200,0.55)',a);
+  const R=rng(31);for(let arm=0;arm<2;arm++)for(let i=0;i<260;i++){const u=i/260,th=arm*Math.PI+u*3.6*Math.PI,rr=u*r,j=(R()-0.5)*r*0.12;
+    ctx.fillStyle=col+(a*(0.9-u*0.5))+')';ctx.beginPath();ctx.arc(Math.cos(th)*rr+j,Math.sin(th)*rr+j,1.5+R()*3*(1-u),0,TAU);ctx.fill();}
+  ctx.restore();}
+const CMBSPOTS=(()=>{const R=rng(9),a=[];for(let i=0;i<900;i++)a.push([R()*2-1,R()*2-1,R(),2+R()*7]);return a;})();
+function cmbDisk(x,y,rx,ry,a=1){ctx.save();ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,TAU);ctx.clip();ctx.fillStyle='#C9B8A0';ctx.fillRect(x-rx,y-ry,2*rx,2*ry);
+  for(const[u,v,c,r]of CMBSPOTS){ctx.fillStyle=c<0.5?`rgba(90,140,210,${0.55*a})`:`rgba(225,110,60,${0.55*a})`;ctx.beginPath();ctx.arc(x+u*rx,y+v*ry,r*rx/600,0,TAU);ctx.fill();}ctx.restore();
+  ell(x,y,rx,ry,{w:7,col:INK,seed:7101,amp:2});}
+function shell(x,y,r,t,{a=1}={}){ctx.save();ctx.globalAlpha*=a;glow(x,y,r*1.15,'rgba(232,162,90,0.35)',1);ctx.lineWidth=Math.max(6,r*0.05);
+  const R=rng(5);for(let i=0;i<140;i++){const th=i/140*TAU;ctx.strokeStyle=R()<0.5?'rgba(232,140,80,0.9)':'rgba(127,168,216,0.9)';ctx.beginPath();ctx.arc(x,y,r,th,th+TAU/140+0.01);ctx.stroke();}
+  ctx.restore();}
+function bubble(x,y,r,{fill='rgba(127,168,216,0.12)',dash=false,col='rgba(200,220,255,0.9)',w=6}={}){ctx.save();ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();
+  if(dash)ctx.setLineDash([22,18]);ctx.strokeStyle=col;ctx.lineWidth=w;ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.stroke();ctx.restore();}
+function brickWall(x,y,w,h,s=1){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-w/2,-h/2,w,h,6,{w:8,fill:'#C8553D',seed:7201});
+  for(let r=0;r<h/40;r++){const yy=-h/2+r*40;line(-w/2,yy,w/2,yy,{w:4,seed:7210+r,amp:1});for(let c=0;c<w/90+1;c++){const xx=-w/2+c*90+(r%2)*45;if(xx>-w/2&&xx<w/2)line(xx,yy,xx,yy+40,{w:4,seed:7230+r*10+c,amp:1});}}ctx.restore();}
+function cliff(x,y,s=1){ctx.save();ctx.translate(x,y);ctx.scale(s,s);poly([[-300,0],[40,0],[60,40],[50,260],[-300,260]],{w:8,fill:'#D8CFB8',close:true,seed:7301,amp:3});
+  line(-160,0,-160,-150,{w:9,seed:7302});rrect(-250,-230,180,90,10,{w:7,fill:'#fff',seed:7303});txt('THE END',-160,-185,46,{col:RED});ctx.restore();}
+function arrow(x1,y1,x2,y2,{col=INK,w=8,head=26,seed=7400,dash=null}={}){ctx.save();if(dash)ctx.setLineDash(dash);line(x1,y1,x2,y2,{w,col,seed});ctx.setLineDash([]);const a=Math.atan2(y2-y1,x2-x1);
+  poly([[x2-Math.cos(a-0.45)*head,y2-Math.sin(a-0.45)*head],[x2,y2],[x2-Math.cos(a+0.45)*head,y2-Math.sin(a+0.45)*head]],{w,col,seed:seed+1});ctx.restore();}
+function photon(x,y,r=10){glow(x,y,r*4,'rgba(255,215,0,0.9)',1);ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();}
+function odo(x,y,s,val,label,{col=GOLD}={}){ctx.save();ctx.translate(x,y);ctx.scale(s,s);rrect(-430,-80,860,160,24,{w:8,col:'#cfd6ea',fill:'rgba(10,10,25,0.9)',seed:7501});
+  txt(val,0,-6,96,{col});txt(label,0,62,40,{col:'#cfd6ea'});ctx.restore();}
+function bigCheck(x,y,s,t,t0){const k=P(t,t0,t0+0.25);if(k<=0)return;ctx.save();ctx.translate(x,y);ctx.scale(s,s);poly([[-40,0],[-10,32],[46,-40]],{w:14,col:'#2E9E4A',seed:7601,k});ctx.restore();}
+function bigNo(x,y,r,t,t0){bigX(x,y,r,t,t0);}
+function counter(t,t0,t1,v0,v1){return Math.round(lerp(v0,v1,eOut(P(t,t0,t1))));}
+// ===================== HOOK =====================
+// S1 0–3.40 flying straight: camera starts tight on the pilot, pulls out; star streaks
+function S1(t){ctx.save();cam(t,[[0,2.4,1010,520],[1.3,1.0,CX,CY],[3.4,1.08,CX,CY]]);deep(t,{speed:900});ship(960,540,1.6,t,{flame:1});ctx.restore();
+  ST('NO TURNING.',600,880,110,WHITE,t,1.64);ST('NO STOPPING.',1330,880,110,RED,t,2.56);vignette();}
+// S2 3.40–7.69 fly-bys: Moon, Sun, last star of the galaxy (objects rush past the camera)
+function flyby(t,t0,dur,draw){const u=(t-t0)/dur;if(u<0||u>1)return;const z=lerp(0.25,3.2,Math.pow(u,1.6)),x=lerp(1700,-400,eInOut(u));ctx.save();ctx.translate(x,CY);ctx.scale(z,z);draw();ctx.restore();}
+function S2(t){deep(t,{speed:1100});
+  flyby(t,3.55,1.3,()=>{moon(0,0,120,0);});if(t>3.86&&t<4.6)TX('THE MOON',CX,150,90,WHITE);
+  flyby(t,4.35,1.4,()=>{sun(0,0,130,t);});if(t>4.67&&t<5.5)TX('THE SUN',CX,150,90,GOLD);
+  if(t>5.5){const k=P(t,5.5,7.69);ctx.save();ctx.translate(lerp(1250,980,k),lerp(560,520,k));const z=lerp(1.4,0.55,eOut(k));ctx.scale(z,z);galaxy(0,0,620,t*0.05);
+    ctx.fillStyle='#fff';glow(lerp(380,0,0),0,40,'rgba(255,255,255,0.9)',1);ctx.restore();ship(lerp(1100,700,k),lerp(700,760,k),0.9,t);TX('THE LAST STAR OF OUR GALAXY',CX,150,80,WHITE,{k:wk(t,5.5,'THE LAST STAR OF OUR GALAXY',32)});}
+  else ship(700,760,0.9,t);vignette();}
+// S3 7.69–13.71 punch through the farthest light (the glowing shell), odometer 46 billion ly
+function S3(t){ctx.save();const k=P(t,7.69,10.4);cam(t,[[7.69,0.55,CX,CY],[10.3,2.6,CX,CY],[10.6,1.0,CX,CY]]);deep(t,{speed:600});
+  if(t<10.45){shell(CX,CY,520,t);ship(CX,CY,0.5,t);}
+  ctx.restore();
+  if(t<10.45){WR('THE FARTHEST LIGHT',CX,140,90,WHITE,t,8.16);WR('ANY TELESCOPE HAS EVER SEEN',CX,250,70,'#cfd6ea',t,9.0);}
+  if(t>=10.45){ctx.save();shake(t,10.45,18,0.4);deep(t,{speed:1400});ship(CX,600,1.1,t);ctx.restore();
+    const f=1-P(t,10.45,10.8);if(f>0){ctx.fillStyle=`rgba(255,235,200,${f})`;ctx.fillRect(0,0,W,H);}
+    const v=counter(t,11.24,13.2,0,46);odo(CX,250,1,v+(v>=46?'':'')+' BILLION','LIGHT-YEARS FROM HOME');}
+  vignette();}
+// S4 13.71–15.59 keep going… and going: the ship shrinks into the void
+function S4(t){ctx.save();cam(t,[[13.71,1.2,CX,CY],[15.59,0.42,CX,CY]]);deep(t,{speed:1500,dim:0.7});ship(CX,CY,1.0,t);ctx.restore();
+  const v=counter(t,13.71,15.59,46,95);odo(CX,950,0.7,v+' BILLION','LIGHT-YEARS…',{col:'#cfd6ea'});ST('AND GOING…',CX,150,90,WHITE,t,14.73);vignette(0.7);}
+// S5 15.59–18.59 POV: a blue dot ahead… EARTH. In front of you.
+function S5(t){deep(t,{speed:120,dim:0.8});const z=t<17.04?lerp(0.08,0.35,P(t,15.59,17.0)):lerp(0.35,1.0,eOut(P(t,17.04,17.5)));
+  ctx.save();shake(t,17.04,22,0.4);ctx.translate(CX,520);ctx.scale(z,z);glow(0,0,420,'rgba(127,178,229,0.6)',1);earth(0,0,300,{lit:1});ctx.restore();
+  // cockpit frame (POV)
+  ctx.save();ctx.strokeStyle='#10121c';ctx.lineWidth=170;ctx.beginPath();ctx.ellipse(CX,560,1060,700,0,0,TAU);ctx.stroke();ctx.restore();
+  ell(CX,560,975,615,{w:10,col:'#cfd6ea',seed:7801,amp:2});
+  if(t>17.04)ST('EARTH?!',CX,170,130,RED,t,17.04);if(t>17.54)WR('IN FRONT OF YOU.',CX,930,80,WHITE,t,17.54,30);vignette(0.4);}
+// S6 18.59–21.83 you never turned around: one straight line, Earth at BOTH ends
+function S6(t){ctx.save();cam(t,[[18.59,1.3,CX,CY],[19.8,0.9,CX,CY],[21.83,0.95,CX,CY]]);deep(t,{speed:0,dim:0.8});
+  earth(200,560,90);const k=eOut(P(t,18.59,19.6));ctx.save();ctx.setLineDash([26,20]);ctx.strokeStyle=GOLD;ctx.lineWidth=9;ctx.beginPath();ctx.moveTo(300,560);ctx.lineTo(lerp(300,1620,k),560);ctx.stroke();ctx.restore();
+  ship(lerp(320,1450,k),560,0.6,t);earth(1720,560,90);ctx.restore();
+  TX('YOU NEVER TURNED AROUND.',CX,170,90,WHITE,{k:wk(t,18.59,'YOU NEVER TURNED AROUND.',30)});TX('START',200,700,56,'#cfd6ea');if(t>19.4)TX('…EARTH AGAIN',1720,700,56,RED);
+  if(t>20.57){ST('HOW?',CX,880,190,RED,t,20.57,{stroke:10,strokeCol:'#000'});}vignette();}
+// S7 21.83–28.41 the promise: two sealed "case files"
+function card(x,y,rot,t,t0,draw,title,locked){if(t<t0)return;const k=pop(t,t0,0.3);ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(k,k);
+  rrect(-330,-250,660,500,20,{w:9,col:INK,fill:'#fff',seed:7900+Math.round(x)});ctx.save();ctx.beginPath();ctx.rect(-300,-220,600,380);ctx.clip();draw();ctx.restore();
+  rrect(-300,-220,600,380,8,{w:6,col:INK,seed:7910+Math.round(x)});txt(title,0,205,46,{col:INK});
+  if(locked){ctx.save();ctx.globalAlpha=0.92;ctx.fillStyle='#111';ctx.fillRect(-300,-220,600,380);ctx.restore();txt('?',0,-30,230,{col:GOLD});}
+  ctx.restore();}
+function S7(t){paper();ctx.save();cam(t,[[21.83,1.15,CX,CY],[24.9,1.0,CX,CY],[26.3,1.12,1300,560],[28.41,1.12,1300,560]]);
+  card(560,520,-0.05,t,22.16,()=>{deep(t);heroBack(0,140,0.8,t,{col:WHITE,head:'#F6F4F8'});},'THE BACK OF YOUR OWN HEAD',true);
+  card(1340,540,0.05,t,25.27,()=>{deep(t);earth(0,-20,120);},'THE ONE REASON',false);
+  if(t>26.32){ctx.save();ctx.translate(1340,500);ctx.rotate(-0.15);const k=pop(t,26.32,0.25);ctx.scale(k,k);rrect(-280,-70,560,140,14,{w:10,col:RED,seed:7950});txt('NEVER GO HOME',0,6,80,{col:RED});ctx.restore();}
+  ctx.restore();TX('BEFORE THIS VIDEO IS OVER…',CX,90,72,INK,{k:wk(t,21.83,'BEFORE THIS VIDEO IS OVER…',32)});}
+// ===================== SCIENCE =====================
+// S8 28.41–32.43 one thing everyone gets wrong
+function S8(t){paper();ctx.save();cam(t,[[28.41,1.25,CX,CY],[29.6,1.0,CX,CY]]);hero(420,1000,2.2,t,{pose:'point',mood:'curious'});
+  ST('ALMOST EVERYONE',1180,360,110,INK,t,29.75);ST('GETS THIS WRONG',1180,520,130,RED,t,30.75,{stroke:8,strokeCol:'#000'});ctx.restore();}
+// S9 32.43–35.63 we can see the whole universe? We can't.
+function S9(t){deep(t,{dim:0.9});const shrink=t>35.06?lerp(1,0.42,eOut(P(t,35.06,35.5))):1;
+  ctx.save();ctx.translate(CX,560);ctx.scale(shrink,shrink);bubble(0,0,430,{fill:'rgba(127,168,216,0.15)'});for(let i=0;i<14;i++){const R=rng(40+i);galaxy((R()-0.5)*600,(R()-0.5)*500,40+R()*30,R()*3,{a:0.8});}ctx.restore();
+  TX('"WE SEE THE WHOLE UNIVERSE"',CX,120,80,WHITE,{k:wk(t,32.43,'"WE SEE THE WHOLE UNIVERSE"',30)});if(t>35.06){bigX(CX,560,360*shrink+60,t,35.06);ST("WE CAN'T.",CX,960,130,RED,t,35.06);}vignette();}
+// S10 35.63–45.74 the observable universe: 46 billion ly every direction, 93 across, light reaching us
+function S10(t){ctx.save();cam(t,[[35.63,1.6,CX,560],[37.0,1.0,CX,560],[44.0,0.82,CX,560],[45.74,0.78,CX,560]]);deep(t);
+  for(let i=0;i<40;i++){const R=rng(200+i),a=R()*TAU,r=480+R()*500;galaxy(CX+Math.cos(a)*r,560+Math.sin(a)*r*0.8,25+R()*25,R()*3,{a:0.5});}
+  bubble(CX,560,400,{fill:'rgba(127,168,216,0.16)'});earth(CX,560,26);
+  if(t>36.66)TX('THE OBSERVABLE UNIVERSE',CX,100,80,GOLD,{k:wk(t,36.66,'THE OBSERVABLE UNIVERSE',30)});
+  if(t>38.11){const k=eOut(P(t,38.11,38.7));arrow(CX+30,560,CX+30+360*k,560,{col:WHITE,w:8});TX('46 BILLION LY',CX+220,520,50,WHITE);}
+  if(t>39.65){for(let i=1;i<8;i++){const a=i/8*TAU,k=eOut(P(t,39.65+i*0.07,40.2+i*0.07));arrow(CX+Math.cos(a)*30,560+Math.sin(a)*30,CX+Math.cos(a)*(30+340*k),560+Math.sin(a)*(30+340*k),{col:'rgba(255,255,255,0.8)',w:5,head:16,seed:7700+i});}}
+  if(t>40.96){const k=eOut(P(t,40.96,41.8));ctx.save();ctx.setLineDash([16,12]);line(CX-400*k,1010,CX+400*k,1010,{w:7,col:GOLD,seed:7720});ctx.restore();if(t<42.89)TX('93 BILLION LY ACROSS',CX,1060,56,GOLD);}
+  if(t>42.89){for(let i=0;i<10;i++){const a=i/10*TAU+0.3,u=((t-42.89)*0.6+i*0.1)%1;photon(CX+Math.cos(a)*400*(1-u),560+Math.sin(a)*400*(1-u),7);}}
+  ctx.restore();if(t>44.0)TX('LIGHT HAD TIME TO REACH US',CX,980,64,WHITE,{k:wk(t,44.0,'LIGHT HAD TIME TO REACH US',30)});vignette();}
+// S11 45.74–51.30 the dark ocean: you see to the horizon; the ocean goes on (camera pans right past it)
+function S11(t){const pan=t<49.08?0:eInOut(P(t,49.08,50.9))*1500;ctx.save();ctx.translate(-pan,0);
+  const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0b1020');g.addColorStop(0.5,'#1b2a44');g.addColorStop(1,'#05070d');ctx.fillStyle=g;ctx.fillRect(-100,0,W+1700,H);
+  for(let i=0;i<60;i++){const R=rng(300+i);ctx.fillStyle=`rgba(255,255,255,${0.3+R()*0.4})`;ctx.beginPath();ctx.arc(R()*(W+1600),R()*420,1+R()*2,0,TAU);ctx.fill();}
+  line(-100,520,W+1700,520,{w:5,col:'#5f7fa8',seed:8001,amp:2});
+  for(let i=0;i<70;i++){const R=rng(400+i),x=R()*(W+1600),y=540+R()*520,l=20+R()*60;line(x,y,x+l,y+Math.sin(t*2+i)*4,{w:3,col:'rgba(140,170,210,0.5)',seed:8010+i,amp:1});}
+  hero(330,860,1.5,t,{pose:'relax',mood:'curious',col:WHITE});glow(330,640,260,'rgba(255,215,0,0.25)',1);
+  if(t>47.68){ctx.save();ctx.setLineDash([16,14]);ctx.strokeStyle=GOLD;ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(360,470);ctx.lineTo(lerp(360,1500,eOut(P(t,47.68,48.4))),520);ctx.stroke();ctx.restore();TX('HORIZON',1500,470,56,GOLD);}
+  if(t>49.08)TX('…THE OCEAN KEEPS GOING',2400,300,80,WHITE);ctx.restore();
+  TX("IT'S LIKE A DARK OCEAN",CX,110,80,WHITE,{k:wk(t,45.74,"IT'S LIKE A DARK OCEAN",30)});vignette();}
+// S12 51.30–54.97 past the horizon: a wall? an edge?
+function S12(t){ctx.save();cam(t,[[51.3,0.9,CX,CY],[52.6,1.0,CX,CY],[54.97,1.12,CX,CY]]);deep(t,{dim:0.8});bubble(-300,560,900,{fill:'rgba(127,168,216,0.14)'});
+  if(t>53.18){const k=pop(t,53.18,0.3);ctx.save();ctx.translate(1000,560);ctx.scale(k,k);brickWall(0,0,360,480);ctx.restore();ST('A WALL?',1000,220,90,WHITE,t,53.22);}
+  if(t>53.95){const k=pop(t,53.95,0.3);ctx.save();ctx.translate(1560,640);ctx.scale(k,k);cliff(0,0,0.9);ctx.restore();ST('AN EDGE?',1560,220,90,WHITE,t,54.06);}
+  ctx.restore();TX("WHAT'S PAST THE HORIZON?",CX,100,84,GOLD,{k:wk(t,51.3,"WHAT'S PAST THE HORIZON?",30)});vignette();}
+// S13 54.97–60.46 the mind-breaker: finite… and no edge
+function S13(t){paper();ctx.save();shake(t,55.44,20,0.45);cam(t,[[54.97,1.4,CX,CY],[55.9,1.0,CX,CY]]);
+  hero(400,1010,2.1,t,{pose:'up',mood:'shock'});if(t>55.44){for(let i=0;i<12;i++){const a=-Math.PI/2+(i-5.5)*0.22,k=eOut(P(t,55.44,55.8));line(400+Math.cos(a)*(180),450+Math.sin(a)*180,400+Math.cos(a)*(180+120*k),450+Math.sin(a)*(180+120*k),{w:8,col:RED,seed:8100+i});}}
+  ST('MIND-BREAKER',1200,230,140,RED,t,55.44,{stroke:9,strokeCol:'#000'});
+  if(t>57.6){ST('FINITE',1000,560,120,INK,t,57.6);bigCheck(1260,560,1.6,t,57.7);}
+  if(t>59.3){ST('NO EDGE',1000,760,120,INK,t,59.3);bigCheck(1290,760,1.6,t,59.4);}ctx.restore();}
+// S14 60.46–68.46 walk straight on Earth and come back
+function S14(t){paper();ctx.save();cam(t,[[60.46,0.85,CX,600],[62.0,1.0,CX,600],[67.0,1.0,CX,600],[68.46,0.9,CX,600]]);
+  const R=330,gx=CX,gy=720,rot=t<61.43?0:P(t,61.43,64.4)*TAU;glow(gx,gy,R*1.4,'rgba(127,178,229,0.35)',1);
+  ell(gx,gy,R,R,{w:9,fill:'#7FB2E5',seed:8201,amp:2});ctx.save();ctx.beginPath();ctx.arc(gx,gy,R-4,0,TAU);ctx.clip();ctx.fillStyle='#8CC06A';
+  for(let i=0;i<6;i++){const a=i*1.1-rot;const x=gx+Math.sin(a)*R*0.8;if(Math.cos(a)>-0.2){ctx.beginPath();ctx.ellipse(x,gy+(i%3-1)*120,R*0.18*Math.max(0.2,Math.cos(a)),R*0.14,0,0,TAU);ctx.fill();}}ctx.restore();ell(gx,gy,R,R,{w:9,seed:8201,amp:2});
+  // trail around the globe
+  if(t>61.43){ctx.save();ctx.setLineDash([18,14]);ctx.strokeStyle=RED;ctx.lineWidth=7;ctx.beginPath();ctx.arc(gx,gy,R+18,-Math.PI/2,-Math.PI/2+Math.min(TAU,rot)*0.999,false);ctx.stroke();ctx.restore();}
+  // flag at START (rotates with the planet) + walker on top
+  const fa=-Math.PI/2-rot;const fx=gx+Math.cos(fa)*R,fy=gy+Math.sin(fa)*R;ctx.save();ctx.translate(fx,fy);ctx.rotate(fa+Math.PI/2);line(0,0,0,-90,{w:6,seed:8210});poly([[0,-90],[60,-75],[0,-60]],{w:5,fill:RED,close:true,seed:8211});ctx.restore();
+  hero(gx,gy-R,0.75,t,{pose:t>61.43&&t<64.4?'walk':'cheer',mood:t>64.3?'shock':'happy'});ctx.restore();
+  WR('WALK STRAIGHT…',420,140,80,INK,t,61.43);if(t>62.27)WR('YOU NEVER FALL OFF',420,250,62,INK,t,62.27);if(t>64.3)ST('YOU COME BACK!',1500,180,96,RED,t,64.3);
+  if(t>65.22){rrect(1330,420,540,250,24,{w:7,fill:'#fff',seed:8220});TX('FINITE SURFACE',1600,490,60,INK);if(t>66.8)ST('NO EDGE',1600,600,90,RED,t,66.8);}}
+// S15 68.46–75.19 three dimensions + the arcade screen wrap
+function cube3d(t,cx,cy,s){const a=t*0.6,b=0.5;const P3=[];for(const x of[-1,1])for(const y of[-1,1])for(const z of[-1,1]){let X=x*Math.cos(a)-z*Math.sin(a),Z=x*Math.sin(a)+z*Math.cos(a),Y=y*Math.cos(b)-Z*Math.sin(b);P3.push([cx+X*s,cy+Y*s]);}
+  const E=[[0,1],[2,3],[4,5],[6,7],[0,2],[1,3],[4,6],[5,7],[0,4],[1,5],[2,6],[3,7]];E.forEach(([i,j],n)=>line(P3[i][0],P3[i][1],P3[j][0],P3[j][1],{w:7,seed:8300+n}));}
+function S15(t){if(t<70.42){paper();ctx.save();cam(t,[[68.46,0.8,CX,CY],[70.4,1.05,CX,CY]]);cube3d(t,CX,560,260);ctx.restore();ST('NOW IN 3D',CX,140,110,RED,t,69.19);return;}
+  ctx.fillStyle='#1d1d26';ctx.fillRect(0,0,W,H);ctx.save();cam(t,[[70.42,0.7,CX,CY],[71.4,1.0,CX,CY]]);
+  rrect(260,90,1400,900,50,{w:14,col:'#000',fill:'#0d1a10',seed:8350});ctx.save();ctx.beginPath();ctx.rect(300,130,1320,820);ctx.clip();
+  for(let y=130;y<950;y+=8){ctx.fillStyle='rgba(0,0,0,0.25)';ctx.fillRect(300,y,1320,3);}
+  for(let i=0;i<40;i++){const R=rng(500+i);ctx.fillStyle='rgba(180,255,180,0.6)';ctx.fillRect(300+R()*1320,130+R()*820,3,3);}
+  // ship crosses: off the right edge at 72.26, back in on the left at 73.54
+  let x=t<72.26?lerp(700,1700,P(t,71.2,72.6)):t<73.54?1700:lerp(150,900,P(t,73.54,74.9));if(t>=72.26&&t<73.54)x=lerp(1500,1800,P(t,72.26,72.6));
+  const sx=t>=73.54?x:x;ship(sx,540,0.7,t);if(t>=73.4&&t<74.9)ship(sx-1320,540,0.7,t);ctx.restore();
+  txt('1UP  000046',520,170,40,{col:'#9f9'});ctx.restore();
+  if(t>72.26&&t<73.4){arrow(1500,800,1700,800,{col:GOLD,w:8});TX('OFF THE RIGHT…',1350,900,64,GOLD);}
+  if(t>73.54){arrow(200,800,420,800,{col:GOLD,w:8});TX('…BACK ON THE LEFT',600,900,64,GOLD);}vignette(0.4);}
+// S16 75.19–81.23 no wall, no edge: space loops → that's how Earth was in front of you
+function S16(t){deep(t);if(t<77.09){ctx.save();ctx.translate(560,520);brickWall(0,0,300,380,0.9);ctx.restore();bigX(560,520,230,t,75.44);ctx.save();ctx.translate(1300,520);cliff(0,0,0.7);ctx.restore();bigX(1250,520,230,t,76.44);
+    ST('NO WALL.',560,900,100,WHITE,t,75.19);ST('NO EDGE.',1300,900,100,WHITE,t,76.11);vignette();return;}
+  ctx.save();cam(t,[[77.09,1.4,CX,560],[78.6,1.0,CX,560]]);const R=380;ctx.save();ctx.setLineDash([22,16]);ctx.strokeStyle='rgba(200,220,255,0.7)';ctx.lineWidth=8;ctx.beginPath();ctx.ellipse(CX,560,R*1.6,R,0,0,TAU);ctx.stroke();ctx.restore();
+  earth(CX,560+R,70);const u=P(t,77.3,79.77),a=Math.PI/2-u*TAU;const sx=CX+Math.cos(a)*R*1.6,sy=560+Math.sin(a)*R;ship(sx,sy,0.55,t,{tilt:a-Math.PI/2+Math.PI});
+  ctx.restore();ST('SPACE MIGHT SIMPLY…',CX,90,80,WHITE,t,77.09);ST('LOOP',CX,560,200,GOLD,t,78.64,{stroke:10,strokeCol:'#000'});if(t>79.39)WR("THAT'S HOW EARTH WAS IN FRONT OF YOU",CX,1010,58,WHITE,t,79.39,34);vignette();}
+// ===================== CONSEQUENCES =====================
+// S17 81.23–83.67 remember my promise? the sealed card comes back and opens
+function S17(t){paper();ctx.save();cam(t,[[81.23,0.8,CX,CY],[82.5,1.25,CX,CY],[83.67,1.4,CX,CY]]);
+  card(CX,520,0,t,81.23,()=>{deep(t);heroBack(0,140,0.8,t,{col:WHITE});},'THE BACK OF YOUR OWN HEAD',t<82.52);
+  if(t>82.52){const f=1-P(t,82.52,82.9);ctx.fillStyle=`rgba(255,255,255,${f})`;ctx.fillRect(0,0,W,H);}ctx.restore();ST('REMEMBER MY PROMISE?',CX,100,84,INK,t,81.23);}
+// S18 83.67–88.36 if space loops, light loops too — including the light bouncing off you
+function S18(t){deep(t);ctx.save();cam(t,[[83.67,0.9,CX,560],[88.36,1.05,CX,560]]);const R=360;ctx.save();ctx.setLineDash([22,16]);ctx.strokeStyle='rgba(200,220,255,0.55)';ctx.lineWidth=7;ctx.beginPath();ctx.ellipse(CX,560,R*1.6,R,0,0,TAU);ctx.stroke();ctx.restore();
+  for(let i=0;i<8;i++){const a=((t-83.67)*0.9+i/8)*TAU;photon(CX+Math.cos(a)*R*1.6,560+Math.sin(a)*R,8);}
+  ship(CX,560+R,0.7,t,{flame:0});if(t>86.08){for(let i=0;i<3;i++){const u=((t-86.08)*1.2+i/3)%1;photon(lerp(CX-120,CX-500,u),560+R-lerp(0,60,u),9);}TX('LIGHT FROM YOU',CX-420,560+R-140,56,GOLD);}
+  ctx.restore();ST('IF SPACE LOOPS…',CX,90,84,WHITE,t,83.67);ST('LIGHT LOOPS TOO',CX,200,96,GOLD,t,84.84);vignette();}
+// S19 88.36–94.22 a small universe; you look out of the window… someone is out there (slow dolly-in)
+function S19(t){deep(t,{speed:40,dim:0.7});const z=lerp(0.04,0.42,eInOut(P(t,92.6,94.2)));
+  if(t>92.6){ctx.save();ctx.translate(CX,560);ctx.scale(z,z);heroBack(0,330,1.6,t,{col:'#cfd6ea',head:'#F6F4F8'});ctx.restore();}
+  ctx.save();ctx.strokeStyle='#10121c';ctx.lineWidth=200;ctx.beginPath();ctx.ellipse(CX,560,1000,660,0,0,TAU);ctx.stroke();ctx.restore();ell(CX,560,900,560,{w:10,col:'#cfd6ea',seed:8501,amp:2});
+  TX('IMAGINE THE UNIVERSE WAS SMALL',CX,120,72,WHITE,{k:wk(t,88.55,'IMAGINE THE UNIVERSE WAS SMALL',32)});if(t>92.67)ST('SOMEONE IS OUT THERE…',CX,980,80,RED,t,92.67);vignette(0.7);}
+// S20 94.22–99.06 it's you. not a copy. not a twin. YOU. from behind.
+function S20(t){deep(t,{dim:0.6});ctx.save();cam(t,[[94.22,0.7,CX,560],[94.7,1.0,CX,560],[96.99,1.0,CX,560],[97.3,1.18,1050,520]]);shake(t,94.37,18,0.4);
+  glow(1050,520,380,'rgba(210,56,44,0.35)',1);heroBack(1050,940,2.2,t,{col:'#E9EEF8'});ctx.restore();
+  ST("IT'S YOU.",500,200,140,RED,t,94.22,{stroke:10,strokeCol:'#000'});
+  const strike=(y,t0)=>{const k=eOut(P(t,t0,t0+0.2));if(k>0)line(250,y,250+370*k,y+4,{w:14,col:RED,seed:8551+y});};
+  if(t>95.11){WR('NOT A COPY.',430,420,80,WHITE,t,95.11,40);strike(420,95.45);}
+  if(t>95.98){WR('NOT A TWIN.',430,600,80,WHITE,t,95.98,40);strike(600,96.3);}
+  if(t>96.99)ST('YOU.',430,800,170,RED,t,96.99,{stroke:10,strokeCol:'#000'});if(t>97.71)ST('FROM BEHIND',1050,1010,80,WHITE,t,97.71);vignette(0.5);}
+// S21 99.06–104.13 the light from your back goes all the way around… into your eyes
+function S21(t){deep(t);ctx.save();cam(t,[[99.06,1.0,CX,560],[103.2,1.0,CX,560],[103.6,1.5,560,560]]);const R=360,cx=CX,cy=560;
+  ctx.save();ctx.setLineDash([22,16]);ctx.strokeStyle='rgba(200,220,255,0.55)';ctx.lineWidth=7;ctx.beginPath();ctx.ellipse(cx,cy,R*1.7,R,0,0,TAU);ctx.stroke();ctx.restore();
+  // you, at the left of the loop, facing right; the light leaves your back (to the left) and circles round to your eyes
+  const px=cx-R*1.7+40;hero(px+60,cy+150,0.75,t,{pose:'relax',mood:t>103.4?'shock':'curious',col:WHITE});
+  const u=P(t,100.04,103.45);if(u>0&&u<1){const a=Math.PI+u*TAU*0.995;photon(cx+Math.cos(a)*R*1.7,cy-Math.sin(a)*R,12);
+    ctx.save();ctx.strokeStyle='rgba(255,215,0,0.8)';ctx.lineWidth=8;ctx.beginPath();ctx.ellipse(cx,cy,R*1.7,R,0,-Math.PI,-Math.PI-u*TAU*0.995,true);ctx.stroke();ctx.restore();}
+  if(t>103.45){const f=1-P(t,103.45,103.9);glow(px+60,cy-50,300,`rgba(255,240,180,${0.9*f})`,1);}
+  ctx.restore();WR('LIGHT FROM YOUR OWN BACK…',CX,90,72,GOLD,t,99.06,32);if(t>100.68)WR('…ALL THE WAY AROUND THE UNIVERSE',CX,190,60,WHITE,t,100.68,34);if(t>103.08)ST('INTO YOUR EYES',CX,1000,90,RED,t,103.08);vignette();}
+// S22 104.13–111.07 look left, right, up: you again and again — your own past lined up across the sky
+function S22(t){deep(t);let cx=CX,cy=560;const whip=(t0,dx,dy)=>{if(t>t0){const k=eOut(P(t,t0,t0+0.35));cx+=dx*k;cy+=dy*k;}};
+  if(t<106.2){whip(104.32,700,0);whip(105.0,-1400,0);whip(105.61,700,600);}
+  ctx.save();if(t<106.2){ctx.translate(CX-cx,CY-cy+20);}else{const z=lerp(1.0,0.38,eInOut(P(t,106.2,107.8)));ctx.translate(CX,CY);ctx.scale(z,z);ctx.translate(-CX,-CY);}
+  for(let gy=-3;gy<=3;gy++)for(let gx=-4;gx<=4;gx++){if(gx===0&&gy===0)continue;const d=Math.hypot(gx,gy),x=CX+gx*700,y=560+gy*600;ctx.save();ctx.globalAlpha=Math.max(0.15,1-d*0.18);heroBack(x,y+300,1.0,t,{col:'#E9EEF8'});ctx.restore();}
+  ctx.restore();hero(CX,1040,0.9,t,{pose:'up',mood:'shock',col:WHITE});
+  if(t<106.2){ST('LEFT',300,120,90,WHITE,t,104.32);if(t>105.0)ST('RIGHT',1620,120,90,WHITE,t,105.0);if(t>105.61)ST('UP',CX,120,90,WHITE,t,105.61);}
+  else{ST('YOU. AGAIN AND AGAIN.',CX,110,90,WHITE,t,106.21);if(t>108.34){ST('YOUR OWN PAST',CX,230,110,RED,t,108.34,{stroke:8,strokeCol:'#000'});const L=['1 YEAR AGO','1,000 YEARS AGO','1 MILLION YEARS AGO'];L.forEach((s,i)=>{if(t>108.8+i*0.4)TX(s,[520,CX,1400][i],[700,860,700][i],60,GOLD);});}}vignette();}
+// S23 111.07–114.70 not a thought experiment: scientists went looking
+function S23(t){paper();ctx.save();cam(t,[[111.07,1.2,CX,CY],[112.3,1.0,CX,CY]]);
+  // radio dish
+  ctx.save();ctx.translate(1250,700);ctx.rotate(-0.5);ctx.beginPath();ctx.ellipse(0,0,260,90,0,0,Math.PI);ctx.fillStyle='#fff';ctx.fill();ctx.lineWidth=9;ctx.strokeStyle=INK;ctx.stroke();line(0,0,0,-150,{w:7,seed:8601});ctx.restore();line(1250,700,1250,980,{w:10,seed:8602});line(1150,980,1350,980,{w:10,seed:8603});
+  for(let i=0;i<3;i++)hero(330+i*230,1000,1.2,t,{pose:i===1?'point':'relax',mood:'curious',seed:8610+i*10});ctx.restore();
+  ST('NOT A THOUGHT EXPERIMENT',CX,120,90,INK,t,111.26);ST('SCIENTISTS WENT LOOKING',CX,250,100,RED,t,113.04,{stroke:8,strokeCol:'#000'});}
+// S24 114.70–121.42 searching the oldest light for a ghost copy of our sky
+function S24(t){paper();ctx.save();cam(t,[[114.7,0.9,CX,580],[116.5,1.0,CX,580],[119.6,1.25,CX,580],[121.42,1.3,CX,580]]);cmbDisk(CX,600,700,350,1);
+  if(t>117.03){for(const[x,y]of[[640,520],[1280,680]]){ctx.save();ctx.strokeStyle=GOLD;ctx.lineWidth=10;ctx.beginPath();ctx.arc(x,y,lerp(10,120,eOut(P(t,117.03,117.5))),0,TAU);ctx.stroke();ctx.restore();}}
+  if(t>119.65){const k=eOut(P(t,119.65,120.3));ctx.save();ctx.setLineDash([16,12]);line(760,540,lerp(760,1160,k),lerp(540,660,k),{w:7,col:GOLD,seed:8701});ctx.restore();if(k>=1)TX('SAME?',CX,560,110,RED,{stroke:9,strokeCol:'#000'});}
+  ctx.restore();WR('THE OLDEST LIGHT IN THE UNIVERSE',CX,90,76,INK,t,115.46,34);if(t>117.03)ST('A GHOST COPY OF OUR SKY?',CX,1010,80,RED,t,117.03);}
+// S25 121.42–123.15 they found… nothing
+function S25(t){paper();ctx.save();cam(t,[[121.42,1.3,CX,580],[122.37,1.3,CX,580],[123.15,1.0,CX,580]]);ctx.globalAlpha=0.5;cmbDisk(CX,600,700,350,1);ctx.globalAlpha=1;ctx.restore();
+  TX('THEY FOUND…',CX,160,100,INK);if(t>122.37){ctx.save();shake(t,122.37,22,0.4);ST('NOTHING.',CX,600,240,RED,t,122.37,{stroke:12,strokeCol:'#000'});ctx.restore();}}
+// S26 123.15–129.28 the loop must be almost as big as everything we see — or far bigger (huge pull-out)
+function S26(t){deep(t);const z=t<127.64?lerp(1.0,0.85,P(t,123.15,127.6)):lerp(0.85,0.16,eInOut(P(t,127.64,129.0)));ctx.save();ctx.translate(CX,560);ctx.scale(z,z);
+  bubble(0,0,260,{fill:'rgba(127,168,216,0.22)'});txt('EVERYTHING WE CAN SEE',0,0,40,{col:WHITE});
+  ctx.save();ctx.setLineDash([30,22]);ctx.strokeStyle=GOLD;ctx.lineWidth=12/Math.max(z,0.3);ctx.beginPath();ctx.ellipse(0,0,t<127.64?560:2600,t<127.64?330:1500,0,0,TAU);ctx.stroke();ctx.restore();
+  ctx.restore();ST('IF SPACE LOOPS…',CX,90,84,WHITE,t,123.15);if(t>124.62)WR('THE LOOP IS ALMOST AS BIG AS EVERYTHING WE SEE',CX,990,56,GOLD,t,124.62,36);if(t>127.92)ST('OR FAR BIGGER.',CX,200,130,RED,t,127.92,{stroke:9,strokeCol:'#000'});vignette();}
+// ===================== TWIST =====================
+// S27 129.28–132.81 fine — just fly farther, you've got forever
+function S27(t){ctx.save();cam(t,[[129.28,1.3,CX,CY],[130.4,1.0,CX,CY]]);deep(t,{speed:1100});ship(CX-100,560,1.3,t);ctx.restore();
+  ST('FINE.',CX,140,110,WHITE,t,129.28);if(t>130.41)ST('JUST FLY FARTHER',CX,260,90,GOLD,t,130.41);if(t>131.69){ST('∞',1550,800,220,GOLD,t,131.69);TX('FOREVER?',1550,980,70,WHITE);}vignette();}
+// S28 132.81–138.43 NO. The universe is expanding… faster and faster (the grid stretches)
+function S28(t){deep(t,{dim:0.6});const s=t<135.83?1:1+Math.pow(P(t,135.83,138.4),1.6)*2.2;ctx.save();ctx.translate(CX,600);ctx.scale(s,s);
+  ctx.strokeStyle='rgba(127,168,216,0.45)';ctx.lineWidth=3/s;for(let i=-8;i<=8;i++){ctx.beginPath();ctx.moveTo(i*110,-660);ctx.lineTo(i*110,660);ctx.stroke();ctx.beginPath();ctx.moveTo(-990,i*90);ctx.lineTo(990,i*90);ctx.stroke();}
+  for(let i=-3;i<=3;i++)for(let j=-3;j<=3;j++){if((i+j)%2)continue;galaxy(i*220,j*180,26,i+j,{a:0.8});}ctx.restore();
+  ctx.save();shake(t,132.81,24,0.45);ST('NO.',CX,330,300,RED,t,132.81,{stroke:14,strokeCol:'#000'});ctx.restore();
+  if(t>135.7)ST("IT'S EXPANDING",CX,820,110,WHITE,t,135.7);if(t>136.76){ST('FASTER AND FASTER',CX,960,96,GOLD,t,136.76);for(const sx of[-1,1]){const k=P(t,136.76,138.4);arrow(CX+sx*500,600,CX+sx*(560+400*k*k),600,{col:GOLD,w:10,head:30,seed:8800+sx});}}vignette();}
+// S29 138.43–144.74 a beam of light leaving Earth tonight never reaches past ~16 billion ly
+function S29(t){deep(t);ctx.save();cam(t,[[138.43,1.0,CX,560],[144.74,0.9,CX,560]]);earth(170,560,60);
+  const hx=lerp(1100,1240,P(t,138.4,144.7));ctx.save();ctx.setLineDash([24,16]);ctx.strokeStyle=RED;ctx.lineWidth=8;ctx.beginPath();ctx.arc(170,560,hx-170,-0.6,0.6);ctx.stroke();ctx.restore();
+  const g=[[1450,380],[1600,620],[1750,470],[1500,800]];g.forEach(([x,y],i)=>galaxy(x+(t-138.43)*40*(1+i*0.2),y,50,i,{a:0.85}));
+  const bx=lerp(240,hx-40,1-Math.exp(-(t-139.0)*0.45));if(t>139.0){ctx.save();ctx.strokeStyle='rgba(255,215,0,0.85)';ctx.lineWidth=10;ctx.beginPath();ctx.moveTo(240,560);ctx.lineTo(bx,560);ctx.stroke();ctx.restore();photon(bx,560,12);}
+  ctx.restore();WR('A BEAM OF LIGHT LEAVING EARTH TONIGHT…',CX,90,64,GOLD,t,138.49,34);if(t>140.3)ST('WILL NEVER REACH',CX,200,100,RED,t,140.3,{stroke:8,strokeCol:'#000'});
+  if(t>142.22)ST('16 BILLION LY',hx,860,80,RED,t,142.22);vignette();}
+// S30 144.74–150.80 about 95% of what we see is already out of reach
+function S30(t){deep(t);ctx.save();cam(t,[[144.74,0.9,CX,580],[146.2,1.0,CX,580]]);const R=420,r=R*16/46.5;
+  ctx.save();ctx.fillStyle='rgba(210,56,44,0.35)';ctx.beginPath();ctx.arc(CX,580,R,0,TAU);ctx.fill();ctx.restore();
+  ctx.save();ctx.beginPath();ctx.arc(CX,580,R,0,TAU);ctx.clip();ctx.strokeStyle='rgba(255,90,80,0.55)';ctx.lineWidth=5;for(let i=-20;i<20;i++){ctx.beginPath();ctx.moveTo(CX-R+i*40,580-R);ctx.lineTo(CX+R+i*40,580+R);ctx.stroke();}ctx.restore();
+  bubble(CX,580,R,{fill:'rgba(0,0,0,0)',col:'rgba(255,120,110,0.9)'});bubble(CX,580,r,{fill:'rgba(127,178,229,0.55)',col:'#cfe3f2'});earth(CX,580,20);txt('REACHABLE',CX,580+r+40,40,{col:'#cfe3f2'});
+  ctx.restore();const v=counter(t,144.97,146.0,0,95);TX(v+'%',1560,450,190,RED,{stroke:12,strokeCol:'#000'});TX('OUT OF REACH',1560,600,70,WHITE);
+  if(t>149.12)ST('AT ANY SPEED.',360,860,80,WHITE,t,149.12);if(t>150.01)ST('FOREVER.',1560,860,110,RED,t,150.01,{stroke:8,strokeCol:'#000'});vignette();}
+// S31 150.80–153.69 the road home stretches faster than you can travel
+function S31(t){deep(t,{speed:500});const k=P(t,150.8,153.69),ex=lerp(500,-300,eInOut(k));ctx.save();ctx.setLineDash([26,20]);ctx.strokeStyle=GOLD;ctx.lineWidth=9;ctx.beginPath();ctx.moveTo(ex+60,580);ctx.lineTo(1300,580);ctx.stroke();ctx.restore();
+  earth(ex,580,lerp(70,30,k));ship(1350,580,1.0,t,{flame:1,tilt:Math.PI,mood:'shock'});const L=Math.round(lerp(16,40,k*k));TX(L+' BILLION LY HOME…',CX,860,80,WHITE);
+  WR('THE ROAD HOME STRETCHES',CX,110,80,GOLD,t,150.8,32);if(t>151.99)WR('FASTER THAN YOU CAN TRAVEL',CX,220,72,WHITE,t,151.99,34);vignette();}
+// S32 153.69–156.49 you are trapped in a bubble with no walls
+function S32(t){deep(t,{dim:0.7});const z=lerp(1.25,0.75,eInOut(P(t,153.69,156.49)));ctx.save();ctx.translate(CX,600);ctx.scale(z,z);
+  bubble(0,0,420,{fill:'rgba(127,168,216,0.14)',dash:true,col:'rgba(200,220,255,0.75)'});hero(0,250,1.3,t,{pose:'up',mood:'shock',col:WHITE});ctx.restore();
+  ST('TRAPPED IN A BUBBLE',CX,110,100,WHITE,t,153.9);if(t>155.02)ST('WITH NO WALLS',CX,1000,110,RED,t,155.02,{stroke:8,strokeCol:'#000'});vignette(0.75);}
+// ===================== ANSWER + CALLBACK =====================
+// S33 156.49–165.61 does it have an edge? No. Infinite? Finite & curved? No wall to find.
+function S33(t){paper();if(t<159.27){TX('DOES THE UNIVERSE HAVE AN EDGE?',CX,330,90,INK,{k:wk(t,156.49,'DOES THE UNIVERSE HAVE AN EDGE?',34)});ctx.save();shake(t,158.65,20,0.4);ST('NO.',CX,640,280,RED,t,158.65,{stroke:12,strokeCol:'#000'});ctx.restore();return;}
+  const panel=(x,t0,title,draw)=>{if(t<t0)return;const k=pop(t,t0,0.3);ctx.save();ctx.translate(x,500);ctx.scale(k,k);rrect(-380,-300,760,560,24,{w:8,fill:'#0b0d18',seed:8900+x});ctx.save();ctx.beginPath();ctx.rect(-370,-290,740,540);ctx.clip();draw();ctx.restore();txt(title,0,310,64,{col:INK});ctx.restore();};
+  panel(520,159.27,'INFINITE?',()=>{ctx.strokeStyle='rgba(127,168,216,0.6)';ctx.lineWidth=3;for(let i=-12;i<=12;i++){ctx.beginPath();ctx.moveTo(i*40,-40);ctx.lineTo(i*160,300);ctx.stroke();}for(let j=0;j<8;j++){const y=-40+j*j*6;ctx.beginPath();ctx.moveTo(-370,y);ctx.lineTo(370,y);ctx.stroke();}TX('∞',0,-170,150,GOLD);});
+  panel(1400,160.42,'FINITE & CURVED?',()=>{ell(0,0,200,200,{w:6,col:'#cfd6ea',seed:8950});for(const ry of[60,130,190])ell(0,0,200,ry,{w:3,col:'rgba(207,214,234,0.6)',seed:8951+ry});for(const rx of[70,140])ell(0,0,rx,200,{w:3,col:'rgba(207,214,234,0.6)',seed:8960+rx});});
+  if(t>162.23){ctx.fillStyle='rgba(246,244,248,0.93)';ctx.fillRect(0,0,W,H);ST('BUT ONE THING IS CERTAIN:',CX,250,90,INK,t,162.23);if(t>163.8){ctx.save();ctx.translate(CX,640);brickWall(0,0,420,300,0.9);ctx.restore();bigX(CX,640,260,t,164.12);ST('NO WALL TO FIND',CX,960,110,RED,t,164.12,{stroke:8,strokeCol:'#000'});}}}
+// S34 165.61–169.90 fly forever… never hit a wall… never make it home (Earth fades behind you)
+function S34(t){deep(t,{speed:700});const k=P(t,165.61,169.9);earth(lerp(300,120,k),600,lerp(60,14,k));ctx.save();ctx.globalAlpha=1-P(t,168.5,169.6);ctx.restore();ship(lerp(1100,1350,k),560,1.1,t);
+  WR('YOU CAN FLY FOREVER…',CX,120,84,WHITE,t,165.61,30);if(t>166.91)ST('NEVER HIT A WALL',CX,850,90,GOLD,t,166.91);if(t>168.24)ST('NEVER MAKE IT HOME',CX,980,100,RED,t,168.24,{stroke:8,strokeCol:'#000'});vignette(0.7);}
+// S35 169.90–178.21 CTA: alone… the back of your own head. Wave… or run? Comment HI or RUN
+function S35(t){deep(t,{dim:0.7});if(t<174.25){const z=lerp(0.25,0.55,eInOut(P(t,171.88,174.2)));ctx.save();ctx.translate(CX,560);ctx.scale(z,z);heroBack(0,330,1.6,t,{col:'#cfd6ea'});ctx.restore();
+    ctx.save();ctx.strokeStyle='#10121c';ctx.lineWidth=200;ctx.beginPath();ctx.ellipse(CX,560,1000,660,0,0,TAU);ctx.stroke();ctx.restore();ell(CX,560,900,560,{w:10,col:'#cfd6ea',seed:8501,amp:2});
+    WR("YOU'RE OUT THERE. ALONE…",CX,120,80,WHITE,t,170.49,30);if(t>172.2)ST('THE BACK OF YOUR OWN HEAD',CX,980,74,RED,t,172.2);vignette(0.6);return;}
+  paper();const L=t>174.51,Rn=t>175.6;hero(560,1040,1.35,t,{pose:L?'cheer':'relax',mood:'happy'});if(t>175.6)hero(1360,1040,1.35,t,{pose:'walk',mood:'scream'});
+  if(L)ST('WAVE?',560,500,110,INK,t,174.51);if(Rn)ST('RUN?',1360,500,110,RED,t,175.6);
+  if(t>176.25){const k=pop(t,176.25,0.3),ps=1+0.05*Math.sin(t*9);ctx.save();ctx.translate(CX,215);ctx.scale(k,k);rrect(-470,-150,940,300,30,{w:9,fill:'#fff',seed:9001});txt('COMMENT',0,-80,64,{col:INK});ctx.save();ctx.translate(0,45);ctx.scale(ps,ps);txt('HI  or  RUN',0,0,140,{col:RED,stroke:6,strokeCol:'#000'});ctx.restore();ctx.restore();}}
+// S36 178.21–end like
+function S36(t){paper();likeBtn(1250,560,1.7,t>179.41);hero(560,1000,2.0,t,{pose:'point',mood:'happy'});TX('IF THIS BLEW YOUR MIND',CX,150,110,INK);if(t>179.41)ST('HIT LIKE!',1250,860,120,RED,t,179.41);}
+// ===================== timeline + transitions =====================
+const SC=[[0,S1,'cut'],[3.40,S2,'whip'],[7.69,S3,'zoom'],[13.71,S4,'cut'],[15.59,S5,'flash'],[18.59,S6,'whip'],[21.83,S7,'zoom'],[28.41,S8,'whip'],[32.43,S9,'zoom'],[35.63,S10,'cut'],
+  [45.74,S11,'whip'],[51.30,S12,'zoom'],[54.97,S13,'flash'],[60.46,S14,'whip'],[68.46,S15,'zoom'],[75.19,S16,'whip'],[81.23,S17,'zoom'],[83.67,S18,'flash'],[88.36,S19,'cut'],[94.22,S20,'flash'],
+  [99.06,S21,'whip'],[104.13,S22,'cut'],[111.07,S23,'whip'],[114.70,S24,'zoom'],[121.42,S25,'cut'],[123.15,S26,'zoom'],[129.28,S27,'whip'],[132.81,S28,'flash'],[138.43,S29,'whip'],[144.74,S30,'zoom'],
+  [150.80,S31,'whip'],[153.69,S32,'zoom'],[156.49,S33,'flash'],[165.61,S34,'whip'],[169.90,S35,'zoom'],[178.21,S36,'whip']];
+const DUR7=181.4;const TMP=document.createElement('canvas');TMP.width=W;TMP.height=H;const TMPX=TMP.getContext('2d');
+function render(t){BOIL=Math.floor(t/0.15);ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.setLineDash([]);ctx.filter='none';
+  let i=0;while(i+1<SC.length&&t>=SC[i+1][0])i++;const c0=SC[i][0],tp=SC[i][2],u=t-c0;ctx.save();
+  let k=0;if(i>0&&u<0.22){k=1-eOut(u/0.22);if(tp==='whip')ctx.translate(k*420,0);
+    else if(tp==='zoom'){ctx.translate(CX,CY);ctx.scale(1+0.35*k,1+0.35*k);ctx.translate(-CX,-CY);}}
+  SC[i][1](t);ctx.restore();ctx.filter='none';ctx.setTransform(1,0,0,1,0,0);
+  // cheap motion blur: smear copies of the finished frame (no per-draw ctx.filter)
+  if(k>0.05&&(tp==='whip'||tp==='zoom')){TMPX.clearRect(0,0,W,H);TMPX.drawImage(cv,0,0);for(let j=1;j<=5;j++){ctx.globalAlpha=0.22;
+      if(tp==='whip')ctx.drawImage(TMP,-j*18*k,0);else{const z=1+j*0.03*k;ctx.drawImage(TMP,CX-CX*z,CY-CY*z,W*z,H*z);}}ctx.globalAlpha=1;}
+  if(i>0&&tp==='flash'&&u<0.18){ctx.fillStyle=`rgba(255,255,255,${(1-u/0.18)*0.85})`;ctx.fillRect(0,0,W,H);}
+  if(t>DUR7-0.6){ctx.fillStyle=`rgba(0,0,0,${P(t,DUR7-0.6,DUR7)})`;ctx.fillRect(0,0,W,H);}}
+window.render=render;
+window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready);
+</script></body></html>
