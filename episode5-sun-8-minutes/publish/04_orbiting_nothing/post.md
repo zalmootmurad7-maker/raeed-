@@ -7,7 +7,7 @@ The answer (gravity also travels at the speed of light + the 2017 neutron-star p
 
 **Title**
 ```
-Earth Would Keep Orbiting NOTHING for 8 Minutes If the Sun Vanished 🌍
+Earth Would Orbit NOTHING for 8 Minutes If the Sun Vanished 🌍
 ```
 
 **Description**
