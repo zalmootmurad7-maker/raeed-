@@ -20,6 +20,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | Everyone Vanished. Who Left THIS On? 400km Up (user spec + v3 audit: 144–175 px hook, big figure, recorded hook voice, comment CTA) | 11-03 | 0:18 | full frame 0, voice = text, all checklist items pass | **48.0%** (~3 h) | 0:15 | ~83% | 263 (~3 h) | – | – | – |
 | You Are Living 8 Minutes In The Past… (ep. 5 short 1 "short_11_FINAL": owner spec, 5 rapid cuts, black "GONE" frame 0, no subtitle bar, music ducked to 5%) | 11-05 | 0:20 | black frame + red GONE, flash, cuts every 0.8 s | **45.1%** (~12 h) | 0:15 | ~75% | 523 engaged (flat after ~3 h) | – | – | – |
 | **Saturn Goes Dark 3 Hours After the Sun Vanishes 🪐** (ep. 5 short 3 "SATURN OFF?!": cosmic-dominoes fact, one precise number) | 11-06 | 0:19 | ONE big Sun on black + plain statement "THE SUN VANISHES" (no question, no "you", no figure) | **69.7%** (2 d 3 h) — best ever | 0:19 | **103.5%** | **11.3k** (5× our best; #1 of 10; 9.8k in 48 h) | – | 1 | – |
+| Event Horizon: The Line Even Light Can't Cross 🚀 (ep. 7 door; owner voice; frame 0 = Earth + beam + rocket + 150 px "EVEN AT LIGHT SPEED…"; puzzle ending, loop) | 11-10 | 0:20 | full frame 0, motion, huge text | **66.1%** (~10 min) — 2nd best ever | 0:20 (≥100%) | – | 74 engaged (~10 min) | – | – | – |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -64,6 +65,10 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
   scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
   separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
+- **Ep. 7 long (What If the Universe Has No Edge?, 11-09): 192 impressions, CTR 1.6%, 5 views, AVD 0:08 after ~1.5 h,
+  100% suggested.** Same long-video problem as always (CTR 1–3%). Its door short (Event Horizon) kept 66.1% in the first
+  10 min → the topic works in Shorts; the long-video packaging/format is what fails. Next long test: the competitor's
+  "every type of X" 8–10 min list format + labelled-grid thumbnail. Backup cold-open cut is ready (reveal first).
 - **SATURN OFF?! = breakout (11-06, 2 d 3 h): 69.7% stayed, 103.5% watched, 11.3k views, 49 likes, 4.6k unique
   viewers, 30.9 h watch time.** First short to pass ~63% and the first to get a 2nd/3rd wave (views climbed steadily
   for 2 days instead of stopping at ~1–2k). What it had: a simple frame 0 (one big Sun, 3 plain words, no figure, no
