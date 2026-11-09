@@ -42,7 +42,7 @@ What If The Sun Vanished For 8 Minutes Then Came Back? 👉 youtu.be/xQwfpcWWy94
 what if the universe has no edge, edge of the universe, does the universe have an edge, observable universe, is the universe infinite, shape of the universe, closed universe, expanding universe, cosmic event horizon, what if you flew to the edge of the universe, space, cosmology, science animation, ink and atoms
 ```
 
-**Thumbnail:** `thumbnails/long_A_thats_me.png` (THAT'S ME?!) · alternative `long_B_no_way_home.png` (NO WAY HOME?!) · phone check `check_320x180.png`
+**Thumbnail:** `thumbnails/long_C_thats_me_bold.png` (THAT'S ME?! — bold merged version, recommended) · older `long_A_thats_me.png`, `long_B_no_way_home.png`
 
 **Pinned comment**
 ```
