@@ -48,10 +48,10 @@ Neptune is blue and wild. The next planet is almost the same size, but it does s
 Uranus. Pale blue-green, and tipped over on its side. Its spin is tilted ninety-eight degrees, so it rolls around the Sun like a ball.
 In our sky, its thin dark rings would stand up and down, like a giant target painted on the night.
 Its pull on the oceans is more than a thousand times the Moon's, so Earth's seas would be wrecked just like with Neptune.
-Uranus is strange. The next planet is beautiful, and it would fill almost half your sky.
+Uranus is strange. The next planet is beautiful, and it would stretch a quarter of the way across your sky.
 
 [excited] Saturn. Thirty-three times wider than the Moon, and its rings stretch more than a quarter of a million kilometers across.
-Put it where the Moon is, and the planet alone would be wider than your fist. The rings? Four fists wide. Almost half the sky.
+Put it where the Moon is, and the planet alone would be wider than your fist. The rings? Four fists wide. A quarter of the way across the whole sky.
 And Saturn is so light for its size that it would float in a bathtub, if you could find a bathtub big enough.
 [serious] But its pull is almost eight thousand times the Moon's. And here's the twist. Saturn is ninety-five times heavier than Earth. So Saturn wouldn't orbit us. We would orbit Saturn. Once every three days.
 Saturn steals our sky. The last planet steals our planet.
@@ -66,7 +66,7 @@ And every orbit, Earth would slide into Jupiter's shadow. The Sun would go black
 [serious] The Sun. It's so big that it's wider than the Moon's entire orbit. Put the Sun where the Moon is... and its surface would reach past us. Earth wouldn't orbit it. Earth would be inside it.
 [mischievously] So, maybe keep the Moon.
 
-From a tiny dot that stops the tides, to a planet that turns Earth into its moon, to a star that swallows us whole, that's every world in the Moon's place.
+From a tiny dot that shrinks the tides, to a planet that turns Earth into its moon, to a star that swallows us whole, that's every world in the Moon's place.
 [excited] So which one would you want in your sky? Tell me in the comments. And if this blew your mind, hit like!
 ```
 
@@ -75,7 +75,7 @@ From a tiny dot that stops the tides, to a planet that turns Earth into its moon
 |---|---|---|
 | Moon distance | 384,400 km | NASA |
 | Width vs Moon (Moon R 1,737 km) | Mercury 1.4× · Mars 2.0× · Venus 3.5× · Neptune 14.2× · Uranus 14.6× · Saturn 33.5× · Jupiter 40.2× | radius ratio |
-| Angle in sky | Moon 0.5° · Neptune/Uranus 7.3–7.5° · Saturn 17° (rings ~39°) · Jupiter 20.6° | 2·atan(R/d); fist ≈ 10°, three fingers ≈ 5° |
+| Angle in sky | Moon 0.5° · Neptune/Uranus 7.3–7.5° · Saturn 17° (rings ~39° ≈ a quarter of the 180° sky) · Jupiter 20.6° | 2·atan(R/d); fist ≈ 10°, three fingers ≈ 5° |
 | Tidal pull vs Moon | Mercury 4.5× · Mars 8.7× · Venus 66× · Uranus 1,180× · Neptune 1,390× · Saturn 7,740× · Jupiter 25,800× | mass ratio at the same distance |
 | Open-ocean (equilibrium) tide today ≈ 0.5 m → Venus ≈ 30 m | simple scaling | approximation — say "around" |
 | Full Venus ≈ 70× a full Moon | area 12.1× · geometric albedo 0.69/0.12 | computed |
