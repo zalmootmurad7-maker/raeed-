@@ -14,10 +14,10 @@ function thumb7(){greySpace();
   hero(1380,880,1.75,0,{pose:'point',mood:'shock',col:'#e8e8e8',head:'#F2F2F2'});
   bubble2(1460,190,520,170,1400,330);hand('WAIT... IS THAT',1460,165,54);hand('ME?!',1460,225,64,'#d2382c');}
 // --- ep8: Jupiter where the Moon should be ---
-function jup(x,y,r){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();const g=ctx.createLinearGradient(0,y-r,0,y+r);g.addColorStop(0,'#bdbdbd');g.addColorStop(1,'#8a8a8a');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);
+function jup(x,y,r,sp=[0.28,0.2]){ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();const g=ctx.createLinearGradient(0,y-r,0,y+r);g.addColorStop(0,'#bdbdbd');g.addColorStop(1,'#8a8a8a');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r);
   const bands=[[-0.75,0.08,'#9b9b9b'],[-0.5,0.12,'#6f6f6f'],[-0.22,0.07,'#a9a9a9'],[0.05,0.14,'#6a6a6a'],[0.35,0.09,'#9a9a9a'],[0.6,0.12,'#727272']];
   for(const[c,h,col]of bands){ctx.fillStyle=col;ctx.beginPath();for(let i=0;i<=40;i++){const xx=x-r+i*r/20,yy=y+c*r+Math.sin(i*0.7)*r*0.015;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy);}for(let i=40;i>=0;i--){const xx=x-r+i*r/20;ctx.lineTo(xx,y+(c+h)*r+Math.sin(i*0.9)*r*0.02);}ctx.closePath();ctx.fill();}
-  ctx.fillStyle='#d2382c';ctx.beginPath();ctx.ellipse(x+r*0.28,y+r*0.2,r*0.16,r*0.09,0,0,TAU);ctx.fill();
+  ctx.fillStyle='#d2382c';ctx.beginPath();ctx.ellipse(x+r*sp[0],y+r*sp[1],r*0.16,r*0.09,0,0,TAU);ctx.fill();
   const sh=ctx.createRadialGradient(x-r*0.45,y-r*0.35,r*0.2,x,y,r*1.05);sh.addColorStop(0,'rgba(0,0,0,0)');sh.addColorStop(1,'rgba(0,0,0,0.45)');ctx.fillStyle=sh;ctx.fillRect(x-r,y-r,2*r,2*r);ctx.restore();
   ctx.lineWidth=6;ctx.strokeStyle='#111';ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.stroke();}
 function thumb8(){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#1a1a1a');g.addColorStop(1,'#4a4a4a');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
@@ -32,6 +32,24 @@ function thumb8(){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#1
   // the old Moon, tiny, labelled
   ctx.fillStyle='#e8e8e8';ctx.beginPath();ctx.arc(250,170,22,0,TAU);ctx.fill();hand('OLD MOON',250,240,40,'#e8e8e8');
   bubble2(560,330,380,140,420,430);hand('UH...',560,310,52);hand('NEW MOON?',560,360,46,'#d2382c');}
-window.render=t=>{BOIL=3;ctx.setTransform(1,0,0,1,0,0);(window.TH==='8'?thumb8:thumb7)();};
+
+// --- ep7 v2: infinite regression — you, from behind, looking at you, from behind... ---
+function thumb7b(){greySpace();
+  const vx=1720,vy=470;ctx.save();ctx.strokeStyle='rgba(255,255,255,0.12)';ctx.lineWidth=3;for(const[x,y]of[[0,0],[0,1080],[700,1080],[1300,1080],[0,500]]){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(vx,vy);ctx.stroke();}ctx.restore();
+  const F=[[1700,500,0.12,0.35],[1590,560,0.3,0.6],[1360,690,0.75,0.85]];
+  for(const[x,y,s,a]of F){ctx.save();ctx.globalAlpha=a;heroBack(x,y+270*s,s,0,{col:'#e8e8e8',head:'#F2F2F2'});ctx.restore();}
+  heroBack(560,1180,2.9,0,{col:'#e8e8e8',head:'#F2F2F2'});
+  bubble2(330,150,560,180,470,300);hand('...WHO IS',330,120,64);hand('THAT?',330,190,78,'#d2382c');}
+// --- ep8 v2: Jupiter rising over the city like a giant eye ---
+function thumb8b(){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#141414');g.addColorStop(1,'#3d3d3d');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  for(const[x,y,r]of XSTARS)if(y<300&&x<520){ctx.fillStyle='rgba(255,255,255,0.55)';ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();}
+  jup(1180,640,820,[0.05,-0.27]);
+  ctx.fillStyle='#0b0b0b';const B=[[0,900],[140,840],[260,880],[360,780],[470,820],[600,740],[720,800],[860,860],[1000,820],[1120,880],[1260,800],[1400,860],[1540,790],[1680,850],[1800,800],[1920,860]];
+  ctx.beginPath();ctx.moveTo(0,H);for(let i=0;i<B.length-1;i++){ctx.lineTo(B[i][0],B[i][1]);ctx.lineTo(B[i+1][0],B[i][1]);}ctx.lineTo(1920,860);ctx.lineTo(1920,H);ctx.closePath();ctx.fill();
+  for(let i=0;i<46;i++){const R=rng(300+i),bx=R()*1900,by=850+R()*200;ctx.fillStyle='rgba(255,230,150,0.5)';ctx.fillRect(bx,by,10,14);}
+  ctx.fillStyle='#0b0b0b';ctx.fillRect(120,720,420,400);hero(330,720,1.45,0,{pose:'point',mood:'shock',col:'#e8e8e8',head:'#F2F2F2'});
+  ctx.fillStyle='#e8e8e8';ctx.beginPath();ctx.arc(70,80,18,0,TAU);ctx.fill();hand('← OLD MOON',200,82,40,'#e8e8e8');
+  bubble2(640,150,560,170,420,290);hand("THAT'S OUR",640,120,58);hand('MOON NOW?!',640,185,64,'#d2382c');}
+window.render=t=>{BOIL=3;ctx.setTransform(1,0,0,1,0,0);({'7':thumb7,'8':thumb8,'7b':thumb7b,'8b':thumb8b}[window.TH]||thumb7)();};
 window.ready=document.fonts.load('40px "PH"').then(()=>document.fonts.ready);
 </script></body></html>
