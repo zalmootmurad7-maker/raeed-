@@ -104,6 +104,16 @@ Do every step and show the user the evidence; never hand over a short on "it loo
 - Long videos: story/experience framing ("I Replaced the Moon With Its Evil Twin") + the key science word in the
   title or first description line. Chapters in every long description.
 
+## LONG-VIDEO THUMBNAILS — new style (owner decision, 2026-11-10)
+Owner: "our content is good, our thumbnails are weak — I wouldn't click them". Long videos (CTR 1–3% on every upload) switch
+to a clean ink-SCENE style inspired by the most successful "what if" illustration channels (our own drawings — never copy
+another channel's logo, badge, characters or images):
+- ONE absurd moment drawn as a scene (Jupiter where the Moon should be, you seeing the back of your own head), not a poster.
+- Greyscale ink (white paper, or dark grey for space/night) + exactly ONE red element (the key object or path).
+- Little text, hand-lettered INSIDE the drawing (a speech bubble "WAIT... IS THAT ME?!", a small label "OLD MOON"); no yellow bar.
+- Our stick figure with the red scarf reacts in the scene; real scale and empty space are allowed if the idea reads at 320×180.
+- Builder: `thumbnails-source/xk.html` (+ `xk.js`). Still check the 320×180 downscale. Shorts covers keep the rules below.
+
 ## Thumbnails & covers — phone first (~90% of viewers watch on phones)
 1. **Thick strokes:** draw on a small virtual canvas and scale up (covers: 360×640 ×3; 16:9: 640×360 ×3) so every
    ink line is ≥ ~10 px at full size. Thin detail disappears on a phone.
