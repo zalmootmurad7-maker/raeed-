@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><style>@font-face{font-family:"PH";src:url(file:///tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}html,body{margin:0}canvas{display:block}</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas><script>
+const c=document.getElementById('c'),x=c.getContext('2d');const img=new Image();img.src='bg.jpg';
+function T(s,X,Y,size,col='#111'){x.font=size+'px "PH"';x.textAlign='center';x.textBaseline='middle';x.lineJoin='round';x.lineWidth=size*0.22;x.strokeStyle='#fff';x.strokeText(s,X,Y);x.lineWidth=size*0.06;x.strokeStyle=col;x.strokeText(s,X,Y);x.fillStyle=col;x.fillText(s,X,Y);}
+function A(x1,y1,x2,y2,col='#111'){x.strokeStyle=col;x.lineWidth=6;x.lineCap='round';const mx=(x1+x2)/2+(y2-y1)*0.15,my=(y1+y2)/2-(x2-x1)*0.15;x.beginPath();x.moveTo(x1,y1);x.quadraticCurveTo(mx,my,x2,y2);x.stroke();
+  const a=Math.atan2(y2-my,x2-mx);x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-26*Math.cos(a-0.45),y2-26*Math.sin(a-0.45));x.moveTo(x2,y2);x.lineTo(x2-26*Math.cos(a+0.45),y2-26*Math.sin(a+0.45));x.stroke();}
+window.render=(v)=>{x.fillStyle='#fff';x.fillRect(0,0,1920,1080);const s=1080/1116,w=2000*s;x.drawImage(img,(1920-w)/2,0,w,1080);
+  if(v==='labels'){T('ME',300,470,96);A(350,500,560,560);T('ALSO ME',820,330,80);A(870,365,980,440);T('ME AGAIN',1500,250,76);A(1450,280,1300,360);T('...STILL ME?!',1160,80,84,'#d2382c');}
+  if(v==='title'){T("IT'S ALL ME.",380,170,130);T('(THE UNIVERSE LOOPS)',380,280,58,'#d2382c');}};
+
+window.render2=()=>{const Z=1.2,cx=930,cy=600;const P=(X,Y)=>[(X-cx)*Z+960,(Y-cy)*Z+560];x.fillStyle='#f4f2ee';x.fillRect(0,0,1920,1080);
+  x.save();x.translate(960,560);x.scale(Z,Z);x.translate(-cx,-cy);const s=1080/1116,w=2000*s;x.drawImage(img,(1920-w)/2,0,w,1080);x.restore();
+  const g=x.createRadialGradient(960,540,500,960,540,1150);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,0.18)');x.fillStyle=g;x.fillRect(0,0,1920,1080);
+  let a=P(726,561),b=P(1031,474),c2=P(1229,378);
+  T('ME',a[0]-430,a[1]-120,110);A(a[0]-370,a[1]-90,a[0]-150,a[1]-10);
+  T('ALSO ME',b[0]-430,b[1]-130,92);A(b[0]-330,b[1]-95,b[0]-70,b[1]-60);
+  T('ME AGAIN',c2[0]+300,c2[1]-150,86);A(c2[0]+230,c2[1]-115,c2[0]+70,c2[1]-40);
+  T('...STILL ME?!',330,85,100,'#d2382c');A(560,95,700,110,'#d2382c');};
+window.ready=new Promise(r=>{img.onload=()=>document.fonts.load('40px "PH"').then(r);});
+</script></body></html>
