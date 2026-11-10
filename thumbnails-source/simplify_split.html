@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><style>@font-face{font-family:"PH";src:url(file:///tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}html,body{margin:0}canvas{display:block}</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas><script>
+const W=1920,H=1080,c=document.getElementById('c'),x=c.getContext('2d');const img=new Image();img.src='b89.jpg';
+function mk(){const k=document.createElement('canvas');k.width=W;k.height=H;return k;}
+function T(s,X,Y,size,col,out,align='left'){x.font=size+'px "PH"';x.textAlign=align;x.textBaseline='middle';x.lineJoin='round';x.lineWidth=size*0.2;x.strokeStyle=out;x.strokeText(s,X,Y);x.lineWidth=size*0.085;x.strokeStyle=col;x.strokeText(s,X,Y);x.fillStyle=col;x.fillText(s,X,Y);}
+window.render=()=>{const s=Math.max(W/img.width,H/img.height),iw=img.width*s,ih=img.height*s,ox=(W-iw)/2,oy=(H-ih)/2;const P=(a,b)=>[ox+a*s,oy+b*s];
+  // 1) simplified background: left = lighter + softer, right = darker + softer
+  const simp=mk(),sx=simp.getContext('2d');sx.filter='blur(3px)';sx.drawImage(img,ox,oy,iw,ih);sx.filter='none';
+  sx.fillStyle='rgba(255,255,255,0.5)';sx.fillRect(0,0,W/2,H);sx.fillStyle='rgba(0,0,0,0.42)';sx.fillRect(W/2,0,W/2,H);
+  // 2) sharp original only around the subjects (soft masks)
+  const keep=mk(),kx=keep.getContext('2d');kx.drawImage(img,ox,oy,iw,ih);const m=mk(),mx=m.getContext('2d');
+  const R=[[550,900,230,330],[1490,890,250,360],[1790,820,230,190],[730,120,110,110],[1740,160,140,140],[620,860,110,120]];
+  for(const[a,b,rx,ry]of R){const[p,q]=P(a,b);const g=mx.createRadialGradient(p,q,0,p,q,Math.max(rx,ry)*s);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(0.72,'rgba(0,0,0,1)');g.addColorStop(1,'rgba(0,0,0,0)');
+    mx.save();mx.translate(p,q);mx.scale(rx/Math.max(rx,ry),ry/Math.max(rx,ry));mx.translate(-p,-q);mx.fillStyle=g;mx.fillRect(0,0,W,H);mx.restore();}
+  kx.globalCompositeOperation='destination-in';kx.drawImage(m,0,0);
+  x.drawImage(simp,0,0);x.drawImage(keep,0,0);
+  // 3) erase the old numbers, write bigger ones in our font
+  let [a1,b1]=P(110,60),[a2,b2]=P(430,220);x.fillStyle='#fbfbfb';x.fillRect(a1,b1,a2-a1,b2-b1);
+  [a1,b1]=P(1230,50);[a2,b2]=P(1540,215);x.fillStyle='#050505';x.fillRect(a1,b1,a2-a1,b2-b1);
+  x.fillStyle='#000';x.fillRect(W/2-3,0,6,H);
+  T('12:00',90,150,210,'#111','#fff');T('12:08?!',1010,150,210,'#d2382c','#000');};
+window.ready=new Promise(r=>{img.onload=()=>document.fonts.load('40px "PH"').then(r);});
+</script></body></html>
