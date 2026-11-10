@@ -63,6 +63,11 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
   4. First voice words are a complete, self-explanatory sentence: never start with "And / But / So", never an
      undefined "it". Prepend the episode's premise line if needed ("Every human on Earth just vanished.").
   Reference implementation: `episode4-last-light/source/shorts7_hookcards.js`.
+- **WINNING SHORTS FORMULA (confirmed by 3 uploads, 2026-11-10: SATURN OFF 69.7%/11.3k · Earth Orbits NOTHING 4.3k/day 1 ·
+  Event Horizon 78.4%/5.5k):** space / planet-scale topic · ONE surprising, true fact + one precise number · 19–20 s ·
+  frame 0 = the object already drawn + 150 px text + motion · first line = the claim ("Even at the speed of light, you could
+  never reach most of the universe.") · ends on a short puzzle line that loops into the start · title = searchable word
+  first + the claim. Household/everyday topics (vacuum, station) kept only ~48%. Make every new short with this formula.
 - **Short = the doorway into the long video's story (owner rule, 2026-11-08).** The short must be enjoyable and complete
   on its own (it pays off the WHAT: one surprising, true fact + one number, as in SATURN OFF?! = 11.3k views, 69.7% stayed),
   but it does NOT give the whole explanation: it ends on a puzzle/question whose WHY and details are only in the long
