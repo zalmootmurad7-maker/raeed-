@@ -167,5 +167,9 @@ another channel's logo, badge, characters or images):
 - Long video first (US time 2–4 PM ET = 9–11 PM Mecca until Oct 31, 10 PM–12 AM from Nov 1); first short 2–3 h
   later; then one short per day (12–2 PM ET).
 - Every short: "Related video" → its long video. Every long video: end screen + series playlist.
-- Reply to every comment in the first hours (heart + reply ending in a question).
+- Reply to every comment in the first hours (heart + a reply).
+- **Comment replies must sound like the owner, a real person (owner rule, 2026-11-10, after a viewer wrote "why you respond like AI"):**
+  1–2 short lines, casual (lowercase ok, "lol", "tbh", "yeah"), max one emoji or none, no "Spot on! 🎯"-style openers,
+  no long explanations, no em dashes, no perfect formatting, NOT a question every time (only now and then).
+  Keep the science correct but say it the way a friend would.
 - Don't rewatch your own videos to check them — use Studio.
