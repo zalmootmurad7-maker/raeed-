@@ -21,7 +21,7 @@ Shape of the Universe: You Could See the Back of Your Own Head 👀
 ```
 If space loops back on itself, light loops too, including the light bouncing off you. In a small enough universe, you'd look out of the window and see… yourself. Not a copy. You, from behind.
 
-So… does space really loop? 🤔 The full story 👉 What If the Universe Has No Edge?
+So… does space really loop? 🤔 The full story 👉 The Universe Has No Edge... Here's What Happens
 
 #space #universe #physics #whatif #shorts
 ```
@@ -31,7 +31,7 @@ So… does space really loop? 🤔 The full story 👉 What If the Universe Has 
 shape of the universe, closed universe, is the universe infinite, edge of the universe, see yourself in space, light travel, cosmology, space facts, physics shorts, ink and atoms
 ```
 
-**Related video:** What If the Universe Has No Edge?
+**Related video:** The Universe Has No Edge... Here's What Happens
 
 **Pinned comment**
 ```
