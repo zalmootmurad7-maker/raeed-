@@ -20,7 +20,7 @@ Change a rule in `CLAUDE.md` only when **3 or more uploads point the same way** 
 | Everyone Vanished. Who Left THIS On? 400km Up (user spec + v3 audit: 144–175 px hook, big figure, recorded hook voice, comment CTA) | 11-03 | 0:18 | full frame 0, voice = text, all checklist items pass | **48.0%** (~3 h) | 0:15 | ~83% | 263 (~3 h) | – | – | – |
 | You Are Living 8 Minutes In The Past… (ep. 5 short 1 "short_11_FINAL": owner spec, 5 rapid cuts, black "GONE" frame 0, no subtitle bar, music ducked to 5%) | 11-05 | 0:20 | black frame + red GONE, flash, cuts every 0.8 s | **45.1%** (~12 h) | 0:15 | ~75% | 523 engaged (flat after ~3 h) | – | – | – |
 | **Saturn Goes Dark 3 Hours After the Sun Vanishes 🪐** (ep. 5 short 3 "SATURN OFF?!": cosmic-dominoes fact, one precise number) | 11-06 | 0:19 | ONE big Sun on black + plain statement "THE SUN VANISHES" (no question, no "you", no figure) | **69.7%** (2 d 3 h) — best ever | 0:19 | **103.5%** | **11.3k** (5× our best; #1 of 10; 9.8k in 48 h) | – | 1 | – |
-| Event Horizon: The Line Even Light Can't Cross 🚀 (ep. 7 door; owner voice; frame 0 = Earth + beam + rocket + 150 px "EVEN AT LIGHT SPEED…"; puzzle ending, loop) | 11-10 | 0:20 | full frame 0, motion, huge text | **78.7%** (18 h) — BEST EVER | 0:21 (**108.5%**) | 108.5% | **7.5k** (18 h, #1 of 10, still climbing) · 98 likes · 6 comments | +3 | 6 | 3.4% |
+| Event Horizon: The Line Even Light Can't Cross 🚀 (ep. 7 door; dark space style; fact + numbers + puzzle, loop) | 11-10 | 0:20 | full frame 0, motion, huge text | **77.5%** (2 d) — BEST EVER | 0:21 (≥100%) | ~105% | **24k** (2 d; 12.6k engaged, 8.7k unique; still climbing; "shared more often") | **+8** | 8+ | 2.5% |
 
 ## Long videos (snapshot 2026-10-30)
 
@@ -68,6 +68,9 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 - **Ep. 7 long at ~2 days (11-12):** 499 impressions (93.8% in recommendations), CTR **1.4%**, 7 views from impressions.
   Traffic sources: browse 54%, **Shorts by link 28%** (the door shorts now send viewers), suggested 14%. The impression window
   (11-09…11-10) mixes thumbnails A→C→F, so it does not judge thumbnail F yet; re-check CTR for 11-11 onwards only.
+- **Event Horizon at 2 days (11-12):** 24k views (22.9k in the last 48 h), 12.6k engaged, 8.7k unique, 77.5% stayed, 77.5 h watch
+  time, +8 subscribers, 95.8% Shorts feed, 2.5% search; YouTube: "many more views than usual and shared more often".
+  New reference for the style test at 48 h: 77.5% stayed / 24k views.
 - **STYLE TEST (started 11-11): Observable Universe short = Event Horizon formula, ONLY the visual style changed (white xkcd ink,
   12 fps stepped, one red) vs Event Horizon (dark space, colour, smooth 30 fps). Compare at the same ages (1 h / 24 h / 48 h):
   "stayed", views, avg % viewed, likes. Event Horizon reference: 74 engaged at 10 min, 66.1% early, 78.4% / 5.5k at 14 h,
