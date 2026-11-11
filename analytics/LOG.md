@@ -65,6 +65,9 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
   scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
   separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
+- **Ep. 7 long at ~2 days (11-12):** 499 impressions (93.8% in recommendations), CTR **1.4%**, 7 views from impressions.
+  Traffic sources: browse 54%, **Shorts by link 28%** (the door shorts now send viewers), suggested 14%. The impression window
+  (11-09…11-10) mixes thumbnails A→C→F, so it does not judge thumbnail F yet; re-check CTR for 11-11 onwards only.
 - **STYLE TEST (started 11-11): Observable Universe short = Event Horizon formula, ONLY the visual style changed (white xkcd ink,
   12 fps stepped, one red) vs Event Horizon (dark space, colour, smooth 30 fps). Compare at the same ages (1 h / 24 h / 48 h):
   "stayed", views, avg % viewed, likes. Event Horizon reference: 74 engaged at 10 min, 66.1% early, 78.4% / 5.5k at 14 h,
