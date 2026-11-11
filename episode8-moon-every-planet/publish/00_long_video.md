@@ -49,4 +49,4 @@ what if we replaced the moon with other planets, what if the moon was replaced, 
 Which planet would you put in our sky: SATURN 🪐 or VENUS ✨? Comment your pick 👇
 ```
 
-**Thumbnail:** thumbnails/long_D2_owner_bigger_figure_FINAL.jpg
+**Thumbnail:** thumbnails/long_F2_owner_ink_night_bigger_figure_FINAL.jpg
