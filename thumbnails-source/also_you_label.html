@@ -3,6 +3,6 @@
 const c=document.getElementById('c'),x=c.getContext('2d');const img=new Image();img.src='clean.png';
 function T(s,X,Y,size,col){x.font=size+'px "PH"';x.textAlign='center';x.textBaseline='middle';x.lineJoin='round';x.lineWidth=size*0.22;x.strokeStyle='#101011';x.strokeText(s,X,Y);x.lineWidth=size*0.06;x.strokeStyle=col;x.strokeText(s,X,Y);x.fillStyle=col;x.fillText(s,X,Y);}
 function arrow(x1,y1,x2,y2){x.strokeStyle='#fff';x.lineWidth=7;x.lineCap='round';const mx=(x1+x2)/2+60,my=(y1+y2)/2-40;x.beginPath();x.moveTo(x1,y1);x.quadraticCurveTo(mx,my,x2,y2);x.stroke();const a=Math.atan2(y2-my,x2-mx);x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-30*Math.cos(a-0.45),y2-30*Math.sin(a-0.45));x.moveTo(x2,y2);x.lineTo(x2-30*Math.cos(a+0.45),y2-30*Math.sin(a+0.45));x.stroke();}
-window.render=()=>{x.drawImage(img,0,0,1920,1080);T('...ALSO YOU?!',1380,130,150,'#fff');arrow(1500,215,1480,330);arrow(1240,215,1250,300);};
+window.render=()=>{x.drawImage(img,0,0,1920,1080);T('...ALSO YOU?!',1330,120,150,'#fff');arrow(1470,205,1440,300);arrow(1215,205,1200,262);};
 window.ready=new Promise(r=>{img.onload=()=>document.fonts.load('40px "PH"').then(r);});
 </script></body></html>
