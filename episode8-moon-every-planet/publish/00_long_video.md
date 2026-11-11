@@ -2,41 +2,47 @@
 
 **Title**
 ```
-What If We Replaced the Moon With Other Planets?
+What If We Replaced the Moon With Jupiter? (And Every Other Planet)
 ```
 
-**Description**
+**Description (owner final)**
 ```
-Swap the Moon for Mars and you could see a 4,000 km canyon with your own eyes. Swap it for Venus and the ocean rises 30 meters, twice a day. Swap it for Jupiter... and Earth becomes the moon. Here is every world in the Moon's place, from Ceres to the Sun.
+Swap the Moon for Mars, and you'd see a 4,000 km canyon with your naked eye. Swap it for Venus, and ocean tides rise about 30 meters twice a day. Swap it for Jupiter... and Earth isn't the planet anymore.
 
-CHAPTERS
-00:00 Every planet where the Moon is
+Here is what happens when we replace the Moon with every world, from Ceres to the Sun.
+
+Which one would you want in your sky? Tell us in the comments! 👇
+
+TIMESTAMPS
+00:00 What if planets replaced the Moon?
 00:23 Ceres
 00:56 Pluto
 01:24 Mercury
 01:56 Mars
 02:34 Venus
-03:13 A second Earth
+03:13 A Second Earth
 03:45 Neptune
 04:27 Uranus
 04:54 Saturn
 05:33 Jupiter
-06:11 The Sun
+06:11 The Sun (The Twist)
 06:37 Which one would you choose?
 
-THE NUMBERS (NASA planetary fact sheets)
-- Size vs the Moon: Mercury 1.4x · Mars 2x · Venus 3.5x · Earth 3.7x · Neptune 14x · Uranus 15x · Saturn 33x · Jupiter 40x
-- Tidal pull vs the Moon: Mercury 4.5x · Mars 9x · Venus 66x · Earth 81x · Uranus 1,180x · Neptune 1,390x · Saturn 7,700x · Jupiter 25,800x
-- Earth would orbit Saturn every ~2.8 days and Jupiter every ~1.5 days (closer than Io)
-- The Sun's radius (696,000 km) is bigger than the Moon's orbit (384,400 km)
+THE NUMBERS (Source: NASA Planetary Fact Sheets)
+• Apparent Size vs The Moon:
+  Mercury 1.4x | Mars 2x | Venus 3.5x | Earth 3.7x | Neptune 14x | Uranus 15x | Saturn 33x | Jupiter 40x
+• Tidal Force vs The Moon:
+  Mercury 4.5x | Mars 9x | Venus 66x | Earth 81x | Uranus 1,180x | Neptune 1,390x | Saturn 7,700x | Jupiter 25,800x
+• Orbital Shifts:
+  Earth would orbit Saturn every ~2.8 days and Jupiter every ~1.5 days.
+• Solar Scale:
+  The Sun's radius (696,000 km) is nearly double the Moon's entire orbital distance (384,400 km).
 
-Which one would you want in your sky? 👇
+WATCH NEXT
+► The Universe Has No Edge... Here's What Happens
+► What If The Sun Vanished For 8 Minutes? 👉 youtu.be/xQwfpcWWy94
 
-MORE WHAT IF VIDEOS
-The Universe Has No Edge... Here's What Happens
-What If The Sun Vanished For 8 Minutes Then Came Back? 👉 youtu.be/xQwfpcWWy94
-
-#whatif #moon #planets #space #science
+#Space #WhatIf #Astronomy #Science #Planets #Moon
 ```
 
 **Tags**
