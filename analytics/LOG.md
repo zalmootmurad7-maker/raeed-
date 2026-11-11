@@ -68,6 +68,8 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 - **Ep. 7 long at ~2 days (11-12):** 499 impressions (93.8% in recommendations), CTR **1.4%**, 7 views from impressions.
   Traffic sources: browse 54%, **Shorts by link 28%** (the door shorts now send viewers), suggested 14%. The impression window
   (11-09…11-10) mixes thumbnails A→C→F, so it does not judge thumbnail F yet; re-check CTR for 11-11 onwards only.
+- **Shape of the Universe short (11-10, xkcd style, opens on "If space loops…", no number): ~1.5k views.** Not a clean style test
+  (wrong formula: hypothetical opening instead of a fact + number). Supports the formula rule: fact-first shorts win.
 - **Event Horizon at 2 days (11-12):** 24k views (22.9k in the last 48 h), 12.6k engaged, 8.7k unique, 77.5% stayed, 77.5 h watch
   time, +8 subscribers, 95.8% Shorts feed, 2.5% search; YouTube: "many more views than usual and shared more often".
   New reference for the style test at 48 h: 77.5% stayed / 24k views.
