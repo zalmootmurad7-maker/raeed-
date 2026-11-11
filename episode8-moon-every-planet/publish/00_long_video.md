@@ -33,7 +33,7 @@ THE NUMBERS (NASA planetary fact sheets)
 Which one would you want in your sky? 👇
 
 MORE WHAT IF VIDEOS
-What If the Universe Has No Edge?
+The Universe Has No Edge... Here's What Happens
 What If The Sun Vanished For 8 Minutes Then Came Back? 👉 youtu.be/xQwfpcWWy94
 
 #whatif #moon #planets #space #science
@@ -49,4 +49,4 @@ what if we replaced the moon with other planets, what if the moon was replaced, 
 Which planet would you put in our sky: SATURN 🪐 or VENUS ✨? Comment your pick 👇
 ```
 
-**Thumbnail:** owner generates the ink scene (Jupiter over the town, red Great Red Spot); I add the lettering + 320×180 check.
+**Thumbnail:** thumbnails/long_D2_owner_bigger_figure_FINAL.jpg
