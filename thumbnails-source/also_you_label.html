@@ -1,0 +1,8 @@
+<!doctype html><html><head><meta charset="utf-8"><style>@font-face{font-family:"PH";src:url(file:///tmp/claude-0/-home-user/5301fd0d-7a97-5c5e-b8ad-3df047c339b5/scratchpad/work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}html,body{margin:0}canvas{display:block}</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas><script>
+const c=document.getElementById('c'),x=c.getContext('2d');const img=new Image();img.src='clean.png';
+function T(s,X,Y,size,col){x.font=size+'px "PH"';x.textAlign='center';x.textBaseline='middle';x.lineJoin='round';x.lineWidth=size*0.22;x.strokeStyle='#101011';x.strokeText(s,X,Y);x.lineWidth=size*0.06;x.strokeStyle=col;x.strokeText(s,X,Y);x.fillStyle=col;x.fillText(s,X,Y);}
+function arrow(x1,y1,x2,y2){x.strokeStyle='#fff';x.lineWidth=7;x.lineCap='round';const mx=(x1+x2)/2+60,my=(y1+y2)/2-40;x.beginPath();x.moveTo(x1,y1);x.quadraticCurveTo(mx,my,x2,y2);x.stroke();const a=Math.atan2(y2-my,x2-mx);x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-30*Math.cos(a-0.45),y2-30*Math.sin(a-0.45));x.moveTo(x2,y2);x.lineTo(x2-30*Math.cos(a+0.45),y2-30*Math.sin(a+0.45));x.stroke();}
+window.render=()=>{x.drawImage(img,0,0,1920,1080);T('...ALSO YOU?!',1380,130,150,'#fff');arrow(1500,215,1480,330);arrow(1240,215,1250,300);};
+window.ready=new Promise(r=>{img.onload=()=>document.fonts.load('40px "PH"').then(r);});
+</script></body></html>
