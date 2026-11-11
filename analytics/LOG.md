@@ -65,6 +65,12 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
   short was Moon/space, so the test audience (our past viewers) may swipe on a household topic; (b) light everyday
   scene reads as "not science" in the feed. Next: space-station + light-from-Earth shorts (space topics, same format)
   separate topic from format. Recheck vacuum at 24–48 h + look at where the retention curve drops in 0–3 s.
+- **STYLE TEST (started 11-11): Observable Universe short = Event Horizon formula, ONLY the visual style changed (white xkcd ink,
+  12 fps stepped, one red) vs Event Horizon (dark space, colour, smooth 30 fps). Compare at the same ages (1 h / 24 h / 48 h):
+  "stayed", views, avg % viewed, likes. Event Horizon reference: 74 engaged at 10 min, 66.1% early, 78.4% / 5.5k at 14 h,
+  78.7% / 7.5k at 18 h. Decision rule: if Observable Universe stays within ~5 points of Event Horizon's "stayed" and gets
+  ≥50% of its views at 48 h → keep xkcd for shorts; if clearly lower → dark style for shorts, xkcd only for long videos.
+  (Shape of the Universe short, 11-10, was NOT a clean test: it opened on "If…", not on a fact.)
 - **Channel 28-day snapshot (11-10):** 21 subscribers (+19 in 28 days), 38.9k views, 104 h watch time. Event Horizon at 18 h:
   7.5k views, 78.7% stayed, 108.5% avg viewed, 98 likes (1.3%), 6 comments — viewers answer the puzzle in the comments
   (2 correct science answers), so the doorway rule creates conversation.
