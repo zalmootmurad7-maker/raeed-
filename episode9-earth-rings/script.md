@@ -1,0 +1,126 @@
+# Episode 9 — What If Earth Had Rings Like Saturn?
+
+Scenario: the whole Moon is dropped to the Roche limit and shatters; its pieces spread into rings above the equator.
+Voice: ElevenLabs v3, voice "Mark", record in 3 parts (`voice_part1/2/3.txt`). Hook in [excited]/[mischievously], never [serious].
+Length: 756 words ≈ 4:20–4:40 after `tighten.py`.
+
+## Structure (Ink & Atoms formula + episode 3 structure)
+| Part | Lines | Job |
+|---|---|---|
+| 0–5 s Hook | "Look up. That glowing arch… used to be our Moon." | shocking image + "you" |
+| Promise | "Before this video is over… Earth might have done this once before." | paid off at the end |
+| Setup | Roche limit, skip the slow approach (tides ×9,000), "Snap." | honest assumption in one line |
+| Science | rings form above the equator; ×4,800 Saturn; 26 km slab; 2,000–12,000 km up; opaque | re-hook: "So what would you actually see?" |
+| Consequences 1 | equator line / New York wall / never seen above 70°N | viewer in the story |
+| Consequences 2 | bright nights + Earth's shadow gap; tides < half | re-hook: "That's the beautiful part. Now the bad part." |
+| Consequences 3 | winter ring shadow over 10–60° latitude | climate, most people |
+| Consequences 4 | minefield: 7 km/s, 1 g > rifle bullet, internet sats gone, GPS survives | the owner's section, corrected |
+| Consequences 5 | rings leak: shooting stars, something bigger | Earth / your body |
+| Twist 1 | rings build a new Moon = how our Moon was born | callback "lost its Moon" |
+| Twist 2 (promise paid) | Earth may have had rings 466 Myr ago (2024) | most surprising real result |
+| End | Mars is next (Phobos) → "Which sky would you pick?" → like CTA | question + end screen |
+
+## Full script
+
+### Part 1
+```
+[excited] Look up. That glowing arch across the sky... used to be our Moon.
+[mischievously] And it's about to make your nights brighter, your winters darker, and leaving Earth... a nightmare.
+Before this video is over, I'll show you the craziest part: Earth might have done this once before. For real.
+
+Here's the setup. We drop the Moon to about 18,000 kilometers from Earth's center. That's the Roche limit: the line where Earth's gravity stretches the Moon harder than the Moon can hold itself together.
+If the Moon crept in slowly, its tides would grow about 9,000 times stronger and wreck Earth first. So we skip that part.
+[excited] Snap. The Moon cracks... and breaks apart.
+
+But the pieces don't fall. They're already in orbit, so they keep circling... and spread into a flat disk, right above the equator.
+Earth has rings.
+And these are not Saturn's rings. They're made of a whole Moon: almost 5,000 times more mass than all of Saturn's rings combined. Squash them flat, and you'd get a slab of solid rock 26 kilometers thick. Three Mount Everests.
+They start about 2,000 kilometers above your head and reach out to 12,000. Almost as wide as Earth itself. And so packed with rock that no light gets through.
+So what would you actually see?
+```
+
+### Part 2
+```
+It depends on where you live.
+Stand on the equator, and you see the rings edge-on: a razor-thin line of light, from one horizon, straight over your head, to the other.
+Move north, to somewhere like New York, and they open up into a glowing wall, rising a third of the way up the southern sky.
+Go above 70 degrees north, to Svalbard or the top of Greenland, and you'd never see them at all.
+
+And your nights would never be truly dark again. The rings are high enough to catch sunlight at night, so they glow far brighter than a full Moon... with one black gap in the middle, where Earth's own shadow falls across them.
+Your ocean tides shrink to less than half. Only the Sun is left to pull them.
+
+[serious] That's the beautiful part. Now the bad part.
+Earth is tilted. So in winter, the Sun sits low in the sky... right behind the rings.
+Their shadow falls across the winter half of the planet, from about 10 to 60 degrees latitude. That's where most people on Earth live.
+Around midwinter, the Sun can slide behind the rings in the middle of the day. Noon... goes dim. And with less sunlight, winters get colder.
+```
+
+### Part 3
+```
+[excited] And leaving Earth? That just became a nightmare.
+The rings are billions of rocks, racing around Earth at up to 7 kilometers per second. Up there, they barely touch each other... because they're all moving together.
+But your rocket isn't. Anything that crosses the rings hits them at several kilometers per second. At that speed, a single gram of rock hits harder than a rifle bullet.
+Some internet satellites orbit right where the rings are now. They're gone.
+Weirdly, your GPS would survive. Those satellites fly way out, beyond the rings. It's getting anything new up there that's the problem: every launch has to sneak under the rings, or swing out past them.
+Earth didn't just lose its Moon. It turned its own neighborhood into a cosmic minefield.
+And the minefield leaks. Rock keeps spilling from the inner edge into the air: shooting stars every night... and now and then, something much bigger.
+
+But the rings wouldn't last forever. Rock that drifts out past the Roche limit is free to clump together... and piece by piece, it builds a new Moon. Smaller than the old one. But a Moon.
+And that's not just a guess. It's how scientists think our Moon was born: from a ring of debris around the young Earth, four and a half billion years ago.
+
+[excited] Now the craziest part, the one I promised. Earth might have had rings before.
+In 2024, scientists noticed that 21 impact craters from about 466 million years ago all sit close to the equator of that time. Exactly what falling ring debris would do.
+And not long after, Earth plunged into one of the coldest periods of the last 500 million years. Maybe... in the shadow of its rings.
+It's still a hypothesis... but a real one.
+And Mars is next. Its moon Phobos is slowly falling, and in 30 to 50 million years, it could become a ring.
+So which sky would you pick: the Moon, or rings?
+If this blew your mind, hit like.
+```
+
+## Numbers table (verified 2026-11-12)
+| Claim in script | Value used | Source / calculation |
+|---|---|---|
+| Roche limit | ~18,000 km from Earth's centre (≈12,000 km above surface) | fluid limit 2.44·R⊕·(ρ⊕/ρMoon)^⅓ = 2.44·6,371·(5.51/3.34)^⅓ = 18,365 km |
+| Tides ×9,000 on a slow approach | (384,400 / 18,400)³ = 9,118 | tidal force ∝ 1/d³ |
+| Rings sit above the equator | Earth's equatorial bulge sets the ring plane (Laplace plane ≈ equator this close) | same reason Saturn's rings are equatorial |
+| "almost 5,000 times" Saturn's rings | 7.34×10²² / 1.54×10¹⁹ ≈ 4,770 | Moon mass; Saturn rings mass (Cassini, Iess et al. 2019) |
+| Rings from ~2,000 to ~12,000 km up | inner edge chosen at 8,400 km from centre (assumption); outer = Roche 18,400 − 6,371 ≈ 12,000 km | width ≈ 10,000 km vs Earth diameter 12,742 km → "almost as wide as Earth" |
+| 26 km slab, three Everests | σ = 7.34×10²² kg / π(18,400² − 8,371²) km² = 87,000 t/m² → ÷ 3,344 kg/m³ = 26 km; 26 / 8.85 = 2.9 | Moon mean density 3,344 kg/m³ |
+| Opaque ("no light gets through") | 87,000 t/m² vs Saturn's B ring ~1 t/m² | |
+| Equator: thin line through the zenith | ring plane passes through the observer's zenith | geometry |
+| New York: wall ⅓ up the southern sky | at 40.7°N inner edge at the horizon, outer edge at 32° elevation (32/90 ≈ ⅓) | geometry, outer edge 18,400 km |
+| Never seen above 70°N | outer edge sets below horizon when cos φ < 6,371/18,400 → φ > 69.7° | Svalbard 78°N, north Greenland ~80°N |
+| Brighter than a full Moon | ESTIMATE: same rock, sunlit, but covering thousands of times the Moon's area of sky | order-of-magnitude, worded "far brighter" without a number |
+| Black gap = Earth's shadow | part of the ring behind Earth (antisolar side) lies in Earth's shadow | geometry |
+| Tides "less than half" | solar tide = 46% of today's lunar tide; a symmetric ring raises no tide | |
+| Winter shadow 10–60° | at the solstice the noon shadow of the ring falls between 8° and ~61° in the winter hemisphere | ray geometry, Sun at −23.44° |
+| "most people on Earth" | most of humanity lives between 10° and 60° N (India, China, Europe, Middle East, USA) | |
+| Ring speed "up to 7 km/s" | √(GM/r): 6.9 km/s at 8,400 km, 4.7 km/s at 18,400 km | GM⊕ = 3.986×10¹⁴ m³/s² |
+| 1 g > rifle bullet | 1 g at 5 km/s = 12.5 kJ; 5.56 mm bullet (4 g, 940 m/s) = 1.8 kJ | any crossing speed > ~2 km/s works |
+| Internet satellites inside the rings | O3b / mPOWER orbit at ~8,000 km altitude (inside 2,000–12,000 km) | SES |
+| GPS survives | GPS at 20,200 km altitude = 26,600 km from centre, outside the rings | the earlier "GPS is hit" note was wrong (altitude vs centre) |
+| Launches "sneak under or swing past" | low orbit (ISS 400 km, Starlink 550 km) stays under the inner edge; higher orbits must cross the ring plane only below or beyond the rings | |
+| Rings leak inward | massive rings spread: mass flows inward onto the planet and outward | ring evolution (as Saturn's "ring rain") — no number in script |
+| New Moon builds past the Roche limit | material spreading past the Roche limit clumps into moonlets/moons | Crida & Charnoz 2012 (Science); no time number in script |
+| Our Moon formed from a debris ring 4.5 Gyr ago | giant-impact debris disk → Moon | standard model |
+| Earth's rings 466 Myr ago | 21 impact craters from ~466 Myr ago, all within ~30° of the equator of that time | Tomkins et al. 2024, Earth and Planetary Science Letters (Monash) — hypothesis |
+| "one of the coldest periods of the last 500 Myr" | Hirnantian glaciation ~445 Myr ago, proposed link to a ring shadow | same study — said as "maybe" |
+| Phobos → ring in 30–50 Myr | Phobos falls ~1.8 m per century; tidal breakup in ~30–50 Myr, may form a ring | NASA |
+
+## Publish (draft)
+**Title:** What If Earth Had Rings Like Saturn? 🤯
+**First description line:** Earth's Moon crosses the Roche limit, shatters, and turns into rings 5,000 times heavier than Saturn's.
+**Chapters:** fill in after render (Hook · The Moon breaks · What you'd see · Bright nights · Dark winters · Cosmic minefield · A new Moon · Earth had rings before?).
+**Pinned comment:** `moon or rings... which sky would you pick? 🪐`
+**Like CTA:** stick figure points at a drawn like button: "If this blew your mind, hit like".
+**End screen:** episode 8 (What If We Replaced the Moon With Jupiter?).
+
+## Thumbnail concepts (ink scene, greyscale + ONE red)
+1. A city street at night, a giant ring arch across the sky, the Moon gone; the stick figure (red scarf) points up: "WAIT... WHERE'S THE MOON?" Red = the ring.
+2. Midwinter noon: the Sun half-hidden behind the ring, a dark shadow band over the town; figure in a coat: "IT'S NOON?!" Red = the Sun.
+3. A tiny rocket in front of the ring, rocks everywhere; figure in the cockpit: "NOPE." Red = the rocket.
+
+## Short doors (3, Event Horizon dark style, 19–20 s, puzzle ending)
+1. **Saturn's Rings on Earth:** "Earth would have rings 5,000 times heavier than Saturn's." → puzzle: "so why would winter go dark?"
+2. **Roche Limit:** "Bring the Moon to 18,000 km and Earth's gravity tears it apart." → puzzle: "and the pieces don't fall."
+3. **Earth Had Rings?:** "21 craters, all near the equator, 466 million years ago." → puzzle: "what were they?"
