@@ -38,6 +38,9 @@ After each upload, add its 48 h and 7-day numbers there. Change a rule only when
 - **Put the viewer in the story** ("you fly up…", "your feet…"): those parts get the most comments.
 - **Big stakes:** Earth / your body. Planet-scale disasters get the most views.
 - Verify every number before recording; keep a numbers table with the script.
+- **An experiment, not a fantasy (owner rule, 2026-11-12):** one honest assumption at the start ("Here's the experiment…"),
+  then every consequence is anchored to something real that was already observed ("and we've seen this happen": a comet torn
+  apart by Jupiter, Cassini photos, a real collision, a published study). Say hypotheses as hypotheses.
 - **End-of-video like CTA:** a short hand-drawn shot — the stick figure points at a drawn like button, with the line
   "If this blew your mind, hit like".
 - **Pinned comment:** a question that invites replies, e.g. "What should we turn the Moon into next? 🌕".

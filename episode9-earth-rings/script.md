@@ -2,22 +2,24 @@
 
 Scenario: the whole Moon is dropped to the Roche limit and shatters; its pieces spread into rings above the equator.
 Voice: ElevenLabs v3, voice "Mark", record in 3 parts (`voice_part1/2/3.txt`). Hook in [excited]/[mischievously], never [serious].
-Length: 756 words ≈ 4:20–4:40 after `tighten.py`.
+Length: 886 words ≈ 5:00–5:20 after `tighten.py` (owner: keep the length).
+
+**Owner rule (2026-11-12): not a fantasy scenario but a scientific EXPERIMENT built on real hypotheses.** One assumption (the Moon is placed at the Roche limit); every step after it is anchored to something already observed in space (Shoemaker-Levy 9, Saturn's rings, Cassini, the 2009 satellite collision, the 2024 crater study, Phobos). Pattern: consequence → "and we've seen this happen" → back to you on Earth.
 
 ## Structure (Ink & Atoms formula + episode 3 structure)
 | Part | Lines | Job |
 |---|---|---|
 | 0–5 s Hook | "Look up. That glowing arch… used to be our Moon." | shocking image + "you" |
-| Promise | "Before this video is over… Earth might have done this once before." | paid off at the end |
-| Setup | Roche limit, skip the slow approach (tides ×9,000), "Snap." | honest assumption in one line |
-| Science | rings form above the equator; ×4,800 Saturn; 26 km slab; 2,000–12,000 km up; opaque | re-hook: "So what would you actually see?" |
+| Promise | "This isn't fantasy. Every step… has already happened somewhere in space… it might have happened to Earth." | sets the experiment frame; paid off at the end |
+| Setup | "Here's the experiment": Roche limit, skip the slow approach (tides ×9,000), "Snap." + evidence: Shoemaker-Levy 9 torn into 21 pieces | the only assumption, said honestly |
+| Science | rings form above the equator; evidence: Saturn's rings may be a shredded moon; ×4,800 Saturn; 26 km slab; 2,000–12,000 km up; opaque | re-hook: "So what would you actually see?" |
 | Consequences 1 | equator line / New York wall / never seen above 70°N | viewer in the story |
-| Consequences 2 | bright nights + Earth's shadow gap; tides < half | re-hook: "That's the beautiful part. Now the bad part." |
-| Consequences 3 | winter ring shadow over 10–60° latitude | climate, most people |
-| Consequences 4 | minefield: 7 km/s, 1 g > rifle bullet, internet sats gone, GPS survives | the owner's section, corrected |
-| Consequences 5 | rings leak: shooting stars, something bigger | Earth / your body |
-| Twist 1 | rings build a new Moon = how our Moon was born | callback "lost its Moon" |
-| Twist 2 (promise paid) | Earth may have had rings 466 Myr ago (2024) | most surprising real result |
+| Consequences 2 | bright nights + Earth's shadow gap (evidence: Cassini ringshine); tides < half | re-hook: "That's the beautiful part. Now the bad part." |
+| Consequences 3 | winter ring shadow over 10–60° latitude (evidence: Cassini photos of Saturn's winter ring shadow) | climate, most people |
+| Consequences 4 | minefield: 7 km/s, 1 g > rifle bullet, evidence: 2009 collision; internet sats gone, GPS survives | the owner's section, corrected |
+| Consequences 5 | rings leak (evidence: Saturn's ring rain); shooting stars, something bigger | Earth / your body |
+| Twist 1 | rings build a new Moon (evidence: Peggy at Saturn's ring edge) = how our Moon was born | callback "lost its Moon" |
+| Twist 2 (promise paid) | random impacts vs 21 craters on the old equator → Earth may have had rings 466 Myr ago (2024) | most surprising real result |
 | End | Mars is next (Phobos) → "Which sky would you pick?" → like CTA | question + end screen |
 
 ## Full script
@@ -26,15 +28,17 @@ Length: 756 words ≈ 4:20–4:40 after `tighten.py`.
 ```
 [excited] Look up. That glowing arch across the sky... used to be our Moon.
 [mischievously] And it's about to make your nights brighter, your winters darker, and leaving Earth... a nightmare.
-Before this video is over, I'll show you the craziest part: Earth might have done this once before. For real.
+This isn't fantasy. Every step you're about to see has already happened somewhere in space. And before this video is over, I'll show you the craziest part: it might have happened to Earth.
 
-Here's the setup. We drop the Moon to about 18,000 kilometers from Earth's center. That's the Roche limit: the line where Earth's gravity stretches the Moon harder than the Moon can hold itself together.
-If the Moon crept in slowly, its tides would grow about 9,000 times stronger and wreck Earth first. So we skip that part.
+Here's the experiment. We move the Moon to about 18,000 kilometers from Earth's center. That's the Roche limit: the line where Earth's gravity stretches the Moon harder than the Moon can hold itself together.
+We skip the slow trip in. On the way, its tides would grow about 9,000 times stronger and wreck Earth first.
 [excited] Snap. The Moon cracks... and breaks apart.
+And we've watched this happen. In 1992, a comet flew too close to Jupiter and got torn into 21 pieces.
 
-But the pieces don't fall. They're already in orbit, so they keep circling... and spread into a flat disk, right above the equator.
+But the Moon's pieces don't fall. They're already in orbit, so they keep circling... and spread into a flat disk, right above the equator.
 Earth has rings.
-And these are not Saturn's rings. They're made of a whole Moon: almost 5,000 times more mass than all of Saturn's rings combined. Squash them flat, and you'd get a slab of solid rock 26 kilometers thick. Three Mount Everests.
+Some scientists think that's exactly how Saturn got its rings: a moon that wandered too close.
+But ours are made of a whole Moon: almost 5,000 times more mass than all of Saturn's rings. Squash them flat, and you'd get a slab of solid rock 26 kilometers thick. Three Mount Everests.
 They start about 2,000 kilometers above your head and reach out to 12,000. Almost as wide as Earth itself. And so packed with rock that no light gets through.
 So what would you actually see?
 ```
@@ -47,11 +51,13 @@ Move north, to somewhere like New York, and they open up into a glowing wall, ri
 Go above 70 degrees north, to Svalbard or the top of Greenland, and you'd never see them at all.
 
 And your nights would never be truly dark again. The rings are high enough to catch sunlight at night, so they glow far brighter than a full Moon... with one black gap in the middle, where Earth's own shadow falls across them.
+Saturn does this too. The Cassini spacecraft saw its rings lighting up the planet's night side.
 Your ocean tides shrink to less than half. Only the Sun is left to pull them.
 
 [serious] That's the beautiful part. Now the bad part.
 Earth is tilted. So in winter, the Sun sits low in the sky... right behind the rings.
 Their shadow falls across the winter half of the planet, from about 10 to 60 degrees latitude. That's where most people on Earth live.
+And this isn't a guess either. Cassini photographed that exact shadow on Saturn, stretched across its winter half.
 Around midwinter, the Sun can slide behind the rings in the middle of the day. Noon... goes dim. And with less sunlight, winters get colder.
 ```
 
@@ -60,16 +66,17 @@ Around midwinter, the Sun can slide behind the rings in the middle of the day. N
 [excited] And leaving Earth? That just became a nightmare.
 The rings are billions of rocks, racing around Earth at up to 7 kilometers per second. Up there, they barely touch each other... because they're all moving together.
 But your rocket isn't. Anything that crosses the rings hits them at several kilometers per second. At that speed, a single gram of rock hits harder than a rifle bullet.
+We know what that does. In 2009, two satellites collided at 42,000 kilometers per hour and shattered into more than 2,000 pieces.
 Some internet satellites orbit right where the rings are now. They're gone.
 Weirdly, your GPS would survive. Those satellites fly way out, beyond the rings. It's getting anything new up there that's the problem: every launch has to sneak under the rings, or swing out past them.
 Earth didn't just lose its Moon. It turned its own neighborhood into a cosmic minefield.
-And the minefield leaks. Rock keeps spilling from the inner edge into the air: shooting stars every night... and now and then, something much bigger.
+And the minefield leaks. Saturn's rings are raining into Saturn right now, tons every second. Ours would spill rock into the air: shooting stars every night... and now and then, something much bigger.
 
 But the rings wouldn't last forever. Rock that drifts out past the Roche limit is free to clump together... and piece by piece, it builds a new Moon. Smaller than the old one. But a Moon.
-And that's not just a guess. It's how scientists think our Moon was born: from a ring of debris around the young Earth, four and a half billion years ago.
+Cassini may have caught a baby moon forming at the edge of Saturn's rings. And it's how scientists think our own Moon was born: from a ring of debris around the young Earth, four and a half billion years ago.
 
 [excited] Now the craziest part, the one I promised. Earth might have had rings before.
-In 2024, scientists noticed that 21 impact craters from about 466 million years ago all sit close to the equator of that time. Exactly what falling ring debris would do.
+If space rocks hit Earth at random, their craters would be scattered everywhere. But in 2024, scientists found that 21 craters from about 466 million years ago all sit close to the equator of that time. Exactly where falling ring debris would land.
 And not long after, Earth plunged into one of the coldest periods of the last 500 million years. Maybe... in the shadow of its rings.
 It's still a hypothesis... but a real one.
 And Mars is next. Its moon Phobos is slowly falling, and in 30 to 50 million years, it could become a ring.
@@ -106,6 +113,14 @@ If this blew your mind, hit like.
 | Earth's rings 466 Myr ago | 21 impact craters from ~466 Myr ago, all within ~30° of the equator of that time | Tomkins et al. 2024, Earth and Planetary Science Letters (Monash) — hypothesis |
 | "one of the coldest periods of the last 500 Myr" | Hirnantian glaciation ~445 Myr ago, proposed link to a ring shadow | same study — said as "maybe" |
 | Phobos → ring in 30–50 Myr | Phobos falls ~1.8 m per century; tidal breakup in ~30–50 Myr, may form a ring | NASA |
+| Comet torn into 21 pieces in 1992 | Shoemaker-Levy 9 passed inside Jupiter's Roche limit in July 1992, broke into ~21 fragments, hit Jupiter in July 1994 | NASA |
+| Saturn's rings may be a shredded moon | hypotheses: Canup 2010 (Nature); Wisdom et al. 2022 (Science, "Chrysalis" moon) | said as "some scientists think" |
+| Saturn's rings light its night side | Cassini images of "ringshine" on Saturn's night side | NASA/JPL |
+| Ring shadow on the winter hemisphere | Cassini photographed the rings' shadow across Saturn's winter hemisphere (e.g. northern winter 2004–2009) | NASA/JPL |
+| 2009 satellite collision | Iridium 33 × Kosmos 2251, 10 Feb 2009, 11.7 km/s ≈ 42,000 km/h, > 2,000 tracked fragments | NASA Orbital Debris Program |
+| Saturn's ring rain, "tons every second" | Cassini Grand Finale 2017: ~4,800–45,000 kg/s falling from the rings into Saturn | Waite et al. 2018 (Science) |
+| Baby moon at Saturn's ring edge | "Peggy", a disturbance at the A ring's edge seen in 2013, possibly a moonlet forming | Murray et al. 2014 (Icarus) |
+| Random impacts would scatter craters | chance of 21 random craters all landing near the equator ≈ 1 in 25 million (authors' estimate) | Tomkins et al. 2024 |
 
 ## Publish (draft)
 **Title:** What If Earth Had Rings Like Saturn? 🤯
@@ -122,5 +137,5 @@ If this blew your mind, hit like.
 
 ## Short doors (3, Event Horizon dark style, 19–20 s, puzzle ending)
 1. **Saturn's Rings on Earth:** "Earth would have rings 5,000 times heavier than Saturn's." → puzzle: "so why would winter go dark?"
-2. **Roche Limit:** "Bring the Moon to 18,000 km and Earth's gravity tears it apart." → puzzle: "and the pieces don't fall."
+2. **Roche Limit:** "Jupiter tore a comet into 21 pieces. Earth would do the same to the Moon at 18,000 km." → puzzle: "but the pieces don't fall."
 3. **Earth Had Rings?:** "21 craters, all near the equator, 466 million years ago." → puzzle: "what were they?"
