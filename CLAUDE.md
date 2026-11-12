@@ -148,6 +148,10 @@ another channel's logo, badge, characters or images):
 - **Always the same font (Patrick Hand SC) and the same stick-figure character**, hand-drawn wobbly lines.
 
 ## Style (see `moon-protons/source/sketch*.html`, `moon-antimatter/source/`, `moon-blackhole/source/`)
+- **Video-body style test (owner decision, 2026-11-12):** episode 9 is built in the Event Horizon look (dark space/night,
+  hand-drawn ink lines + colour glow, smooth 30 fps camera) instead of ep. 8's white xkcd 12 fps. Constants that never change:
+  the stick figure with the red scarf, Patrick Hand SC, wobbly hand-drawn lines, red #d2382c accent, the "What If…?" promise,
+  and ink-scene thumbnails. Compare avg % watched with ep. 7 (~53%, dark) and ep. 8 (29%, white xkcd); decide after 2–3 episodes.
 - Black ink on #f6f4f8, red #d2382c for emphasis only.
 - Font: Patrick Hand SC (labels), Patrick Hand for the lowercase "e" in e⁻/e⁺.
 - Protons ⊕ black, antimatter drawn in red with pink fill; dashed red ring = anti-object.
