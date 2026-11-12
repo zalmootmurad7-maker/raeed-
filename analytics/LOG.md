@@ -68,6 +68,11 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 - **Ep. 7 long at ~2 days (11-12):** 499 impressions (93.8% in recommendations), CTR **1.4%**, 7 views from impressions.
   Traffic sources: browse 54%, **Shorts by link 28%** (the door shorts now send viewers), suggested 14%. The impression window
   (11-09…11-10) mixes thumbnails A→C→F, so it does not judge thumbnail F yet; re-check CTR for 11-11 onwards only.
+- **STYLE TEST early read (11-12, ~4 h): Observable Universe (xkcd white, Event Horizon formula) = 21 views (11 search, 10 Shorts
+  feed), 65.1% stayed (Event Horizon at 10 min: 66.1%), 0 likes.** Viewers who see it stay about as well, but YouTube barely
+  shows it in the feed. Both white-xkcd shorts (Shape 1.5k, this one) are far below all dark/colour space shorts (Event Horizon
+  24k, Saturn 11.3k, Orbiting NOTHING 5.2k). Leaning: dark style for SHORTS, xkcd ink for LONG videos (ep. 8 CTR 4.8%).
+  Confirm at 24 h before switching.
 - **Ep. 8 long (What If We Replaced the Moon With Jupiter? (And Every Other Planet), 11-11, ~1 day):** 1.9k impressions,
   **CTR 4.8%** — best long-video CTR ever (all earlier long videos 1–3%). ~135 views (110 suggested, 19 browse, 6 other),
   avg view **2:00 = 29%** of 6:43, 4.1 h watch time, +1 sub. Thumbnail = owner's ink night scene (giant Jupiter, red spot, tiny
