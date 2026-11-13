@@ -38,6 +38,17 @@ what if saturn was our moon, what if saturn replaced the moon, rings of saturn, 
 
 **Title option with the exact search phrase:** `What If Saturn Was Our Moon? Its Rings Would Fill a Quarter of Your Sky 🪐`
 
+**Description for the new title**
+```
+What if Saturn was our Moon? Put it where the Moon is and the planet alone would be wider than your fist. And the rings of Saturn? Four fists wide, a quarter of the way across your whole sky.
+
+Saturn size comparison: it's 33 times wider than the Moon and 95 times heavier than Earth. Its pull would be almost 8,000 times the Moon's... so who would orbit who? 🤔
+
+The full story 👉 What If We Replaced the Moon With Jupiter? (And Every Other Planet)
+
+#saturn #space #moon #whatif #shorts
+```
+
 **Related video:** What If We Replaced the Moon With Jupiter? (And Every Other Planet)
 
 **Pinned comment**
