@@ -21,10 +21,22 @@ Put Saturn where the Moon is and the planet alone would be wider than your fist.
 #saturn #space #moon #whatif #shorts
 ```
 
-**Tags**
+**Tags** (vidIQ, 2026-11-13: monthly searches / competition — lower competition is easier)
 ```
-saturn, saturn as our moon, what if saturn replaced the moon, saturn rings, saturn vs earth, planets, solar system, space facts, astronomy shorts, ink and atoms
+what if saturn was our moon, what if saturn replaced the moon, rings of saturn, saturn size comparison, replacing the moon with other planets, saturn planet, saturn rings, saturn rings from earth, saturn from earth, saturn instead of the moon, saturn vs earth, saturn
 ```
+| keyword | searches/month | competition |
+|---|---|---|
+| rings of saturn | 32,190 | 22 (easy) |
+| saturn size comparison | 10,013 | 27 (easy) |
+| what if saturn was our moon | 5,188 | 42 |
+| what if saturn replaced the moon | 5,055 | 53 |
+| replacing the moon with other planets | 4,118 | 52 |
+| saturn planet | 22,825 | 47 |
+| saturn rings | 41,283 | 59 (searches −79%) |
+| saturn | 199,725 | 68 (broad) |
+
+**Title option with the exact search phrase:** `What If Saturn Was Our Moon? Its Rings Would Fill a Quarter of Your Sky 🪐`
 
 **Related video:** What If We Replaced the Moon With Jupiter? (And Every Other Planet)
 
