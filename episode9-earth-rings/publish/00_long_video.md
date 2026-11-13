@@ -3,12 +3,13 @@
 **Title** (owner's; matches the search phrase "what if earth had rings like saturn?" = 49k/month, +57%, and
 "what if earth had rings" = 56k/month, +50% — vidIQ 2026-11-13)
 ```
-What If Earth Had Rings Like Saturn? 🤯
+What If Earth Had Rings Like Saturn? (It Already Did?)
 ```
+(owner approved 2026-11-13: search phrase first + the episode's real twist, said as a question = hypothesis)
 
 **Description**
 ```
-What if Earth had rings like Saturn? We pull the Moon past the Roche limit, it shatters, and Earth gets rings almost 5,000 times heavier than Saturn's. Then we follow the real physics: what you'd see from your city, why your nights would never be dark again, why winter would steal your Sun, why leaving Earth becomes a cosmic minefield... and the 2024 study that says Earth might have had rings before.
+What if Earth had rings like Saturn? And what if it already did? We pull the Moon past the Roche limit, it shatters, and Earth gets rings almost 5,000 times heavier than Saturn's. Then we follow the real physics: what you'd see from your city, why your nights would never be dark again, why winter would steal your Sun, why leaving Earth becomes a cosmic minefield... and the 2024 study that says Earth might have had rings 466 million years ago.
 
 Every step is based on something scientists have already seen: comet Shoemaker-Levy 9 torn apart by Jupiter, Cassini's photos of Saturn's ring shadows and "ring rain", the 2009 satellite collision, and the 2024 crater study (Tomkins et al.).
 
