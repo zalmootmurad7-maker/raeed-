@@ -23,23 +23,24 @@ Length: 886 words ≈ 5:00–5:20 after `tighten.py` (owner: keep the length).
 | End | Mars is next (Phobos) → "Which sky would you pick?" → like CTA | question + end screen |
 
 ## Full script
+Voice files spell numbers as words and write "Roche" as "Rosh" so ElevenLabs reads them right; on-screen text stays "ROCHE LIMIT", "18,000 KM".
 
 ### Part 1
 ```
-[excited] Look up. That glowing arch across the sky... used to be our Moon.
-[mischievously] And it's about to make your nights brighter, your winters darker, and leaving Earth... a nightmare.
-This isn't fantasy. Every step you're about to see has already happened somewhere in space. And before this video is over, I'll show you the craziest part: it might have happened to Earth.
+[excited] Look up. Earth has rings now... almost five thousand times heavier than Saturn's. And they used to be our Moon.
+[mischievously] They'll light up your nights, steal your winter Sun... and turn leaving Earth into a nightmare.
+This isn't fantasy. Every step you're about to see has already happened somewhere in space. And before this video is over, I'll show you the craziest part: Earth might have had rings before... and we may have found the scars.
 
-Here's the experiment. We move the Moon to about 18,000 kilometers from Earth's center. That's the Roche limit: the line where Earth's gravity stretches the Moon harder than the Moon can hold itself together.
-We skip the slow trip in. On the way, its tides would grow about 9,000 times stronger and wreck Earth first.
+Here's the experiment. We pull the Moon in to eighteen thousand kilometers from Earth's center. The Rosh limit. Cross that line, and Earth's gravity stretches the Moon harder than it can hold itself together.
+If it drifted in slowly, its tides would wreck Earth on the way. So we skip that part.
 [excited] Snap. The Moon cracks... and breaks apart.
-And we've watched this happen. In 1992, a comet flew too close to Jupiter and got torn into 21 pieces.
+And we've watched this happen. In nineteen ninety-two, Jupiter tore a comet into twenty-one pieces.
 
 But the Moon's pieces don't fall. They're already in orbit, so they keep circling... and spread into a flat disk, right above the equator.
-Earth has rings.
+And there they are. Earth's rings.
 Some scientists think that's exactly how Saturn got its rings: a moon that wandered too close.
-But ours are made of a whole Moon: almost 5,000 times more mass than all of Saturn's rings. Squash them flat, and you'd get a slab of solid rock 26 kilometers thick. Three Mount Everests.
-They start about 2,000 kilometers above your head and reach out to 12,000. Almost as wide as Earth itself. And so packed with rock that no light gets through.
+But ours are made of a whole Moon. That's why they're so heavy. Squash them flat, and you'd get a slab of solid rock twenty-six kilometers thick. Three Mount Everests.
+They start about two thousand kilometers above your head and reach out to twelve thousand. Almost as wide as Earth itself. And so packed with rock that no light gets through.
 So what would you actually see?
 ```
 
@@ -48,7 +49,7 @@ So what would you actually see?
 It depends on where you live.
 Stand on the equator, and you see the rings edge-on: a razor-thin line of light, from one horizon, straight over your head, to the other.
 Move north, to somewhere like New York, and they open up into a glowing wall, rising a third of the way up the southern sky.
-Go above 70 degrees north, to Svalbard or the top of Greenland, and you'd never see them at all.
+Go above seventy degrees north, to Svalbard or the top of Greenland, and you'd never see them at all.
 
 And your nights would never be truly dark again. The rings are high enough to catch sunlight at night, so they glow far brighter than a full Moon... with one black gap in the middle, where Earth's own shadow falls across them.
 Saturn does this too. The Cassini spacecraft saw its rings lighting up the planet's night side.
@@ -56,7 +57,7 @@ Your ocean tides shrink to less than half. Only the Sun is left to pull them.
 
 [serious] That's the beautiful part. Now the bad part.
 Earth is tilted. So in winter, the Sun sits low in the sky... right behind the rings.
-Their shadow falls across the winter half of the planet, from about 10 to 60 degrees latitude. That's where most people on Earth live.
+Their shadow falls across the winter half of the planet, from about ten to sixty degrees latitude. That's where most people on Earth live.
 And this isn't a guess either. Cassini photographed that exact shadow on Saturn, stretched across its winter half.
 Around midwinter, the Sun can slide behind the rings in the middle of the day. Noon... goes dim. And with less sunlight, winters get colder.
 ```
@@ -64,22 +65,22 @@ Around midwinter, the Sun can slide behind the rings in the middle of the day. N
 ### Part 3
 ```
 [excited] And leaving Earth? That just became a nightmare.
-The rings are billions of rocks, racing around Earth at up to 7 kilometers per second. Up there, they barely touch each other... because they're all moving together.
+The rings are billions of rocks, racing around Earth at up to seven kilometers per second. Up there, they barely touch each other... because they're all moving together.
 But your rocket isn't. Anything that crosses the rings hits them at several kilometers per second. At that speed, a single gram of rock hits harder than a rifle bullet.
-We know what that does. In 2009, two satellites collided at 42,000 kilometers per hour and shattered into more than 2,000 pieces.
+We know what that does. In two thousand nine, two satellites collided at forty-two thousand kilometers per hour and shattered into more than two thousand pieces.
 Some internet satellites orbit right where the rings are now. They're gone.
 Weirdly, your GPS would survive. Those satellites fly way out, beyond the rings. It's getting anything new up there that's the problem: every launch has to sneak under the rings, or swing out past them.
 Earth didn't just lose its Moon. It turned its own neighborhood into a cosmic minefield.
 And the minefield leaks. Saturn's rings are raining into Saturn right now, tons every second. Ours would spill rock into the air: shooting stars every night... and now and then, something much bigger.
 
-But the rings wouldn't last forever. Rock that drifts out past the Roche limit is free to clump together... and piece by piece, it builds a new Moon. Smaller than the old one. But a Moon.
+But the rings wouldn't last forever. Rock that drifts out past the Rosh limit is free to clump together... and piece by piece, it builds a new Moon. Smaller than the old one. But a Moon.
 Cassini may have caught a baby moon forming at the edge of Saturn's rings. And it's how scientists think our own Moon was born: from a ring of debris around the young Earth, four and a half billion years ago.
 
-[excited] Now the craziest part, the one I promised. Earth might have had rings before.
-If space rocks hit Earth at random, their craters would be scattered everywhere. But in 2024, scientists found that 21 craters from about 466 million years ago all sit close to the equator of that time. Exactly where falling ring debris would land.
-And not long after, Earth plunged into one of the coldest periods of the last 500 million years. Maybe... in the shadow of its rings.
+[curious] Now... the craziest part. The one I promised. Earth might have had rings before.
+If space rocks hit Earth at random, their craters would be scattered everywhere. But in twenty twenty-four, scientists found that twenty-one craters from about four hundred and sixty-six million years ago all sit close to the equator of that time. Exactly where falling ring debris would land.
+And not long after, Earth plunged into one of the coldest periods of the last five hundred million years. Maybe... in the shadow of its rings.
 It's still a hypothesis... but a real one.
-And Mars is next. Its moon Phobos is slowly falling, and in 30 to 50 million years, it could become a ring.
+And Mars is next. Its moon Phobos is slowly falling, and in thirty to fifty million years, it could become a ring.
 So which sky would you pick: the Moon, or rings?
 If this blew your mind, hit like.
 ```
@@ -88,7 +89,7 @@ If this blew your mind, hit like.
 | Claim in script | Value used | Source / calculation |
 |---|---|---|
 | Roche limit | ~18,000 km from Earth's centre (≈12,000 km above surface) | fluid limit 2.44·R⊕·(ρ⊕/ρMoon)^⅓ = 2.44·6,371·(5.51/3.34)^⅓ = 18,365 km |
-| Tides ×9,000 on a slow approach | (384,400 / 18,400)³ = 9,118 | tidal force ∝ 1/d³ |
+| Tides ×9,000 on a slow approach (not said in v3; voice only says "wreck Earth") | (384,400 / 18,400)³ = 9,118 | tidal force ∝ 1/d³ |
 | Rings sit above the equator | Earth's equatorial bulge sets the ring plane (Laplace plane ≈ equator this close) | same reason Saturn's rings are equatorial |
 | "almost 5,000 times" Saturn's rings | 7.34×10²² / 1.54×10¹⁹ ≈ 4,770 | Moon mass; Saturn rings mass (Cassini, Iess et al. 2019) |
 | Rings from ~2,000 to ~12,000 km up | inner edge chosen at 8,400 km from centre (assumption); outer = Roche 18,400 − 6,371 ≈ 12,000 km | width ≈ 10,000 km vs Earth diameter 12,742 km → "almost as wide as Earth" |
