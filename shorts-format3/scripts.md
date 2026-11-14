@@ -5,7 +5,7 @@
 [curious] Two twins. Same birthday. One stays on Earth. The other flies to a star five light-years away, at ninety-nine percent of the speed of light, then turns around and comes home.
 On Earth, a little over ten years go by. Your twin waits, gets older, and finally watches the ship land.
 But the twin who flew? For them, the whole trip took about seventeen months.
-[calm] Same birthday. Now one is ten years older than the other. Nobody cheated. Time itself ran slower for the one who moved.
+[calm] Same birthday. Now one is almost nine years older than the other. Nobody cheated. Time itself ran slower for the one who moved.
 And it isn't just a thought experiment. NASA had real twins. Scott Kelly spent a year in orbit, and came back a few milliseconds younger than his brother Mark.
 So... which twin would you rather be?
 ```
