@@ -2,9 +2,8 @@
 
 [curious] So how high can human legs actually take you across the solar system? And where is the exact borderline between a fun low-gravity bounce... and accidentally launching yourself into orbit around the Sun?
 
-[matter-of-fact] To make this a fair contest, we have to standardize the human. An athletic standing vertical jump on Earth gets your center of mass up by zero point five meters. To reach that height against Earth's gravity of nine point eight meters per second squared, your legs have to push off the ground at three point one three meters per second. And the whole trip—up and down—is over in just zero point six four seconds.
-
-[deadpan] Think of your legs as a biological spring loaded with three point one three meters per second of velocity. Now let's take that spring to the heaviest neighborhood in the solar system.
+[matter-of-fact] Here are the rules: same person, same legs, same jump everywhere, a push-off at three point one three meters per second. On Earth, that gets you half a meter up, and you're back on the ground in just over half a second.
+[deadpan] Your legs are a spring. Now let's take that spring to the heaviest neighborhood in the solar system.
 
 [serious] First stop: Jupiter. Now, Jupiter doesn't have a solid surface, so let's bolt a floating titanium platform right at its one-bar cloud layer, where atmospheric pressure matches Earth at sea level. Here, gravity is nearly two and a half times stronger than home. Step onto the platform, and a seventy-kilogram human instantly feels like they weigh a hundred and seventy-seven kilograms. [strained] Bend your knees, fire every muscle fiber you have, and... [deadpan] thud. You clear just zero point two meters—barely the height of a soda can—and slam back down in a quarter of a second.
 [curious] So surely the other giant planets crush you too... right? Not quite. One of them actually lets you jump higher than you do on Earth.
