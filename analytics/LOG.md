@@ -144,3 +144,12 @@ Likes on long videos: ~0. "Hype": 0 everywhere.
 - Shorts 4–6 (evil twin, eclipses, colder than space) re-cut with the corrected rule: motion in the first second,
   strongest voice line first, 15–19 s, searchable word first in the title. Compare "stayed" with the table above.
 - Phone-first thumbnails (A/B/C via Test & Compare) on both long videos. Compare CTR with 3.0% / 1.0%.
+
+- **Ep. 9 long (What If Earth Had Rings Like Saturn? (It Already Did?), 11-14 19:45, ~28 h, dark Event Horizon look, Test & Compare A/B/D running):**
+  1.4k impressions, **CTR 2.9%**, ~56 views (recommended 50, browse 5), 1.4 h watch time → **avg view ≈ 1:30 ≈ 31%** of 4:50, 0 subs.
+  Style test so far: ep. 7 dark 3:01 → ~53% (≈1:36) · ep. 8 white 6:43 → 29% (2:00) · ep. 9 dark 4:50 → ~31% (≈1:30).
+  **Reading: the dark look did not lift retention. In absolute time every episode is watched ~1.5–2 min → the first 2 minutes decide
+  everything; % watched mostly follows length.** Need the ep. 9 retention curve (where the drop happens) + which thumbnail wins.
+- **Format 3 short 1: Twin Paradox (11-15 00:31, 0:45, calm Ouranos-style paradox, 2D ink on dark):** ~24 h: **891 views**
+  (Studio: below the channel's usual range ~1.8–2.7k), 4.9 h watch time → **avg ≈ 20 s ≈ 44%** of 45 s, +1 sub, 2 comments (A vs B),
+  now ~12 views/h (Shorts feed 11, search 1). Weak first test. Need "stayed to watch" %. One upload is not a verdict (3-upload rule).
