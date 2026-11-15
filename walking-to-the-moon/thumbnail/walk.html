@@ -9,18 +9,8 @@ window.ready=Promise.all([new Promise(r=>img.onload=r),document.fonts.load('60px
  x.strokeStyle='#fff';x.lineWidth=12;x.lineCap='butt';x.beginPath();x.moveTo(345,py(345));x.lineTo(1088,py(1088));x.stroke();
  // red dashed walking path
  x.strokeStyle=RED;x.lineWidth=5;x.setLineDash([16,12]);x.beginPath();x.moveTo(333,py(333));x.lineTo(1098,py(1098));x.stroke();x.setLineDash([]);
- // big tired walker (feet on the path), red scarf
- const fx=520,fy=py(520),s=1;x.lineCap='round';x.lineJoin='round';x.strokeStyle=INK;x.lineWidth=5;
- const hip=[fx,fy-95],neck=[fx+6,fy-175],head=[fx+10,fy-205];
- const L=(a,b,c2)=>{x.beginPath();x.moveTo(...a);x.lineTo(...b);if(c2)x.lineTo(...c2);x.stroke();};
- L(hip,[fx+30,fy-48],[fx+48,fy]);L(hip,[fx-14,fy-46],[fx-34,fy]);L(neck,hip);L([fx+4,fy-160],[fx+38,fy-118],[fx+46,fy-92]);L([fx+4,fy-160],[fx-28,fy-122],[fx-40,fy-96]);
- x.fillStyle='#fff';x.beginPath();x.arc(head[0],head[1],30,0,Math.PI*2);x.fill();x.stroke();
- // tired face: droopy lids, flat mouth, sweat drop
- x.lineWidth=3.5;for(const ex of[-11,11]){x.beginPath();x.arc(head[0]+ex+4,head[1]-4,6,0,Math.PI);x.stroke();L([head[0]+ex-2,head[1]-4],[head[0]+ex+10,head[1]-4]);}
- L([head[0]-2,head[1]+14],[head[0]+14,head[1]+12]);x.fillStyle='#8fc6ef';x.beginPath();x.moveTo(head[0]-30,head[1]-14);x.quadraticCurveTo(head[0]-40,head[1]+2,head[0]-32,head[1]+6);x.quadraticCurveTo(head[0]-22,head[1]+2,head[0]-30,head[1]-14);x.fill();x.lineWidth=2.5;x.stroke();
- // red scarf
- x.fillStyle=RED;x.lineWidth=3;x.beginPath();x.moveTo(fx-12,fy-178);x.lineTo(fx+24,fy-178);x.lineTo(fx+26,fy-168);x.lineTo(fx-14,fy-168);x.closePath();x.fill();x.stroke();
- x.beginPath();x.moveTo(fx-10,fy-172);x.lineTo(fx-46,fy-160);x.lineTo(fx-44,fy-150);x.lineTo(fx-8,fy-164);x.closePath();x.fill();x.stroke();
+ const fx=520,fy=py(520),head=[527,302];
+ x.strokeStyle=INK;x.lineCap="round";x.lineJoin="round";
  // speech bubble
  const bx=600,by=226,bw=380,bh=74;x.lineWidth=4;x.fillStyle='#fff';x.beginPath();x.moveTo(bx+20,by);x.lineTo(bx+bw-20,by);x.quadraticCurveTo(bx+bw,by,bx+bw,by+20);x.lineTo(bx+bw,by+bh-20);x.quadraticCurveTo(bx+bw,by+bh,bx+bw-20,by+bh);
  x.lineTo(bx+70,by+bh);x.lineTo(head[0]+30,head[1]-6);x.lineTo(bx+40,by+bh);x.lineTo(bx+20,by+bh);x.quadraticCurveTo(bx,by+bh,bx,by+bh-20);x.lineTo(bx,by+20);x.quadraticCurveTo(bx,by,bx+20,by);x.closePath();x.fill();x.stroke();
