@@ -159,6 +159,12 @@ another channel's logo, badge, characters or images):
 - Reels: re-lay out scenes for 1080×1920 with large text; keep content within y≈230–1560.
 
 ## Workflow
+- **Art pipeline (owner decision, 2026-11-16):** the owner generates the drawings in Gemini; Claude builds everything else
+  (timing to the voice words, camera, animated stamps/paths/figures, numbers and counters in the channel font, mix, QA).
+  No Higgsfield/AI-video subscription. For each episode Claude first writes a panel list (prompt + file name + what moves).
+  Gemini images: NO text or numbers inside (Claude adds them, so no wrong numbers), the stick figure (red shirt) generated
+  SEPARATELY on plain white in the poses needed (crouch / mid-air / landing / floating), backgrounds without the figure,
+  stamps and arrows separately, 16:9 at the largest size Gemini gives. Ep. 10 v3 = reference for animating flat panels.
 - Script → ElevenLabs v3 (voice "Mark", audio tags like [excited], [serious], [short pause]).
 - Word timings: pocketsphinx forced alignment (`moon-blackhole/source/align.py`, with custom pronunciations).
 - Render: Playwright frame-by-frame → ffmpeg (`moon-protons/source/render.js`, 4 workers in parallel).
