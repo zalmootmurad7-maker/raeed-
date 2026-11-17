@@ -12,14 +12,14 @@ function cover(i){const s=Math.max(2560/i.width,1440/i.height),w=i.width*s,h=i.h
 async function v1(){cover(await img('comet.jpg'));
  T('NO WAY',90,300,280,'#fff',{stroke:22,strokeCol:'#111',shadow:1});
  T('DOWN?!',80,610,330,RED,{stroke:26,strokeCol:'#fff',shadow:1,inner:8,innerCol:'#111'});}
-async function v2(){cover(await img('phobos.webp'));
+async function v2(){cover(await img('phobos_big.png'));
  let x=1180;const w1=T('ONE ',x,300,290,RED,{stroke:26,strokeCol:'#fff',shadow:1,inner:8,innerCol:'#111'});
  T('JUMP?!',x+w1,300,290,'#111',{stroke:26,strokeCol:'#fff',shadow:1});
- // 828 m label at the tower tip
- ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(700,556);ctx.lineTo(560,556);ctx.stroke();ctx.restore();
- T('828 m',545,590,110,'#fff',{align:'right',stroke:12,strokeCol:'#111'});
- // jump height label next to him
- ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(590,250);ctx.lineTo(440,250);ctx.stroke();ctx.restore();
- T('900 m',425,285,110,'#fff',{align:'right',stroke:14,strokeCol:'#111'});}
+ // 828 m label at the (smaller) tower tip, on the right
+ ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(762,835);ctx.lineTo(885,835);ctx.stroke();ctx.restore();
+ T('828 m',900,872,110,'#fff',{stroke:14,strokeCol:'#111'});
+ // jump height label at his feet, on the left
+ ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(505,800);ctx.lineTo(385,800);ctx.stroke();ctx.restore();
+ T('900 m',370,837,110,'#fff',{align:'right',stroke:14,strokeCol:'#111'});}
 window.go=async v=>{await document.fonts.load('100px PH');await (v==1?v1():v2());};
 </script></body></html>
