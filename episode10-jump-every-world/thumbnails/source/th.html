@@ -1,0 +1,25 @@
+<!doctype html><html><head><style>
+@font-face{font-family:PH;src:url(../work/node_modules/@fontsource/patrick-hand-sc/files/patrick-hand-sc-latin-400-normal.woff2)}
+body{margin:0;background:#000}canvas{display:block}</style></head><body><canvas id=c width=2560 height=1440></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');const RED='#e0352b';
+function T(s,x,y,size,fill,o={}){ctx.save();ctx.font=size+'px PH';ctx.textBaseline='alphabetic';ctx.textAlign=o.align||'left';ctx.lineJoin='round';
+ if(o.shadow){ctx.shadowColor='rgba(0,0,0,0.55)';ctx.shadowBlur=24;ctx.shadowOffsetY=8;}
+ if(o.stroke){ctx.lineWidth=o.stroke;ctx.strokeStyle=o.strokeCol||'#fff';ctx.strokeText(s,x,y);}ctx.shadowColor='transparent';
+ if(o.inner){ctx.lineWidth=o.inner;ctx.strokeStyle=o.innerCol;ctx.strokeText(s,x,y);}
+ ctx.fillStyle=fill;ctx.fillText(s,x,y);const w=ctx.measureText(s).width;ctx.restore();return w;}
+function img(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src;});}
+function cover(i){const s=Math.max(2560/i.width,1440/i.height),w=i.width*s,h=i.height*s;ctx.drawImage(i,(2560-w)/2,(1440-h)/2,w,h);}
+async function v1(){cover(await img('comet.jpg'));
+ T('NO WAY',90,300,280,'#fff',{stroke:22,strokeCol:'#111',shadow:1});
+ T('DOWN?!',80,610,330,RED,{stroke:26,strokeCol:'#fff',shadow:1,inner:8,innerCol:'#111'});}
+async function v2(){cover(await img('phobos.webp'));
+ let x=1180;const w1=T('ONE ',x,300,290,RED,{stroke:26,strokeCol:'#fff',shadow:1,inner:8,innerCol:'#111'});
+ T('JUMP?!',x+w1,300,290,'#111',{stroke:26,strokeCol:'#fff',shadow:1});
+ // 828 m label at the tower tip
+ ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(700,556);ctx.lineTo(560,556);ctx.stroke();ctx.restore();
+ T('828 m',545,590,110,'#fff',{align:'right',stroke:12,strokeCol:'#111'});
+ // jump height label next to him
+ ctx.save();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(590,250);ctx.lineTo(440,250);ctx.stroke();ctx.restore();
+ T('900 m',425,285,110,'#fff',{align:'right',stroke:14,strokeCol:'#111'});}
+window.go=async v=>{await document.fonts.load('100px PH');await (v==1?v1():v2());};
+</script></body></html>
