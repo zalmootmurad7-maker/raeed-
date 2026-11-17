@@ -114,7 +114,7 @@ another channel's logo, badge, characters or images):
 - ONE absurd moment drawn as a scene (Jupiter where the Moon should be, you seeing the back of your own head), not a poster.
 - Greyscale ink (white paper, or dark grey for space/night) + exactly ONE red element (the key object or path).
 - Little text, hand-lettered INSIDE the drawing (a speech bubble "WAIT... IS THAT ME?!", a small label "OLD MOON"); no yellow bar.
-- Our stick figure with the red scarf reacts in the scene; real scale and empty space are allowed if the idea reads at 320×180.
+- Our stick figure (the fixed character, see `character/`) reacts in the scene; real scale and empty space are allowed if the idea reads at 320×180.
 - Builder: `thumbnails-source/xk.html` (+ `xk.js`). Still check the 320×180 downscale. Shorts covers keep the rules below.
 
 ## Thumbnails & covers — phone first (~90% of viewers watch on phones)
@@ -147,10 +147,26 @@ another channel's logo, badge, characters or images):
 - **Palette:** black ink + red #d2382c + yellow highlight + at most ONE extra colour tied to the event.
 - **Always the same font (Patrick Hand SC) and the same stick-figure character**, hand-drawn wobbly lines.
 
+## THE CHARACTER — fixed in every video from now on (owner decision, 2026-11-17)
+Reference sheet: `character/` (`turnaround_front_3q_side_back.png`, `pose_talk_wave.png`, `pose_shocked.png`,
+`pose_walk_point_up.png`). Never redesign him; every video, short, thumbnail and cover uses exactly this man:
+- Big round white head (about as wide as the shoulders), soft grey shading on the lower-left edge, no hair, no ears, no nose.
+- Big round eyes = black outline + small black pupil; curved eyebrows; open mouth with a grey tongue (talking/happy)
+  or a wide red-tongued scream (shock).
+- Plain RED short-sleeve T-shirt (no logo), WHITE straight trousers with grey shading, small white oval shoes.
+- Thin single-line black arms; solid BLACK hands with 4–5 thin fingers.
+- Thick, clean black outline (~same weight everywhere), flat colours, light grey shadows only. No scarf, no hat.
+- Gemini prompt base (paste before every pose): "the same character as the reference: simple cartoon stick man, big round
+  white head with grey shading, big round eyes with eyebrows, red short-sleeve t-shirt, white trousers, white shoes,
+  thin black arms, black hands, thick black outlines, flat colours, plain white background, no text" + the pose.
+  Always attach `character/turnaround_front_3q_side_back.png` as the reference image.
+- When Claude draws him in code (canvas), match this design (head, red tee, white trousers, black hands), not the old
+  thin stick man or the red-scarf version.
+
 ## Style (see `moon-protons/source/sketch*.html`, `moon-antimatter/source/`, `moon-blackhole/source/`)
 - **Video-body style test (owner decision, 2026-11-12):** episode 9 is built in the Event Horizon look (dark space/night,
   hand-drawn ink lines + colour glow, smooth 30 fps camera) instead of ep. 8's white xkcd 12 fps. Constants that never change:
-  the stick figure with the red scarf, Patrick Hand SC, wobbly hand-drawn lines, red #d2382c accent, the "What If…?" promise,
+  the fixed character (`character/`), Patrick Hand SC, wobbly hand-drawn lines, red #d2382c accent, the "What If…?" promise,
   and ink-scene thumbnails. Compare avg % watched with ep. 7 (~53%, dark) and ep. 8 (29%, white xkcd); decide after 2–3 episodes.
 - Black ink on #f6f4f8, red #d2382c for emphasis only.
 - Font: Patrick Hand SC (labels), Patrick Hand for the lowercase "e" in e⁻/e⁺.
