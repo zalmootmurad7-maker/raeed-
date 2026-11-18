@@ -29,12 +29,12 @@
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | 01 | 00:02–00:05 | Light | `Char_Light (EXPLAINING)` + `Card_Light` | Camera settles on Card `01 · MICRO BLACK HOLE`; character points right | `Pop_Card` |
 | 02 | 00:05–00:09 | Light | `Icon_BlackHole_Accretion` → `Icon_Atom` | `Snap Zoom` out from giant black hole to tiny atom dot | `Whoosh_Snap` |
-| 03 | 00:09–00:15 | Light | `Icon_Mountain` + Red Arrow + `1 nm` dot | Mountain squashes down (`Scale X/Y`) into `1 nm` glowing `#2563EB` dot | `Squish_Bass` |
+| 03 | 00:09–00:15 | Light | `Icon_Mountain` + Red Arrow + `0.0005 nm` dot | Mountain squashes down (`Scale X/Y`) into a glowing `#2563EB` dot labelled `~2,000× SMALLER THAN 1 nm` | `Squish_Bass` |
 | 04 | 00:15–00:22 | Light | `Card_Light`: Planck Scale Ruler | `Push-in` on ruler ticks (`10^-35 m`); Gravity vs Quantum icons clash | `Tick_Loop` |
 | 05 | 00:22–00:30 | Light | `Char_Light (THINKING)` + Earth / LHC Ring | Cosmic ray bolts hit Earth atmosphere; `Whip Pan` to LHC ring | `Zap_Electric` |
 | 06 | 00:30–00:35 | Dark | `Char_Space (THE CATCH)` + `Card_Dark` | Hard cut to `#0E131F`; red pill `THE CATCH` slams in | `Thud_Catch` |
 | 07 | 00:35–00:44 | Dark | `Icon_BlackHole_Small` leaking particles | Hawking radiation particles shoot outward; hole shrinks rapidly | `Fizzle_Steam` |
-| 08 | 00:44–00:54 | Dark | `Icon_Mountain` → Yellow `#F59E0B` burst | Mountain-mass dot flashes & explodes into radial burst | `Boom_Short` |
+| 08 | 00:44–00:54 | Dark | `Icon_Mountain` dot (`OUTLIVES THE UNIVERSE`) vs whale-mass dot → Yellow `#F59E0B` burst | Mountain-mass dot sits calm; whale-mass dot flashes & explodes into radial burst (`< 1 s`) | `Boom_Short` |
 | 09 | 00:54–01:05 | Dark | `JetBrains Mono` counter: `10^-27 s` | `Snap Zoom` onto timer flashing `0.000...` and vanishing | `Blip_Timer` |
 | 10 | 01:05–01:24 | Light | `Char_Light (EXPLAINING)` + Switzerland map | Character shakes head calmly; tiny LHC icon stays intact | `Chime_Clean` |
 | 10b | 01:24–01:25 | Light | `MasterBoard_4x2` | `Board Zoom Out` (Card `01` gets `#2563EB` check) → Pan & `Zoom In` to Card `02` | `Whoosh_Zoom` |
@@ -105,7 +105,7 @@
 | Shot | Time | Mode | Character / Asset | Action & Camera Move | SFX Cue |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | 38 | 07:35–07:48 | Dark | `Char_Space (SHOCKED)` + `10B+ SUNS` | `Snap Zoom` out as `ULTRAMASSIVE` header drops in | `Boom_Sub` |
-| 39 | 07:48–08:12 | Dark | `TON 618` vs `40x SOLAR SYSTEMS` | Scale bar scrolls right; 40 tiny Solar System icons lined up across ring | `Tick_Fast` |
+| 39 | 07:48–08:12 | Dark | `TON 618` (`UP TO 66B SUNS`, r ≈ 1,300 AU) vs `40+ SOLAR SYSTEMS` (to Neptune) | Scale bar scrolls right; 40 tiny Solar System icons lined up across ring | `Tick_Fast` |
 | 40 | 08:12–08:35 | Dark | `PHOENIX A` (`100 BILLION SUNS`) | Huge `#F59E0B` ring dwarfs Milky Way star-mass bar beside it | `Rumble_Deep` |
 | 41 | 08:35–08:45 | Dark | `Char_Space (THE CATCH)` | `THE CATCH` pill (`50B SUN LIMIT`) slams in | `Thud_Catch` |
 | 42 | 08:45–09:14 | Dark | Unstable accretion disk breaking apart | Gas disk fractures; two giant black holes slide together to merge | `Crash_Low` |

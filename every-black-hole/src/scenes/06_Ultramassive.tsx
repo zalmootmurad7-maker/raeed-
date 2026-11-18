@@ -22,7 +22,7 @@ export const Shot39: React.FC<{ dur: number }> = ({ dur }) => {
         <ExplainerCard mode="space" w={W} h={Hh} pill={{ text: "06 · ULTRAMASSIVE", color: ACCENT.blue }}>
           <div style={{ position: "absolute", left: 40, top: 92, fontFamily: FONT.head, fontWeight: 700, fontSize: 96, color: SPACE.text }}>TON 618</div>
           <div style={{ position: "absolute", right: 44, top: 36, fontFamily: FONT.mono, fontWeight: 700, fontSize: 40, color: ACCENT.amber, fontVariantNumeric: "tabular-nums", textAlign: "right" }}>
-            40–66 BILLION SUNS
+            UP TO 66 BILLION SUNS
           </div>
           <div style={{ position: "absolute", left: 0, top: 0, width: W, height: Hh, translate: `${pan}px 0px` }}>
             <svg width={W} height={Hh} style={{ position: "absolute", left: 0, top: 0, overflow: "visible" }}>
