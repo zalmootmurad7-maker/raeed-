@@ -7,3 +7,4 @@ dist
 out
 out/*.mp4
 public/audio/*.wav
+public/audio/shorts/

@@ -1,0 +1,5 @@
+[
+ {"id": "Short1-230Tons", "banner": ["230 TONS", "= BOOM?!"], "bannerSize": 150, "segs": [[7.74, 10.74], [11.52, 19.12], [56.15, 67.10]], "tail": 0.35},
+ {"id": "Short2-BiggerSafer", "banner": ["BIGGER =", "SAFER?!"], "bannerSize": 150, "segs": [[332.45, 350.98]], "tail": 0.35},
+ {"id": "Short3-40SolarSystems", "banner": ["40 SOLAR", "SYSTEMS WIDE?!"], "bannerSize": 128, "segs": [[365.80, 373.85], [380.50, 386.75], [386.90, 388.42], [390.70, 394.45]], "tail": 0.35}
+]
