@@ -60,3 +60,59 @@ export const Shot39: React.FC<{ dur: number }> = ({ dur }) => {
     </AbsoluteFill>
   );
 };
+
+// ===== other chapter 6 shots =====
+import { Appear, Burst, CardShot, Counter, Txt, WideShot as WS, muted, ramp, useShot } from "../components/kit";
+import { Icon_BlackHole_Small, Icon_Ring_Huge } from "../components/Icons";
+
+export const Shot38: React.FC = () => {
+  const { at } = useShot();
+  return (
+    <CardShot mode="space" pose="shocked" pill="06 · ULTRAMASSIVE" snapAt={0} snapTo={1}>
+      <Appear at={at(0.05)} kind="slam"><Txt x={56} y={120} size={110} color={SPACE.text}>ULTRAMASSIVE</Txt></Appear>
+      <Counter x={58} y={300} size={80} color={ACCENT.amber} from={1} to={10} a={at(0.2)} b={at(0.5)} suffix=" BILLION+ SUNS" />
+      <Appear at={at(0.5)} kind="rise"><Txt x={58} y={460} size={44} color={muted("space")} font="body" w={1100}>"Supermassive" stops being a big enough word.</Txt></Appear>
+    </CardShot>
+  );
+};
+
+export const Shot40: React.FC = () => {
+  const { f, at } = useShot();
+  const a = ramp(f, at(0.15), at(0.45)), b = ramp(f, at(0.35), at(0.7));
+  return (
+    <WS mode="space" pill="06 · ULTRAMASSIVE">
+      <Txt x={60} y={110} size={64} color={SPACE.text}>PHOENIX A</Txt>
+      <div style={{ position: "absolute", left: 1350, top: 60 }}><Icon_Ring_Huge size={360} seed={3} ink="#E2E8F0" /></div>
+      <Txt x={60} y={330} size={40} color={SPACE.text} font="body">All the stars of the Milky Way (~60 billion Suns)</Txt>
+      <div style={{ position: "absolute", left: 60, top: 390, width: 1600 * 0.6 * a, height: 70, background: ACCENT.blue, borderRadius: 10 }} />
+      <Txt x={60} y={540} size={40} color={SPACE.text} font="body">Phoenix A (~100 billion Suns, estimate)</Txt>
+      <div style={{ position: "absolute", left: 60, top: 600, width: 1600 * b, height: 70, background: ACCENT.amber, borderRadius: 10, boxShadow: "0 0 30px rgba(245,158,11,0.6)" }} />
+    </WS>
+  );
+};
+
+export const Shot41: React.FC = () => {
+  const { at } = useShot();
+  return (
+    <CardShot mode="space" pose="the_catch" pill="THE CATCH">
+      <Appear at={2} kind="rise"><Txt x={56} y={130} size={80} color={SPACE.text} w={1100}>A COSMIC SPEED LIMIT</Txt></Appear>
+      <Appear at={at(0.2)} kind="slam"><Txt x={56} y={260} size={96} color={ACCENT.amber} font="mono">~50 BILLION SUNS</Txt></Appear>
+      <Appear at={at(0.45)} kind="rise"><Txt x={58} y={430} size={44} color={muted("space")} font="body" w={1080}>Past this, its own gravity breaks the disk that feeds it.</Txt></Appear>
+    </CardShot>
+  );
+};
+
+export const Shot42: React.FC = () => {
+  const { f, at } = useShot();
+  const k = ramp(f, at(0.35), at(0.75));
+  const merged = f >= at(0.75);
+  return (
+    <WS mode="space" pill="06 · ULTRAMASSIVE">
+      <Txt x={60} y={110} size={56} color={SPACE.text}>THE ONLY WAY TO GROW: COLLIDE</Txt>
+      {[0, 1, 2, 3, 4].map((i) => <div key={i} style={{ position: "absolute", left: 300 + i * 260, top: 430 + (i % 2 ? -1 : 1) * 30 * ramp(f, at(0.05), at(0.3)), width: 200, height: 22, borderRadius: 11, background: ACCENT.amber, opacity: 1 - k, rotate: `${(i - 2) * 8 * ramp(f, at(0.05), at(0.3))}deg` }} />)}
+      {!merged ? <><div style={{ position: "absolute", left: 300 + 450 * k, top: 320 }}><Icon_BlackHole_Small size={220} seed={4} /></div><div style={{ position: "absolute", left: 1260 - 450 * k, top: 320 }}><Icon_BlackHole_Small size={220} seed={5} /></div></>
+        : <div style={{ position: "absolute", left: 890 - 170, top: 430 - 170 }}><Icon_BlackHole_Small size={340} seed={6} /></div>}
+      <Burst x={890} y={430} at={at(0.75)} r={260} />
+    </WS>
+  );
+};
