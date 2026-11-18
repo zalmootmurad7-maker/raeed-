@@ -26,8 +26,7 @@ export const Shot01: React.FC = () => {
 export const Shot06: React.FC = () => {
   const f = useCurrentFrame();
   const slam = interpolate(f, [0, 6], [1.9, 1], { extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
-  const shakeAmt = interpolate(f, [5, 14], [9, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const shake = Math.sin(f * 2.7) * shakeAmt;
+  const shake = 0;
   const textIn = interpolate(f, [6, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ translate: `${shake}px ${-shake * 0.4}px` }}>

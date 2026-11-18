@@ -46,8 +46,9 @@ def boom(d=1.6):
 def stamp():
     tt = t(0.25); y = 0.9 * lp(rng.standard_normal(len(tt)), 1800) * np.exp(-tt * 45) + np.sin(2 * np.pi * 160 * tt) * np.exp(-tt * 28)
     return norm(y, 0.9)
-def tick():
-    tt = t(0.025); return norm(np.sin(2 * np.pi * 2600 * tt) * np.exp(-tt * 260), 0.5)
+def tick():  # soft wooden tick: low pitch, gentle attack, no click (owner: "soften the sharp ticks")
+    tt = t(0.06); a = np.minimum(1, tt / 0.004)
+    return norm(lp(np.sin(2 * np.pi * 1100 * tt) * a * np.exp(-tt * 70), 2500), 0.5)
 def shutter():
     a = tick(); return np.concatenate([a, np.zeros(int(0.07 * SR)), a])
 def chime():
@@ -63,7 +64,7 @@ def chirp(d=1.4):
     tt = t(d); f = 60 + 500 * (tt / d) ** 4
     return norm(np.sin(2 * np.pi * np.cumsum(f) / SR) * (tt / d) ** 1.5 * np.exp(-np.maximum(0, tt - d + 0.1) * 40), 0.7)
 LIB = dict(whoosh=whoosh, snap=snap, pop=pop, thud=thud, boom=boom, stamp=stamp, tick=tick, shutter=shutter, chime=chime, zap=zap, rumble=rumble, chirp=chirp)
-LEVEL = dict(whoosh=0.75, snap=0.75, pop=0.6, thud=0.9, boom=0.8, stamp=0.75, tick=0.5, shutter=0.75, chime=0.8, zap=0.7, rumble=0.6, chirp=0.6)
+LEVEL = dict(whoosh=0.75, snap=0.75, pop=0.6, thud=0.9, boom=0.8, stamp=0.75, tick=0.18, shutter=0.75, chime=0.8, zap=0.7, rumble=0.6, chirp=0.6)
 
 # ---------- cue sheet (mirrors the visual beats: fraction of each shot) ----------
 TIM = json.load(open("src/timing.json"))["shots"]
@@ -73,7 +74,7 @@ cues = []
 add = lambda name, time: cues.append((name, time))
 for sid in TIM:
     if sid.endswith("b"): add("whoosh", at(sid))
-add("whoosh", at("00", 0.0) + 0.95); add("whoosh", at("52"))
+add("whoosh", TIM["00"][1] - 0.45); add("whoosh", at("52"))
 CATCH = ["06", "15", "23", "29", "35", "41", "46", "50"]
 for sid in CATCH: add("thud", at(sid))
 for sid in TIM:
@@ -125,7 +126,7 @@ music += 0.25 * (np.sin(2 * np.pi * 110 * tt) + 0.5 * np.sin(2 * np.pi * 164.81 
 music = norm(music, 1.0) * np.minimum(1, tt / 2) * np.minimum(1, (N / SR - tt) / 3)
 
 vpk = np.max(np.abs(voice)); voice = voice / vpk * 0.5          # voice 100% = peak -6 dBFS
-music = music * 0.5 * (0.25 + (0.10 - 0.25) * sp)               # 25% in gaps -> 10% under speech
+music = music * 0.5 * (0.25 + (0.10 - 0.25) * sp) * 10 ** (-10.8 / 20)  # owner 2026-11-18: music bed down ~10 dB -> 28 dB under the voice
 sfx = sfx * 0.5 * 0.4 * (1 + (10 ** (-7 / 20) - 1) * sp)        # SFX bus x0.4, -7 dB under speech
 mix = voice + music + sfx
 

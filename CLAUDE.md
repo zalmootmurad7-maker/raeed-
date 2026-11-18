@@ -161,8 +161,9 @@ Cut-out PNGs per pose: `every-black-hole/public/assets/character/{light,space}/{
 - **4 fixed poses in both versions:** EXPLAINING (leaning, hand on hip, pointing right), SHOCKED (both hands up, wide eyes,
   open mouth), THE CATCH (arms crossed, one eyebrow raised, unimpressed), THINKING (hand on chin, eyes up).
   New poses must be generated FROM these sheets (attach both as references), same proportions and colours.
-- **Never draw the character in code**: load the PNGs. In motion: characters and ink icons step at 10–12 fps with a
-  1–2 px line boil; cards, camera and numbers stay smooth at 30 fps.
+- **Never draw the character in code**: load the PNGs. **Motion (owner rule, 2026-11-18): NO line boil, NO stepped
+  frames, NO shake/jitter on the character, icons or text (0 px).** Everything smooth at 30 fps; the character enters
+  with a smooth ease-out (scale 0.96→1, 10 frames) and stays crisp and steady; only in Space Mode a very slow float (±5 px / 6 s).
 - Gemini prompt base for new poses: "the same character as the attached reference sheet, same face, same proportions,
   same colours: [light: red short-sleeve t-shirt, light blue-grey trousers, white hands, black shoes] / [space: clear
   helmet, white spacesuit, red scarf, red belt and boots, white gloves], thick dark navy outlines, flat colours, plain

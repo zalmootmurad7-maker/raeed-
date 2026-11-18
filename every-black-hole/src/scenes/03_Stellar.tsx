@@ -114,7 +114,7 @@ export const Shot24: React.FC = () => {
 export const Shot25: React.FC = () => {
   const { f, at, dur } = useShot();
   return (
-    <CardShot mode="space" pose="shocked" pill="03 · STELLAR-MASS" frost={ramp(f, 0, dur, 0, 1, (t) => t)} shake={f > at(0.4) ? 2 : 0}>
+    <CardShot mode="space" pose="shocked" pill="03 · STELLAR-MASS" frost={ramp(f, 0, dur, 0, 1, (t) => t)}>
       <div style={{ position: "absolute", left: 0, top: 0 }}><OrbitScene swapAt={-1} /></div>
       <Appear at={at(0.2)} kind="rise"><Txt x={860} y={250} size={60} color={T} w={330}>NO SUNLIGHT</Txt></Appear>
       <Appear at={at(0.45)} kind="rise"><Txt x={860} y={420} size={44} color="#CBD5E1" font="body" w={330}>You'd freeze… but you wouldn't get pulled in.</Txt></Appear>

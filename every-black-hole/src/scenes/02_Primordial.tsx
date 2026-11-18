@@ -25,7 +25,7 @@ const Soup: React.FC<{ x: number; y: number; w: number; h: number }> = ({ x, y, 
     <div style={{ position: "absolute", left: x, top: y, width: w, height: h }}>
       {Array.from({ length: 46 }, (_, i) => {
         const r = (n: number) => { const v = Math.sin((i + 1) * 78.233 * n) * 43758.5; return v - Math.floor(v); };
-        const jx = Math.sin(f * 0.21 + i) * 10, jy = Math.cos(f * 0.17 + i * 2) * 10;
+        const jx = Math.sin(f * 0.02 + i) * 6, jy = Math.cos(f * 0.017 + i * 2) * 6;
         const s = 16 + r(3) * 46;
         return <div key={i} style={{ position: "absolute", left: r(1) * w + jx, top: r(2) * h + jy, width: s, height: s, borderRadius: 99, background: i % 3 ? ACCENT.amber : ACCENT.red, opacity: 0.55 + r(4) * 0.4 }} />;
       })}

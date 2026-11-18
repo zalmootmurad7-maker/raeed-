@@ -1,5 +1,5 @@
 import React from "react";
-import { Img, staticFile } from "remotion";
+import { Img, staticFile, useCurrentFrame } from "remotion";
 import { Appear, CardShot, Counter, Stamp, Txt, WideShot, muted, ramp, useShot } from "../components/kit";
 import { Icon_BlackHole_Small, Icon_Galaxy } from "../components/Icons";
 import { Orbit } from "../components/Props";
@@ -56,8 +56,9 @@ export const Shot35: React.FC = () => {
 };
 
 const Astro: React.FC<{ pose: string; x: number; y: number; h: number; sx?: number; sy?: number }> = ({ pose, x, y, h, sx = 1, sy = 1 }) => {
-  const b = useBoil(7);
-  return <Img src={staticFile(`assets/character/space/${pose}.png`)} style={{ position: "absolute", left: x, top: y, height: h, scale: `${sx} ${sy}`, transformOrigin: "50% 100%", translate: `calc(-50% + ${b.x}px) ${b.y}px` }} />;
+  const f = useCurrentFrame();
+  const fl = Math.sin((f / 30) * ((2 * Math.PI) / 6)) * 5;
+  return <Img src={staticFile(`assets/character/space/${pose}.png`)} style={{ position: "absolute", left: x, top: y, height: h, scale: `${sx} ${sy}`, transformOrigin: "50% 100%", translate: `-50% ${fl}px` }} />;
 };
 
 export const Shot36: React.FC = () => {

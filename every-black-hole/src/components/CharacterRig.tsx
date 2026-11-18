@@ -2,28 +2,23 @@ import React from "react";
 import { Img, interpolate, Easing, staticFile, useCurrentFrame } from "remotion";
 import type { Mode } from "../tokens";
 import type { Pose } from "../shots";
-import { stepped, useBoil } from "./boil";
 
-// Never draw the character in code: load the pre-cut PNGs (CLAUDE.md §4).
-// Stepped 10 fps pop-in + subtle line boil.
+// Never draw the character in code: load the PNGs. Crisp and steady at 30 fps:
+// smooth ease-out entry (scale 0.96 -> 1 over 10 frames), no jitter.
+// Space Mode only: a very slow, subtle float (±5 px over ~6 s).
 export const CharacterRig: React.FC<{
   mode: Mode;
   pose: Pose;
-  x: number; // centre x on screen
-  bottom: number; // feet line (y) on screen
+  x: number;
+  bottom: number;
   height: number;
   flip?: boolean;
-  enterAt?: number; // frame (local) when the pose pops in
+  enterAt?: number;
   seed?: number;
-}> = ({ mode, pose, x, bottom, height, flip, enterAt = 0, seed = 7 }) => {
+}> = ({ mode, pose, x, bottom, height, flip, enterAt = 0 }) => {
   const f = useCurrentFrame();
-  const sf = stepped(f);
-  const b = useBoil(seed);
-  const pop = interpolate(sf, [enterAt, enterAt + 9], [0.92, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.back(2.2)),
-  });
+  const k = interpolate(f, [enterAt, enterAt + 10], [0.96, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
+  const float = mode === "space" ? Math.sin((f / 30) * ((2 * Math.PI) / 6)) * 5 : 0;
   return (
     <Img
       src={staticFile(`assets/character/${mode === "light" ? "light" : "space"}/${pose}.png`)}
@@ -32,9 +27,8 @@ export const CharacterRig: React.FC<{
         height,
         left: x,
         top: bottom - height,
-        translate: `calc(-50% + ${b.x}px) ${b.y}px`,
-        rotate: `${b.r}deg`,
-        scale: `${flip ? -pop : pop} ${pop}`,
+        translate: `-50% ${float}px`,
+        scale: `${flip ? -k : k} ${k}`,
         transformOrigin: "50% 100%",
       }}
     />

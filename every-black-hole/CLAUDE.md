@@ -50,12 +50,14 @@ Follow the reference channel's signature spatial navigation:
 1. **NEVER procedurally draw the character in code.** Always load the pre-cut transparent PNG/SVG assets from:
    - `assets/character/light/`: `explaining.png`, `shocked.png`, `the_catch.png`, `thinking.png`
    - `assets/character/space/`: `explaining.png`, `shocked.png`, `the_catch.png`, `thinking.png`
-2. **Hybrid Frame Rate:**
-   - **30 FPS (Smooth):** `MasterBoard` camera moves, cards, typography, numeric counters, and scale bars.
-   - **10–12 FPS (Stepped Hand-Drawn Feel):** Character rigs and hand-drawn ink icons.
-     - In Remotion: quantize frame with `const steppedFrame = Math.floor(frame / 3) * 3;`
-     - In After Effects: apply `posterizeTime(12);`
-   - Add a subtle `1–2px` `Line Boil` / micro-wiggle on the stepped character layer only.
+2. **Motion (owner rule, 2026-11-18, replaces the old hybrid-FPS rule):** everything runs smooth at **30 FPS**.
+   - **No line boil, no stepped/posterized frames, no position or rotation jitter, no screen shake** on the character,
+     icons or text (0 px).
+   - Character: crisp and steady; smooth ease-out entry (scale `0.96 → 1` over 10 frames). Space Mode only: a very slow,
+     subtle float (±5 px over ~6 s).
+   - `src/components/boil.ts` is kept as no-op helpers (identity / zero) so scenes compile.
+3. **Audio (owner rule, 2026-11-18):** music bed ~28 dB under Mark's voice during speech; soft low ticks (no sharp clicks);
+   SFX ≥ 15 dB under the voice; master −14 LUFS, limiter −1 dBFS (`scripts/mix.py`).
 
 ---
 
@@ -95,4 +97,4 @@ project/
 
 ### Mandatory Verification Before Full Render
 1. Build `src/tokens.ts`, `MasterBoard.tsx`, and reusable components first.
-2. Render **4 test frames** (Shot 00 `MasterBoard` 4x2 grid, Shot 01 Light Canvas zoomed-in, Shot 06 Space Mode `THE CATCH`, Shot 39 `TON 618` Scale Bar) and visually inspect them to verify text legibility, card borders, and character placement before rendering the full 12-minute video.
+2. Render **4 test frames** (Shot 00 `MasterBoard` 4x2 grid (held 1.8 s, then a 0.4 s zoom), Shot 01 Light Canvas zoomed-in, Shot 06 Space Mode `THE CATCH`, Shot 39 `TON 618` Scale Bar) and visually inspect them to verify text legibility, card borders, and character placement before rendering the full 12-minute video.
