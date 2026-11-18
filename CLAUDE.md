@@ -150,7 +150,7 @@ another channel's logo, badge, characters or images):
 ## THE CHARACTER — fixed in every video from now on (owner decision, 2026-11-18; replaces the 2026-11-17 sheet)
 Reference sheets: `character/character_sheet_light.jpg` (Light Canvas) and `character/character_sheet_space.jpg` (Space Mode).
 Cut-out PNGs per pose: `every-black-hole/public/assets/character/{light,space}/{explaining,shocked,the_catch,thinking}.png`
-(the owner's high-res single-pose PNGs replace the sliced ones when supplied). The old 2026-11-17 sheet lives in
+(the owner's high-res transparent PNGs, installed 2026-11-18; the sliced ones are retired). The old 2026-11-17 sheet lives in
 `character/archive_2026-11-17/` and is NOT used any more. Never redesign him; every video, short, thumbnail and cover uses:
 - **Light Canvas version (default, explanations):** big round off-white head with soft grey shading, no hair/ears/nose;
   expressive eyebrows, black-pupil eyes, simple mouth; plain RED short-sleeve T-shirt (no logo); light blue-grey trousers;
