@@ -80,7 +80,7 @@ The catch: size does weird things to their gravity at the edge. You might assume
 
 **\[amazed\]** Ultramassive black holes. At a certain point, "supermassive" stops being a big enough word.
 
-Ultramassive black holes start around ten billion solar masses and push past the edge of what astronomers thought was physically possible. Take TON six-eighteen—a distant quasar powered by a black hole estimated at up to sixty-six billion times the mass of our Sun. At that upper estimate, its event horizon has a Schwarzschild \[phonetic: Shvarts-shild\] radius of up to about one thousand three hundred astronomical units—meaning you could line up more than forty copies of our Solar System, out to Neptune's orbit, side by side across it. And then there is Phoenix A, sitting at the heart of the Phoenix Cluster, estimated at a staggering one hundred billion solar masses. That single object holds more mass than all the stars in the Milky Way combined.
+Ultramassive black holes start around ten billion solar masses and push past the edge of what astronomers thought was physically possible. Take TON six-eighteen—a distant quasar powered by a black hole estimated at up to sixty-six billion times the mass of our Sun. Its event horizon has a Schwarzschild \[phonetic: Shvarts-shild\] radius of up to about one thousand three hundred astronomical units—meaning you could line up more than forty copies of our Solar System, out to Neptune's orbit, side by side across it. And then there is Phoenix A, sitting at the heart of the Phoenix Cluster, estimated at a staggering one hundred billion solar masses. That single object holds more mass than all the stars in the Milky Way combined.
 
 **\[VISUAL: Space Mode `#0E131F` | Character: `THE CATCH`\]**
 
