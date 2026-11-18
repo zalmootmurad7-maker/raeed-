@@ -72,10 +72,15 @@ export const SHOTS: Shot[] = [
   s("53", "12:00", "12:10", "dark", 8, "End screen card", "explaining"),
 ];
 
+import TIMING from "./timing.json";
+const T = (TIMING as unknown as { shots: Record<string, [number, number]> }).shots;
+
 export const toFrames = (t: string) => {
   const [m, sec] = t.split(":").map(Number);
   return Math.round((m * 60 + sec) * FPS);
 };
-export const shotFrom = (sh: Shot) => toFrames(sh.start);
-export const shotDur = (sh: Shot) => Math.max(1, toFrames(sh.end) - toFrames(sh.start));
-export const TOTAL_FRAMES = toFrames(SHOTS[SHOTS.length - 1].end);
+// Voice-aligned timing (src/timing.json) wins; the mm:ss in SHOTS is the provisional fallback.
+export const shotFrom = (sh: Shot) => (T[sh.id] ? Math.round(T[sh.id][0] * FPS) : toFrames(sh.start));
+export const shotEnd = (sh: Shot) => (T[sh.id] ? Math.round(T[sh.id][1] * FPS) : toFrames(sh.end));
+export const shotDur = (sh: Shot) => Math.max(1, shotEnd(sh) - shotFrom(sh));
+export const TOTAL_FRAMES = shotEnd(SHOTS[SHOTS.length - 1]);
