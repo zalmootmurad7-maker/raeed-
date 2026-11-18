@@ -14,13 +14,13 @@
 
 **\[VISUAL: Light Canvas `#F6F4EF` | Character: `EXPLAINING` pointing to a tiny dot next to a proton\]**
 
-**\[calm, matter-of-fact\]** Micro black holes. If you think every black hole is a giant cosmic vacuum cleaner waiting to swallow a galaxy, start here. A micro black hole is smaller than a single atom. In fact, to turn Mount Everest into one, you would have to crush the entire mountain into a speck about two thousand times smaller than a nanometer, hundreds of times smaller than a single atom.
+**\[calm, matter-of-fact\]** Micro black holes. If you think every black hole is a giant cosmic vacuum cleaner waiting to swallow a galaxy, start here. A micro black hole is smaller than a single atom. In fact, to turn Mount Everest into one, you would have to crush the entire mountain into a ball with a radius of just zero point two four picometers, about four thousand times smaller than a nanometer.
 
 In physics, these are the theoretical minimum size a black hole can be—right down near the Planck scale, where gravity and quantum mechanics stop getting along. Scientists have wondered for decades if high-energy cosmic rays hitting Earth’s atmosphere, or particle collisions inside the Large Hadron Collider, could briefly spark one into existence for a fraction of a second.
 
 **\[VISUAL: Space Mode `#0E131F` | Character: `THE CATCH`\]**
 
-**\[dry, punchy\]** The catch: the tiniest ones are basically cosmic fireworks that detonate the instant they are born. Because of Hawking radiation, the smaller a black hole is, the faster it leaks energy and evaporates. A mountain-mass one would actually outlive the universe, but shrink it down to the mass of a blue whale and it would blow itself apart in less than a second. And the subatomic ones physicists once hoped to spot at the Large Hadron Collider? They would vanish in roughly ten to the minus twenty-seven seconds. So no—CERN is not about to swallow Switzerland.
+**\[dry, punchy\]** The catch: the tiniest ones are basically cosmic fireworks that detonate the instant they are born. Because of Hawking radiation, the smaller a black hole is, the faster it leaks energy and evaporates. A mountain-mass one would actually outlive the universe, but shrink it down to about two hundred and thirty metric tons, roughly the weight of a blue whale, and it would blow itself apart in about one second. And the subatomic ones physicists once hoped to spot at the Large Hadron Collider? They would vanish in roughly ten to the minus twenty-seven seconds. So no—CERN is not about to swallow Switzerland.
 
 ## 2. Primordial Black Holes (01:25 – 02:55)
 
@@ -80,7 +80,7 @@ The catch: size does weird things to their gravity at the edge. You might assume
 
 **\[amazed\]** Ultramassive black holes. At a certain point, "supermassive" stops being a big enough word.
 
-Ultramassive black holes start around ten billion solar masses and push past the edge of what astronomers thought was physically possible. Take TON six-eighteen—a distant quasar powered by a black hole estimated at up to sixty-six billion times the mass of our Sun. At that upper estimate, its event horizon has a Schwarzschild \[phonetic: Shvarts-shild\] radius of about one thousand three hundred astronomical units—meaning you could line up more than forty copies of our Solar System, out to Neptune's orbit, side by side across it. And then there is Phoenix A, sitting at the heart of the Phoenix Cluster, estimated at a staggering one hundred billion solar masses. That single object holds more mass than all the stars in the Milky Way combined.
+Ultramassive black holes start around ten billion solar masses and push past the edge of what astronomers thought was physically possible. Take TON six-eighteen—a distant quasar powered by a black hole estimated at up to sixty-six billion times the mass of our Sun. At that upper estimate, its event horizon has a Schwarzschild \[phonetic: Shvarts-shild\] radius of up to about one thousand three hundred astronomical units—meaning you could line up more than forty copies of our Solar System, out to Neptune's orbit, side by side across it. And then there is Phoenix A, sitting at the heart of the Phoenix Cluster, estimated at a staggering one hundred billion solar masses. That single object holds more mass than all the stars in the Milky Way combined.
 
 **\[VISUAL: Space Mode `#0E131F` | Character: `THE CATCH`\]**
 
