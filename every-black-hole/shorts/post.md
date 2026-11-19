@@ -15,9 +15,13 @@ Hawking Radiation: A 230-Ton Black Hole Would Explode in 1 Second 💥
 ```
 **Description**
 ```
-Crush Mount Everest into a black hole and it's just 0.24 picometers wide... and it would outlive the universe. But a black hole the weight of a blue whale (~230 tons) would blow itself apart in about one second. Why do smaller black holes die faster? 🤔
+Shrink a black hole down to about 230 metric tons, the weight of a blue whale, and it blows itself apart in about one second. Crush Mount Everest into one instead and it's just 0.24 picometers wide... yet it would outlive the universe. Why do smaller black holes die faster? 🤔
 
 #blackhole #hawkingradiation #space #physics #shorts
+```
+**Tags**
+```
+hawking radiation, micro black hole, black hole evaporation, tiny black hole, smallest black hole, black hole explosion, mount everest black hole, blue whale, black holes, space facts, physics, shorts
 ```
 **Pinned comment**
 ```
@@ -37,6 +41,10 @@ A small black hole turns you into spaghetti before you even reach the point of n
 
 #blackhole #spaghettification #eventhorizon #space #shorts
 ```
+**Tags**
+```
+spaghettification, event horizon, supermassive black hole, falling into a black hole, what happens if you fall into a black hole, tidal forces, black hole, black holes explained, space facts, physics, shorts
+```
 **Pinned comment**
 ```
 so which one would you rather fall into? 👇
@@ -54,6 +62,10 @@ TON 618: A Black Hole 40 Solar Systems Wide 🪐
 TON 618 weighs up to 66 billion Suns, and you could line up more than 40 copies of our Solar System (out to Neptune's orbit) across its event horizon. And Phoenix A might be even bigger: around 100 billion solar masses. How do they get that big?
 
 #ton618 #blackhole #space #astronomy #shorts
+```
+**Tags**
+```
+ton 618, biggest black hole, largest black hole, phoenix a, ultramassive black hole, black hole size comparison, solar system size, black hole, space facts, astronomy, shorts
 ```
 **Pinned comment**
 ```
