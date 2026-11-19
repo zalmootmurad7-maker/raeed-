@@ -3,8 +3,12 @@ import { ACCENT, FONT, LIGHT, SPACE } from "../tokens";
 import { Appear, Txt, ramp, useShot } from "./kit";
 
 // Shared drawing bits for the planets video. All steady (0 px jitter); motion only from smooth ramps.
+// Glow is a radial gradient (not a wide box-shadow): wide shadows render with visible tiles at 4K.
 export const Star: React.FC<{ cx: number; cy: number; r: number; core?: string; edge?: string; glow?: string }> = ({ cx, cy, r, core = "#FFF7D6", edge = "#FBBF24", glow = "rgba(251,191,36,0.45)" }) => (
-  <div style={{ position: "absolute", left: cx - r, top: cy - r, width: 2 * r, height: 2 * r, borderRadius: 9999, background: `radial-gradient(circle, ${core} 0%, ${edge} 78%)`, boxShadow: `0 0 ${r * 0.6}px ${r * 0.2}px ${glow}`, border: `4px solid ${LIGHT.ink}`, boxSizing: "border-box" }} />
+  <>
+    <div style={{ position: "absolute", left: cx - r * 1.9, top: cy - r * 1.9, width: r * 3.8, height: r * 3.8, borderRadius: 9999, background: `radial-gradient(circle, ${glow} 0%, ${glow} 45%, rgba(0,0,0,0) 70%)` }} />
+    <div style={{ position: "absolute", left: cx - r, top: cy - r, width: 2 * r, height: 2 * r, borderRadius: 9999, background: `radial-gradient(circle, ${core} 0%, ${edge} 78%)`, border: `4px solid ${LIGHT.ink}`, boxSizing: "border-box" }} />
+  </>
 );
 export const Tag: React.FC<{ x: number; y: number; text: string; at: number; color?: string; size?: number }> = ({ x, y, text, at, color = ACCENT.blue, size = 40 }) => (
   <Appear at={at} kind="pop"><div style={{ position: "absolute", left: x, top: y, whiteSpace: "nowrap", background: color, color: "#FFF", fontFamily: FONT.mono, fontWeight: 700, fontSize: size, padding: "8px 20px", borderRadius: 999, border: `3px solid ${LIGHT.ink}` }}>{text}</div></Appear>
