@@ -1,5 +1,6 @@
 // Segments live in shorts.json (shared with scripts/shorts_audio.py). Three Shorts cut from the final voiceover (public/audio/timestamps.json times). Each segment = [srcStart, srcEnd] seconds.
-export type ShortCfg = { id: string; banner: string[]; bannerSize: number; segs: [number, number][]; tail: number };
+export type Beat = { src: number; scene: string; pose: string; snap?: number; snap2?: number; sfx?: [string, number][] };
+export type ShortCfg = { id: string; banner: string[]; bannerSize: number; segs: [number, number][]; tail: number; beats: Beat[] };
 import DATA from "./shorts.json";
 export const SHORTS = DATA as unknown as ShortCfg[];
 export const FPS = 30;

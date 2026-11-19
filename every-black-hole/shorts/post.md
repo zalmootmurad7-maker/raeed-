@@ -1,13 +1,14 @@
 # Every Type of Black Hole — 3 Shorts (1080×1920, 30 fps, −14 LUFS)
-Built natively for 9:16 (not cropped): all visuals + captions inside y 240–1560, end cue "Full video linked below ↓" over the
+v2 (2026-11-19): a new beat every 1.0–2.5 s (Card Pop on each cut + Snap Zoom on the key word), the character on screen and reacting in every beat, no static hold longer than 0.6 s (measured). Built natively for 9:16 (not cropped): all visuals + captions inside y 240–1560, end cue "Full video linked below ↓" over the
 last 2.2 s as a visual only (no voice line, no outro card, so the loop stays intact). Audio = cut from the long video's final mix
 + impact at 0.0 s. Character: fixed space-mode sprites, no jitter (owner rule 2026-11-18).
 
 **Related video for all three:** `Every Type of Black Hole Explained in 10 Minutes`
 
 ---
-## Short 1 — `Short1-230Tons.mp4` (21.9 s)
-First voice sentence: "A micro black hole is smaller than a single atom."
+## Short 1 — `Short1-230Tons.mp4` (21.8 s, hook-first)
+First voice sentence: "Shrink it down to about 230 metric tons, roughly the weight of a blue whale, and it would blow itself apart in about one second."
+Order: whale explosion → smaller than an atom → Everest 0.24 pm → "a mountain-mass one would actually outlive the universe, but…" → loops into "shrink it down".
 **Title**
 ```
 Hawking Radiation: A 230-Ton Black Hole Would Explode in 1 Second 💥

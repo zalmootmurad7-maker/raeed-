@@ -8,7 +8,7 @@ const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts") });
 for (const id of ids) {
   const comp = await selectComposition({ serveUrl, id, browserExecutable: process.env.BE });
   const dir = `out/shorts_qa/${id}`; fs.mkdirSync(dir, { recursive: true });
-  const ts = [0, 0.6]; for (let t = 1.5; t < comp.durationInFrames / 30; t += 1.5) ts.push(t);
+  const ts = [0, 0.6]; for (let t = 1.0; t < comp.durationInFrames / 30; t += 1.0) ts.push(t);
   ts.push(comp.durationInFrames / 30 - 0.5);
   for (const t of ts) {
     const frame = Math.min(comp.durationInFrames - 1, Math.round(t * 30));

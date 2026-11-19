@@ -1,5 +1,334 @@
 [
- {"id": "Short1-230Tons", "banner": ["230 TONS", "= BOOM?!"], "bannerSize": 150, "segs": [[7.74, 10.74], [11.52, 19.12], [56.15, 67.10]], "tail": 0.35},
- {"id": "Short2-BiggerSafer", "banner": ["BIGGER =", "SAFER?!"], "bannerSize": 150, "segs": [[332.45, 350.98]], "tail": 0.35},
- {"id": "Short3-40SolarSystems", "banner": ["40 SOLAR", "SYSTEMS WIDE?!"], "bannerSize": 128, "segs": [[365.80, 373.85], [380.50, 386.75], [386.90, 388.42], [390.70, 394.45]], "tail": 0.35}
+ {
+  "id": "Short1-230Tons",
+  "banner": [
+   "230 TONS",
+   "= BOOM?!"
+  ],
+  "bannerSize": 150,
+  "segs": [
+   [
+    59.62,
+    67.1
+   ],
+   [
+    7.74,
+    10.74
+   ],
+   [
+    11.52,
+    19.12
+   ],
+   [
+    56.15,
+    59.66
+   ]
+  ],
+  "tail": 0.25,
+  "beats": [
+   {
+    "src": 59.62,
+    "scene": "shrink",
+    "pose": "explaining"
+   },
+   {
+    "src": 60.72,
+    "scene": "tons",
+    "pose": "explaining",
+    "snap": 60.72,
+    "sfx": [
+     [
+      "stamp",
+      60.72
+     ]
+    ]
+   },
+   {
+    "src": 62.84,
+    "scene": "whale",
+    "pose": "thinking",
+    "snap": 63.56
+   },
+   {
+    "src": 64.38,
+    "scene": "boom",
+    "pose": "shocked",
+    "snap": 64.84,
+    "sfx": [
+     [
+      "boom",
+      64.84
+     ]
+    ]
+   },
+   {
+    "src": 66.0,
+    "scene": "onesec",
+    "pose": "shocked",
+    "sfx": [
+     [
+      "stamp",
+      66.2
+     ]
+    ]
+   },
+   {
+    "src": 7.74,
+    "scene": "atom",
+    "pose": "thinking"
+   },
+   {
+    "src": 9.06,
+    "scene": "smaller",
+    "pose": "explaining",
+    "snap": 9.06
+   },
+   {
+    "src": 11.52,
+    "scene": "everest",
+    "pose": "explaining",
+    "snap": 12.12
+   },
+   {
+    "src": 13.82,
+    "scene": "crush",
+    "pose": "shocked"
+   },
+   {
+    "src": 15.74,
+    "scene": "ball",
+    "pose": "thinking",
+    "snap": 15.74
+   },
+   {
+    "src": 17.08,
+    "scene": "pm",
+    "pose": "shocked",
+    "snap": 17.08,
+    "sfx": [
+     [
+      "stamp",
+      17.08
+     ]
+    ]
+   },
+   {
+    "src": 56.15,
+    "scene": "mtnmass",
+    "pose": "thinking"
+   },
+   {
+    "src": 57.9,
+    "scene": "outlive",
+    "pose": "explaining",
+    "snap": 57.9,
+    "sfx": [
+     [
+      "stamp",
+      58.0
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "Short2-BiggerSafer",
+  "banner": [
+   "BIGGER =",
+   "SAFER?!"
+  ],
+  "bannerSize": 150,
+  "segs": [
+   [
+    332.45,
+    350.98
+   ]
+  ],
+  "tail": 0.35,
+  "beats": [
+   {
+    "src": 332.45,
+    "scene": "bigsmall",
+    "pose": "explaining"
+   },
+   {
+    "src": 334.28,
+    "scene": "gentle",
+    "pose": "thinking",
+    "snap": 334.28
+   },
+   {
+    "src": 336.24,
+    "scene": "horizon",
+    "pose": "thinking",
+    "snap": 336.24
+   },
+   {
+    "src": 337.26,
+    "scene": "fallsmall",
+    "pose": "explaining"
+   },
+   {
+    "src": 339.32,
+    "scene": "spag",
+    "pose": "shocked",
+    "snap": 339.32,
+    "sfx": [
+     [
+      "stamp",
+      339.32
+     ]
+    ]
+   },
+   {
+    "src": 340.44,
+    "scene": "outside",
+    "pose": "shocked",
+    "snap": 341.68
+   },
+   {
+    "src": 342.94,
+    "scene": "fallbig",
+    "pose": "explaining"
+   },
+   {
+    "src": 344.7,
+    "scene": "cross",
+    "pose": "explaining",
+    "snap": 345.5
+   },
+   {
+    "src": 346.18,
+    "scene": "fine",
+    "pose": "thinking"
+   },
+   {
+    "src": 348.3,
+    "scene": "until",
+    "pose": "shocked",
+    "snap": 348.3
+   },
+   {
+    "src": 349.48,
+    "scene": "noway",
+    "pose": "shocked",
+    "snap": 349.78,
+    "sfx": [
+     [
+      "stamp",
+      349.78
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "Short3-40SolarSystems",
+  "banner": [
+   "40 SOLAR",
+   "SYSTEMS WIDE?!"
+  ],
+  "bannerSize": 128,
+  "segs": [
+   [
+    365.8,
+    373.85
+   ],
+   [
+    380.5,
+    386.75
+   ],
+   [
+    386.9,
+    388.42
+   ],
+   [
+    390.7,
+    394.45
+   ]
+  ],
+  "tail": 0.35,
+  "beats": [
+   {
+    "src": 365.8,
+    "scene": "ton",
+    "pose": "shocked"
+   },
+   {
+    "src": 367.82,
+    "scene": "quasar",
+    "pose": "explaining",
+    "snap": 368.2
+   },
+   {
+    "src": 369.92,
+    "scene": "est",
+    "pose": "thinking"
+   },
+   {
+    "src": 371.02,
+    "scene": "sixtysix",
+    "pose": "shocked",
+    "snap": 371.02,
+    "sfx": [
+     [
+      "stamp",
+      371.02
+     ]
+    ]
+   },
+   {
+    "src": 372.7,
+    "scene": "sun",
+    "pose": "thinking"
+   },
+   {
+    "src": 380.5,
+    "scene": "lineup",
+    "pose": "explaining"
+   },
+   {
+    "src": 382.92,
+    "scene": "onesys",
+    "pose": "thinking",
+    "snap": 382.92
+   },
+   {
+    "src": 384.82,
+    "scene": "x40",
+    "pose": "shocked",
+    "snap": 385.4,
+    "sfx": [
+     [
+      "stamp",
+      385.4
+     ]
+    ]
+   },
+   {
+    "src": 386.9,
+    "scene": "phoenix",
+    "pose": "shocked",
+    "snap": 387.6
+   },
+   {
+    "src": 390.7,
+    "scene": "grow",
+    "pose": "thinking"
+   },
+   {
+    "src": 392.12,
+    "scene": "hundred",
+    "pose": "shocked",
+    "snap": 392.12,
+    "sfx": [
+     [
+      "stamp",
+      393.44
+     ]
+    ],
+    "snap2": 393.44
+   }
+  ]
+ }
 ]
