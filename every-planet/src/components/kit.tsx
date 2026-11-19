@@ -8,11 +8,12 @@ import { ExplainerCard } from "./ExplainerCard";
 import { stepped } from "./boil";
 
 // ---------- shot timing ----------
-export const ShotCtx = createContext({ dur: 90 });
+export const ShotCtx = createContext({ dur: 90, start: 0 });
 export const useShot = () => {
   const f = useCurrentFrame();
-  const { dur } = useContext(ShotCtx);
-  return { f, sf: stepped(f), dur, at: (frac: number) => Math.round(frac * dur) };
+  const { dur, start } = useContext(ShotCtx);
+  // t(sec): local frame of an absolute voice time (sub-beats are pinned to words in timestamps.json)
+  return { f, sf: stepped(f), dur, at: (frac: number) => Math.round(frac * dur), t: (sec: number) => Math.round((sec - start) * 30) };
 };
 const cl = { extrapolateLeft: "clamp" as const, extrapolateRight: "clamp" as const };
 export const ramp = (f: number, a: number, b: number, from = 0, to = 1, ease = Easing.out(Easing.cubic)) =>
@@ -104,8 +105,8 @@ const SnapLayer: React.FC<{ s: number; children: React.ReactNode }> = ({ s, chil
 // Standard shot: background + explainer card in the card slot + character on the left.
 export const CardShot: React.FC<{
   mode: Mode; pose?: Pose; pill?: string; pillColor?: string; push?: number; snapAt?: number; snapTo?: number;
-  poseSwap?: { at: number; pose: Pose }; children?: React.ReactNode; shake?: number; frost?: number;
-}> = ({ mode, pose, pill, pillColor, push, snapAt, snapTo, poseSwap, children, shake = 0, frost = 0 }) => {
+  poseSwap?: { at: number; pose: Pose }; children?: React.ReactNode; shake?: number; frost?: number; head?: React.ReactNode;
+}> = ({ mode, pose, pill, pillColor, push, snapAt, snapTo, poseSwap, children, shake = 0, frost = 0, head }) => {
   const { f } = useShot();
   const cam = useCam({ push, snapAt, snapTo });
   const sx = shake ? Math.sin(f * 2.9) * shake : 0;
@@ -114,7 +115,7 @@ export const CardShot: React.FC<{
     <AbsoluteFill style={{ translate: `${sx}px ${-sx * 0.4}px` }}>
       {mode === "space" ? <BG_Space_Dark /> : <BG_Light_Grid />}
       <div style={{ position: "absolute", left: CARD_SLOT.x, top: CARD_SLOT.y, scale: `${cam.push}`, transformOrigin: "50% 50%" }}>
-        <ExplainerCard mode={mode} pill={pill ? { text: pill, color: pillColor ?? (pill === "THE CATCH" ? ACCENT.red : ACCENT.blue) } : undefined}><SnapLayer s={cam.snap}>{children}</SnapLayer></ExplainerCard>
+        <ExplainerCard mode={mode} pill={pill ? { text: pill, color: pillColor ?? (pill === "THE CATCH" ? ACCENT.red : ACCENT.blue) } : undefined}><SnapLayer s={cam.snap}>{children}</SnapLayer>{head}</ExplainerCard>
       </div>
       {curPose ? <CharacterRig key={curPose} mode={mode} pose={curPose} x={330} bottom={1050} height={820} enterAt={poseSwap && curPose === poseSwap.pose ? poseSwap.at : 0} seed={13} /> : null}
       {frost > 0 ? <AbsoluteFill style={{ boxShadow: `inset 0 0 ${220 * frost}px ${90 * frost}px ${ACCENT.frost}`, opacity: 0.9 }} /> : null}

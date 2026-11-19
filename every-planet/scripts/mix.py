@@ -66,33 +66,27 @@ def chirp(d=1.4):
 LIB = dict(whoosh=whoosh, snap=snap, pop=pop, thud=thud, boom=boom, stamp=stamp, tick=tick, shutter=shutter, chime=chime, zap=zap, rumble=rumble, chirp=chirp)
 LEVEL = dict(whoosh=0.75, snap=0.75, pop=0.6, thud=0.9, boom=0.8, stamp=0.75, tick=0.18, shutter=0.75, chime=0.8, zap=0.7, rumble=0.6, chirp=0.6)
 
-# ---------- cue sheet (mirrors the visual beats: fraction of each shot) ----------
-TIM = json.load(open("src/timing.json"))["shots"]
+# ---------- cue sheet (planets): shot-list SFX column + whoosh on every board transition ----------
+TJ = json.load(open("src/timing.json")); TIM = TJ["shots"]
 def at(sid, frac=0.0):
     a, b = TIM[sid]; return a + frac * (b - a)
 cues = []
 add = lambda name, time: cues.append((name, time))
+MAP = {"Pop_Card": "pop", "Thud_Catch": "thud", "Whoosh_Snap": "snap", "Whoosh_Zoom": "whoosh", "Tick_Counter": "tick"}
+for sid, name in TJ["sfx"].items():
+    t0 = at(sid) + (0.6 if sid in ("03", "08", "11", "14", "17", "21", "24", "27", "30", "33") else 0.03)
+    if MAP[name] == "tick":
+        for i in range(10): add("tick", t0 + 1.5 + i * 0.12)
+    else: add(MAP[name], t0)
 for sid in TIM:
     if sid.endswith("b"): add("whoosh", at(sid))
-add("whoosh", TIM["00"][1] - 0.45); add("whoosh", at("52"))
-CATCH = ["06", "15", "23", "29", "35", "41", "46", "50"]
-for sid in CATCH: add("thud", at(sid))
-for sid in TIM:
-    if sid not in CATCH and not sid.endswith("b") and sid not in ("00", "52"): add("pop", at(sid) + 0.03)
-for sid, fr in [("08", .62), ("20", .5), ("42", .75), ("51", .55)]: add("boom", at(sid, fr))
-add("zap", at("04", .68)); add("zap", at("05", .1))
-for sid, fr in [("08", .25), ("15", .5), ("17", .62), ("19", .62), ("23", .55), ("31", .4), ("36", .55), ("44", .5), ("47", .75), ("51", .25)]: add("stamp", at(sid, fr))
-for sid, fr in [("09", .15), ("14", .55), ("20", .28), ("02", .35), ("05", .55), ("26", .62)]: add("snap", at(sid, fr))
-add("shutter", at("34", .22))
-for sid, a, b, n in [("21", .2, .6, 12), ("30", .35, .7, 14), ("33", .1, .5, 16), ("38", .2, .5, 10)]:
-    for i in range(n): add("tick", at(sid, a + (b - a) * i / n))
-a39 = at("39")
-for i in range(40): add("tick", a39 + (15 + 12 * i) / 30)
-add("rumble", at("12", .05)); add("chirp", at("30", .45)); add("chime", at("53", .3)); add("chime", at("10", .4))
+add("whoosh", at("02", 1.0) - 0.45)
+add("thud", 10.86); add("boom", 86.0); add("stamp", 88.78); add("stamp", 126.0); add("stamp", 259.2); add("stamp", 341.14)
+add("stamp", 668.6); add("stamp", 690.94); add("chime", 708.2); add("zap", 440.44); add("rumble", 653.9)
 
 # ---------- tracks ----------
 voice = load("public/audio/voiceover.wav")
-N = int(TIM["53"][1] * SR) + SR
+N = int(TJ["end"] * SR) + SR
 voice = np.pad(voice, (0, max(0, N - len(voice))))[:N]
 words = json.load(open("public/audio/timestamps.json"))["words"]
 speech = np.zeros(N)
@@ -126,7 +120,7 @@ music += 0.25 * (np.sin(2 * np.pi * 110 * tt) + 0.5 * np.sin(2 * np.pi * 164.81 
 music = norm(music, 1.0) * np.minimum(1, tt / 2) * np.minimum(1, (N / SR - tt) / 3)
 
 vpk = np.max(np.abs(voice)); voice = voice / vpk * 0.5          # voice 100% = peak -6 dBFS
-music = music * 0.5 * (0.25 + (0.10 - 0.25) * sp) * 10 ** (-10.8 / 20)  # owner 2026-11-18: music bed down ~10 dB -> 28 dB under the voice
+music = music * 0.5 * (0.25 + (0.10 - 0.25) * sp) * 10 ** (-10.0 / 20)  # owner 2026-11-18: music bed down ~10 dB -> 28 dB under the voice
 sfx = sfx * 0.5 * 0.4 * (1 + (10 ** (-7 / 20) - 1) * sp)        # SFX bus x0.4, -7 dB under speech
 mix = voice + music + sfx
 

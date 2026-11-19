@@ -6,7 +6,7 @@ import path from "node:path";
 const [, , outDir = "out/contact", frac = "0.75", only = ""] = process.argv;
 const shots = JSON.parse(fs.readFileSync("out/shots.json", "utf8"));
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts") });
-const comp = await selectComposition({ serveUrl, id: "EveryBlackHole", browserExecutable: process.env.BE });
+const comp = await selectComposition({ serveUrl, id: "EveryPlanet", browserExecutable: process.env.BE });
 fs.mkdirSync(outDir, { recursive: true });
 for (const s of shots) {
   if (only && !only.split(",").includes(s.id)) continue;
