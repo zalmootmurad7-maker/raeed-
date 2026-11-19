@@ -1,0 +1,299 @@
+[
+ {
+  "id": "Short1-GlassRain",
+  "banner": [
+   "SIDEWAYS",
+   "GLASS RAIN?!"
+  ],
+  "bannerSize": 140,
+  "segs": [
+   [
+    88.7,
+    94.25
+   ],
+   [
+    68.02,
+    73.95
+   ],
+   [
+    76.68,
+    81.7
+   ],
+   [
+    83.98,
+    88.4
+   ]
+  ],
+  "tail": 0.3,
+  "beats": [
+   {
+    "src": 88.7,
+    "scene": "g_stand",
+    "pose": "shocked",
+    "snap": 89.98
+   },
+   {
+    "src": 90.74,
+    "scene": "g_burn",
+    "pose": "shocked",
+    "snap": 91.1
+   },
+   {
+    "src": 92.06,
+    "scene": "g_shred",
+    "pose": "shocked",
+    "snap": 92.4,
+    "sfx": [
+     [
+      "stamp",
+      92.4
+     ]
+    ]
+   },
+   {
+    "src": 68.02,
+    "scene": "g_gap",
+    "pose": "explaining"
+   },
+   {
+    "src": 70.2,
+    "scene": "g_winds",
+    "pose": "thinking",
+    "snap": 70.2
+   },
+   {
+    "src": 71.28,
+    "scene": "g_mph",
+    "pose": "shocked",
+    "snap": 71.72,
+    "snap2": 72.66,
+    "sfx": [
+     [
+      "stamp",
+      73.44
+     ]
+    ]
+   },
+   {
+    "src": 76.68,
+    "scene": "g_storm",
+    "pose": "thinking"
+   },
+   {
+    "src": 78.9,
+    "scene": "g_vapor",
+    "pose": "explaining",
+    "snap": 79.68
+   },
+   {
+    "src": 80.28,
+    "scene": "g_glass",
+    "pose": "shocked",
+    "snap": 80.7
+   },
+   {
+    "src": 83.98,
+    "scene": "g_side",
+    "pose": "shocked",
+    "snap": 84.66
+   },
+   {
+    "src": 85.74,
+    "scene": "g_sand",
+    "pose": "shocked"
+   },
+   {
+    "src": 87.76,
+    "scene": "g_razor",
+    "pose": "shocked",
+    "snap": 87.76
+   }
+  ]
+ },
+ {
+  "id": "Short2-HotterThanStar",
+  "banner": [
+   "HOTTER THAN",
+   "A STAR?!"
+  ],
+  "bannerSize": 140,
+  "segs": [
+   [
+    225.72,
+    232.2
+   ],
+   [
+    250.08,
+    261.4
+   ]
+  ],
+  "tail": 0.3,
+  "beats": [
+   {
+    "src": 225.72,
+    "scene": "k_rule",
+    "pose": "explaining"
+   },
+   {
+    "src": 227.08,
+    "scene": "k_cool",
+    "pose": "thinking",
+    "snap": 227.08
+   },
+   {
+    "src": 228.44,
+    "scene": "k_deal",
+    "pose": "explaining"
+   },
+   {
+    "src": 230.18,
+    "scene": "k_memo",
+    "pose": "shocked",
+    "snap": 230.26,
+    "sfx": [
+     [
+      "stamp",
+      230.86
+     ]
+    ]
+   },
+   {
+    "src": 250.08,
+    "scene": "k_day",
+    "pose": "explaining"
+   },
+   {
+    "src": 251.86,
+    "scene": "k_4600",
+    "pose": "shocked",
+    "snap": 252.74
+   },
+   {
+    "src": 254.62,
+    "scene": "k_f",
+    "pose": "shocked",
+    "snap": 255.32
+   },
+   {
+    "src": 257.58,
+    "scene": "k_dwarf",
+    "pose": "thinking"
+   },
+   {
+    "src": 259.54,
+    "scene": "k_win",
+    "pose": "shocked",
+    "snap": 259.54,
+    "sfx": [
+     [
+      "stamp",
+      260.14
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "id": "Short3-Halla",
+  "banner": [
+   "IT SHOULD",
+   "BE DEAD?!"
+  ],
+  "bannerSize": 140,
+  "segs": [
+   [
+    630.15,
+    637.75
+   ],
+   [
+    658.3,
+    669.9
+   ],
+   [
+    672.74,
+    673.95
+   ]
+  ],
+  "tail": 0.3,
+  "beats": [
+   {
+    "src": 630.15,
+    "scene": "h_meet",
+    "pose": "explaining"
+   },
+   {
+    "src": 631.42,
+    "scene": "h_name",
+    "pose": "explaining",
+    "snap": 632.22
+   },
+   {
+    "src": 633.46,
+    "scene": "h_model",
+    "pose": "thinking",
+    "snap": 634.94
+   },
+   {
+    "src": 636.1,
+    "scene": "h_dust",
+    "pose": "shocked",
+    "snap": 636.52,
+    "sfx": [
+     [
+      "stamp",
+      637.16
+     ]
+    ]
+   },
+   {
+    "src": 658.3,
+    "scene": "h_phys",
+    "pose": "thinking"
+   },
+   {
+    "src": 659.82,
+    "scene": "h_swell",
+    "pose": "shocked",
+    "snap": 660.18
+   },
+   {
+    "src": 660.88,
+    "scene": "h_15",
+    "pose": "shocked",
+    "snap": 661.36,
+    "snap2": 662.04
+   },
+   {
+    "src": 663.68,
+    "scene": "h_swallow",
+    "pose": "shocked",
+    "snap": 664.16,
+    "snap2": 665.26
+   },
+   {
+    "src": 666.94,
+    "scene": "h_check",
+    "pose": "thinking",
+    "snap": 667.8
+   },
+   {
+    "src": 668.8,
+    "scene": "h_still",
+    "pose": "shocked",
+    "snap": 669.1,
+    "sfx": [
+     [
+      "stamp",
+      669.1
+     ]
+    ]
+   },
+   {
+    "src": 672.74,
+    "scene": "h_how",
+    "pose": "shocked",
+    "snap": 672.8
+   }
+  ]
+ }
+]
