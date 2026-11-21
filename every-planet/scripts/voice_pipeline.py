@@ -7,6 +7,7 @@ Usage: python3 voice_pipeline.py OUT_DIR part1.mp3 [part2.mp3 ...]
 Writes OUT_DIR/voiceover_src.wav, OUT_DIR/voiceover.mp3, OUT_DIR/voiceover.wav, OUT_DIR/timestamps.json
 """
 import json, os, subprocess, sys
+TEMPO = float(os.environ.get("TEMPO", "1.06")); GAP = float(os.environ.get("GAP", "0.25"))  # overridable per Short
 import numpy as np
 
 SR = 44100
@@ -55,9 +56,9 @@ def main():
     src = np.concatenate([np.concatenate([x, gap]) for x in xs])
     save_wav(f"{out_dir}/voiceover_src.wav", src)
     sped = f"{out_dir}/_sped.wav"
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{out_dir}/voiceover_src.wav", "-af", "atempo=1.06", sped], check=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{out_dir}/voiceover_src.wav", "-af", f"atempo={TEMPO}", sped], check=True)
     y = load(sped); os.remove(sped)
-    y, removed = trim_gaps(y)
+    y, removed = trim_gaps(y, max_gap=GAP)
     y = y / (np.max(np.abs(y)) + 1e-9) * 0.5  # peak ~ -6 dBFS (owner mix rule)
     save_wav(f"{out_dir}/voiceover.wav", y)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{out_dir}/voiceover.wav", "-b:a", "192k", f"{out_dir}/voiceover.mp3"], check=True)
@@ -66,7 +67,7 @@ def main():
     segs, _ = m.transcribe(load(f"{out_dir}/voiceover.wav", 16000), beam_size=5, word_timestamps=True)
     words = [{"word": w.word.strip(), "start": round(w.start, 3), "end": round(w.end, 3)} for s in segs for w in s.words]
     json.dump({"duration": round(len(y) / SR, 3), "words": words}, open(f"{out_dir}/timestamps.json", "w"), indent=1)
-    print(f"src {len(src)/SR:.2f}s -> 1.06x + gap trim ({removed:.2f}s removed) -> {len(y)/SR:.2f}s, {len(words)} words")
+    print(f"src {len(src)/SR:.2f}s -> {TEMPO}x + gap trim (<= {GAP}s) ({removed:.2f}s removed) -> {len(y)/SR:.2f}s, {len(words)} words")
 
 if __name__ == "__main__":
     main()
