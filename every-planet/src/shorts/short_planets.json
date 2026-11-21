@@ -1,0 +1,26 @@
+{
+ "id": "ShortPlanets-1SecondToLive",
+ "duration": 54.1,
+ "beats": [
+  {"t": 0.00, "scene": "hook", "pose": "shocked"},
+  {"t": 1.76, "scene": "hook3", "pose": "shocked", "snap": 2.32},
+  {"t": 4.54, "scene": "hd_intro", "pose": "explaining", "snap": 5.24},
+  {"t": 7.54, "scene": "hd_marble", "pose": "thinking", "snap": 9.36},
+  {"t": 10.34, "scene": "hd_mph", "pose": "shocked", "snap": 11.02},
+  {"t": 12.66, "scene": "hd_winds", "pose": "shocked", "snap": 13.20},
+  {"t": 14.96, "scene": "hd_glass", "pose": "thinking", "snap": 16.98},
+  {"t": 17.78, "scene": "hd_umbrella", "pose": "shocked", "snap": 17.78, "stamp": 18.70},
+  {"t": 19.98, "scene": "w_intro", "pose": "explaining", "snap": 21.16},
+  {"t": 22.40, "scene": "w_day", "pose": "shocked", "snap": 24.10},
+  {"t": 26.44, "scene": "w_boil", "pose": "shocked", "snap": 27.40},
+  {"t": 28.62, "scene": "w_winds", "pose": "explaining", "snap": 30.64},
+  {"t": 31.76, "scene": "w_rain", "pose": "shocked", "snap": 33.24, "stamp": 33.66},
+  {"t": 34.82, "scene": "l_intro", "pose": "thinking", "snap": 36.34},
+  {"t": 36.92, "scene": "l_swell", "pose": "shocked", "snap": 38.26},
+  {"t": 41.50, "scene": "l_swallow", "pose": "shocked", "snap": 44.02},
+  {"t": 45.00, "scene": "l_still", "pose": "shocked", "snap": 46.20, "stamp": 46.20},
+  {"t": 46.98, "scene": "l_how", "pose": "thinking", "snap": 47.42},
+  {"t": 48.22, "scene": "l_seven", "pose": "the_catch", "snap": 49.12},
+  {"t": 50.98, "scene": "cta", "pose": "explaining", "snap": 52.94}
+ ]
+}

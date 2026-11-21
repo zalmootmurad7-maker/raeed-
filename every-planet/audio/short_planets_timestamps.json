@@ -1,0 +1,695 @@
+{
+ "duration": 53.54,
+ "words": [
+  {
+   "word": "You",
+   "start": 0.0,
+   "end": 0.2
+  },
+  {
+   "word": "wouldn't",
+   "start": 0.2,
+   "end": 0.52
+  },
+  {
+   "word": "survive",
+   "start": 0.52,
+   "end": 0.78
+  },
+  {
+   "word": "one",
+   "start": 0.78,
+   "end": 1.3
+  },
+  {
+   "word": "second",
+   "start": 1.3,
+   "end": 1.76
+  },
+  {
+   "word": "on",
+   "start": 1.76,
+   "end": 2.1
+  },
+  {
+   "word": "these",
+   "start": 2.1,
+   "end": 2.32
+  },
+  {
+   "word": "three",
+   "start": 2.32,
+   "end": 2.68
+  },
+  {
+   "word": "real",
+   "start": 2.68,
+   "end": 3.12
+  },
+  {
+   "word": "planets.",
+   "start": 3.12,
+   "end": 3.66
+  },
+  {
+   "word": "First,",
+   "start": 4.54,
+   "end": 4.54
+  },
+  {
+   "word": "HD",
+   "start": 4.88,
+   "end": 5.24
+  },
+  {
+   "word": "189733b.",
+   "start": 5.24,
+   "end": 7.46
+  },
+  {
+   "word": "From",
+   "start": 7.54,
+   "end": 7.72
+  },
+  {
+   "word": "space,",
+   "start": 7.72,
+   "end": 8.12
+  },
+  {
+   "word": "it",
+   "start": 8.46,
+   "end": 8.5
+  },
+  {
+   "word": "looks",
+   "start": 8.5,
+   "end": 8.66
+  },
+  {
+   "word": "like",
+   "start": 8.66,
+   "end": 8.84
+  },
+  {
+   "word": "a",
+   "start": 8.84,
+   "end": 9.02
+  },
+  {
+   "word": "calm",
+   "start": 9.02,
+   "end": 9.36
+  },
+  {
+   "word": "blue",
+   "start": 9.36,
+   "end": 9.62
+  },
+  {
+   "word": "marble,",
+   "start": 9.62,
+   "end": 10.06
+  },
+  {
+   "word": "until",
+   "start": 10.34,
+   "end": 10.6
+  },
+  {
+   "word": "5",
+   "start": 10.6,
+   "end": 11.02
+  },
+  {
+   "word": ",400",
+   "start": 11.02,
+   "end": 11.92
+  },
+  {
+   "word": "mile",
+   "start": 11.92,
+   "end": 12.24
+  },
+  {
+   "word": "per",
+   "start": 12.24,
+   "end": 12.5
+  },
+  {
+   "word": "hour",
+   "start": 12.5,
+   "end": 12.66
+  },
+  {
+   "word": "winds",
+   "start": 12.66,
+   "end": 13.2
+  },
+  {
+   "word": "roar",
+   "start": 13.2,
+   "end": 13.6
+  },
+  {
+   "word": "across",
+   "start": 13.6,
+   "end": 13.96
+  },
+  {
+   "word": "its",
+   "start": 13.96,
+   "end": 14.22
+  },
+  {
+   "word": "sky,",
+   "start": 14.22,
+   "end": 14.64
+  },
+  {
+   "word": "carrying",
+   "start": 14.96,
+   "end": 15.24
+  },
+  {
+   "word": "silicate",
+   "start": 15.24,
+   "end": 15.76
+  },
+  {
+   "word": "clouds",
+   "start": 15.76,
+   "end": 16.26
+  },
+  {
+   "word": "that",
+   "start": 16.26,
+   "end": 16.52
+  },
+  {
+   "word": "may",
+   "start": 16.52,
+   "end": 16.72
+  },
+  {
+   "word": "rain",
+   "start": 16.72,
+   "end": 16.98
+  },
+  {
+   "word": "molten",
+   "start": 16.98,
+   "end": 17.3
+  },
+  {
+   "word": "glass",
+   "start": 17.3,
+   "end": 17.78
+  },
+  {
+   "word": "sideways",
+   "start": 17.78,
+   "end": 18.34
+  },
+  {
+   "word": "like",
+   "start": 18.34,
+   "end": 18.7
+  },
+  {
+   "word": "razor",
+   "start": 18.7,
+   "end": 19.16
+  },
+  {
+   "word": "blades.",
+   "start": 19.16,
+   "end": 19.48
+  },
+  {
+   "word": "Next,",
+   "start": 19.98,
+   "end": 20.48
+  },
+  {
+   "word": "Wasp",
+   "start": 20.96,
+   "end": 21.16
+  },
+  {
+   "word": "76b.",
+   "start": 21.16,
+   "end": 22.2
+  },
+  {
+   "word": "Its",
+   "start": 22.4,
+   "end": 22.66
+  },
+  {
+   "word": "day",
+   "start": 22.66,
+   "end": 22.92
+  },
+  {
+   "word": "side",
+   "start": 22.92,
+   "end": 23.18
+  },
+  {
+   "word": "hits",
+   "start": 23.18,
+   "end": 23.38
+  },
+  {
+   "word": "over",
+   "start": 23.38,
+   "end": 23.66
+  },
+  {
+   "word": "4",
+   "start": 23.66,
+   "end": 24.1
+  },
+  {
+   "word": ",300",
+   "start": 24.1,
+   "end": 25.04
+  },
+  {
+   "word": "degrees",
+   "start": 25.04,
+   "end": 25.5
+  },
+  {
+   "word": "Fahrenheit,",
+   "start": 25.5,
+   "end": 26.1
+  },
+  {
+   "word": "hot",
+   "start": 26.44,
+   "end": 26.64
+  },
+  {
+   "word": "enough",
+   "start": 26.64,
+   "end": 26.86
+  },
+  {
+   "word": "to",
+   "start": 26.86,
+   "end": 27.08
+  },
+  {
+   "word": "boil",
+   "start": 27.08,
+   "end": 27.4
+  },
+  {
+   "word": "iron",
+   "start": 27.4,
+   "end": 27.9
+  },
+  {
+   "word": "into",
+   "start": 27.9,
+   "end": 28.2
+  },
+  {
+   "word": "clouds.",
+   "start": 28.2,
+   "end": 28.62
+  },
+  {
+   "word": "Winds",
+   "start": 28.62,
+   "end": 29.3
+  },
+  {
+   "word": "carry",
+   "start": 29.3,
+   "end": 29.74
+  },
+  {
+   "word": "that",
+   "start": 29.74,
+   "end": 30.0
+  },
+  {
+   "word": "vapor",
+   "start": 30.0,
+   "end": 30.26
+  },
+  {
+   "word": "to",
+   "start": 30.26,
+   "end": 30.48
+  },
+  {
+   "word": "the",
+   "start": 30.48,
+   "end": 30.64
+  },
+  {
+   "word": "dark",
+   "start": 30.64,
+   "end": 30.88
+  },
+  {
+   "word": "night",
+   "start": 30.88,
+   "end": 31.16
+  },
+  {
+   "word": "side,",
+   "start": 31.16,
+   "end": 31.56
+  },
+  {
+   "word": "where",
+   "start": 31.76,
+   "end": 31.82
+  },
+  {
+   "word": "it",
+   "start": 31.82,
+   "end": 31.92
+  },
+  {
+   "word": "falls",
+   "start": 31.92,
+   "end": 32.2
+  },
+  {
+   "word": "from",
+   "start": 32.2,
+   "end": 32.44
+  },
+  {
+   "word": "the",
+   "start": 32.44,
+   "end": 32.58
+  },
+  {
+   "word": "sky",
+   "start": 32.58,
+   "end": 32.94
+  },
+  {
+   "word": "as",
+   "start": 32.94,
+   "end": 33.24
+  },
+  {
+   "word": "liquid",
+   "start": 33.24,
+   "end": 33.66
+  },
+  {
+   "word": "iron",
+   "start": 33.66,
+   "end": 34.06
+  },
+  {
+   "word": "rain.",
+   "start": 34.06,
+   "end": 34.54
+  },
+  {
+   "word": "But",
+   "start": 34.82,
+   "end": 34.88
+  },
+  {
+   "word": "the",
+   "start": 34.88,
+   "end": 35.06
+  },
+  {
+   "word": "strangest",
+   "start": 35.06,
+   "end": 35.66
+  },
+  {
+   "word": "planet",
+   "start": 35.66,
+   "end": 35.92
+  },
+  {
+   "word": "is",
+   "start": 35.92,
+   "end": 36.34
+  },
+  {
+   "word": "Hala.",
+   "start": 36.34,
+   "end": 36.62
+  },
+  {
+   "word": "Its",
+   "start": 36.92,
+   "end": 37.24
+  },
+  {
+   "word": "dying",
+   "start": 37.24,
+   "end": 37.54
+  },
+  {
+   "word": "star",
+   "start": 37.54,
+   "end": 37.92
+  },
+  {
+   "word": "once",
+   "start": 37.92,
+   "end": 38.26
+  },
+  {
+   "word": "swelled",
+   "start": 38.26,
+   "end": 38.6
+  },
+  {
+   "word": "up",
+   "start": 38.6,
+   "end": 38.76
+  },
+  {
+   "word": "larger",
+   "start": 38.76,
+   "end": 39.12
+  },
+  {
+   "word": "than",
+   "start": 39.12,
+   "end": 39.5
+  },
+  {
+   "word": "the",
+   "start": 39.5,
+   "end": 39.64
+  },
+  {
+   "word": "planet's",
+   "start": 39.64,
+   "end": 40.08
+  },
+  {
+   "word": "entire",
+   "start": 40.08,
+   "end": 40.54
+  },
+  {
+   "word": "orbit.",
+   "start": 40.54,
+   "end": 41.1
+  },
+  {
+   "word": "By",
+   "start": 41.5,
+   "end": 41.62
+  },
+  {
+   "word": "every",
+   "start": 41.62,
+   "end": 42.04
+  },
+  {
+   "word": "law",
+   "start": 42.04,
+   "end": 42.3
+  },
+  {
+   "word": "of",
+   "start": 42.3,
+   "end": 42.38
+  },
+  {
+   "word": "physics,",
+   "start": 42.38,
+   "end": 42.78
+  },
+  {
+   "word": "Hala",
+   "start": 43.3,
+   "end": 43.44
+  },
+  {
+   "word": "should",
+   "start": 43.44,
+   "end": 43.72
+  },
+  {
+   "word": "have",
+   "start": 43.72,
+   "end": 43.84
+  },
+  {
+   "word": "been",
+   "start": 43.84,
+   "end": 44.02
+  },
+  {
+   "word": "swallowed",
+   "start": 44.02,
+   "end": 44.4
+  },
+  {
+   "word": "whole,",
+   "start": 44.4,
+   "end": 44.8
+  },
+  {
+   "word": "yet",
+   "start": 45.0,
+   "end": 45.18
+  },
+  {
+   "word": "somehow,",
+   "start": 45.18,
+   "end": 45.7
+  },
+  {
+   "word": "it's",
+   "start": 46.06,
+   "end": 46.2
+  },
+  {
+   "word": "still",
+   "start": 46.2,
+   "end": 46.42
+  },
+  {
+   "word": "there.",
+   "start": 46.42,
+   "end": 46.78
+  },
+  {
+   "word": "How",
+   "start": 46.98,
+   "end": 47.12
+  },
+  {
+   "word": "did",
+   "start": 47.12,
+   "end": 47.26
+  },
+  {
+   "word": "it",
+   "start": 47.26,
+   "end": 47.42
+  },
+  {
+   "word": "cheat",
+   "start": 47.42,
+   "end": 47.64
+  },
+  {
+   "word": "death,",
+   "start": 47.64,
+   "end": 48.04
+  },
+  {
+   "word": "and",
+   "start": 48.22,
+   "end": 48.38
+  },
+  {
+   "word": "what",
+   "start": 48.38,
+   "end": 48.56
+  },
+  {
+   "word": "are",
+   "start": 48.56,
+   "end": 48.68
+  },
+  {
+   "word": "the",
+   "start": 48.68,
+   "end": 48.82
+  },
+  {
+   "word": "other",
+   "start": 48.82,
+   "end": 49.12
+  },
+  {
+   "word": "seven",
+   "start": 49.12,
+   "end": 49.48
+  },
+  {
+   "word": "impossible",
+   "start": 49.48,
+   "end": 49.94
+  },
+  {
+   "word": "worlds?",
+   "start": 49.94,
+   "end": 50.42
+  },
+  {
+   "word": "Tap",
+   "start": 50.98,
+   "end": 51.16
+  },
+  {
+   "word": "the",
+   "start": 51.16,
+   "end": 51.32
+  },
+  {
+   "word": "related",
+   "start": 51.32,
+   "end": 51.6
+  },
+  {
+   "word": "video",
+   "start": 51.6,
+   "end": 51.94
+  },
+  {
+   "word": "to",
+   "start": 51.94,
+   "end": 52.2
+  },
+  {
+   "word": "discover",
+   "start": 52.2,
+   "end": 52.52
+  },
+  {
+   "word": "all",
+   "start": 52.52,
+   "end": 52.94
+  },
+  {
+   "word": "10.",
+   "start": 52.94,
+   "end": 53.28
+  }
+ ]
+}
