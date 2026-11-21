@@ -201,3 +201,32 @@ export const ShortHalla: React.FC<{ qa?: boolean }> = ({ qa }) => {
     </AbsoluteFill>
   );
 };
+
+// Cover (channel page / search): everything inside y 300..1650 so it survives the centre 2:3 crop; readable at 180x320.
+export const ShortHallaCover: React.FC = () => {
+  const cx = 600, cy = 1080, orbit = 300, ghost = 450, R = 175;
+  const pa = -0.35, px = cx + Math.cos(pa) * orbit, py = cy + Math.sin(pa) * orbit;
+  return (
+    <AbsoluteFill>
+      <Stars />
+      <div style={{ position: "absolute", left: cx - 560, top: cy - 560, width: 1120, height: 1120, borderRadius: 9999, background: "radial-gradient(circle, rgba(229,57,53,0.5) 0%, rgba(229,57,53,0.28) 38%, rgba(0,0,0,0) 66%)" }} />
+      <div style={{ position: "absolute", left: cx - ghost, top: cy - ghost, width: 2 * ghost, height: 2 * ghost, borderRadius: 9999, border: `12px dashed ${RED}`, boxSizing: "border-box" }} />
+      <svg style={{ position: "absolute", left: cx - R * 2, top: cy - R * 2, overflow: "visible" }} width={R * 4} height={R * 4}>
+        {Array.from({ length: 20 }, (_, i) => { const a = (i / 20) * Math.PI * 2, w = 0.1, c = R * 2, len = R * (0.2 + 0.08 * (i % 3)); return <path key={i} d={`M ${c + Math.cos(a - w) * R} ${c + Math.sin(a - w) * R} L ${c + Math.cos(a) * (R + len)} ${c + Math.sin(a) * (R + len)} L ${c + Math.cos(a + w) * R} ${c + Math.sin(a + w) * R} Z`} fill={i % 2 ? AMBER : RED} />; })}
+        <defs><radialGradient id="hcov"><stop offset="0%" stopColor="#FFEDD5" /><stop offset="45%" stopColor="#FB923C" /><stop offset="100%" stopColor="#DC2626" /></radialGradient></defs>
+        <circle cx={R * 2} cy={R * 2} r={R} fill="url(#hcov)" stroke={INK} strokeWidth="10" />
+      </svg>
+      <div style={{ position: "absolute", left: cx - orbit, top: cy - orbit, width: 2 * orbit, height: 2 * orbit, borderRadius: 9999, border: "8px dashed #E2E8F0", boxSizing: "border-box" }} />
+      <div style={{ position: "absolute", left: px - 110, top: py - 110, width: 220, height: 220, borderRadius: 999, background: "radial-gradient(circle, rgba(251,146,60,0.6) 0%, rgba(0,0,0,0) 65%)" }} />
+      <div style={{ position: "absolute", left: px - 75, top: py - 75 }}><Planet size={150} look={LOOKS[10]} id="halla-cov" /></div>
+      <div style={{ position: "absolute", left: px - 240, top: py - 225, rotate: "8deg", border: `10px solid ${AMBER}`, color: AMBER, background: "rgba(14,19,31,0.9)", fontFamily: FONT.head, fontWeight: 700, fontSize: 80, lineHeight: 1, padding: "10px 26px", borderRadius: 18 }}>ALIVE</div>
+      <div style={{ position: "absolute", left: 0, width: W, top: 320, textAlign: "center", fontFamily: FONT.head, fontWeight: 700, lineHeight: 1.0, letterSpacing: -3 }}>
+        <span style={{ display: "inline-block", background: "rgba(6,9,17,0.9)", borderRadius: 26, padding: "10px 30px 18px" }}>
+          <div style={{ fontSize: 96, color: "#FFFFFF" }}>SHOULD BE</div>
+          <div style={{ fontSize: 158, color: RED }}>VAPORIZED?!</div>
+        </span>
+      </div>
+      <Img src={staticFile("assets/character/space/shocked.png")} style={{ position: "absolute", height: 620, left: -40, top: 1660 - 620 }} />
+    </AbsoluteFill>
+  );
+};
