@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { LightBg, SpaceBg } from "./components/Base";
-import { At, Flame } from "./components/Draw";
+import { At, Flame, Lungs } from "./components/Draw";
 import { City, Dust, Earth } from "./components/Prims";
 import { C, FONT, LIGHT } from "./lib/core";
 
@@ -58,5 +58,48 @@ export const ThumbC: React.FC = () => (
     <Word x={40} y={190} size={112} color="#F6F4EF" shadow>YOU&apos;D</Word>
     <Word x={40} y={300} size={112} color={C.red} shadow>VANISH</Word>
     <Word x={40} y={410} size={112} color="#F6F4EF" shadow>FIRST</Word>
+  </AbsoluteFill>
+);
+
+const rnd = (i: number, n: number) => { const v = Math.sin((i + 1) * 78.233 * n) * 43758.5453; return v - Math.floor(v); };
+const Ruins: React.FC<{ y: number; col: string }> = ({ y, col }) => (
+  <svg style={{ position: "absolute", left: 0, top: 0 }} width="1280" height="720">
+    <path d={`M 0 ${y} L 0 ${y - 210} L 60 ${y - 210} L 60 ${y - 150} L 110 ${y - 170} L 120 ${y - 280} L 190 ${y - 300} L 200 ${y - 120} L 300 ${y - 140} L 320 ${y - 230} L 360 ${y - 215} L 380 ${y - 90} L 520 ${y - 110} L 540 ${y - 200} L 600 ${y - 190} L 640 ${y - 60} L 1280 ${y - 60} L 1280 ${y} Z`} fill={col} />
+    <path d={`M 1040 ${y} L 1040 ${y - 330} L 1110 ${y - 360} L 1150 ${y - 300} L 1160 ${y - 420} L 1230 ${y - 400} L 1240 ${y - 250} L 1280 ${y - 260} L 1280 ${y} Z`} fill={col} />
+  </svg>
+);
+
+// D — (owner concept) "65% GONE in 0.00 seconds": the fixed character dissolves into oxygen atoms over a burning, ruined sky.
+export const ThumbD: React.FC = () => (
+  <AbsoluteFill style={{ background: "radial-gradient(ellipse at 55% 35%, #B4321F 0%, #6B1A14 45%, #1A0A0D 100%)" }}>
+    <Ruins y={720} col="#1B0D10" />
+    {Array.from({ length: 60 }, (_, i) => <div key={i} style={{ position: "absolute", left: rnd(i, 1) * 1280, top: rnd(i, 2) * 720, width: 3 + rnd(i, 3) * 5, height: 3 + rnd(i, 3) * 5, borderRadius: 9, background: rnd(i, 4) > 0.5 ? "#FDBA74" : "#F97316", opacity: 0.55 + 0.4 * rnd(i, 5) }} />)}
+    <Sprite src="assets/character/light/shocked.png" x={560} y={30} h={1120} mask="linear-gradient(90deg, #000 0%, #000 56%, rgba(0,0,0,0.25) 70%, rgba(0,0,0,0) 80%)" />
+    {Array.from({ length: 70 }, (_, i) => { const x = 930 + rnd(i, 6) * 330, y = 40 + rnd(i, 7) * 640, sz = 8 + rnd(i, 8) * 16; return rnd(i, 9) > 0.62
+      ? <At key={i} x={x} y={y} r={10 + rnd(i, 8) * 12} o={0.9} />
+      : <div key={i} style={{ position: "absolute", left: x, top: y, width: sz, height: sz, background: rnd(i, 10) > 0.5 ? "#F6F4EF" : C.red, opacity: 0.85 }} />; })}
+    <Word x={36} y={30} size={210} color="#FFF" shadow>65%</Word>
+    <Word x={36} y={225} size={210} color={C.red} shadow>GONE</Word>
+    <div style={{ position: "absolute", left: 46, top: 470, rotate: "-4deg", background: "#FACC15", border: `6px solid ${INK}`, borderRadius: 14, boxShadow: `6px 6px 0 ${INK}`, padding: "8px 22px 12px", fontFamily: FONT.head, fontWeight: 700, fontSize: 64, color: INK, whiteSpace: "nowrap" }}>IN 0.00 SECONDS</div>
+  </AbsoluteFill>
+);
+
+// E — (owner concept, simplified) "YOU DON'T SUFFOCATE.": lungs crossed out, the city crumbling behind.
+export const ThumbE: React.FC = () => (
+  <AbsoluteFill>
+    <LightBg />
+    <div style={{ position: "absolute", left: 500, top: 0, width: 780, height: 720, background: "linear-gradient(180deg, #1F2937 0%, #7C2D12 70%, #F97316 100%)", WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 34%)", maskImage: "linear-gradient(90deg, transparent 0%, #000 34%)" }} />
+    <div style={{ position: "absolute", inset: 0, rotate: "0deg" }}>
+      <div style={{ position: "absolute", left: 0, top: 0, width: 1280, height: 720, transformOrigin: "980px 640px", rotate: "-4deg" }}><City x={980} y={650} s={150} lights={0} /></div>
+    </div>
+    {[[720, 640], [880, 660], [1040, 640], [1190, 660]].map(([x, y], i) => <Dust key={i} x={x} y={y} s={150} t={i * 1.3} />)}
+    {Array.from({ length: 24 }, (_, i) => <div key={i} style={{ position: "absolute", left: 680 + rnd(i, 1) * 580, top: 60 + rnd(i, 2) * 420, width: 10 + rnd(i, 3) * 18, height: 10 + rnd(i, 3) * 14, rotate: `${rnd(i, 4) * 90}deg`, background: "#78716C", border: `3px solid ${INK}` }} />)}
+    <Sprite src="assets/character/light/the_catch.png" x={20} y={250} h={900} />
+    <Lungs x={520} y={500} s={95} t={0} />
+    <svg style={{ position: "absolute", left: 0, top: 0 }} width="1280" height="720"><path d="M 420 390 L 620 620 M 620 390 L 420 620" stroke={C.red} strokeWidth="26" strokeLinecap="round" /></svg>
+    <div style={{ position: "absolute", left: 30, top: 30, width: 1220, height: 230 }}>
+      <Word x={0} y={0} size={104}>YOU DON&apos;T</Word>
+      <Word x={0} y={104} size={112} color={C.red}>SUFFOCATE</Word>
+    </div>
   </AbsoluteFill>
 );
