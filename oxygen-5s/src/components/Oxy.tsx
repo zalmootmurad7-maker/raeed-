@@ -16,16 +16,18 @@ export const clockAt = (sec: number) => {
 export const OxygenTimer: React.FC<{ mode: Mode; state?: "run" | "flashback" | "returns" | "zero"; at?: number }> = ({ mode, state = "run", at = 0 }) => {
   const f = useCurrentFrame();
   const sec = f / FPS;
+  if (state === "run" && f < at) return null;
   const k = sp(f, at, 13, 220);
-  const v = state === "zero" ? Math.max(0, 5 * (1 - r(f, at, at + 24, 0, 1, Easing.inOut(Easing.cubic)))) : clockAt(sec);
-  const label = state === "returns" ? "OXYGEN BACK" : "OXYGEN OFF";
+  const v = state === "zero" ? Math.max(0, 5 * (1 - r(f, at, at + 24, 0, 1, Easing.inOut(Easing.cubic)))) : state === "returns" && f >= at ? 5 : clockAt(sec);
+  const back = (state === "returns" && f >= at) || (state === "zero" && f < at);
+  const label = back ? "OXYGEN BACK" : "OXYGEN OFF";
   const tag = state === "flashback" ? "PAUSED" : sec > 29.8 && sec < 104 && state === "run" ? "SLOW-MO" : null;
   const light = mode === "light";
-  const labelBg = state === "returns" ? C.green : C.red;
+  const labelBg = back ? C.green : C.red;
   return (
     <div style={{ position: "absolute", top: 48, right: 64, transformOrigin: "100% 0%", scale: `${0.8 + 0.2 * k}`, display: "flex", alignItems: "stretch", borderRadius: 16, overflow: "hidden", border: `3px solid ${light ? LIGHT.ink : SPACE.border}`, boxShadow: `4px 4px 0 ${light ? LIGHT.ink : SPACE.shadow}` }}>
       <div style={{ background: labelBg, color: "#FFF", fontFamily: FONT.head, fontWeight: 700, fontSize: 22, padding: "10px 14px", lineHeight: 1.05, textAlign: "center", display: "flex", alignItems: "center" }}>{label.split(" ")[0]}<br />{label.split(" ")[1]}</div>
-      <div style={{ background: light ? LIGHT.card : SPACE.card, color: state === "zero" ? C.red : light ? LIGHT.ink : SPACE.text, fontFamily: FONT.mono, fontWeight: 700, fontSize: 40, padding: "8px 20px", display: "flex", alignItems: "center", gap: 14, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+      <div style={{ background: light ? LIGHT.card : SPACE.card, color: state === "zero" && f >= at ? C.red : light ? LIGHT.ink : SPACE.text, fontFamily: FONT.mono, fontWeight: 700, fontSize: 40, padding: "8px 20px", display: "flex", alignItems: "center", gap: 14, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
         {v.toFixed(2)}s{tag ? <span style={{ fontFamily: FONT.head, fontSize: 18, color: state === "flashback" ? C.amber : "#94A3B8" }}>{tag}</span> : null}
       </div>
     </div>
@@ -40,7 +42,7 @@ export const OxyStage: React.FC<{ mode: Mode; b0: number; b1: number; timer?: "r
       <Bg mode={mode} />
       <AbsoluteFill style={{ scale: `${s}` }}>{children}</AbsoluteFill>
       {overlay}
-      {timer !== "none" ? <OxygenTimer mode={mode} state={timer} at={timerAt ?? b0} /> : null}
+      {timer !== "none" ? <OxygenTimer mode={mode} state={timer} at={timerAt ?? -999} /> : null}
     </AbsoluteFill>
   );
 };

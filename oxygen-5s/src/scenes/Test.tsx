@@ -90,6 +90,7 @@ export const Twist: React.FC<BeatProps> = ({ b0, b1 }) => {
       <Pop at={F(182.3)} x={620} y={170} w={1100} size={70} color={SPACE.text}>OH, AND <Red>YOU</Red>?</Pop>
       <Count a={F(185.4)} b={F(186.6)} to={65} fmt={(v) => `${Math.round(v)}%`} x={620} y={300} w={700} size={210} color={C.red} />
       <Pop at={F(186.9)} x={630} y={530} w={900} size={56} color={SPACE.text}>OXYGEN, BY MASS</Pop>
+      {f >= F(191.2) && f < F(194.4) ? <div style={{ opacity: 1 - r(f, F(194.0), F(194.4)) }}><Pop at={F(191.2)} x={630} y={800} w={1000} size={42} color={SPACE.text}>NO 5-SECOND WAIT FOR <Red>YOU</Red></Pop></div> : null}
       <Stamp at={F(194.4)} x={640} y={840} text="GONE AT 0.00s" size={80} bg="rgba(14,19,31,0.92)" rot={-3} />
     </OxyStage>
   );
