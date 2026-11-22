@@ -1,0 +1,2565 @@
+{
+ "duration": 202.416,
+ "words": [
+  {
+   "word": "Hold",
+   "start": 0.0,
+   "end": 0.26
+  },
+  {
+   "word": "your",
+   "start": 0.26,
+   "end": 0.44
+  },
+  {
+   "word": "breath",
+   "start": 0.44,
+   "end": 0.66
+  },
+  {
+   "word": "for",
+   "start": 0.66,
+   "end": 0.94
+  },
+  {
+   "word": "5",
+   "start": 0.94,
+   "end": 1.3
+  },
+  {
+   "word": "seconds.",
+   "start": 1.3,
+   "end": 1.82
+  },
+  {
+   "word": "Easy,",
+   "start": 2.2,
+   "end": 2.44
+  },
+  {
+   "word": "right?",
+   "start": 2.6,
+   "end": 2.84
+  },
+  {
+   "word": "Now",
+   "start": 3.32,
+   "end": 3.56
+  },
+  {
+   "word": "imagine",
+   "start": 3.56,
+   "end": 3.92
+  },
+  {
+   "word": "every",
+   "start": 3.92,
+   "end": 4.56
+  },
+  {
+   "word": "single",
+   "start": 4.56,
+   "end": 4.96
+  },
+  {
+   "word": "oxygen",
+   "start": 4.96,
+   "end": 5.5
+  },
+  {
+   "word": "atom",
+   "start": 5.5,
+   "end": 5.8
+  },
+  {
+   "word": "on",
+   "start": 5.8,
+   "end": 6.0
+  },
+  {
+   "word": "Earth",
+   "start": 6.0,
+   "end": 6.38
+  },
+  {
+   "word": "vanished",
+   "start": 6.38,
+   "end": 7.02
+  },
+  {
+   "word": "for",
+   "start": 7.02,
+   "end": 7.3
+  },
+  {
+   "word": "those",
+   "start": 7.3,
+   "end": 7.46
+  },
+  {
+   "word": "same",
+   "start": 7.46,
+   "end": 7.82
+  },
+  {
+   "word": "5",
+   "start": 7.82,
+   "end": 8.14
+  },
+  {
+   "word": "seconds.",
+   "start": 8.14,
+   "end": 8.56
+  },
+  {
+   "word": "You've",
+   "start": 9.18,
+   "end": 9.48
+  },
+  {
+   "word": "probably",
+   "start": 9.48,
+   "end": 9.74
+  },
+  {
+   "word": "heard",
+   "start": 9.74,
+   "end": 10.0
+  },
+  {
+   "word": "the",
+   "start": 10.0,
+   "end": 10.18
+  },
+  {
+   "word": "viral",
+   "start": 10.18,
+   "end": 10.44
+  },
+  {
+   "word": "story.",
+   "start": 10.44,
+   "end": 10.86
+  },
+  {
+   "word": "Buildings",
+   "start": 11.3,
+   "end": 11.54
+  },
+  {
+   "word": "turn",
+   "start": 11.54,
+   "end": 11.84
+  },
+  {
+   "word": "to",
+   "start": 11.84,
+   "end": 12.04
+  },
+  {
+   "word": "dust,",
+   "start": 12.04,
+   "end": 12.4
+  },
+  {
+   "word": "oceans",
+   "start": 12.68,
+   "end": 12.98
+  },
+  {
+   "word": "boil",
+   "start": 12.98,
+   "end": 13.4
+  },
+  {
+   "word": "into",
+   "start": 13.4,
+   "end": 13.7
+  },
+  {
+   "word": "space,",
+   "start": 13.7,
+   "end": 14.06
+  },
+  {
+   "word": "and",
+   "start": 14.4,
+   "end": 14.58
+  },
+  {
+   "word": "everyone",
+   "start": 14.58,
+   "end": 15.0
+  },
+  {
+   "word": "gets",
+   "start": 15.0,
+   "end": 15.3
+  },
+  {
+   "word": "a",
+   "start": 15.3,
+   "end": 15.5
+  },
+  {
+   "word": "sunburn.",
+   "start": 15.5,
+   "end": 15.9
+  },
+  {
+   "word": "The",
+   "start": 16.32,
+   "end": 16.48
+  },
+  {
+   "word": "viral",
+   "start": 16.48,
+   "end": 16.84
+  },
+  {
+   "word": "version",
+   "start": 16.84,
+   "end": 17.18
+  },
+  {
+   "word": "gets",
+   "start": 17.18,
+   "end": 17.44
+  },
+  {
+   "word": "three",
+   "start": 17.44,
+   "end": 17.82
+  },
+  {
+   "word": "things",
+   "start": 17.82,
+   "end": 18.12
+  },
+  {
+   "word": "wrong,",
+   "start": 18.12,
+   "end": 18.46
+  },
+  {
+   "word": "and",
+   "start": 18.76,
+   "end": 18.94
+  },
+  {
+   "word": "the",
+   "start": 18.94,
+   "end": 19.08
+  },
+  {
+   "word": "real",
+   "start": 19.08,
+   "end": 19.28
+  },
+  {
+   "word": "answer",
+   "start": 19.28,
+   "end": 19.68
+  },
+  {
+   "word": "is",
+   "start": 19.68,
+   "end": 20.02
+  },
+  {
+   "word": "even",
+   "start": 20.02,
+   "end": 20.4
+  },
+  {
+   "word": "scarier.",
+   "start": 20.4,
+   "end": 21.04
+  },
+  {
+   "word": "Here's",
+   "start": 21.44,
+   "end": 21.66
+  },
+  {
+   "word": "the",
+   "start": 21.66,
+   "end": 21.78
+  },
+  {
+   "word": "experiment.",
+   "start": 21.78,
+   "end": 22.26
+  },
+  {
+   "word": "Every",
+   "start": 22.86,
+   "end": 23.18
+  },
+  {
+   "word": "oxygen",
+   "start": 23.18,
+   "end": 23.7
+  },
+  {
+   "word": "atom",
+   "start": 23.7,
+   "end": 24.08
+  },
+  {
+   "word": "vanishes",
+   "start": 24.08,
+   "end": 24.62
+  },
+  {
+   "word": "at",
+   "start": 24.62,
+   "end": 24.84
+  },
+  {
+   "word": "once.",
+   "start": 24.84,
+   "end": 25.24
+  },
+  {
+   "word": "Some",
+   "start": 25.74,
+   "end": 25.94
+  },
+  {
+   "word": "things",
+   "start": 25.94,
+   "end": 26.18
+  },
+  {
+   "word": "react",
+   "start": 26.18,
+   "end": 26.48
+  },
+  {
+   "word": "in",
+   "start": 26.48,
+   "end": 26.7
+  },
+  {
+   "word": "milliseconds,",
+   "start": 26.7,
+   "end": 27.12
+  },
+  {
+   "word": "some",
+   "start": 27.12,
+   "end": 27.78
+  },
+  {
+   "word": "take",
+   "start": 27.78,
+   "end": 28.16
+  },
+  {
+   "word": "seconds.",
+   "start": 28.16,
+   "end": 28.72
+  },
+  {
+   "word": "Let's",
+   "start": 29.24,
+   "end": 29.46
+  },
+  {
+   "word": "slow",
+   "start": 29.46,
+   "end": 29.68
+  },
+  {
+   "word": "it",
+   "start": 29.68,
+   "end": 29.82
+  },
+  {
+   "word": "down.",
+   "start": 29.82,
+   "end": 30.12
+  },
+  {
+   "word": "In",
+   "start": 30.44,
+   "end": 30.54
+  },
+  {
+   "word": "the",
+   "start": 30.54,
+   "end": 30.7
+  },
+  {
+   "word": "first",
+   "start": 30.7,
+   "end": 30.96
+  },
+  {
+   "word": "milliseconds,",
+   "start": 30.96,
+   "end": 31.46
+  },
+  {
+   "word": "the",
+   "start": 32.04,
+   "end": 32.06
+  },
+  {
+   "word": "atmosphere",
+   "start": 32.06,
+   "end": 32.56
+  },
+  {
+   "word": "loses",
+   "start": 32.56,
+   "end": 32.96
+  },
+  {
+   "word": "roughly",
+   "start": 32.96,
+   "end": 33.4
+  },
+  {
+   "word": "21",
+   "start": 33.4,
+   "end": 34.04
+  },
+  {
+   "word": "%",
+   "start": 34.04,
+   "end": 34.5
+  },
+  {
+   "word": "of",
+   "start": 34.5,
+   "end": 34.68
+  },
+  {
+   "word": "its",
+   "start": 34.68,
+   "end": 34.84
+  },
+  {
+   "word": "pressure.",
+   "start": 34.84,
+   "end": 35.24
+  },
+  {
+   "word": "That's",
+   "start": 35.58,
+   "end": 35.96
+  },
+  {
+   "word": "the",
+   "start": 35.96,
+   "end": 36.12
+  },
+  {
+   "word": "sudden",
+   "start": 36.12,
+   "end": 36.44
+  },
+  {
+   "word": "drop",
+   "start": 36.44,
+   "end": 36.76
+  },
+  {
+   "word": "of",
+   "start": 36.76,
+   "end": 36.98
+  },
+  {
+   "word": "teleporting",
+   "start": 36.98,
+   "end": 37.52
+  },
+  {
+   "word": "from",
+   "start": 37.52,
+   "end": 37.78
+  },
+  {
+   "word": "sea",
+   "start": 37.78,
+   "end": 38.06
+  },
+  {
+   "word": "level",
+   "start": 38.06,
+   "end": 38.32
+  },
+  {
+   "word": "to",
+   "start": 38.32,
+   "end": 38.58
+  },
+  {
+   "word": "2000m",
+   "start": 38.58,
+   "end": 39.38
+  },
+  {
+   "word": "up",
+   "start": 39.38,
+   "end": 39.82
+  },
+  {
+   "word": "in",
+   "start": 39.82,
+   "end": 40.04
+  },
+  {
+   "word": "an",
+   "start": 40.04,
+   "end": 40.18
+  },
+  {
+   "word": "instant.",
+   "start": 40.18,
+   "end": 40.66
+  },
+  {
+   "word": "Your",
+   "start": 41.16,
+   "end": 41.4
+  },
+  {
+   "word": "eardrums",
+   "start": 41.4,
+   "end": 41.92
+  },
+  {
+   "word": "pop",
+   "start": 41.92,
+   "end": 42.32
+  },
+  {
+   "word": "painfully,",
+   "start": 42.32,
+   "end": 42.84
+  },
+  {
+   "word": "and",
+   "start": 43.22,
+   "end": 43.4
+  },
+  {
+   "word": "some",
+   "start": 43.4,
+   "end": 43.68
+  },
+  {
+   "word": "could",
+   "start": 43.68,
+   "end": 43.9
+  },
+  {
+   "word": "even",
+   "start": 43.9,
+   "end": 44.1
+  },
+  {
+   "word": "rupture.",
+   "start": 44.1,
+   "end": 44.5
+  },
+  {
+   "word": "Yet",
+   "start": 44.96,
+   "end": 45.16
+  },
+  {
+   "word": "your",
+   "start": 45.16,
+   "end": 45.32
+  },
+  {
+   "word": "lungs",
+   "start": 45.32,
+   "end": 45.66
+  },
+  {
+   "word": "wouldn't",
+   "start": 45.66,
+   "end": 46.12
+  },
+  {
+   "word": "panic",
+   "start": 46.12,
+   "end": 46.4
+  },
+  {
+   "word": "yet",
+   "start": 46.4,
+   "end": 46.76
+  },
+  {
+   "word": "because",
+   "start": 46.76,
+   "end": 47.18
+  },
+  {
+   "word": "your",
+   "start": 47.18,
+   "end": 47.4
+  },
+  {
+   "word": "body",
+   "start": 47.4,
+   "end": 47.68
+  },
+  {
+   "word": "detects",
+   "start": 47.68,
+   "end": 48.02
+  },
+  {
+   "word": "rising",
+   "start": 48.02,
+   "end": 48.5
+  },
+  {
+   "word": "carbon",
+   "start": 48.5,
+   "end": 48.86
+  },
+  {
+   "word": "dioxide,",
+   "start": 48.86,
+   "end": 49.46
+  },
+  {
+   "word": "not",
+   "start": 49.76,
+   "end": 50.02
+  },
+  {
+   "word": "missing",
+   "start": 50.02,
+   "end": 50.36
+  },
+  {
+   "word": "oxygen.",
+   "start": 50.36,
+   "end": 50.86
+  },
+  {
+   "word": "Outside,",
+   "start": 51.32,
+   "end": 51.76
+  },
+  {
+   "word": "every",
+   "start": 52.04,
+   "end": 52.36
+  },
+  {
+   "word": "combustion",
+   "start": 52.36,
+   "end": 52.82
+  },
+  {
+   "word": "engine,",
+   "start": 52.82,
+   "end": 53.3
+  },
+  {
+   "word": "cars,",
+   "start": 53.6,
+   "end": 53.88
+  },
+  {
+   "word": "jets",
+   "start": 54.24,
+   "end": 54.36
+  },
+  {
+   "word": "and",
+   "start": 54.36,
+   "end": 54.76
+  },
+  {
+   "word": "furnaces",
+   "start": 54.76,
+   "end": 55.28
+  },
+  {
+   "word": "stalls",
+   "start": 55.28,
+   "end": 55.92
+  },
+  {
+   "word": "immediately,",
+   "start": 55.92,
+   "end": 56.64
+  },
+  {
+   "word": "and",
+   "start": 57.2,
+   "end": 57.44
+  },
+  {
+   "word": "with",
+   "start": 57.44,
+   "end": 57.58
+  },
+  {
+   "word": "a",
+   "start": 57.58,
+   "end": 57.76
+  },
+  {
+   "word": "fifth",
+   "start": 57.76,
+   "end": 57.9
+  },
+  {
+   "word": "of",
+   "start": 57.9,
+   "end": 58.06
+  },
+  {
+   "word": "the",
+   "start": 58.06,
+   "end": 58.18
+  },
+  {
+   "word": "air",
+   "start": 58.18,
+   "end": 58.46
+  },
+  {
+   "word": "gone,",
+   "start": 58.46,
+   "end": 58.78
+  },
+  {
+   "word": "fewer",
+   "start": 59.12,
+   "end": 59.34
+  },
+  {
+   "word": "molecules",
+   "start": 59.34,
+   "end": 59.92
+  },
+  {
+   "word": "scatter",
+   "start": 59.92,
+   "end": 60.28
+  },
+  {
+   "word": "sunlight",
+   "start": 60.28,
+   "end": 60.82
+  },
+  {
+   "word": "so",
+   "start": 60.82,
+   "end": 61.28
+  },
+  {
+   "word": "the",
+   "start": 61.28,
+   "end": 61.44
+  },
+  {
+   "word": "sky",
+   "start": 61.44,
+   "end": 61.76
+  },
+  {
+   "word": "would",
+   "start": 61.76,
+   "end": 62.0
+  },
+  {
+   "word": "visibly",
+   "start": 62.0,
+   "end": 62.54
+  },
+  {
+   "word": "dim,",
+   "start": 62.54,
+   "end": 62.94
+  },
+  {
+   "word": "much",
+   "start": 63.26,
+   "end": 63.54
+  },
+  {
+   "word": "like",
+   "start": 63.54,
+   "end": 63.74
+  },
+  {
+   "word": "what",
+   "start": 63.74,
+   "end": 63.92
+  },
+  {
+   "word": "high",
+   "start": 63.92,
+   "end": 64.18
+  },
+  {
+   "word": "-altitude",
+   "start": 64.18,
+   "end": 64.6
+  },
+  {
+   "word": "pilots",
+   "start": 64.6,
+   "end": 64.94
+  },
+  {
+   "word": "see",
+   "start": 64.94,
+   "end": 65.3
+  },
+  {
+   "word": "above",
+   "start": 65.3,
+   "end": 65.56
+  },
+  {
+   "word": "most",
+   "start": 65.56,
+   "end": 65.86
+  },
+  {
+   "word": "of",
+   "start": 65.86,
+   "end": 66.04
+  },
+  {
+   "word": "the",
+   "start": 66.04,
+   "end": 66.12
+  },
+  {
+   "word": "atmosphere.",
+   "start": 66.12,
+   "end": 66.58
+  },
+  {
+   "word": "High",
+   "start": 67.1,
+   "end": 67.3
+  },
+  {
+   "word": "above,",
+   "start": 67.3,
+   "end": 67.62
+  },
+  {
+   "word": "the",
+   "start": 67.96,
+   "end": 68.1
+  },
+  {
+   "word": "ozone",
+   "start": 68.1,
+   "end": 68.54
+  },
+  {
+   "word": "layer,",
+   "start": 68.54,
+   "end": 68.96
+  },
+  {
+   "word": "pure",
+   "start": 69.28,
+   "end": 69.48
+  },
+  {
+   "word": "oxygen,",
+   "start": 69.48,
+   "end": 70.1
+  },
+  {
+   "word": "vanishes,",
+   "start": 70.42,
+   "end": 70.92
+  },
+  {
+   "word": "letting",
+   "start": 71.28,
+   "end": 71.48
+  },
+  {
+   "word": "the",
+   "start": 71.48,
+   "end": 71.74
+  },
+  {
+   "word": "sun's",
+   "start": 71.74,
+   "end": 72.02
+  },
+  {
+   "word": "harshest",
+   "start": 72.02,
+   "end": 72.5
+  },
+  {
+   "word": "UV",
+   "start": 72.5,
+   "end": 72.94
+  },
+  {
+   "word": "hit",
+   "start": 72.94,
+   "end": 73.32
+  },
+  {
+   "word": "the",
+   "start": 73.32,
+   "end": 73.5
+  },
+  {
+   "word": "ground",
+   "start": 73.5,
+   "end": 73.74
+  },
+  {
+   "word": "unfiltered",
+   "start": 73.74,
+   "end": 74.58
+  },
+  {
+   "word": "for",
+   "start": 74.58,
+   "end": 74.82
+  },
+  {
+   "word": "5",
+   "start": 74.82,
+   "end": 75.18
+  },
+  {
+   "word": "seconds.",
+   "start": 75.18,
+   "end": 75.74
+  },
+  {
+   "word": "Here",
+   "start": 76.1,
+   "end": 76.32
+  },
+  {
+   "word": "is",
+   "start": 76.32,
+   "end": 76.56
+  },
+  {
+   "word": "the",
+   "start": 76.56,
+   "end": 76.76
+  },
+  {
+   "word": "first",
+   "start": 76.76,
+   "end": 77.04
+  },
+  {
+   "word": "thing",
+   "start": 77.04,
+   "end": 77.34
+  },
+  {
+   "word": "most",
+   "start": 77.34,
+   "end": 77.62
+  },
+  {
+   "word": "videos",
+   "start": 77.62,
+   "end": 78.02
+  },
+  {
+   "word": "skip.",
+   "start": 78.02,
+   "end": 78.44
+  },
+  {
+   "word": "Concrete",
+   "start": 78.94,
+   "end": 79.28
+  },
+  {
+   "word": "and",
+   "start": 79.28,
+   "end": 79.52
+  },
+  {
+   "word": "rock",
+   "start": 79.52,
+   "end": 79.84
+  },
+  {
+   "word": "don't",
+   "start": 79.84,
+   "end": 80.34
+  },
+  {
+   "word": "wait",
+   "start": 80.34,
+   "end": 80.52
+  },
+  {
+   "word": "2",
+   "start": 80.52,
+   "end": 80.88
+  },
+  {
+   "word": "seconds",
+   "start": 80.88,
+   "end": 81.28
+  },
+  {
+   "word": "to",
+   "start": 81.28,
+   "end": 81.56
+  },
+  {
+   "word": "fail.",
+   "start": 81.56,
+   "end": 81.8
+  },
+  {
+   "word": "Oxygen",
+   "start": 81.8,
+   "end": 82.76
+  },
+  {
+   "word": "makes",
+   "start": 82.76,
+   "end": 82.94
+  },
+  {
+   "word": "up",
+   "start": 82.94,
+   "end": 83.16
+  },
+  {
+   "word": "roughly",
+   "start": 83.16,
+   "end": 83.5
+  },
+  {
+   "word": "45",
+   "start": 83.5,
+   "end": 84.18
+  },
+  {
+   "word": "%",
+   "start": 84.18,
+   "end": 84.62
+  },
+  {
+   "word": "of",
+   "start": 84.62,
+   "end": 84.86
+  },
+  {
+   "word": "Earth's",
+   "start": 84.86,
+   "end": 85.36
+  },
+  {
+   "word": "crust",
+   "start": 85.36,
+   "end": 85.52
+  },
+  {
+   "word": "by",
+   "start": 85.52,
+   "end": 85.82
+  },
+  {
+   "word": "mass,",
+   "start": 85.82,
+   "end": 86.26
+  },
+  {
+   "word": "locked",
+   "start": 86.6,
+   "end": 86.86
+  },
+  {
+   "word": "inside",
+   "start": 86.86,
+   "end": 87.26
+  },
+  {
+   "word": "silicates",
+   "start": 87.26,
+   "end": 87.82
+  },
+  {
+   "word": "and",
+   "start": 87.82,
+   "end": 88.08
+  },
+  {
+   "word": "the",
+   "start": 88.08,
+   "end": 88.24
+  },
+  {
+   "word": "chemical",
+   "start": 88.24,
+   "end": 88.54
+  },
+  {
+   "word": "binders",
+   "start": 88.54,
+   "end": 89.14
+  },
+  {
+   "word": "holding",
+   "start": 89.14,
+   "end": 89.38
+  },
+  {
+   "word": "concrete",
+   "start": 89.38,
+   "end": 89.84
+  },
+  {
+   "word": "together.",
+   "start": 89.84,
+   "end": 90.3
+  },
+  {
+   "word": "Strip",
+   "start": 90.78,
+   "end": 91.04
+  },
+  {
+   "word": "every",
+   "start": 91.04,
+   "end": 91.54
+  },
+  {
+   "word": "oxygen",
+   "start": 91.54,
+   "end": 92.06
+  },
+  {
+   "word": "atom",
+   "start": 92.06,
+   "end": 92.34
+  },
+  {
+   "word": "away",
+   "start": 92.34,
+   "end": 92.6
+  },
+  {
+   "word": "at",
+   "start": 92.6,
+   "end": 92.76
+  },
+  {
+   "word": "once,",
+   "start": 92.76,
+   "end": 93.12
+  },
+  {
+   "word": "and",
+   "start": 93.42,
+   "end": 93.6
+  },
+  {
+   "word": "every",
+   "start": 93.6,
+   "end": 94.02
+  },
+  {
+   "word": "concrete",
+   "start": 94.02,
+   "end": 94.46
+  },
+  {
+   "word": "building,",
+   "start": 94.46,
+   "end": 94.94
+  },
+  {
+   "word": "bridge",
+   "start": 95.28,
+   "end": 95.46
+  },
+  {
+   "word": "and",
+   "start": 95.46,
+   "end": 95.8
+  },
+  {
+   "word": "sidewalk",
+   "start": 95.8,
+   "end": 96.42
+  },
+  {
+   "word": "loses",
+   "start": 96.42,
+   "end": 96.92
+  },
+  {
+   "word": "its",
+   "start": 96.92,
+   "end": 97.18
+  },
+  {
+   "word": "structure",
+   "start": 97.18,
+   "end": 97.68
+  },
+  {
+   "word": "and",
+   "start": 97.68,
+   "end": 97.98
+  },
+  {
+   "word": "collapses",
+   "start": 97.98,
+   "end": 98.5
+  },
+  {
+   "word": "into",
+   "start": 98.5,
+   "end": 98.82
+  },
+  {
+   "word": "powder,",
+   "start": 98.82,
+   "end": 99.14
+  },
+  {
+   "word": "while",
+   "start": 99.46,
+   "end": 99.72
+  },
+  {
+   "word": "the",
+   "start": 99.72,
+   "end": 99.92
+  },
+  {
+   "word": "rocky",
+   "start": 99.92,
+   "end": 100.2
+  },
+  {
+   "word": "crust",
+   "start": 100.2,
+   "end": 100.5
+  },
+  {
+   "word": "beneath",
+   "start": 100.5,
+   "end": 100.94
+  },
+  {
+   "word": "fractures",
+   "start": 100.94,
+   "end": 101.46
+  },
+  {
+   "word": "into",
+   "start": 101.46,
+   "end": 101.86
+  },
+  {
+   "word": "a",
+   "start": 101.86,
+   "end": 102.08
+  },
+  {
+   "word": "choking",
+   "start": 102.08,
+   "end": 102.46
+  },
+  {
+   "word": "cloud",
+   "start": 102.46,
+   "end": 102.84
+  },
+  {
+   "word": "of",
+   "start": 102.84,
+   "end": 103.1
+  },
+  {
+   "word": "dust.",
+   "start": 103.1,
+   "end": 103.44
+  },
+  {
+   "word": "Meanwhile,",
+   "start": 104.04,
+   "end": 104.44
+  },
+  {
+   "word": "exposed",
+   "start": 104.76,
+   "end": 105.18
+  },
+  {
+   "word": "metals",
+   "start": 105.18,
+   "end": 105.62
+  },
+  {
+   "word": "start",
+   "start": 105.62,
+   "end": 105.9
+  },
+  {
+   "word": "doing",
+   "start": 105.9,
+   "end": 106.12
+  },
+  {
+   "word": "something",
+   "start": 106.12,
+   "end": 106.54
+  },
+  {
+   "word": "bizarre.",
+   "start": 106.54,
+   "end": 107.1
+  },
+  {
+   "word": "On",
+   "start": 107.56,
+   "end": 107.74
+  },
+  {
+   "word": "Earth,",
+   "start": 107.74,
+   "end": 108.08
+  },
+  {
+   "word": "raw",
+   "start": 108.42,
+   "end": 108.58
+  },
+  {
+   "word": "steel",
+   "start": 108.58,
+   "end": 108.9
+  },
+  {
+   "word": "and",
+   "start": 108.9,
+   "end": 109.12
+  },
+  {
+   "word": "aluminum",
+   "start": 109.12,
+   "end": 109.54
+  },
+  {
+   "word": "wear",
+   "start": 109.54,
+   "end": 109.86
+  },
+  {
+   "word": "an",
+   "start": 109.86,
+   "end": 109.98
+  },
+  {
+   "word": "invisible",
+   "start": 109.98,
+   "end": 110.44
+  },
+  {
+   "word": "crust",
+   "start": 110.44,
+   "end": 110.76
+  },
+  {
+   "word": "of",
+   "start": 110.76,
+   "end": 111.0
+  },
+  {
+   "word": "oxygen",
+   "start": 111.0,
+   "end": 111.46
+  },
+  {
+   "word": "that",
+   "start": 111.46,
+   "end": 111.74
+  },
+  {
+   "word": "keeps",
+   "start": 111.74,
+   "end": 111.94
+  },
+  {
+   "word": "separate",
+   "start": 111.94,
+   "end": 112.32
+  },
+  {
+   "word": "parts",
+   "start": 112.32,
+   "end": 112.72
+  },
+  {
+   "word": "from",
+   "start": 112.72,
+   "end": 112.94
+  },
+  {
+   "word": "sticking.",
+   "start": 112.94,
+   "end": 113.3
+  },
+  {
+   "word": "Without",
+   "start": 113.8,
+   "end": 114.06
+  },
+  {
+   "word": "it,",
+   "start": 114.06,
+   "end": 114.32
+  },
+  {
+   "word": "clean",
+   "start": 114.74,
+   "end": 114.84
+  },
+  {
+   "word": "metal",
+   "start": 114.84,
+   "end": 115.1
+  },
+  {
+   "word": "surfaces",
+   "start": 115.1,
+   "end": 115.64
+  },
+  {
+   "word": "pressed",
+   "start": 115.64,
+   "end": 115.96
+  },
+  {
+   "word": "tightly",
+   "start": 115.96,
+   "end": 116.42
+  },
+  {
+   "word": "together",
+   "start": 116.42,
+   "end": 116.92
+  },
+  {
+   "word": "could",
+   "start": 116.92,
+   "end": 117.16
+  },
+  {
+   "word": "start",
+   "start": 117.16,
+   "end": 117.42
+  },
+  {
+   "word": "to",
+   "start": 117.42,
+   "end": 117.64
+  },
+  {
+   "word": "cold",
+   "start": 117.64,
+   "end": 117.96
+  },
+  {
+   "word": "weld",
+   "start": 117.96,
+   "end": 118.22
+  },
+  {
+   "word": "into",
+   "start": 118.22,
+   "end": 118.56
+  },
+  {
+   "word": "a",
+   "start": 118.56,
+   "end": 118.84
+  },
+  {
+   "word": "single",
+   "start": 118.84,
+   "end": 119.14
+  },
+  {
+   "word": "solid",
+   "start": 119.14,
+   "end": 119.56
+  },
+  {
+   "word": "piece.",
+   "start": 119.56,
+   "end": 120.04
+  },
+  {
+   "word": "That",
+   "start": 120.42,
+   "end": 120.7
+  },
+  {
+   "word": "isn't",
+   "start": 120.7,
+   "end": 121.16
+  },
+  {
+   "word": "science",
+   "start": 121.16,
+   "end": 121.46
+  },
+  {
+   "word": "fiction.",
+   "start": 121.46,
+   "end": 121.82
+  },
+  {
+   "word": "In",
+   "start": 122.24,
+   "end": 122.42
+  },
+  {
+   "word": "1991,",
+   "start": 122.42,
+   "end": 123.38
+  },
+  {
+   "word": "NASA's",
+   "start": 123.94,
+   "end": 124.26
+  },
+  {
+   "word": "Galileo",
+   "start": 124.26,
+   "end": 124.74
+  },
+  {
+   "word": "spacecraft",
+   "start": 124.74,
+   "end": 125.24
+  },
+  {
+   "word": "had",
+   "start": 125.24,
+   "end": 125.66
+  },
+  {
+   "word": "its",
+   "start": 125.66,
+   "end": 125.82
+  },
+  {
+   "word": "main",
+   "start": 125.82,
+   "end": 126.16
+  },
+  {
+   "word": "dish",
+   "start": 126.16,
+   "end": 126.44
+  },
+  {
+   "word": "antenna",
+   "start": 126.44,
+   "end": 126.82
+  },
+  {
+   "word": "partially",
+   "start": 126.82,
+   "end": 127.44
+  },
+  {
+   "word": "jammed",
+   "start": 127.44,
+   "end": 127.82
+  },
+  {
+   "word": "shut",
+   "start": 127.82,
+   "end": 128.2
+  },
+  {
+   "word": "in",
+   "start": 128.2,
+   "end": 128.44
+  },
+  {
+   "word": "space,",
+   "start": 128.44,
+   "end": 128.82
+  },
+  {
+   "word": "with",
+   "start": 129.18,
+   "end": 129.38
+  },
+  {
+   "word": "engineers",
+   "start": 129.38,
+   "end": 129.84
+  },
+  {
+   "word": "pointing",
+   "start": 129.84,
+   "end": 130.28
+  },
+  {
+   "word": "to",
+   "start": 130.28,
+   "end": 130.56
+  },
+  {
+   "word": "cold",
+   "start": 130.56,
+   "end": 130.9
+  },
+  {
+   "word": "welding",
+   "start": 130.9,
+   "end": 131.22
+  },
+  {
+   "word": "and",
+   "start": 131.22,
+   "end": 131.52
+  },
+  {
+   "word": "friction",
+   "start": 131.52,
+   "end": 131.96
+  },
+  {
+   "word": "between",
+   "start": 131.96,
+   "end": 132.36
+  },
+  {
+   "word": "bare",
+   "start": 132.36,
+   "end": 132.72
+  },
+  {
+   "word": "metal",
+   "start": 132.72,
+   "end": 132.94
+  },
+  {
+   "word": "parts.",
+   "start": 132.94,
+   "end": 133.44
+  },
+  {
+   "word": "Now",
+   "start": 133.44,
+   "end": 134.12
+  },
+  {
+   "word": "look",
+   "start": 134.12,
+   "end": 134.34
+  },
+  {
+   "word": "at",
+   "start": 134.34,
+   "end": 134.48
+  },
+  {
+   "word": "the",
+   "start": 134.48,
+   "end": 134.6
+  },
+  {
+   "word": "oceans.",
+   "start": 134.6,
+   "end": 135.0
+  },
+  {
+   "word": "Water",
+   "start": 135.76,
+   "end": 135.92
+  },
+  {
+   "word": "is",
+   "start": 135.92,
+   "end": 136.2
+  },
+  {
+   "word": "nearly",
+   "start": 136.2,
+   "end": 136.48
+  },
+  {
+   "word": "89",
+   "start": 136.48,
+   "end": 137.16
+  },
+  {
+   "word": "%",
+   "start": 137.16,
+   "end": 137.62
+  },
+  {
+   "word": "oxygen",
+   "start": 137.62,
+   "end": 138.04
+  },
+  {
+   "word": "by",
+   "start": 138.04,
+   "end": 138.32
+  },
+  {
+   "word": "mass.",
+   "start": 138.32,
+   "end": 138.72
+  },
+  {
+   "word": "Take",
+   "start": 139.18,
+   "end": 139.34
+  },
+  {
+   "word": "the",
+   "start": 139.34,
+   "end": 139.54
+  },
+  {
+   "word": "oxygen",
+   "start": 139.54,
+   "end": 139.96
+  },
+  {
+   "word": "out",
+   "start": 139.96,
+   "end": 140.3
+  },
+  {
+   "word": "of",
+   "start": 140.3,
+   "end": 140.52
+  },
+  {
+   "word": "H2O,",
+   "start": 140.52,
+   "end": 141.24
+  },
+  {
+   "word": "and",
+   "start": 141.6,
+   "end": 141.72
+  },
+  {
+   "word": "liquid",
+   "start": 141.72,
+   "end": 142.02
+  },
+  {
+   "word": "water",
+   "start": 142.02,
+   "end": 142.5
+  },
+  {
+   "word": "flashes",
+   "start": 142.5,
+   "end": 143.02
+  },
+  {
+   "word": "into",
+   "start": 143.02,
+   "end": 143.44
+  },
+  {
+   "word": "pure",
+   "start": 143.44,
+   "end": 143.8
+  },
+  {
+   "word": "hydrogen",
+   "start": 143.8,
+   "end": 144.32
+  },
+  {
+   "word": "gas,",
+   "start": 144.32,
+   "end": 144.86
+  },
+  {
+   "word": "expanding",
+   "start": 145.2,
+   "end": 145.6
+  },
+  {
+   "word": "over",
+   "start": 145.6,
+   "end": 145.98
+  },
+  {
+   "word": "a",
+   "start": 145.98,
+   "end": 146.14
+  },
+  {
+   "word": "thousand",
+   "start": 146.14,
+   "end": 146.56
+  },
+  {
+   "word": "times",
+   "start": 146.56,
+   "end": 147.04
+  },
+  {
+   "word": "in",
+   "start": 147.04,
+   "end": 147.3
+  },
+  {
+   "word": "volume.",
+   "start": 147.3,
+   "end": 147.7
+  },
+  {
+   "word": "Within",
+   "start": 148.02,
+   "end": 148.36
+  },
+  {
+   "word": "seconds,",
+   "start": 148.36,
+   "end": 149.0
+  },
+  {
+   "word": "every",
+   "start": 149.22,
+   "end": 149.6
+  },
+  {
+   "word": "ocean,",
+   "start": 149.6,
+   "end": 150.1
+  },
+  {
+   "word": "lake",
+   "start": 150.4,
+   "end": 150.56
+  },
+  {
+   "word": "and",
+   "start": 150.56,
+   "end": 150.84
+  },
+  {
+   "word": "river",
+   "start": 150.84,
+   "end": 151.28
+  },
+  {
+   "word": "erupts",
+   "start": 151.28,
+   "end": 152.2
+  },
+  {
+   "word": "into",
+   "start": 152.2,
+   "end": 152.2
+  },
+  {
+   "word": "a",
+   "start": 152.2,
+   "end": 152.52
+  },
+  {
+   "word": "planet",
+   "start": 152.52,
+   "end": 152.74
+  },
+  {
+   "word": "-sized",
+   "start": 152.74,
+   "end": 153.04
+  },
+  {
+   "word": "cloud",
+   "start": 153.04,
+   "end": 153.42
+  },
+  {
+   "word": "of",
+   "start": 153.42,
+   "end": 153.66
+  },
+  {
+   "word": "hydrogen",
+   "start": 153.66,
+   "end": 154.12
+  },
+  {
+   "word": "surging",
+   "start": 154.12,
+   "end": 154.64
+  },
+  {
+   "word": "skyward.",
+   "start": 154.64,
+   "end": 155.3
+  },
+  {
+   "word": "It",
+   "start": 155.62,
+   "end": 155.78
+  },
+  {
+   "word": "wouldn't",
+   "start": 155.78,
+   "end": 156.02
+  },
+  {
+   "word": "reach",
+   "start": 156.02,
+   "end": 156.24
+  },
+  {
+   "word": "space",
+   "start": 156.24,
+   "end": 156.54
+  },
+  {
+   "word": "in",
+   "start": 156.54,
+   "end": 156.78
+  },
+  {
+   "word": "5",
+   "start": 156.78,
+   "end": 157.02
+  },
+  {
+   "word": "seconds,",
+   "start": 157.02,
+   "end": 157.36
+  },
+  {
+   "word": "but",
+   "start": 157.68,
+   "end": 157.9
+  },
+  {
+   "word": "it",
+   "start": 157.9,
+   "end": 158.02
+  },
+  {
+   "word": "would",
+   "start": 158.02,
+   "end": 158.4
+  },
+  {
+   "word": "engulf",
+   "start": 158.4,
+   "end": 158.94
+  },
+  {
+   "word": "the",
+   "start": 158.94,
+   "end": 159.2
+  },
+  {
+   "word": "planet.",
+   "start": 159.2,
+   "end": 159.52
+  },
+  {
+   "word": "At",
+   "start": 159.52,
+   "end": 160.04
+  },
+  {
+   "word": "5",
+   "start": 160.04,
+   "end": 160.48
+  },
+  {
+   "word": ".00",
+   "start": 160.48,
+   "end": 161.34
+  },
+  {
+   "word": "seconds,",
+   "start": 161.34,
+   "end": 162.02
+  },
+  {
+   "word": "every",
+   "start": 162.3,
+   "end": 162.54
+  },
+  {
+   "word": "oxygen",
+   "start": 162.54,
+   "end": 163.08
+  },
+  {
+   "word": "atom",
+   "start": 163.08,
+   "end": 163.38
+  },
+  {
+   "word": "snaps",
+   "start": 163.38,
+   "end": 163.8
+  },
+  {
+   "word": "back.",
+   "start": 163.8,
+   "end": 164.32
+  },
+  {
+   "word": "Except",
+   "start": 164.72,
+   "end": 164.98
+  },
+  {
+   "word": "now,",
+   "start": 164.98,
+   "end": 165.38
+  },
+  {
+   "word": "Earth",
+   "start": 165.64,
+   "end": 165.74
+  },
+  {
+   "word": "is",
+   "start": 165.74,
+   "end": 165.96
+  },
+  {
+   "word": "wrapped",
+   "start": 165.96,
+   "end": 166.2
+  },
+  {
+   "word": "in",
+   "start": 166.2,
+   "end": 166.44
+  },
+  {
+   "word": "hydrogen",
+   "start": 166.44,
+   "end": 166.82
+  },
+  {
+   "word": "gas",
+   "start": 166.82,
+   "end": 167.24
+  },
+  {
+   "word": "mixed",
+   "start": 167.24,
+   "end": 167.56
+  },
+  {
+   "word": "with",
+   "start": 167.56,
+   "end": 167.88
+  },
+  {
+   "word": "fresh",
+   "start": 167.88,
+   "end": 168.14
+  },
+  {
+   "word": "oxygen.",
+   "start": 168.14,
+   "end": 168.72
+  },
+  {
+   "word": "It",
+   "start": 169.1,
+   "end": 169.3
+  },
+  {
+   "word": "wouldn't",
+   "start": 169.3,
+   "end": 169.58
+  },
+  {
+   "word": "need",
+   "start": 169.58,
+   "end": 169.8
+  },
+  {
+   "word": "engine",
+   "start": 169.8,
+   "end": 170.2
+  },
+  {
+   "word": "sparks.",
+   "start": 170.2,
+   "end": 170.58
+  },
+  {
+   "word": "Lightning,",
+   "start": 171.1,
+   "end": 171.34
+  },
+  {
+   "word": "hot",
+   "start": 171.66,
+   "end": 171.8
+  },
+  {
+   "word": "surfaces",
+   "start": 171.8,
+   "end": 172.28
+  },
+  {
+   "word": "and",
+   "start": 172.28,
+   "end": 172.64
+  },
+  {
+   "word": "molten",
+   "start": 172.64,
+   "end": 172.9
+  },
+  {
+   "word": "debris",
+   "start": 172.9,
+   "end": 173.44
+  },
+  {
+   "word": "would",
+   "start": 173.44,
+   "end": 173.68
+  },
+  {
+   "word": "ignite",
+   "start": 173.68,
+   "end": 173.98
+  },
+  {
+   "word": "it",
+   "start": 173.98,
+   "end": 174.26
+  },
+  {
+   "word": "instantly,",
+   "start": 174.26,
+   "end": 174.74
+  },
+  {
+   "word": "turning",
+   "start": 175.2,
+   "end": 175.4
+  },
+  {
+   "word": "the",
+   "start": 175.4,
+   "end": 175.64
+  },
+  {
+   "word": "entire",
+   "start": 175.64,
+   "end": 176.1
+  },
+  {
+   "word": "sky",
+   "start": 176.1,
+   "end": 176.6
+  },
+  {
+   "word": "into",
+   "start": 176.6,
+   "end": 176.92
+  },
+  {
+   "word": "a",
+   "start": 176.92,
+   "end": 177.18
+  },
+  {
+   "word": "fireball",
+   "start": 177.18,
+   "end": 177.64
+  },
+  {
+   "word": "on",
+   "start": 177.64,
+   "end": 177.94
+  },
+  {
+   "word": "the",
+   "start": 177.94,
+   "end": 178.08
+  },
+  {
+   "word": "scale",
+   "start": 178.08,
+   "end": 178.3
+  },
+  {
+   "word": "of",
+   "start": 178.3,
+   "end": 178.46
+  },
+  {
+   "word": "the",
+   "start": 178.46,
+   "end": 178.6
+  },
+  {
+   "word": "Hindenburg",
+   "start": 178.6,
+   "end": 179.1
+  },
+  {
+   "word": "disaster",
+   "start": 179.1,
+   "end": 179.5
+  },
+  {
+   "word": "multiplied",
+   "start": 179.5,
+   "end": 180.16
+  },
+  {
+   "word": "by",
+   "start": 180.16,
+   "end": 180.66
+  },
+  {
+   "word": "oceans.",
+   "start": 180.66,
+   "end": 181.12
+  },
+  {
+   "word": "Oh,",
+   "start": 181.72,
+   "end": 181.96
+  },
+  {
+   "word": "and",
+   "start": 182.2,
+   "end": 182.32
+  },
+  {
+   "word": "you?",
+   "start": 182.32,
+   "end": 182.52
+  },
+  {
+   "word": "Remember",
+   "start": 182.98,
+   "end": 183.22
+  },
+  {
+   "word": "what",
+   "start": 183.22,
+   "end": 183.46
+  },
+  {
+   "word": "we",
+   "start": 183.46,
+   "end": 183.58
+  },
+  {
+   "word": "said",
+   "start": 183.58,
+   "end": 183.72
+  },
+  {
+   "word": "at",
+   "start": 183.72,
+   "end": 183.84
+  },
+  {
+   "word": "the",
+   "start": 183.84,
+   "end": 183.98
+  },
+  {
+   "word": "start?",
+   "start": 183.98,
+   "end": 184.2
+  },
+  {
+   "word": "Your",
+   "start": 184.6,
+   "end": 184.84
+  },
+  {
+   "word": "body",
+   "start": 184.84,
+   "end": 185.14
+  },
+  {
+   "word": "is",
+   "start": 185.14,
+   "end": 185.36
+  },
+  {
+   "word": "roughly",
+   "start": 185.36,
+   "end": 185.68
+  },
+  {
+   "word": "65",
+   "start": 185.68,
+   "end": 186.42
+  },
+  {
+   "word": "%",
+   "start": 186.42,
+   "end": 186.88
+  },
+  {
+   "word": "oxygen",
+   "start": 186.88,
+   "end": 187.26
+  },
+  {
+   "word": "by",
+   "start": 187.26,
+   "end": 187.54
+  },
+  {
+   "word": "mass.",
+   "start": 187.54,
+   "end": 187.9
+  },
+  {
+   "word": "If",
+   "start": 188.4,
+   "end": 188.58
+  },
+  {
+   "word": "every",
+   "start": 188.58,
+   "end": 189.0
+  },
+  {
+   "word": "oxygen",
+   "start": 189.0,
+   "end": 189.5
+  },
+  {
+   "word": "atom",
+   "start": 189.5,
+   "end": 189.82
+  },
+  {
+   "word": "vanished",
+   "start": 189.82,
+   "end": 190.16
+  },
+  {
+   "word": "at",
+   "start": 190.16,
+   "end": 190.4
+  },
+  {
+   "word": "once,",
+   "start": 190.4,
+   "end": 190.76
+  },
+  {
+   "word": "you",
+   "start": 191.2,
+   "end": 191.36
+  },
+  {
+   "word": "wouldn't",
+   "start": 191.36,
+   "end": 191.64
+  },
+  {
+   "word": "wait",
+   "start": 191.64,
+   "end": 191.8
+  },
+  {
+   "word": "5",
+   "start": 191.8,
+   "end": 192.2
+  },
+  {
+   "word": "seconds",
+   "start": 192.2,
+   "end": 192.58
+  },
+  {
+   "word": "to",
+   "start": 192.58,
+   "end": 192.84
+  },
+  {
+   "word": "watch",
+   "start": 192.84,
+   "end": 192.96
+  },
+  {
+   "word": "the",
+   "start": 192.96,
+   "end": 193.16
+  },
+  {
+   "word": "sky",
+   "start": 193.16,
+   "end": 193.44
+  },
+  {
+   "word": "burn.",
+   "start": 193.44,
+   "end": 193.68
+  },
+  {
+   "word": "You'd",
+   "start": 194.12,
+   "end": 194.32
+  },
+  {
+   "word": "be",
+   "start": 194.32,
+   "end": 194.46
+  },
+  {
+   "word": "gone",
+   "start": 194.46,
+   "end": 194.82
+  },
+  {
+   "word": "at",
+   "start": 194.82,
+   "end": 195.1
+  },
+  {
+   "word": "second",
+   "start": 195.1,
+   "end": 195.46
+  },
+  {
+   "word": "zero.",
+   "start": 195.46,
+   "end": 195.96
+  },
+  {
+   "word": "Click",
+   "start": 196.4,
+   "end": 196.6
+  },
+  {
+   "word": "this",
+   "start": 196.6,
+   "end": 196.86
+  },
+  {
+   "word": "video",
+   "start": 196.86,
+   "end": 197.12
+  },
+  {
+   "word": "next",
+   "start": 197.12,
+   "end": 197.48
+  },
+  {
+   "word": "to",
+   "start": 197.48,
+   "end": 197.7
+  },
+  {
+   "word": "see",
+   "start": 197.7,
+   "end": 197.92
+  },
+  {
+   "word": "8",
+   "start": 197.92,
+   "end": 198.22
+  },
+  {
+   "word": "real",
+   "start": 198.22,
+   "end": 198.64
+  },
+  {
+   "word": "cosmic",
+   "start": 198.64,
+   "end": 199.1
+  },
+  {
+   "word": "threats",
+   "start": 199.1,
+   "end": 199.52
+  },
+  {
+   "word": "that",
+   "start": 199.52,
+   "end": 199.8
+  },
+  {
+   "word": "could",
+   "start": 199.8,
+   "end": 199.9
+  },
+  {
+   "word": "hit",
+   "start": 199.9,
+   "end": 200.14
+  },
+  {
+   "word": "Earth",
+   "start": 200.14,
+   "end": 200.46
+  },
+  {
+   "word": "with",
+   "start": 200.46,
+   "end": 200.76
+  },
+  {
+   "word": "0",
+   "start": 200.76,
+   "end": 201.24
+  },
+  {
+   "word": "seconds",
+   "start": 201.24,
+   "end": 201.58
+  },
+  {
+   "word": "of",
+   "start": 201.58,
+   "end": 201.8
+  },
+  {
+   "word": "warning.",
+   "start": 201.8,
+   "end": 202.06
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+اقرأ ملف CLAUDE.md وملف what_if_oxygen_disappeared_5s_script.md بالكامل أولاً، ثم افحص الملفات الصوتية والصور داخل المشروع.
+
+المهمة:
+1. دمج الملفات الصوتية الثلاثة بالترتيب: 1.mp3 ثم 2.mp3 ثم 3.mp3 عبر FFmpeg، مع قص فترات الصمت الأطول من 0.25 ثانية (silenceremove)، وتسريع الصوت atempo=1.06، وتطبيع صوت الراوي وحده إلى (-16 LUFS) وحفظه باسم audio/voiceover.mp3، على أن يخرج المكساج النهائي للفيديو (صوت + موسيقى + مؤثرات) بـ (-14 LUFS).
+2. توليد audio/timestamps.json من audio/voiceover.mp3 باستخدام Whisper، وتوليد 5 مؤثرات صوتية نظيفة في assets/sfx/ (Pop_Card, Thud_Catch, Whoosh_Snap, Whoosh_Zoom, Tick_Counter).
+3. بناء مشروع Remotion بدقة 3840x2160 (30 FPS ثابت، 0px اهتزاز) وفق قواعد CLAUDE.md حرفياً:
+   - لا تبقِ أي كادر جامداً أكثر من 3–5 ثوانٍ؛ أضف حركة مستمرة وسلسة متزامنة مع timestamps.json.
+   - الشخصية (القميص الأحمر + وضعيات الكنبة الثلاث في assets/character/couch/) تظهر بحجم بارز لـ 1.5–2.0 ثانية فقط في ردود الفعل، ثم تصغر للزاوية السفلية اليسرى (~17%) أو تختفي في اللقطات العلمية الكاملة لتأخذ الرسوم 75%–95% من الشاشة.
+   - مؤقّت OXYGEN OFF (0.00s -> 5.00s) في الزاوية العليا اليمنى فقط (TOP-RIGHT) مع منع أي تداخل بين النصوص والرسومات.
+   - التزم حرفياً بالتصحيحات العلمية في CLAUDE.md (مثل OVER 1,000x، و1991 NASA GALILEO، وTHE SKY CATCHES FIRE، ونهاية 65% OXYGEN AT 0.00s).
+4. قبل الرندر النهائي، صيّر 4 إطارات اختبارية (test_frame_01_hook_couch.png, test_frame_02_pressure_ears.png, test_frame_03_galileo_coldweld.png, test_frame_04_sky_fire_twist.png) واعرضها للمراجعة أولاً.
+5. أنيمشن قوي وجذاب (Dynamic Motion Graphics — بدون شرائح ثابتة).
