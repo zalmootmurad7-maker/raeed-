@@ -69,10 +69,10 @@ const BodyBar: React.FC<{ at: number; x: number; y: number; w: number }> = ({ at
   let acc = 0;
   return (
     <div style={{ position: "absolute", left: x, top: y, width: w, height: 110 }}>
-      {parts.map(([el, pct, col], i) => { const k = sp(f, at + i * 4, 12, 200); const left = (acc / 100) * w; acc += pct; return (
+      {parts.map(([el, pct, col], i) => { const k = sp(f, at + i * 4, 12, 200); const left = (acc / 100) * w; acc += pct; return k < 0.03 ? null : (
         <div key={i} style={{ position: "absolute", left, top: 0, width: (pct / 100) * w * k, height: 80, background: col, border: `3px solid ${SPACE.border}`, boxSizing: "border-box", borderRadius: i === 0 ? "14px 0 0 14px" : i === 3 ? "0 14px 14px 0" : 0, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", fontFamily: FONT.mono, fontWeight: 700, fontSize: i === 0 ? 40 : 26, color: "#FFF", whiteSpace: "nowrap" }}>{k > 0.9 && el ? `${el} ${pct}%` : ""}</div>
       ); })}
-      <div style={{ position: "absolute", left: 0, top: 88, fontFamily: FONT.head, fontWeight: 700, fontSize: 24, color: "#94A3B8", opacity: sp(f, at + 16) }}>YOUR BODY, BY MASS (APPROX.)</div>
+      <div style={{ position: "absolute", left: 0, top: 88, fontFamily: FONT.head, fontWeight: 700, fontSize: 24, color: "#94A3B8", opacity: f < at + 16 ? 0 : sp(f, at + 16) }}>YOUR BODY, BY MASS (APPROX.)</div>
     </div>
   );
 };
@@ -88,6 +88,7 @@ export const Twist: React.FC<BeatProps> = ({ b0, b1 }) => {
       <Earth cx={1680} cy={1250} R={420} t={t} />
       <BodyBar at={F(187.6)} x={630} y={650} w={880} />
       <Pop at={F(182.3)} x={620} y={170} w={1100} size={70} color={SPACE.text}>OH, AND <Red>YOU</Red>?</Pop>
+      {f < F(185.4) ? <div style={{ opacity: 1 - r(f, F(185.0), F(185.4)) }}><Pop at={F(182.98)} x={620} y={330} w={1100} size={64} color="#94A3B8">REMEMBER THE START?</Pop><Pop at={F(183.6)} x={620} y={430} w={1100} size={52} color={SPACE.text}>HOLD YOUR BREATH… <Red>5 SECONDS</Red></Pop></div> : null}
       <Count a={F(185.4)} b={F(186.6)} to={65} fmt={(v) => `${Math.round(v)}%`} x={620} y={300} w={700} size={210} color={C.red} />
       <Pop at={F(186.9)} x={630} y={530} w={900} size={56} color={SPACE.text}>OXYGEN, BY MASS</Pop>
       {f >= F(191.2) && f < F(194.4) ? <div style={{ opacity: 1 - r(f, F(194.0), F(194.4)) }}><Pop at={F(191.2)} x={630} y={800} w={1000} size={42} color={SPACE.text}>NO 5-SECOND WAIT FOR <Red>YOU</Red></Pop></div> : null}
