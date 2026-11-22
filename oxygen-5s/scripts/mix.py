@@ -42,7 +42,7 @@ music = music / np.max(np.abs(music)) * np.minimum(1, tt / 2) * np.minimum(1, (D
 music = music * (0.25 + (0.10 - 0.25) * sp) / 0.25           # 10% under speech vs 25% in gaps (owner's CapCut ratios)
 m = speech > 0.5
 def rms(x): return np.sqrt(np.mean(x[m] ** 2) + 1e-12)
-music *= rms(voice) / rms(music) * 10 ** (-28 / 20)             # exactly 28 dB under the voice during speech
+music *= rms(voice) / rms(music) * 10 ** (-31 / 20)             # 31 dB under the voice during speech (owner: music a little lower)
 mix = voice + music + sfx
 print("music under voice: %.1f dB | SFX under voice: %.1f dB" % (20 * np.log10(rms(voice) / rms(music)), 20 * np.log10(rms(voice) / rms(sfx))))
 save("audio/_mix_pre.wav", mix)
