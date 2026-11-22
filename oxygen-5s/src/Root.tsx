@@ -1,7 +1,7 @@
 import "./fonts";
 import React from "react";
 import { Composition, Still } from "remotion";
-import { ThumbA, ThumbB, ThumbC, ThumbD, ThumbE } from "./Thumbnails";
+import { ThumbA, ThumbB, ThumbC, ThumbD, ThumbE, ThumbE2 } from "./Thumbnails";
 import { FPS, H, W } from "./lib/core";
 import { OxygenVideo, TOTAL_FRAMES } from "./Video";
 
@@ -13,5 +13,6 @@ export const RemotionRoot: React.FC = () => (
     <Still id="ThumbC-VanishFirst" component={ThumbC} width={1280} height={720} />
     <Still id="ThumbD-65Gone" component={ThumbD} width={1280} height={720} />
     <Still id="ThumbE-DontSuffocate" component={ThumbE} width={1280} height={720} />
+    <Still id="ThumbE2-DontSuffocate-owner" component={ThumbE2} width={1920} height={1080} />
   </>
 );

@@ -40,4 +40,4 @@ What would freak you out more: the oceans turning into hydrogen, or every metal 
 - Category: Education · Not made for kids
 - End screen (last ~7 s): video element over the red-bordered box on the right + subscribe.
   Note: the voice says "8 real cosmic threats". If that video is on another channel, YouTube end screens can't link to it; point the end screen at one of our own videos.
-- Add to the series playlist. Test & Compare (final pick): ThumbD-65Gone / ThumbA-SkyOnFire / ThumbE-DontSuffocate.
+- Add to the series playlist. Test & Compare (final pick): ThumbD2-65Gone_owner / ThumbA-SkyOnFire / ThumbE2-DontSuffocate-owner.

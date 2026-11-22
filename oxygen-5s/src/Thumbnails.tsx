@@ -103,3 +103,18 @@ export const ThumbE: React.FC = () => (
     </div>
   </AbsoluteFill>
 );
+
+// E2 — owner's Gemini version of "YOU DON'T SUFFOCATE" (YOU cleaned to solid ink) + red oxygen atoms escaping the crumbling building.
+export const ThumbE2: React.FC = () => {
+  const cx = 1450, cy = 480;
+  const pts: [number, number, number][] = [[990, 520, 26], [1140, 150, 28], [1310, 80, 34], [1560, 50, 28], [1720, 160, 34], [1850, 300, 30], [1880, 480, 26], [1395, 300, 32], [1610, 330, 28], [1250, 560, 24], [1500, 560, 30], [960, 700, 24], [1780, 640, 28], [1200, 330, 22], [1680, 420, 22]];
+  return (
+    <AbsoluteFill>
+      <Img src={staticFile("thumbsrc/suffocate_owner_clean.png")} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080 }} />
+      <svg style={{ position: "absolute", left: 0, top: 0 }} width="1920" height="1080">
+        {pts.map(([x, y], i) => { const a = Math.atan2(y - cy, x - cx), L = 46; return <line key={i} x1={x - Math.cos(a) * (L + 30)} y1={y - Math.sin(a) * (L + 30)} x2={x - Math.cos(a) * 30} y2={y - Math.sin(a) * 30} stroke={C.red} strokeWidth="7" strokeLinecap="round" opacity="0.55" />; })}
+      </svg>
+      {pts.map(([x, y, rr], i) => <At key={i} x={x} y={y} r={rr} />)}
+    </AbsoluteFill>
+  );
+};
