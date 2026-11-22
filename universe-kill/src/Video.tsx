@@ -1,32 +1,25 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { LightBg, Pill } from "./components/Base";
-import { DURATION_S, F, FONT, LIGHT } from "./lib/core";
-import { BeatProps, H1Couch, H2Board, H3Through, H4Civ, H5Erase, H6Eight, H7Bar, H8ZoomIn } from "./scenes/Hook";
-import { C4Launch, C4Race } from "./scenes/Ch4";
-import { C8Couch, C8Void } from "./scenes/Ch8";
+import { DURATION_S, F } from "./lib/core";
+import { BeatProps } from "./components/Kit";
+import { H1Couch, H2Board, H3Through, H4Civ, H5Erase, H6Eight, H7Bar, H8ZoomIn } from "./scenes/Hook";
+import { CH1 } from "./scenes/Ch1";
+import { CH2 } from "./scenes/Ch2";
+import { CH3 } from "./scenes/Ch3";
+import { CH4 } from "./scenes/Ch4b";
+import { CH5 } from "./scenes/Ch5";
+import { CH6 } from "./scenes/Ch6";
+import { CH7 } from "./scenes/Ch7";
+import { CH8, CH8_END } from "./scenes/Ch8b";
+import { C8Couch } from "./scenes/Ch8";
+import { OUTRO } from "./scenes/Outro";
 
-// Timeline: every beat starts on a spoken word (audio/timestamps.json). A beat runs until the next one starts.
-// Beats not built yet render a clearly-labelled placeholder (test-frame stage only).
-const Todo = (label: string): React.FC<BeatProps> => () => (
-  <AbsoluteFill><LightBg /><div style={{ position: "absolute", left: 96, top: 480 }}><Pill text={label} color="#94A3B8" size={40} /></div><div style={{ display: "none", fontFamily: FONT.head, color: LIGHT.ink }} /></AbsoluteFill>
-);
+// Timeline: every beat starts on a spoken word (audio/timestamps.json) and runs until the next beat starts.
 export const BEATS: { t: number; C: React.FC<BeatProps> }[] = [
-  { t: 0.0, C: H1Couch },
-  { t: 3.12, C: H2Board },
-  { t: 5.36, C: H3Through },
-  { t: 7.06, C: H4Civ },
-  { t: 9.4, C: H5Erase },
-  { t: 13.22, C: H6Eight },
-  { t: 16.04, C: H7Bar },
-  { t: 18.98, C: H8ZoomIn },
-  { t: 19.9, C: Todo("CH 1 · COSMIC RAYS — next") },
-  { t: 209.96, C: C4Launch },
-  { t: 228.0, C: C4Race },
-  { t: 234.46, C: Todo("CH 4 · effects — next") },
-  { t: 543.06, C: C8Couch },
-  { t: 547.72, C: C8Void },
-  { t: 550.84, C: Todo("CH 8 · end + outro — next") },
+  { t: 0.0, C: H1Couch }, { t: 3.12, C: H2Board }, { t: 5.36, C: H3Through }, { t: 7.06, C: H4Civ },
+  { t: 9.4, C: H5Erase }, { t: 13.22, C: H6Eight }, { t: 16.04, C: H7Bar }, { t: 18.98, C: H8ZoomIn },
+  ...CH1, ...CH2, ...CH3, ...CH4, ...CH5, ...CH6, ...CH7, ...CH8,
+  { t: 543.06, C: C8Couch }, ...CH8_END, ...OUTRO,
 ];
 
 export const TOTAL_FRAMES = F(DURATION_S);

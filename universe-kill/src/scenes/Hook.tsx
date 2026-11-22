@@ -66,8 +66,6 @@ export const H2Board: React.FC<BeatProps> = ({ b0, b1 }) => {
   return (
     <>
       <LightBg />
-      {/* particle stream racing BEHIND the cards (only visible in the gaps — never over text) */}
-      {Array.from({ length: 14 }, (_, i) => { const ph = (((f - b0) / 30) * 0.7 + i / 14) % 1; const x = -80 + 2080 * ph, y = 200 + ((i * 137) % 760); return <div key={i} style={{ position: "absolute", left: x, top: y - 3, width: 90, height: 6, borderRadius: 6, background: `linear-gradient(90deg, rgba(37,99,235,0), ${C.blue})`, opacity: 0.85 }} />; })}
       <MasterBoard cam={cam} appearAt={b0} stagger={3} pulse8 title={<Pop at={F(4.18)} x={0} y={0} w={1708} size={60} align="center" from="scale">THE UNIVERSE&apos;S <span style={{ color: C.red }}>WEAPONS</span></Pop>} />
     </>
   );

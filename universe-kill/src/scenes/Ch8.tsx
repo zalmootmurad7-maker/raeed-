@@ -18,10 +18,10 @@ const Atom: React.FC<{ x: number; y: number; s: number; t: number; o: number }> 
 export const C8Couch: React.FC<BeatProps> = ({ b0, b1 }) => {
   const f = useCurrentFrame();
   const t = f / 30;
-  const snap = F(544.84), done = F(546.3);
+  const snap = F(544.84), done = F(546.45);
   const shocked = f >= snap;
   // the true-vacuum wall: edge of a huge circle centred off-screen right, sweeping right -> left
-  const edge = 2000 - 2500 * r(f, snap + 3, done, 0, 1, Easing.inOut(Easing.sin));
+  const edge = 2000 - 2500 * r(f, snap + 12, done, 0, 1, Easing.inOut(Easing.sin));
   const BC = { x: 2900, y: 540 };
   const R = BC.x - edge;
   const w = 1040, x = 960 - w / 2, bottom = 1040;
@@ -33,7 +33,7 @@ export const C8Couch: React.FC<BeatProps> = ({ b0, b1 }) => {
       <div style={{ position: "absolute", inset: 0, scale: `${cam}`, transformOrigin: "50% 60%" }}>
         {/* everyday room details that get erased as the wall passes */}
         {[[260, 300, 54], [1640, 330, 60], [1500, 780, 46], [380, 800, 50]].map(([ax, ay, s], i) => <Atom key={i} x={ax} y={ay} s={s} t={t} o={covered(ax) ? 0 : 1} />)}
-        <Couch pose={shocked ? "couch_shocked" : "couch_chill"} x={x} bottom={bottom} w={w} at={shocked ? snap : b0} />
+        <Couch pose={shocked ? "couch_shocked" : "couch_chill"} x={x} bottom={bottom} w={w} at={shocked ? snap : b0} flip={shocked} />
         {/* the bubble (drawn above the room: inside it, everything is gone) */}
         {f >= snap ? (
           <div style={{ position: "absolute", left: BC.x - R, top: BC.y - R, width: R * 2, height: R * 2, borderRadius: 9999, background: "#0E131F", border: `18px solid ${C.red}`, boxShadow: `0 0 70px 20px rgba(229,57,53,0.55)`, boxSizing: "border-box" }} />
@@ -45,7 +45,7 @@ export const C8Couch: React.FC<BeatProps> = ({ b0, b1 }) => {
       {!shocked ? <Pop at={F(543.06)} x={80} y={120} w={1760} size={72} align="center">ONE INSTANT, YOU&apos;RE ON YOUR COUCH…</Pop> : null}
       {shocked && f < F(545.66) ? <Pop at={snap} x={110} y={110} w={900} size={80} align="left" color={LIGHT.ink}>AND THE NEXT…</Pop> : null}
       {f >= F(546.34) ? <Pop at={F(546.34)} x={0} y={440} w={1920} size={190} align="center" color={C.red} from="scale" mono>RESET</Pop> : null}
-      {f >= F(545.66) && f < F(546.34) ? <Pop at={F(545.66)} x={0} y={470} w={1920} size={80} align="center" color="#F6F4EF">THE UNIVERSE HITS…</Pop> : null}
+      {(() => { let fc = snap; while (fc < done && 2000 - 2500 * r(fc, snap + 12, done, 0, 1, Easing.inOut(Easing.sin)) > 120) fc++; const at = Math.max(F(545.66), fc); return f >= at && f < F(546.34) ? <Pop at={at} x={0} y={470} w={1920} size={80} align="center" color="#F6F4EF">THE UNIVERSE HITS…</Pop> : null; })()}
       <WarningBadge value="0.00s (IMPOSSIBLE TO SEE)" at={b0} mode={covered(1700) ? "space" : "light"} danger />
       <div style={{ display: "none", fontFamily: FONT.head }} />
     </>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Easing, useCurrentFrame } from "remotion";
 import { Count, Pill, Pop, SpaceBg, WarningBadge } from "../components/Base";
-import { C, F, FONT, SPACE, r, sp } from "../lib/core";
+import { C, F, FONT, SPACE, r } from "../lib/core";
 import { BeatProps } from "./Hook";
 
 // Full-stage solar pieces (no character: the diagram owns ~90% of the frame).
@@ -71,12 +71,11 @@ export const C4Race: React.FC<BeatProps> = ({ b0, b1 }) => {
       </div>
       {/* labels sit outside the camera layer so they never collide or clip */}
       <div style={{ position: "absolute", left: 96, top: 56 }}><Pill text="1859 · CARRINGTON EVENT" color={C.red} size={34} /></div>
-      <Pop at={F(229.12)} x={560} y={150} w={800} size={40} color={SPACE.text} align="center">CROSSED THE GAP IN</Pop>
+      <Pop at={F(229.12)} x={560} y={160} w={800} size={40} color={SPACE.text} align="center">CROSSED THE GAP IN</Pop>
       <Count a={F(229.12)} b={F(233.58)} from={0} to={17.6} fmt={(v) => `${v.toFixed(1)} HOURS`} x={560} y={210} w={800} size={110} color={C.amber} align="center" />
       <Pop at={F(229.38)} x={560} y={930} w={800} size={56} color={SPACE.text} align="center" mono>150M KM</Pop>
-      <Pop at={F(233.58)} x={earth.cx - 220} y={earth.cy - earth.R - 120} w={440} size={36} color={C.green} align="center">DIRECT HIT</Pop>
-      <WarningBadge value="~18 HOURS TO 3 DAYS" at={b0} mode="space" />
-      {sp(f, b0) > 2 ? null : null}
+      <Pop at={F(233.58)} x={earth.cx - 220} y={earth.cy - earth.R - 160} w={440} size={36} color={C.green} align="center">DIRECT HIT</Pop>
+      <WarningBadge value="~18 HOURS TO 3 DAYS" at={F(209.96)} mode="space" />
     </>
   );
 };
