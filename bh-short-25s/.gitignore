@@ -1,0 +1,6 @@
+node_modules
+out
+_in
+audio/*.wav
+_*.wav
+vo_raw.mp3
