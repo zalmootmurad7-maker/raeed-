@@ -16,7 +16,7 @@
 - Hook delivered [excited], not [serious].
 - Few [pause] tags; `tighten.py` removes dead air.
 
-**Length:** ~1,330 words ≈ 8½–9 min at Mark's pace (before tighten).
+**Length:** ~1,250 words ≈ 8 min at Mark's pace (before tighten). If it comes out under 7:30, slow the voice to Speed 1.0 rather than adding filler.
 
 ---
 
@@ -40,6 +40,9 @@ Day two. Nineteen percent.
 And now, technically, the whole planet is a hazard. In the United States, workplace safety rules call any air below nineteen and a half percent oxygen "oxygen-deficient." Every office, every school, every bedroom on Earth just failed a safety inspection.
 But you feel fine. So what's the big deal?
 
+Day three. Eighteen percent.
+Nobody notices, except athletes. A marathon runner would suddenly be minutes slower, as if the race had moved up into the mountains.
+
 Day four. Seventeen percent.
 Your body now thinks you moved to Denver, the Mile High City. On the stairs, you breathe a little harder. Your heart beats a little faster. Annoying, but millions of people live like this every day.
 But something else is starting to struggle. And it isn't you.
@@ -48,6 +51,10 @@ But something else is starting to struggle. And it isn't you.
 
 Day five. Sixteen percent.
 Candles start to flicker and die. The flame on your gas stove shrinks, turns weak, and sputters.
+And up in the sky, something much worse is happening. Airliners keep the cabin at the pressure of about two and a half thousand meters. With less oxygen in the air they pump in, today that cabin feels like more than four thousand meters.
+Normally, the oxygen masks drop at that point. But the masks are triggered by pressure, not by oxygen. And the pressure is perfectly normal. So no masks drop.
+And low oxygen doesn't feel like choking. It feels like… nothing. In 2005, the pilots of Helios Flight 522 lost consciousness from low oxygen without realizing what was happening.
+So on day five, every pilot in the world has to notice the problem before it notices them.
 
 Day six. Fifteen percent.
 You strike a match. It flares for a moment… and dies.
@@ -70,6 +77,9 @@ Hospitals move every patient they can onto oxygen tanks. But the factories that 
 Day eleven. Ten percent.
 Higher than Everest Base Camp. Climbers spend days there just to get used to the air, and they have doctors, tents, and a way down.
 There is no way down now. People start fainting in the street.
+
+Day twelve. Nine percent.
+The cities go quiet. No traffic. No construction. Almost everyone who can is lying down, trying to breathe as little as possible.
 
 ### PART 3: Death zone, oceans, the twist, the end (record as 3.mp3)
 
@@ -116,6 +126,10 @@ The equivalent altitude for each day is the height where 20.95% air has the same
 | Day 1 | 20% ≈ 390 m | std atmosphere: ~no change in blood O₂ |
 | Day 2 | OSHA "oxygen-deficient" < 19.5% | US OSHA 29 CFR 1910.134 definition |
 | Day 4 | 17% ≈ 1,730 m ≈ Denver (1,609 m → 17.3%) | std atmosphere |
+| Day 3 | 18% ≈ 1,260 m; runners slower at altitude | std atmosphere; altitude effect on endurance |
+| Day 5 planes | cabin kept at ≤ 8,000 ft (≈2,440 m, P ≈ 0.75 atm); at 16% O₂ that equals ≈12% at sea level ≈ 4,600 m; masks auto-drop at cabin altitude ≈ 14,000 ft (4,270 m), triggered by **pressure** | FAA cabin-altitude rules; mask deployment logic |
+| Helios 522 | 14 Aug 2005, crew incapacitated by hypoxia without recognizing it | Greek AAIASB final report |
+| Day 12 | 9% ≈ 6,600 m | std atmosphere (the "everyone lies down" line is narration, not a measurement) |
 | Day 5–6 | flames struggle ~16%; most fires can't start ≈15% | hypoxic fire-prevention rooms run at ~15% O₂ with staff working inside |
 | Day 6 | flame depends on O₂ *fraction*, people on O₂ *partial pressure* | combustion vs physiology (why La Paz cooks with fire) |
 | Engines | "probably keep running, weaker" | **hypothesis**: compression ignition; same fuel-air physics as high-altitude driving |
