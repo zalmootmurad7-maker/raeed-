@@ -9,3 +9,4 @@ out
 out/*.mp4
 public/audio/*.wav
 public/audio/shorts/
+scripts/__pycache__/

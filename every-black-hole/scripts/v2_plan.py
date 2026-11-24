@@ -153,5 +153,5 @@ long = [i + 1 for i, d in enumerate(durs) if d > 4.5]
 out.append(f"\n**Totals:** {len(SHOTS)} shots · {words} words · ≈ {int(total//60)}:{total%60:04.1f} runtime · median shot {sorted(durs)[len(durs)//2]:.1f}s. Shots over 4.5 s get an internal mid-shot beat (second element pops on its own cue word): {', '.join(f'{x:03d}' for x in long)}.\n")
 out.append("\n## Script to record (voice: Max, Eleven v4)\n" + "\n".join(script) + "\n")
 out.append("\n## Micro-shot table\n" + "\n".join(rows) + "\n")
-open("v2_script_and_shots.md", "w").write("\n".join(out))
-print(len(SHOTS), "shots", words, "words", f"{total:.1f}s", "long:", long)
+if __name__ == "__main__": open("v2_script_and_shots.md", "w").write("\n".join(out))
+if __name__ == "__main__": print(len(SHOTS), "shots", words, "words", f"{total:.1f}s", "long:", long)

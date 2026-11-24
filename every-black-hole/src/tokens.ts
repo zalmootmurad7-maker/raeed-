@@ -7,7 +7,7 @@ export const LIGHT = {
   bg: "#F6F4EF",
   grid: "#E6E2D8",
   card: "#FFFFFF",
-  ink: "#141824",
+  ink: "#111827",
   shadow: "#CBD5E1",
 } as const;
 
@@ -20,12 +20,23 @@ export const SPACE = {
   cardShadow: "#060911",
 } as const;
 
+// v2 (2026-11-24): red = character / danger / THE CATCH; orange + gold = accretion, energy, hero numbers;
+// cyan + violet = science, scale, tech. Light #F6F4EF for diagrams/analogies, Space #0E131F for cosmic visuals.
 export const ACCENT = {
-  red: "#E53935",
-  blue: "#2563EB",
-  amber: "#F59E0B",
+  red: "#E63946",
+  blue: "#38BDF8",
+  amber: "#FB923C",
+  gold: "#FACC15",
+  cyan: "#38BDF8",
+  violet: "#A855F7",
   frost: "#CBD5E1",
 } as const;
+
+// Motion (zero jitter): UI / pop-ins / character springs; camera zooms and pans use CAM_EASE.
+export const SPRING = { damping: 15, stiffness: 160, mass: 0.8 } as const;
+export const CAM_BEZIER = [0.22, 1, 0.36, 1] as const;
+export const STROKE = 4; // ink outline (px at 1080p)
+export const CLEAR = 36; // min clearance between text and drawings (72 px in the 4K render)
 
 export const FONT = {
   head: "'Space Grotesk', sans-serif",
