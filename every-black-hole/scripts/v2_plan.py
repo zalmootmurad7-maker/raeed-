@@ -110,7 +110,7 @@ SHOTS = [
  (7, "S", "counter", "—", "fast ticks", "GRS 1915+105, '> 1,000 SPINS PER SECOND'", "One called GRS 1915+105 spins more than a thousand times a second."),
  (7, "S", "swirl lines wind up", "—", "swirl", "ANALOGY: spoon stirring honey ⇢ frame-dragging swirl", "The fast ones drag space around them, like a spoon stirring honey."),
  (7, "S", "violet band glows", "—", "hum", "violet ring 'ERGOSPHERE · NOTHING STANDS STILL'", "Inside that zone, the ergosphere, nothing can stand still."),
- (7, "S", "zoom into the centre", "—", "pop", "inside: a ring-shaped singularity drawn in gold, 'RING, NOT A POINT'", "And inside, the singularity isn't a point. It's a ring."),
+ (7, "S", "zoom into the centre", "—", "pop", "inside: a ring-shaped singularity drawn in gold, 'RING, NOT A POINT'", "And at its heart, the singularity isn't a point. It's a ring."),
  (7, "S", "HARD CUT + pill", "H:the_catch", "sub-bass impact", "'THE CATCH' pill", "The catch: you can steal its energy."),
  (7, "S", "trajectory draws in", "D:the_catch", "whoosh", "object enters the ergosphere and splits", "Throw something into the ergosphere so it splits in two."),
  (7, "S", "gold arrow out", "D:the_catch", "zap", "one half falls in; the other flies out bigger (gold)", "One half falls in. The other flies out with more energy than you threw in."),

@@ -5,7 +5,7 @@ Times are **estimates** at 2.8 words/s (after trim + atempo 1.06). Once the new 
 Modes: **B** = MasterBoard (Light) · **L** = Light `#F6F4EF` · **S** = Space `#0E131F`. Character: **H** = hero 26–30% height, 1.5–2.5 s, then springs to the dock · **D** = docked bottom-left 17% · **—** = off, full-stage diagram.
 
 
-**Totals:** 112 shots · 1150 words · ≈ 7:21.6 runtime · median shot 3.8s. Shots over 4.5 s get an internal mid-shot beat (second element pops on its own cue word): 013, 019, 021, 024, 025, 028, 031, 032, 033, 035, 043, 047, 049, 053, 056, 061, 062, 063, 070, 071, 072, 075, 076, 081, 082, 085, 086, 088, 089, 093, 094, 095, 100, 101, 104, 105, 108, 109, 110, 111.
+**Totals:** 112 shots · 1152 words · ≈ 7:22.3 runtime · median shot 3.8s. Shots over 4.5 s get an internal mid-shot beat (second element pops on its own cue word): 013, 019, 021, 024, 025, 028, 031, 032, 033, 035, 043, 047, 049, 053, 056, 061, 062, 063, 070, 071, 072, 075, 076, 081, 082, 085, 086, 088, 089, 093, 094, 095, 097, 100, 101, 104, 105, 108, 109, 110, 111.
 
 
 ## Script to record (voice: Max, Eleven v4)
@@ -130,7 +130,7 @@ Stars spin, so almost every real black hole is a Kerr black hole.
 One called GRS 1915+105 spins more than a thousand times a second.
 The fast ones drag space around them, like a spoon stirring honey.
 Inside that zone, the ergosphere, nothing can stand still.
-And inside, the singularity isn't a point. It's a ring.
+And at its heart, the singularity isn't a point. It's a ring.
 The catch: you can steal its energy.
 Throw something into the ergosphere so it splits in two.
 One half falls in. The other flies out with more energy than you threw in.
@@ -291,31 +291,31 @@ You don't need a black hole to die in one second. Ten real planets will do it. T
 | 094 | 6:00.9 | 10826 | 4.5s | S | counter | — | GRS 1915+105, '> 1,000 SPINS PER SECOND' | fast ticks | One called GRS 1915+105 spins more than a thousand times a second. |
 | 095 | 6:05.4 | 10962 | 4.5s | S | swirl lines wind up | — | ANALOGY: spoon stirring honey ⇢ frame-dragging swirl | swirl | The fast ones drag space around them, like a spoon stirring honey. |
 | 096 | 6:09.9 | 11098 | 3.5s | S | violet band glows | — | violet ring 'ERGOSPHERE · NOTHING STANDS STILL' | hum | Inside that zone, the ergosphere, nothing can stand still. |
-| 097 | 6:13.4 | 11202 | 3.8s | S | zoom into the centre | — | inside: a ring-shaped singularity drawn in gold, 'RING, NOT A POINT' | pop | And inside, the singularity isn't a point. It's a ring. |
-| 098 | 6:17.2 | 11316 | 2.8s | S | HARD CUT + pill | H:the_catch | 'THE CATCH' pill | sub-bass impact | The catch: you can steal its energy. |
-| 099 | 6:20.0 | 11399 | 3.8s | S | trajectory draws in | D:the_catch | object enters the ergosphere and splits | whoosh | Throw something into the ergosphere so it splits in two. |
-| 100 | 6:23.8 | 11514 | 5.6s | S | gold arrow out | D:the_catch | one half falls in; the other flies out bigger (gold) | zap | One half falls in. The other flies out with more energy than you threw in. |
-| 101 | 6:29.4 | 11682 | 5.2s | S | battery fills → board transition | H:shocked | cosmic battery fills gold; tiny figure joins it | charge-up → whoosh | A cosmic battery. Get the angle wrong, and you become part of the battery. |
+| 097 | 6:13.4 | 11202 | 4.5s | S | zoom into the centre | — | inside: a ring-shaped singularity drawn in gold, 'RING, NOT A POINT' | pop | And at its heart, the singularity isn't a point. It's a ring. |
+| 098 | 6:17.9 | 11338 | 2.8s | S | HARD CUT + pill | H:the_catch | 'THE CATCH' pill | sub-bass impact | The catch: you can steal its energy. |
+| 099 | 6:20.7 | 11420 | 3.8s | S | trajectory draws in | D:the_catch | object enters the ergosphere and splits | whoosh | Throw something into the ergosphere so it splits in two. |
+| 100 | 6:24.5 | 11535 | 5.6s | S | gold arrow out | D:the_catch | one half falls in; the other flies out bigger (gold) | zap | One half falls in. The other flies out with more energy than you threw in. |
+| 101 | 6:30.1 | 11703 | 5.2s | S | battery fills → board transition | H:shocked | cosmic battery fills gold; tiny figure joins it | charge-up → whoosh | A cosmic battery. Get the angle wrong, and you become part of the battery. |
 
-### 08 · Charged & white holes  (≈ 6:34.6)
-
-| # | start ≈ | frame ≈ | dur | mode | camera | character | visual | SFX | cue (voice) |
-|---|---|---|---|---|---|---|---|---|---|
-| 102 | 6:34.6 | 11839 | 3.1s | L | title slam | — | TITLE: '08 · CHARGED & WHITE HOLES' | sub-bass impact + pop | Number eight: charged black holes and white holes. |
-| 103 | 6:37.7 | 11932 | 3.1s | L | museum sign | H:thinking | sign 'MATH-ONLY WING' | pop | Welcome to the math-only wing of the museum. |
-| 104 | 6:40.9 | 12026 | 5.2s | L | push | D:thinking | +/– icon; nested outer + inner horizons | pop | A Reissner-Nordström black hole carries electric charge, which gives it a second, inner horizon. |
-| 105 | 6:46.1 | 12183 | 5.6s | S | reverse zoom (out-burst) | D:thinking | white hole: everything blasts outward, 'NOTHING GETS IN' | reverse whoosh | A white hole is a black hole in reverse. Nothing gets in. Everything blasts out. |
-| 106 | 6:51.7 | 12351 | 3.8s | L | split card | — | ANALOGY: drain (black hole) | a tap you can't turn off (white hole) | pop ×2 | A drain, versus a tap you can never turn off. |
-| 107 | 6:55.5 | 12466 | 2.2s | S | HARD CUT + pill | H:the_catch | 'THE CATCH' pill | sub-bass impact | The catch: nature hates both. |
-| 108 | 6:57.7 | 12532 | 5.2s | S | charges rush in | D:the_catch | opposite charges stream in, '+' cancels to '0' | zap | A charged black hole would pull in opposite charges and neutralize itself almost instantly. |
-| 109 | 7:03.0 | 12690 | 6.3s | S | stamp | — | white hole crossed by '2nd LAW OF THERMODYNAMICS ✗' | ink stamp | And white holes break the second law of thermodynamics so badly, most physicists call them math only. |
-| 110 | 7:09.3 | 12879 | 4.9s | S | zoom-out to a Big Bang flash | H:shocked | Big Bang flash with '?' — 'A WHITE HOLE?' | sub-bass impact | Unless, as a few wild ideas suggest, the Big Bang itself was one. |
-
-### Outro / end screen  (≈ 7:14.2)
+### 08 · Charged & white holes  (≈ 6:35.4)
 
 | # | start ≈ | frame ≈ | dur | mode | camera | character | visual | SFX | cue (voice) |
 |---|---|---|---|---|---|---|---|---|---|
-| 111 | 7:14.2 | 13026 | 7.4s | L | board zoom-out, all 8 ✓ → end-screen slot | H:explaining (points to slot) | end-screen video slot + subscribe area | whoosh → chime | You don't need a black hole to die in one second. Ten real planets will do it. They're right here. |
+| 102 | 6:35.4 | 11861 | 3.1s | L | title slam | — | TITLE: '08 · CHARGED & WHITE HOLES' | sub-bass impact + pop | Number eight: charged black holes and white holes. |
+| 103 | 6:38.5 | 11954 | 3.1s | L | museum sign | H:thinking | sign 'MATH-ONLY WING' | pop | Welcome to the math-only wing of the museum. |
+| 104 | 6:41.6 | 12047 | 5.2s | L | push | D:thinking | +/– icon; nested outer + inner horizons | pop | A Reissner-Nordström black hole carries electric charge, which gives it a second, inner horizon. |
+| 105 | 6:46.8 | 12205 | 5.6s | S | reverse zoom (out-burst) | D:thinking | white hole: everything blasts outward, 'NOTHING GETS IN' | reverse whoosh | A white hole is a black hole in reverse. Nothing gets in. Everything blasts out. |
+| 106 | 6:52.4 | 12373 | 3.8s | L | split card | — | ANALOGY: drain (black hole) | a tap you can't turn off (white hole) | pop ×2 | A drain, versus a tap you can never turn off. |
+| 107 | 6:56.2 | 12487 | 2.2s | S | HARD CUT + pill | H:the_catch | 'THE CATCH' pill | sub-bass impact | The catch: nature hates both. |
+| 108 | 6:58.4 | 12553 | 5.2s | S | charges rush in | D:the_catch | opposite charges stream in, '+' cancels to '0' | zap | A charged black hole would pull in opposite charges and neutralize itself almost instantly. |
+| 109 | 7:03.7 | 12711 | 6.3s | S | stamp | — | white hole crossed by '2nd LAW OF THERMODYNAMICS ✗' | ink stamp | And white holes break the second law of thermodynamics so badly, most physicists call them math only. |
+| 110 | 7:10.0 | 12901 | 4.9s | S | zoom-out to a Big Bang flash | H:shocked | Big Bang flash with '?' — 'A WHITE HOLE?' | sub-bass impact | Unless, as a few wild ideas suggest, the Big Bang itself was one. |
+
+### Outro / end screen  (≈ 7:14.9)
+
+| # | start ≈ | frame ≈ | dur | mode | camera | character | visual | SFX | cue (voice) |
+|---|---|---|---|---|---|---|---|---|---|
+| 111 | 7:14.9 | 13047 | 7.4s | L | board zoom-out, all 8 ✓ → end-screen slot | H:explaining (points to slot) | end-screen video slot + subscribe area | whoosh → chime | You don't need a black hole to die in one second. Ten real planets will do it. They're right here. |
 
 ## Build changes (after approval)
 - **`tokens.ts` → v2 palette:**
