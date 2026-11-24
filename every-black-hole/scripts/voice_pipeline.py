@@ -63,7 +63,7 @@ def main():
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", f"{out_dir}/voiceover.wav", "-b:a", "192k", f"{out_dir}/voiceover.mp3"], check=True)
     from faster_whisper import WhisperModel
     m = WhisperModel("small.en", device="cpu", compute_type="int8")
-    segs, _ = m.transcribe(load(f"{out_dir}/voiceover.wav", 16000), beam_size=5, word_timestamps=True)
+    segs, _ = m.transcribe(load(f"{out_dir}/voiceover.wav", 16000), beam_size=5, word_timestamps=True, initial_prompt="Micro black holes, picometers, Hawking radiation, Large Hadron Collider, primordial, Cygnus X-1, Gaia BH3, LIGO, Omega Centauri, Sagittarius A-star, M87, TON 618, Phoenix A, Schwarzschild, Kerr, ergosphere, GRS 1915+105, Reissner-Nordström.")
     words = [{"word": w.word.strip(), "start": round(w.start, 3), "end": round(w.end, 3)} for s in segs for w in s.words]
     json.dump({"duration": round(len(y) / SR, 3), "words": words}, open(f"{out_dir}/timestamps.json", "w"), indent=1)
     print(f"src {len(src)/SR:.2f}s -> 1.06x + gap trim ({removed:.2f}s removed) -> {len(y)/SR:.2f}s, {len(words)} words")
