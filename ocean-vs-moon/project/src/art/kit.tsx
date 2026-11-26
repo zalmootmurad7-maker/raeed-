@@ -35,3 +35,37 @@ export const Subtitle: React.FC<{ text: string; y?: number }> = ({ text, y = 940
   <div style={{ position: "absolute", left: 160, top: y, width: 1600, textAlign: "center" }}><span style={{ display: "inline-block", padding: "4px 26px", borderRadius: 18, background: "rgba(6,12,28,0.55)", fontFamily: FONT.ui, fontWeight: 800, fontSize: 46, lineHeight: 1.2, color: "#FFF", WebkitTextStroke: `8px ${OUT}`, paintOrder: "stroke fill", textShadow: "0 4px 10px rgba(0,0,0,0.6)" }}>{text}</span></div>
 );
 export const Fill: React.FC<{ bg: string }> = ({ bg }) => <AbsoluteFill style={{ background: bg }} />;
+
+/**
+ * HUD — small floating panel, top-left. Shown only in danger scenes and choice reveals.
+ * Static layout (0 px jitter); values come from props so they can animate smoothly (count/fill) in the video.
+ */
+export const Hud: React.FC<{ bpm: number; survival: number; beat?: number; x?: number; y?: number }> = ({ bpm, survival, beat = 0, x = 40, y = 36 }) => {
+  const s = Math.max(0, Math.min(100, survival));
+  const barCol = s < 35 ? "#FF3B3B" : s < 65 ? "#FFB547" : "#3DDC84";
+  const hot = bpm >= 120;
+  // ECG trace: flat - spike - flat, drawn once (no per-frame noise)
+  const ecg = "M 0 22 L 40 22 L 50 22 L 58 6 L 66 38 L 74 0 L 82 30 L 90 22 L 130 22 L 140 22 L 148 6 L 156 38 L 164 0 L 172 30 L 180 22 L 214 22";
+  return (
+    <div style={{ position: "absolute", left: x, top: y, width: 500, height: 176, borderRadius: 24, background: "rgba(6,12,28,0.78)", border: `5px solid ${OUT}`, boxShadow: `0 0 0 3px ${hot ? "rgba(255,59,59,0.85)" : "rgba(92,242,255,0.7)"}, 0 10px 24px rgba(0,0,0,0.45)`, fontFamily: FONT.ui, color: "#FFF", fontVariantNumeric: "tabular-nums" }}>
+      {/* row 1: heart + BPM + ECG */}
+      <svg width={70} height={64} viewBox="0 0 70 64" style={{ position: "absolute", left: 18, top: 14 }}>
+        <g transform={`translate(35 34) scale(${1 + 0.08 * beat}) translate(-35 -34)`}>
+          <path d="M 35 58 C 6 38 4 18 16 10 C 26 3 34 10 35 18 C 36 10 44 3 54 10 C 66 18 64 38 35 58 Z" fill="#FF3B3B" stroke={OUT} strokeWidth={5} strokeLinejoin="round" />
+          <path d="M 20 18 Q 24 13 30 15" fill="none" stroke="#FFF" strokeWidth={4} strokeLinecap="round" opacity={0.8} />
+        </g>
+      </svg>
+      <div style={{ position: "absolute", left: 98, top: 12, fontWeight: 900, fontSize: 50, lineHeight: 1 }}>{Math.round(bpm)}</div>
+      <div style={{ position: "absolute", left: 98, top: 62, fontWeight: 800, fontSize: 18, letterSpacing: 3, color: "#9FB4D8" }}>BPM</div>
+      <svg width={214} height={44} viewBox="0 -2 214 44" style={{ position: "absolute", left: 262, top: 22 }}>
+        <path d={ecg} fill="none" stroke={hot ? "#FF5A5A" : C.cyan} strokeWidth={4} strokeLinejoin="round" strokeLinecap="round" />
+      </svg>
+      {/* row 2: survival bar */}
+      <div style={{ position: "absolute", left: 22, top: 100, fontWeight: 900, fontSize: 20, letterSpacing: 3, color: "#9FB4D8" }}>SURVIVAL</div>
+      <div style={{ position: "absolute", left: 22, top: 128, width: 340, height: 30, borderRadius: 999, background: "#1B2438", border: `4px solid ${OUT}`, overflow: "hidden" }}>
+        <div style={{ width: `${s}%`, height: "100%", borderRadius: 999, background: `linear-gradient(180deg, ${barCol}, ${barCol}cc)`, boxShadow: "inset 0 5px 0 rgba(255,255,255,0.35)" }} />
+      </div>
+      <div style={{ position: "absolute", left: 372, top: 104, width: 110, textAlign: "right", fontWeight: 900, fontSize: 52, lineHeight: 1, color: barCol, WebkitTextStroke: `6px ${OUT}`, paintOrder: "stroke fill" }}>{Math.round(s)}%</div>
+    </div>
+  );
+};

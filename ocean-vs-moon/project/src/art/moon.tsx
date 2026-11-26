@@ -28,12 +28,12 @@ export const EarthDisc: React.FC<{ cx: number; cy: number; r: number; t?: number
 /** lunar ground with craters (y = horizon) */
 export const MoonGround: React.FC<{ y?: number; warm?: number }> = ({ y = 700, warm = 1 }) => (
   <Svg>
-    <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={warm ? "#B9A48C" : "#8F8A84"} /><stop offset="100%" stopColor={warm ? "#6E5A48" : "#4E4A46"} /></linearGradient></defs>
+    <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor={warm ? "#E0B07A" : "#8F8A84"} /><stop offset="100%" stopColor={warm ? "#9A5E36" : "#4E4A46"} /></linearGradient></defs>
     <path d={`M -20 ${y + 40} C 200 ${y - 10} 420 ${y + 30} 700 ${y + 5} C 980 ${y - 25} 1300 ${y + 30} 1560 ${y} C 1720 ${y - 15} 1840 ${y + 10} 1940 ${y} L 1940 1100 L -20 1100 Z`} fill="url(#mg)" stroke={OUT} strokeWidth={OW} />
     {[[300, y + 120, 110], [900, y + 230, 170], [1500, y + 140, 120], [1220, y + 60, 60], [520, y + 300, 90], [1750, y + 280, 100]].map(([x, yy, r], i) => (
-      <g key={i}><ellipse cx={x} cy={yy} rx={r} ry={r * 0.32} fill="#5E4C3D" stroke={OUT} strokeWidth={OW - 1} /><ellipse cx={x + r * 0.08} cy={yy + r * 0.04} rx={r * 0.8} ry={r * 0.22} fill="#4A3B30" /><path d={`M ${x - r} ${yy} A ${r} ${r * 0.32} 0 0 0 ${x + r} ${yy}`} fill="none" stroke="#D6BFA3" strokeWidth={6} opacity={0.7} /></g>
+      <g key={i}><ellipse cx={x} cy={yy} rx={r} ry={r * 0.32} fill="#7A4A2A" stroke={OUT} strokeWidth={OW - 1} /><ellipse cx={x + r * 0.08} cy={yy + r * 0.04} rx={r * 0.8} ry={r * 0.22} fill="#5E3820" /><path d={`M ${x - r} ${yy} A ${r} ${r * 0.32} 0 0 0 ${x + r} ${yy}`} fill="none" stroke="#FFD9A8" strokeWidth={6} opacity={0.7} /></g>
     ))}
-    {Array.from({ length: 40 }, (_, i) => <circle key={i} cx={rnd(i, 21) * 1920} cy={y + 30 + rnd(i, 22) * 380} r={2 + rnd(i, 23) * 5} fill="#4A3B30" opacity={0.7} />)}
+    {Array.from({ length: 40 }, (_, i) => <circle key={i} cx={rnd(i, 21) * 1920} cy={y + 30 + rnd(i, 22) * 380} r={2 + rnd(i, 23) * 5} fill="#7A4A2A" opacity={0.7} />)}
   </Svg>
 );
 /** habitat module: cylinder with windows and an amber light strip */
@@ -41,7 +41,7 @@ export const Module: React.FC<{ x: number; y: number; w: number; h: number; t?: 
   <Svg>
     {dome ? <path d={`M ${x} ${y} A ${w / 2} ${h} 0 0 1 ${x + w} ${y} Z`} fill="#E8E6E1" stroke={OUT} strokeWidth={OW} /> : <rect x={x} y={y - h} width={w} height={h} rx={h * 0.45} fill="#E8E6E1" stroke={OUT} strokeWidth={OW} />}
     {!dome ? <rect x={x + 10} y={y - h * 0.55} width={w - 20} height={h * 0.16} rx={6} fill={C.orange} stroke={OUT} strokeWidth={4} /> : null}
-    {Array.from({ length: Math.max(1, Math.floor(w / 80)) }, (_, i) => <rect key={i} x={x + 30 + i * 80} y={y - h * (dome ? 0.55 : 0.85)} width={36} height={24} rx={8} fill={C.gold} stroke={OUT} strokeWidth={4} opacity={0.7 + 0.3 * Math.sin(t * 2 + i)} />)}
+    {Array.from({ length: dome ? Math.max(1, Math.floor(w * 0.6 / 80)) : Math.max(1, Math.floor(w / 80)) }, (_, i) => { const wx = (dome ? x + w * 0.2 : x + 30) + i * 80, wy = y - h * (dome ? 0.55 : 0.85), ww = Math.max(36, h * 0.24), wh = Math.max(24, h * 0.16); return <g key={i}><rect x={wx - 10} y={wy - 10} width={ww + 20} height={wh + 20} rx={14} fill={C.amber} opacity={0.3} /><rect x={wx} y={wy} width={ww} height={wh} rx={8} fill={C.gold} stroke={OUT} strokeWidth={4} opacity={0.85 + 0.15 * Math.sin(t * 2 + i)} /></g>; })}
     {!dome ? <rect x={x + w * 0.15} y={y - 6} width={w * 0.7} height={14} rx={5} fill="#8D8A85" stroke={OUT} strokeWidth={4} /> : null}
   </Svg>
 );

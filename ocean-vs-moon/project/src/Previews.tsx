@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill } from "remotion";
 import "./fonts";
-import { C, ComicText, FONT, Hero, OUT, OW, Subtitle, Svg, rnd } from "./art/kit";
+import { C, ComicText, FONT, Hero, Hud, OUT, OW, Subtitle, Svg, rnd } from "./art/kit";
 import { Bubbles, Coral, DeepCreature, Dome, FarCity, Fish, GlowPlant, Kelp, OceanWater, SeaFan, Seabed, Tube } from "./art/ocean";
 import { Antenna, Dust, EarthDisc, Module, MoonGround, Rover, SpaceSky } from "./art/moon";
 
@@ -13,14 +13,13 @@ export const Preview1: React.FC = () => (
     {/* ocean half (left, diagonal) */}
     <AbsoluteFill style={{ clipPath: "polygon(0 0, 1080px 0, 840px 100%, 0 100%)" }}>
       <OceanWater t={T} dark />
-      <DeepCreature x={660} y={600} s={0.9} />
+      <DeepCreature x={150} y={610} s={1.2} flip t={T} lure={false} />
       <Seabed y={900} />
-      <Kelp x={90} y={930} h={380} t={T} seed={1} />
-      <Kelp x={170} y={940} h={300} t={T} seed={2} color="#12A884" />
+            <Kelp x={170} y={940} h={300} t={T} seed={2} color="#12A884" />
       <Coral x={330} y={950} s={1.1} seed={2} />
       <GlowPlant x={560} y={950} s={1.1} t={T} seed={3} />
       <Fish x={200} y={330} s={0.7} color={C.coral2} />
-      <Fish x={640} y={420} s={-0.55} color={C.turq} />
+      <Fish x={560} y={860} s={0.55} color={C.turq} />
       <Bubbles t={T} n={22} x0={0} x1={900} />
     </AbsoluteFill>
     {/* moon half (right, diagonal) */}
@@ -29,9 +28,10 @@ export const Preview1: React.FC = () => (
       <EarthDisc cx={1700} cy={200} r={135} t={T} />
       <Svg><path d="M 1000 790 L 1150 600 L 1240 680 L 1360 540 L 1500 700 L 1600 620 L 1760 720 L 1940 600 L 1940 800 Z" fill="#4A4038" stroke={OUT} strokeWidth={OW} strokeLinejoin="round" /><path d="M 1150 600 L 1180 700 M 1360 540 L 1390 660 M 1600 620 L 1630 720" stroke="#6E5A48" strokeWidth={8} /></Svg>
       <MoonGround y={760} />
-      <Module x={1440} y={830} w={300} h={110} t={T} />
-      <Module x={1300} y={830} w={150} h={120} t={T} dome />
-      <Antenna x={1800} y={820} t={T} />
+      <Module x={1430} y={880} w={420} h={170} t={T} />
+      <Module x={1170} y={880} w={270} h={240} t={T} dome />
+      <Antenna x={1880} y={870} t={T} />
+      <Svg><rect x={1150} y={872} width={720} height={26} rx={10} fill="#8D8A85" stroke={OUT} strokeWidth={OW} />{[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <circle key={i} cx={1190 + i * 90} cy={885} r={7} fill={C.amber} />)}</Svg>
       <Dust t={T} n={36} />
     </AbsoluteFill>
     {/* glowing seam */}
@@ -45,7 +45,10 @@ export const Preview1: React.FC = () => (
       <line x1={1080} y1={0} x2={840} y2={1080} stroke="#FFF" strokeWidth={5} />
     </Svg>
     <Hero pose="03_surprised" cx={955} bottom={1020} h={600} light="rgba(255,255,255,0.35)" />
-    <ComicText x={0} y={46} w={1920} size={150} color="#FFF" rot={-2}>
+    <div style={{ position: "absolute", left: 500, top: 26, width: 920, height: 290, rotate: "-2deg", borderRadius: 40, padding: 8, background: "linear-gradient(90deg, #38B6FF, #FFFFFF 50%, #FF8A1F)", boxShadow: `0 12px 0 ${OUT}` }}>
+      <div style={{ width: "100%", height: "100%", borderRadius: 32, background: "rgba(8,12,26,0.86)", border: `6px solid ${OUT}`, boxSizing: "border-box" }} />
+    </div>
+    <ComicText x={0} y={46} w={1920} size={150} color="#FFF" rot={-2} stroke={16}>
       <span style={{ color: "#38B6FF" }}>OCEAN</span> <span style={{ fontSize: 100 }}>VS</span> <span style={{ color: C.orange }}>MOON</span>
     </ComicText>
     <ComicText x={0} y={214} w={1920} size={64} color={C.gold} stroke={10} rot={-2}>WOULD YOU SURVIVE BOTH WORLDS?</ComicText>
@@ -86,7 +89,7 @@ export const Preview2: React.FC = () => (
     <GlowPlant x={1640} y={995} s={1.2} t={T} seed={5} />
     <Kelp x={300} y={995} h={260} t={T} seed={4} />
     <Bubbles t={T} n={30} />
-    <Hero pose="03_surprised" cx={960} bottom={1000} h={520} light="rgba(92,242,255,0.55)" />
+    <Hero pose="01_pointing" cx={930} bottom={1000} h={520} light="rgba(92,242,255,0.55)" />
     <ComicText x={60} y={50} w={900} size={92} color="#FFF" align="left" rot={-2}><span style={{ color: C.cyan }}>WORLD A:</span> THE OCEAN</ComicText>
     <Subtitle text="Imagine living in a glass city at the bottom of the sea." y={1016} />
   </AbsoluteFill>
@@ -181,5 +184,31 @@ export const Preview4: React.FC = () => (
     <Hero pose="02_thinking" cx={960} bottom={1070} h={560} />
     <ComicText x={150} y={955} w={560} size={60} color="#BFE6FF" stroke={11}>WORLD A · OCEAN</ComicText>
     <ComicText x={1210} y={955} w={560} size={60} color="#FFD7A8" stroke={11}>WORLD B · MOON</ComicText>
+  </AbsoluteFill>
+);
+
+/* ---------- 5. DANGER REVEAL (Round 2, World A) + HUD ---------- */
+export const Preview5: React.FC = () => (
+  <AbsoluteFill>
+    <OceanWater t={T} dark />
+    <DeepCreature x={1600} y={360} s={1.55} t={T} />
+    <Bubbles t={T} n={18} />
+    {/* glass tunnel the hero stands in */}
+    <Svg>
+      <path d="M -40 1000 L -40 640 Q 960 250 1960 640 L 1960 1000 Z" fill="rgba(120,220,255,0.08)" stroke={OUT} strokeWidth={OW + 4} />
+      <path d="M 120 560 Q 520 400 820 372" fill="none" stroke="#FFF" strokeWidth={12} strokeLinecap="round" opacity={0.4} />
+      {[220, 600, 1320, 1700].map((x) => { const top = 640 - (1 - Math.pow((x - 960) / 1000, 2)) * 195; return <line key={x} x1={x} y1={top} x2={x} y2={1000} stroke="#7FD8F5" strokeWidth={8} opacity={0.45} />; })}
+      {/* red warning beacons on the ribs */}
+      {[220, 1700].map((x) => { const top = 640 - (1 - Math.pow((x - 960) / 1000, 2)) * 195; return <g key={x}><circle cx={x} cy={top + 30} r={46} fill="#FF3B3B" opacity={0.35} /><circle cx={x} cy={top + 30} r={18} fill="#FF5A5A" stroke={OUT} strokeWidth={5} /></g>; })}
+      <rect x={-40} y={990} width={2000} height={100} fill="#24476B" stroke={OUT} strokeWidth={OW} />
+      {Array.from({ length: 16 }, (_, i) => <rect key={i} x={30 + i * 124} y={1006} width={70} height={10} rx={5} fill="#FF5A5A" />)}
+    </Svg>
+    {/* red alert wash + vignette */}
+    <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 55%, rgba(255,40,40,0) 35%, rgba(255,30,30,0.32) 100%)" }} />
+    <Hero pose="07_scared" cx={930} bottom={1000} h={470} light="rgba(255,90,90,0.5)" />
+    <Hud bpm={148} survival={34} />
+    <div style={{ position: "absolute", right: 60, top: 40, padding: "6px 34px", borderRadius: 999, background: "#FF3B3B", border: `${OW + 2}px solid ${OUT}`, boxShadow: `0 8px 0 ${OUT}`, fontFamily: FONT.comic, fontSize: 54, color: "#FFF", letterSpacing: 3, WebkitTextStroke: `6px ${OUT}`, paintOrder: "stroke fill" }}>ROUND 2</div>
+    <ComicText x={700} y={136} w={1160} size={96} color={C.gold} align="right" rot={-2} stroke={14}>YOUR BIGGEST DANGER!</ComicText>
+    <Subtitle text="A gigantic unknown creature is approaching your glass tunnel." y={1016} />
   </AbsoluteFill>
 );

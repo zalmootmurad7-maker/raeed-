@@ -107,12 +107,39 @@ export const Fish: React.FC<{ x: number; y: number; s: number; color: string; st
   </g></Svg>
 );
 /** giant deep-sea creature silhouette with a glowing eye (not graphic) */
-export const DeepCreature: React.FC<{ x: number; y: number; s: number; eye?: number }> = ({ x, y, s, eye = 1 }) => (
-  <Svg><g transform={`translate(${x} ${y}) scale(${s})`}>
-    <path d="M -520 30 C -380 -150 -60 -170 160 -90 C 300 -40 420 -60 520 -150 C 500 -40 520 60 560 140 C 440 70 320 70 180 110 C -40 170 -360 170 -520 30 Z" fill="#0B2A4A" stroke="#1F5F96" strokeWidth={6} />
-    <path d="M -470 40 C -330 120 -60 130 170 80" fill="none" stroke="#06182C" strokeWidth={10} opacity={0.7} />
-    <path d="M -520 30 L -470 50 L -440 25 L -410 55 L -380 30 L -350 60" fill="none" stroke="#DDEFFF" strokeWidth={6} strokeLinejoin="round" />
-    <path d="M -300 -110 L -260 -210 L -210 -120 Z M -120 -140 L -70 -250 L -20 -150 Z" fill="#0B2A4A" stroke="#1F5F96" strokeWidth={5} />
-    <circle cx={-380} cy={-40} r={46} fill="#FFDD55" opacity={0.22 * eye} /><circle cx={-380} cy={-40} r={20} fill="#FFE97A" stroke="#06182C" strokeWidth={4} opacity={eye} /><ellipse cx={-380} cy={-40} rx={5} ry={14} fill="#06182C" />
-  </g></Svg>
-);
+export const DeepCreature: React.FC<{ x: number; y: number; s: number; eye?: number; flip?: boolean; t?: number; lure?: boolean }> = ({ x, y, s, eye = 1, flip, t = 0, lure = true }) => {
+  const body = "M -520 30 C -380 -150 -60 -170 160 -90 C 300 -40 420 -60 520 -150 C 500 -40 520 60 560 140 C 440 70 320 70 180 110 C -40 170 -360 170 -520 30 Z";
+  const glow = 0.75 + 0.25 * Math.sin(t * 2);
+  return (
+    <Svg><g transform={`translate(${x} ${y}) scale(${flip ? -s : s} ${s})`}>
+      <defs>
+        <linearGradient id="dcb" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#1E88C8" /><stop offset="60%" stopColor="#145C9E" /><stop offset="100%" stopColor="#2FD3C5" /></linearGradient>
+        <clipPath id="dcc"><path d={body} /></clipPath>
+      </defs>
+      {/* fins */}
+      <path d="M -300 -110 L -250 -230 L -190 -125 Z M -110 -140 L -50 -270 L 10 -145 Z M 60 110 L 120 200 L 170 105 Z" fill="#145C9E" stroke={OUT} strokeWidth={8} strokeLinejoin="round" />
+      <path d={body} fill="url(#dcb)" />
+      {/* belly band + spots (cel shade) */}
+      <g clipPath="url(#dcc)">
+        <path d="M -540 60 C -330 150 -40 140 200 95 L 600 200 L -560 200 Z" fill="#7FF5E6" opacity={0.55} />
+        <path d="M -520 -60 C -340 -180 -60 -190 180 -110 L 180 -200 L -520 -200 Z" fill="#0D3F73" opacity={0.6} />
+        {[[-200, -60, 14], [-120, -90, 10], [-40, -60, 16], [40, -80, 11], [110, -40, 13], [-260, 0, 9], [-60, 0, 10]].map(([cx, cy, r], i) => <g key={i}><circle cx={cx} cy={cy} r={r * 2.2} fill={C.cyan} opacity={0.25 * glow} /><circle cx={cx} cy={cy} r={r} fill="#B6FFF9" /></g>)}
+      </g>
+      <path d={body} fill="none" stroke={OUT} strokeWidth={9} strokeLinejoin="round" />
+      {/* jaw line + teeth (not graphic) */}
+      <path d="M -520 30 C -470 55 -400 70 -330 66" fill="none" stroke={OUT} strokeWidth={7} strokeLinecap="round" />
+      {[-500, -470, -440, -410, -380, -350].map((tx, i) => <path key={i} d={`M ${tx} ${38 + i * 5} l 12 ${i % 2 ? 22 : 28} l 12 -${i % 2 ? 20 : 26} Z`} fill="#FFFFFF" stroke={OUT} strokeWidth={3} strokeLinejoin="round" />)}
+      {/* angler lure */}
+      {lure ? <>
+      <path d="M -330 -110 C -380 -260 -520 -250 -560 -150" fill="none" stroke={OUT} strokeWidth={12} strokeLinecap="round" />
+      <path d="M -330 -110 C -380 -260 -520 -250 -560 -150" fill="none" stroke="#1E88C8" strokeWidth={5} strokeLinecap="round" />
+      <circle cx={-560} cy={-140} r={60} fill="#FFE97A" opacity={0.22 * glow} /><circle cx={-560} cy={-140} r={22} fill="#FFF3A6" stroke={OUT} strokeWidth={5} /></> : null}
+      {/* eye */}
+      <circle cx={-380} cy={-40} r={70} fill="#FFDD55" opacity={0.25 * eye * glow} />
+      <circle cx={-380} cy={-40} r={34} fill="#FFE97A" stroke={OUT} strokeWidth={7} opacity={eye} />
+      <ellipse cx={-376} cy={-40} rx={8} ry={24} fill={OUT} />
+      <circle cx={-392} cy={-54} r={7} fill="#FFF" />
+    </g></Svg>
+  );
+};
+
